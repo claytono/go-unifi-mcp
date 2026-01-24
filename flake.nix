@@ -26,6 +26,10 @@
 
         vendorHash = "sha256-iJ3VFnzPYd0ovyK/QdCDolh5p8fe/aXulnHxAia5UuE=";
 
+        # Skip tests - upstream has integration tests that require GitHub credentials
+        # https://github.com/vladopajic/go-test-coverage/issues/243
+        doCheck = false;
+
         meta = {
           description = "Tool to report issues when test coverage falls below threshold";
           homepage = "https://github.com/vladopajic/go-test-coverage";
