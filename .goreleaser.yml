@@ -3,7 +3,7 @@ version: 2
 project_name: go-unifi-mcp
 
 builds:
-  - main: .
+  - main: ./cmd/go-unifi-mcp
     binary: go-unifi-mcp
     env:
       - CGO_ENABLED=0
@@ -13,6 +13,9 @@ builds:
     goarch:
       - amd64
       - arm64
+    ldflags:
+      - -s -w
+      - -X github.com/claytono/go-unifi-mcp/internal/server.Version={{.Version}}
 
 archives:
   - formats:
@@ -29,3 +32,26 @@ changelog:
       - "^docs:"
       - "^test:"
       - "^ci:"
+      - "^bd:"
+
+dockers_v2:
+  - id: go-unifi-mcp
+    ids:
+      - go-unifi-mcp
+    dockerfile: Dockerfile
+    images:
+      - ghcr.io/claytono/go-unifi-mcp
+    tags:
+      - "v{{ .Version }}"
+      - "{{ if not .IsSnapshot }}latest{{ end }}"
+    platforms:
+      - linux/amd64
+      - linux/arm64
+    labels:
+      "org.opencontainers.image.title": "{{ .ProjectName }}"
+      "org.opencontainers.image.description":
+        "MCP server for UniFi Network Controller"
+      "org.opencontainers.image.version": "{{ .Version }}"
+      "org.opencontainers.image.source": "https://github.com/claytono/go-unifi-mcp"
+      "org.opencontainers.image.revision": "{{ .FullCommit }}"
+      "org.opencontainers.image.created": "{{ .Date }}"
