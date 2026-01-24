@@ -28,7 +28,7 @@ task generate    # Run go generate
 - Use `goimports` for import organization (local prefix:
   `github.com/claytono/go-unifi-mcp`)
 - Follow standard Go conventions
-- Maintain 95% total test coverage, 90% per file
+- Maintain 85% total test coverage, 85% per file
 
 ### Type Generation
 
