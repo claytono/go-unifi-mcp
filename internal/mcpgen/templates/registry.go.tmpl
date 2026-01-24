@@ -14,6 +14,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 {{- $name := .Name }}
 {{- $snake := .SnakeName }}
 {{- $isSetting := .IsSetting }}
+{{- $fields := .Fields }}
 {{- if has "List" .Operations }}
 	s.AddTool(mcp.NewTool("unifi_list_{{ $snake }}",
 		mcp.WithDescription("List all {{ $name }} resources"),
@@ -33,14 +34,19 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 	s.AddTool(mcp.NewTool("unifi_create_{{ $snake }}",
 		mcp.WithDescription("Create a {{ $name }} resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
-		mcp.WithObject("data", mcp.Required(), mcp.Description("{{ $name }} resource data")),
+		{{- range $fields }}
+		{{ fieldProperty . }},
+		{{- end }}
 	), Create{{ $name }}(client))
 {{- end }}
 {{- if has "Update" .Operations }}
 	s.AddTool(mcp.NewTool("unifi_update_{{ $snake }}",
 		mcp.WithDescription("Update a {{ $name }} resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
-		mcp.WithObject("data", mcp.Required(), mcp.Description("{{ $name }} resource data")),
+		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
+		{{- range $fields }}
+		{{ fieldProperty . }},
+		{{- end }}
 	), Update{{ $name }}(client))
 {{- end }}
 {{- if has "Delete" .Operations }}
