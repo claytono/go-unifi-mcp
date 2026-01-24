@@ -56,8 +56,19 @@ tasks:
 
   build:
     desc: Build the binary
+    vars:
+      VERSION:
+        sh: git describe --tags --always --dirty 2>/dev/null || echo "dev"
     cmds:
-      - go build -o go-unifi-mcp ./cmd/go-unifi-mcp
+      - go build -ldflags "-X
+        github.com/claytono/go-unifi-mcp/internal/server.Version={{.VERSION}}"
+        -o go-unifi-mcp ./cmd/go-unifi-mcp
+
+  run:
+    desc: Run the MCP server (requires UNIFI_* env vars)
+    deps: [build]
+    cmds:
+      - ./go-unifi-mcp
 
   sync-go-unifi:
     desc: Sync codegen from filipowm/go-unifi

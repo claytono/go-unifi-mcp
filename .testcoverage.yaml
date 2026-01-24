@@ -8,4 +8,6 @@ exclude:
   paths:
     - internal/gounifi
     - internal/tools/generated
+    - internal/server
     - cmd/mcpgen
+    - cmd/go-unifi-mcp

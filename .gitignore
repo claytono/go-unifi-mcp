@@ -14,7 +14,7 @@ node_modules/
 coverage.out
 
 # Binary
-go-unifi-mcp
+/go-unifi-mcp
 
 # Nix result link
 result
