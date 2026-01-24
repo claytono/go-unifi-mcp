@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "go-unifi-mcp": {
+      "command": "./go-unifi-mcp",
+      "args": []
+    }
+  }
+}

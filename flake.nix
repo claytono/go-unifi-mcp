@@ -31,6 +31,48 @@
           homepage = "https://github.com/vladopajic/go-test-coverage";
         };
       };
+
+      # mcp-cli for invoking MCP servers from CLI
+      # Returns null on unsupported platforms (aarch64-linux has no binary)
+      mkMcpCli = pkgs: let
+        version = "0.1.4";
+        sources = {
+          "aarch64-darwin" = {
+            url = "https://github.com/philschmid/mcp-cli/releases/download/v${version}/mcp-cli-darwin-arm64";
+            hash = "sha256-WNKFzfHbCgA2TGqHJ3XOJKUKW+kE4kdexlTQ/BYH2PY=";
+          };
+          "x86_64-darwin" = {
+            url = "https://github.com/philschmid/mcp-cli/releases/download/v${version}/mcp-cli-darwin-x64";
+            hash = "sha256-KSC5atyBKVKGZZTYlxVrR9r4fHR3ynr35bN0Fouz1NI=";
+          };
+          "x86_64-linux" = {
+            url = "https://github.com/philschmid/mcp-cli/releases/download/v${version}/mcp-cli-linux-x64";
+            hash = "sha256-nPfQOEyp1wR/KgHsUILIL3M/epkEpwePZ8TiHOTiHCQ=";
+          };
+        };
+        src = sources.${pkgs.stdenv.hostPlatform.system} or null;
+      in if src == null then null else pkgs.stdenv.mkDerivation {
+        pname = "mcp-cli";
+        inherit version;
+
+        src = pkgs.fetchurl {
+          inherit (src) url hash;
+        };
+
+        dontUnpack = true;
+
+        installPhase = ''
+          mkdir -p $out/bin
+          cp $src $out/bin/mcp-cli
+          chmod +x $out/bin/mcp-cli
+        '';
+
+        meta = {
+          description = "Lightweight CLI for interacting with MCP servers";
+          homepage = "https://github.com/philschmid/mcp-cli";
+          platforms = [ "aarch64-darwin" "x86_64-darwin" "x86_64-linux" ];
+        };
+      };
     in
     {
       devShells = forEachSupportedSystem ({ pkgs }: {
@@ -43,7 +85,7 @@
             goreleaser
             go-mockery
             (mkGoTestCoverage pkgs)
-          ];
+          ] ++ lib.optional (mkMcpCli pkgs != null) (mkMcpCli pkgs);
         };
       });
     };

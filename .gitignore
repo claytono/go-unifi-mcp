@@ -4,6 +4,7 @@
 
 # Direnv
 .direnv/
+.envrc.local
 
 # Go module cache (project-local)
 .go/

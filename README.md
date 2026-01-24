@@ -54,6 +54,31 @@ task build       # Build the binary
 task generate    # Run go generate
 ```
 
+### Testing with mcp-cli
+
+The development environment includes
+[mcp-cli](https://github.com/philschmid/mcp-cli) for interactive testing of the
+MCP server.
+
+1. Create `.envrc.local` with your UniFi credentials (not tracked in git):
+
+   ```bash
+   export UNIFI_HOST="https://your-controller:443"
+   export UNIFI_API_KEY="your-api-key"
+   # Or use username/password:
+   # export UNIFI_USERNAME="admin"
+   # export UNIFI_PASSWORD="password"
+   ```
+
+2. Build and test:
+
+   ```bash
+   task build
+   mcp-cli go-unifi-mcp/unifi_list_device '{}'
+   ```
+
+The `.mcp_servers.json` config is pre-configured to use the local binary.
+
 ## Credits
 
 This project builds upon:
