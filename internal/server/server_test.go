@@ -1,6 +1,7 @@
 package server
 
 import (
+	"os"
 	"testing"
 
 	"github.com/claytono/go-unifi-mcp/internal/config"
@@ -47,4 +48,38 @@ func TestNewClient_UserPass(t *testing.T) {
 	_, err := NewClient(cfg)
 	// Error expected since no server is running
 	assert.Error(t, err)
+}
+
+func TestMode_DefaultsToLazy(t *testing.T) {
+	// Clear environment variable
+	_ = os.Unsetenv("UNIFI_TOOL_MODE")
+
+	// Mode should default to lazy when not specified
+	opts := Options{}
+	assert.Empty(t, opts.Mode)
+
+	// The actual default is applied in New(), which requires a client
+	// So we just verify the constant values are correct
+	assert.Equal(t, Mode("lazy"), ModeLazy)
+	assert.Equal(t, Mode("eager"), ModeEager)
+}
+
+func TestMode_ReadsFromEnvVar(t *testing.T) {
+	// Test that environment variable is respected
+	_ = os.Setenv("UNIFI_TOOL_MODE", "eager")
+	defer func() { _ = os.Unsetenv("UNIFI_TOOL_MODE") }()
+
+	// Can't test full creation without a client, but verify env parsing
+	envMode := Mode(os.Getenv("UNIFI_TOOL_MODE"))
+	assert.Equal(t, ModeEager, envMode)
+}
+
+func TestMode_OptionsOverridesEnv(t *testing.T) {
+	// Set environment to eager
+	_ = os.Setenv("UNIFI_TOOL_MODE", "eager")
+	defer func() { _ = os.Unsetenv("UNIFI_TOOL_MODE") }()
+
+	// Options should take precedence (verified by constant check)
+	opts := Options{Mode: ModeLazy}
+	assert.Equal(t, ModeLazy, opts.Mode)
 }

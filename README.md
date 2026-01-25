@@ -136,9 +136,35 @@ Then set the required environment variables in your shell before running
 | `UNIFI_PASSWORD`   | \*       | —         | Password for password auth      |
 | `UNIFI_SITE`       | No       | `default` | UniFi site name                 |
 | `UNIFI_VERIFY_SSL` | No       | `true`    | Whether to verify SSL certs     |
+| `UNIFI_TOOL_MODE`  | No       | `lazy`    | Tool registration mode          |
 
 \* Either `UNIFI_API_KEY` or both `UNIFI_USERNAME` and `UNIFI_PASSWORD` must be
 set.
+
+### Tool Modes
+
+The server supports two tool registration modes, following the pattern
+established by
+[unifi-network-mcp](https://github.com/sirkirby/unifi-network-mcp):
+
+| Mode    | Tools | Context Size | Description                                     |
+| ------- | ----- | ------------ | ----------------------------------------------- |
+| `lazy`  | 3     | ~200 tokens  | Meta-tools only (default, recommended for LLMs) |
+| `eager` | 242   | ~55K tokens  | All tools registered directly                   |
+
+**Lazy mode** (default) registers only 3 meta-tools that provide access to all
+242 UniFi operations:
+
+- `unifi_tool_index` - Search/filter the tool catalog by category or resource
+- `unifi_execute` - Execute any tool by name with arguments
+- `unifi_batch` - Execute multiple tools in parallel
+
+This dramatically reduces context window usage while preserving full
+functionality. The LLM first queries the index to find relevant tools, then
+executes them via the dispatcher.
+
+**Eager mode** registers all 242 tools directly, which may be useful for non-LLM
+clients or debugging but consumes significant context.
 
 ## Development
 

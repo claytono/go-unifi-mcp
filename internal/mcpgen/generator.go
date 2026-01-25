@@ -115,6 +115,14 @@ func Generate(cfg GeneratorConfig) error {
 		return fmt.Errorf("failed to render registry template: %w", err)
 	}
 
+	if err := renderTemplate("templates/metadata.go.tmpl", filepath.Join(cfg.OutDir, "metadata.gen.go"), tools); err != nil {
+		return fmt.Errorf("failed to render metadata template: %w", err)
+	}
+
+	if err := renderTemplate("templates/handlers.go.tmpl", filepath.Join(cfg.OutDir, "handlers.gen.go"), tools); err != nil {
+		return fmt.Errorf("failed to render handlers template: %w", err)
+	}
+
 	return nil
 }
 
