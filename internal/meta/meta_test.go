@@ -453,3 +453,129 @@ func TestRegisterMetaTools(t *testing.T) {
 	// but we can verify the function doesn't panic with nil client
 	assert.NotNil(t, s)
 }
+
+func TestExecute_NilArguments(t *testing.T) {
+	mockHandler := func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) { //nolint:unparam
+		return mcp.NewToolResultText(`{"success": true}`), nil
+	}
+
+	registry := map[string]generated.HandlerFunc{
+		"test_tool": func(_ unifi.Client) server.ToolHandlerFunc {
+			return mockHandler
+		},
+	}
+
+	handler := ExecuteHandler(nil, registry)
+
+	// Call without arguments field - should use empty map
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"tool": "test_tool",
+		// no "arguments" key
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.False(t, result.IsError)
+}
+
+func TestBatch_NilArguments(t *testing.T) {
+	mockHandler := func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) { //nolint:unparam
+		return mcp.NewToolResultText(`{"success": true}`), nil
+	}
+
+	registry := map[string]generated.HandlerFunc{
+		"test_tool": func(_ unifi.Client) server.ToolHandlerFunc {
+			return mockHandler
+		},
+	}
+
+	handler := BatchHandler(nil, registry)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"calls": []any{
+			map[string]any{"tool": "test_tool"}, // no "arguments" key
+		},
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.False(t, result.IsError)
+
+	var results []map[string]any
+	content := result.Content[0].(mcp.TextContent)
+	err = json.Unmarshal([]byte(content.Text), &results)
+	require.NoError(t, err)
+	assert.Len(t, results, 1)
+	assert.Contains(t, results[0], "result")
+}
+
+func TestBatch_HandlerReturnsError(t *testing.T) {
+	mockHandler := func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+		return nil, assert.AnError // Return an actual error
+	}
+
+	registry := map[string]generated.HandlerFunc{
+		"error_tool": func(_ unifi.Client) server.ToolHandlerFunc {
+			return mockHandler
+		},
+	}
+
+	handler := BatchHandler(nil, registry)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"calls": []any{
+			map[string]any{"tool": "error_tool", "arguments": map[string]any{}},
+		},
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.False(t, result.IsError)
+
+	var results []map[string]any
+	content := result.Content[0].(mcp.TextContent)
+	err = json.Unmarshal([]byte(content.Text), &results)
+	require.NoError(t, err)
+	assert.Len(t, results, 1)
+	assert.Contains(t, results[0], "error")
+}
+
+func TestBatch_NonJSONResult(t *testing.T) {
+	mockHandler := func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) { //nolint:unparam
+		return mcp.NewToolResultText("plain text, not JSON"), nil
+	}
+
+	registry := map[string]generated.HandlerFunc{
+		"text_tool": func(_ unifi.Client) server.ToolHandlerFunc {
+			return mockHandler
+		},
+	}
+
+	handler := BatchHandler(nil, registry)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"calls": []any{
+			map[string]any{"tool": "text_tool", "arguments": map[string]any{}},
+		},
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.False(t, result.IsError)
+
+	var results []map[string]any
+	content := result.Content[0].(mcp.TextContent)
+	err = json.Unmarshal([]byte(content.Text), &results)
+	require.NoError(t, err)
+	assert.Len(t, results, 1)
+	// Result should be stored as plain text string
+	assert.Equal(t, "plain text, not JSON", results[0]["result"])
+}
