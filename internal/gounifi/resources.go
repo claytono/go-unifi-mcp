@@ -250,8 +250,8 @@ func (r *Resource) fieldInfoFromValidation(name string, validation interface{}) 
 
 		omitEmpty := false
 
-		switch normalized {
-		case "falsetrue", "truefalse":
+		switch {
+		case normalized == "falsetrue" || normalized == "truefalse":
 			fieldInfo = NewFieldInfo(fieldName, name, "bool", "", "", omitEmpty, false, "")
 			return fieldInfo, r.FieldProcessor(fieldName, fieldInfo)
 		default:

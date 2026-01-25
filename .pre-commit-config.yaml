@@ -1,3 +1,6 @@
+# Exclude vendored files synced from upstream go-unifi
+exclude: ^internal/gounifi/
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -24,7 +27,6 @@ repos:
         language: system
         pass_filenames: false
         files: \.go$
-        exclude: ^internal/gounifi/
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.11.0.1

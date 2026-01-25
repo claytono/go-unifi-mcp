@@ -70,7 +70,7 @@ func (c *CustomClientFunction) Signature() string {
 		return ""
 	}
 	var b strings.Builder
-	// if c.comment != "" {
+	//if c.comment != "" {
 	//	b.WriteString(fmt.Sprintf("// %s %s\n", c.Name, c.Comment))
 	//}
 	b.WriteString(c.Name())
