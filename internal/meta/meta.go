@@ -14,22 +14,22 @@ import (
 func RegisterMetaTools(s *server.MCPServer, client unifi.Client) {
 	registry := generated.GetHandlerRegistry()
 
-	// unifi_tool_index - Returns filtered tool catalog
-	s.AddTool(mcp.NewTool("unifi_tool_index",
-		mcp.WithDescription("Returns the catalog of all available UniFi tools. Use this to discover tools before calling unifi_execute."),
+	// tool_index - Returns filtered tool catalog
+	s.AddTool(mcp.NewTool("tool_index",
+		mcp.WithDescription("Returns the catalog of all available UniFi tools. Use this to discover tools before calling execute."),
 		mcp.WithString("category", mcp.Description("Filter by operation type: list, get, create, update, delete")),
 		mcp.WithString("resource", mcp.Description("Filter by resource name (case-insensitive partial match)")),
 	), ToolIndexHandler())
 
-	// unifi_execute - Dispatches to any tool by name
-	s.AddTool(mcp.NewTool("unifi_execute",
-		mcp.WithDescription("Executes any UniFi tool by name. Use unifi_tool_index first to discover available tools."),
-		mcp.WithString("tool", mcp.Required(), mcp.Description("Name of the tool to execute (e.g., 'unifi_list_network')")),
+	// execute - Dispatches to any tool by name
+	s.AddTool(mcp.NewTool("execute",
+		mcp.WithDescription("Executes any UniFi tool by name. Use tool_index first to discover available tools."),
+		mcp.WithString("tool", mcp.Required(), mcp.Description("Name of the tool to execute (e.g., 'list_network')")),
 		mcp.WithObject("arguments", mcp.Description("Arguments to pass to the tool")),
 	), ExecuteHandler(client, registry))
 
-	// unifi_batch - Executes multiple tools in parallel
-	s.AddTool(mcp.NewTool("unifi_batch",
+	// batch - Executes multiple tools in parallel
+	s.AddTool(mcp.NewTool("batch",
 		mcp.WithDescription("Executes multiple UniFi tools in parallel. Each call specifies a tool name and its arguments."),
 		mcp.WithArray("calls", mcp.Required(), mcp.Description("Array of tool calls, each with 'tool' (string) and 'arguments' (object)")),
 	), BatchHandler(client, registry))

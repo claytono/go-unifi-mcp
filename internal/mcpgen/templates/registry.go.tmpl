@@ -16,13 +16,13 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 {{- $isSetting := .IsSetting }}
 {{- $fields := .Fields }}
 {{- if has "List" .Operations }}
-	s.AddTool(mcp.NewTool("unifi_list_{{ $snake }}",
+	s.AddTool(mcp.NewTool("list_{{ $snake }}",
 		mcp.WithDescription("List all {{ $name }} resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), List{{ $name }}(client))
 {{- end }}
 {{- if has "Get" .Operations }}
-	s.AddTool(mcp.NewTool("unifi_get_{{ $snake }}",
+	s.AddTool(mcp.NewTool("get_{{ $snake }}",
 		mcp.WithDescription("Get a {{ $name }} resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		{{- if not $isSetting }}
@@ -31,7 +31,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 	), Get{{ $name }}(client))
 {{- end }}
 {{- if has "Create" .Operations }}
-	s.AddTool(mcp.NewTool("unifi_create_{{ $snake }}",
+	s.AddTool(mcp.NewTool("create_{{ $snake }}",
 		mcp.WithDescription("Create a {{ $name }} resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		{{- range $fields }}
@@ -40,7 +40,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 	), Create{{ $name }}(client))
 {{- end }}
 {{- if has "Update" .Operations }}
-	s.AddTool(mcp.NewTool("unifi_update_{{ $snake }}",
+	s.AddTool(mcp.NewTool("update_{{ $snake }}",
 		mcp.WithDescription("Update a {{ $name }} resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -50,7 +50,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 	), Update{{ $name }}(client))
 {{- end }}
 {{- if has "Delete" .Operations }}
-	s.AddTool(mcp.NewTool("unifi_delete_{{ $snake }}",
+	s.AddTool(mcp.NewTool("delete_{{ $snake }}",
 		mcp.WithDescription("Delete a {{ $name }} resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),

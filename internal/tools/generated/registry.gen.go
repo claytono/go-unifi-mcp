@@ -10,16 +10,16 @@ import (
 
 // RegisterAllTools registers all generated UniFi MCP tools with the server.
 func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
-	s.AddTool(mcp.NewTool("unifi_list_ap_group",
+	s.AddTool(mcp.NewTool("list_ap_group",
 		mcp.WithDescription("List all APGroup resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListAPGroup(client))
-	s.AddTool(mcp.NewTool("unifi_get_ap_group",
+	s.AddTool(mcp.NewTool("get_ap_group",
 		mcp.WithDescription("Get a APGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetAPGroup(client))
-	s.AddTool(mcp.NewTool("unifi_create_ap_group",
+	s.AddTool(mcp.NewTool("create_ap_group",
 		mcp.WithDescription("Create a APGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -30,7 +30,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name"),
 		mcp.WithString("site_id"),
 	), CreateAPGroup(client))
-	s.AddTool(mcp.NewTool("unifi_update_ap_group",
+	s.AddTool(mcp.NewTool("update_ap_group",
 		mcp.WithDescription("Update a APGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -42,21 +42,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name"),
 		mcp.WithString("site_id"),
 	), UpdateAPGroup(client))
-	s.AddTool(mcp.NewTool("unifi_delete_ap_group",
+	s.AddTool(mcp.NewTool("delete_ap_group",
 		mcp.WithDescription("Delete a APGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteAPGroup(client))
-	s.AddTool(mcp.NewTool("unifi_list_account",
+	s.AddTool(mcp.NewTool("list_account",
 		mcp.WithDescription("List all Account resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListAccount(client))
-	s.AddTool(mcp.NewTool("unifi_get_account",
+	s.AddTool(mcp.NewTool("get_account",
 		mcp.WithDescription("Get a Account resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetAccount(client))
-	s.AddTool(mcp.NewTool("unifi_create_account",
+	s.AddTool(mcp.NewTool("create_account",
 		mcp.WithDescription("Create a Account resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -75,7 +75,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithNumber("vlan", mcp.Pattern("[2-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|400[0-9]|^$")),
 		mcp.WithString("x_password"),
 	), CreateAccount(client))
-	s.AddTool(mcp.NewTool("unifi_update_account",
+	s.AddTool(mcp.NewTool("update_account",
 		mcp.WithDescription("Update a Account resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -95,21 +95,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithNumber("vlan", mcp.Pattern("[2-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|400[0-9]|^$")),
 		mcp.WithString("x_password"),
 	), UpdateAccount(client))
-	s.AddTool(mcp.NewTool("unifi_delete_account",
+	s.AddTool(mcp.NewTool("delete_account",
 		mcp.WithDescription("Delete a Account resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteAccount(client))
-	s.AddTool(mcp.NewTool("unifi_list_broadcast_group",
+	s.AddTool(mcp.NewTool("list_broadcast_group",
 		mcp.WithDescription("List all BroadcastGroup resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListBroadcastGroup(client))
-	s.AddTool(mcp.NewTool("unifi_get_broadcast_group",
+	s.AddTool(mcp.NewTool("get_broadcast_group",
 		mcp.WithDescription("Get a BroadcastGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetBroadcastGroup(client))
-	s.AddTool(mcp.NewTool("unifi_create_broadcast_group",
+	s.AddTool(mcp.NewTool("create_broadcast_group",
 		mcp.WithDescription("Create a BroadcastGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -120,7 +120,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name"),
 		mcp.WithString("site_id"),
 	), CreateBroadcastGroup(client))
-	s.AddTool(mcp.NewTool("unifi_update_broadcast_group",
+	s.AddTool(mcp.NewTool("update_broadcast_group",
 		mcp.WithDescription("Update a BroadcastGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -132,21 +132,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name"),
 		mcp.WithString("site_id"),
 	), UpdateBroadcastGroup(client))
-	s.AddTool(mcp.NewTool("unifi_delete_broadcast_group",
+	s.AddTool(mcp.NewTool("delete_broadcast_group",
 		mcp.WithDescription("Delete a BroadcastGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteBroadcastGroup(client))
-	s.AddTool(mcp.NewTool("unifi_list_channel_plan",
+	s.AddTool(mcp.NewTool("list_channel_plan",
 		mcp.WithDescription("List all ChannelPlan resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListChannelPlan(client))
-	s.AddTool(mcp.NewTool("unifi_get_channel_plan",
+	s.AddTool(mcp.NewTool("get_channel_plan",
 		mcp.WithDescription("Get a ChannelPlan resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetChannelPlan(client))
-	s.AddTool(mcp.NewTool("unifi_create_channel_plan",
+	s.AddTool(mcp.NewTool("create_channel_plan",
 		mcp.WithDescription("Create a ChannelPlan resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithArray("ap_blacklisted_channels"),
@@ -166,7 +166,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithArray("site_blacklisted_channels"),
 		mcp.WithString("site_id"),
 	), CreateChannelPlan(client))
-	s.AddTool(mcp.NewTool("unifi_update_channel_plan",
+	s.AddTool(mcp.NewTool("update_channel_plan",
 		mcp.WithDescription("Update a ChannelPlan resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -187,21 +187,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithArray("site_blacklisted_channels"),
 		mcp.WithString("site_id"),
 	), UpdateChannelPlan(client))
-	s.AddTool(mcp.NewTool("unifi_delete_channel_plan",
+	s.AddTool(mcp.NewTool("delete_channel_plan",
 		mcp.WithDescription("Delete a ChannelPlan resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteChannelPlan(client))
-	s.AddTool(mcp.NewTool("unifi_list_dhcp_option",
+	s.AddTool(mcp.NewTool("list_dhcp_option",
 		mcp.WithDescription("List all DHCPOption resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListDHCPOption(client))
-	s.AddTool(mcp.NewTool("unifi_get_dhcp_option",
+	s.AddTool(mcp.NewTool("get_dhcp_option",
 		mcp.WithDescription("Get a DHCPOption resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetDHCPOption(client))
-	s.AddTool(mcp.NewTool("unifi_create_dhcp_option",
+	s.AddTool(mcp.NewTool("create_dhcp_option",
 		mcp.WithDescription("Create a DHCPOption resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -215,7 +215,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("type", mcp.Pattern("^(boolean|hexarray|integer|ipaddress|macaddress|text)$")),
 		mcp.WithNumber("width", mcp.Pattern("^(8|16|32)$")),
 	), CreateDHCPOption(client))
-	s.AddTool(mcp.NewTool("unifi_update_dhcp_option",
+	s.AddTool(mcp.NewTool("update_dhcp_option",
 		mcp.WithDescription("Update a DHCPOption resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -230,21 +230,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("type", mcp.Pattern("^(boolean|hexarray|integer|ipaddress|macaddress|text)$")),
 		mcp.WithNumber("width", mcp.Pattern("^(8|16|32)$")),
 	), UpdateDHCPOption(client))
-	s.AddTool(mcp.NewTool("unifi_delete_dhcp_option",
+	s.AddTool(mcp.NewTool("delete_dhcp_option",
 		mcp.WithDescription("Delete a DHCPOption resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteDHCPOption(client))
-	s.AddTool(mcp.NewTool("unifi_list_dns_record",
+	s.AddTool(mcp.NewTool("list_dns_record",
 		mcp.WithDescription("List all DNSRecord resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListDNSRecord(client))
-	s.AddTool(mcp.NewTool("unifi_get_dns_record",
+	s.AddTool(mcp.NewTool("get_dns_record",
 		mcp.WithDescription("Get a DNSRecord resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetDNSRecord(client))
-	s.AddTool(mcp.NewTool("unifi_create_dns_record",
+	s.AddTool(mcp.NewTool("create_dns_record",
 		mcp.WithDescription("Create a DNSRecord resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -261,7 +261,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("value", mcp.Pattern(".{1,256}")),
 		mcp.WithNumber("weight", mcp.Pattern("^[0-9][0-9]?$|^")),
 	), CreateDNSRecord(client))
-	s.AddTool(mcp.NewTool("unifi_update_dns_record",
+	s.AddTool(mcp.NewTool("update_dns_record",
 		mcp.WithDescription("Update a DNSRecord resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -279,21 +279,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("value", mcp.Pattern(".{1,256}")),
 		mcp.WithNumber("weight", mcp.Pattern("^[0-9][0-9]?$|^")),
 	), UpdateDNSRecord(client))
-	s.AddTool(mcp.NewTool("unifi_delete_dns_record",
+	s.AddTool(mcp.NewTool("delete_dns_record",
 		mcp.WithDescription("Delete a DNSRecord resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteDNSRecord(client))
-	s.AddTool(mcp.NewTool("unifi_list_dashboard",
+	s.AddTool(mcp.NewTool("list_dashboard",
 		mcp.WithDescription("List all Dashboard resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListDashboard(client))
-	s.AddTool(mcp.NewTool("unifi_get_dashboard",
+	s.AddTool(mcp.NewTool("get_dashboard",
 		mcp.WithDescription("Get a Dashboard resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetDashboard(client))
-	s.AddTool(mcp.NewTool("unifi_create_dashboard",
+	s.AddTool(mcp.NewTool("create_dashboard",
 		mcp.WithDescription("Create a Dashboard resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -307,7 +307,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name"),
 		mcp.WithString("site_id"),
 	), CreateDashboard(client))
-	s.AddTool(mcp.NewTool("unifi_update_dashboard",
+	s.AddTool(mcp.NewTool("update_dashboard",
 		mcp.WithDescription("Update a Dashboard resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -322,30 +322,30 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name"),
 		mcp.WithString("site_id"),
 	), UpdateDashboard(client))
-	s.AddTool(mcp.NewTool("unifi_delete_dashboard",
+	s.AddTool(mcp.NewTool("delete_dashboard",
 		mcp.WithDescription("Delete a Dashboard resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteDashboard(client))
-	s.AddTool(mcp.NewTool("unifi_list_device",
+	s.AddTool(mcp.NewTool("list_device",
 		mcp.WithDescription("List all Device resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListDevice(client))
-	s.AddTool(mcp.NewTool("unifi_get_device",
+	s.AddTool(mcp.NewTool("get_device",
 		mcp.WithDescription("Get a Device resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetDevice(client))
-	s.AddTool(mcp.NewTool("unifi_list_dynamic_dns",
+	s.AddTool(mcp.NewTool("list_dynamic_dns",
 		mcp.WithDescription("List all DynamicDNS resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListDynamicDNS(client))
-	s.AddTool(mcp.NewTool("unifi_get_dynamic_dns",
+	s.AddTool(mcp.NewTool("get_dynamic_dns",
 		mcp.WithDescription("Get a DynamicDNS resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetDynamicDNS(client))
-	s.AddTool(mcp.NewTool("unifi_create_dynamic_dns",
+	s.AddTool(mcp.NewTool("create_dynamic_dns",
 		mcp.WithDescription("Create a DynamicDNS resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -362,7 +362,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithString("x_password", mcp.Pattern("^[^\"' ]+$")),
 	), CreateDynamicDNS(client))
-	s.AddTool(mcp.NewTool("unifi_update_dynamic_dns",
+	s.AddTool(mcp.NewTool("update_dynamic_dns",
 		mcp.WithDescription("Update a DynamicDNS resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -380,21 +380,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithString("x_password", mcp.Pattern("^[^\"' ]+$")),
 	), UpdateDynamicDNS(client))
-	s.AddTool(mcp.NewTool("unifi_delete_dynamic_dns",
+	s.AddTool(mcp.NewTool("delete_dynamic_dns",
 		mcp.WithDescription("Delete a DynamicDNS resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteDynamicDNS(client))
-	s.AddTool(mcp.NewTool("unifi_list_firewall_group",
+	s.AddTool(mcp.NewTool("list_firewall_group",
 		mcp.WithDescription("List all FirewallGroup resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListFirewallGroup(client))
-	s.AddTool(mcp.NewTool("unifi_get_firewall_group",
+	s.AddTool(mcp.NewTool("get_firewall_group",
 		mcp.WithDescription("Get a FirewallGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetFirewallGroup(client))
-	s.AddTool(mcp.NewTool("unifi_create_firewall_group",
+	s.AddTool(mcp.NewTool("create_firewall_group",
 		mcp.WithDescription("Create a FirewallGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -406,7 +406,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name", mcp.Pattern(".{1,64}")),
 		mcp.WithString("site_id"),
 	), CreateFirewallGroup(client))
-	s.AddTool(mcp.NewTool("unifi_update_firewall_group",
+	s.AddTool(mcp.NewTool("update_firewall_group",
 		mcp.WithDescription("Update a FirewallGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -419,21 +419,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name", mcp.Pattern(".{1,64}")),
 		mcp.WithString("site_id"),
 	), UpdateFirewallGroup(client))
-	s.AddTool(mcp.NewTool("unifi_delete_firewall_group",
+	s.AddTool(mcp.NewTool("delete_firewall_group",
 		mcp.WithDescription("Delete a FirewallGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteFirewallGroup(client))
-	s.AddTool(mcp.NewTool("unifi_list_firewall_rule",
+	s.AddTool(mcp.NewTool("list_firewall_rule",
 		mcp.WithDescription("List all FirewallRule resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListFirewallRule(client))
-	s.AddTool(mcp.NewTool("unifi_get_firewall_rule",
+	s.AddTool(mcp.NewTool("get_firewall_rule",
 		mcp.WithDescription("Get a FirewallRule resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetFirewallRule(client))
-	s.AddTool(mcp.NewTool("unifi_create_firewall_rule",
+	s.AddTool(mcp.NewTool("create_firewall_rule",
 		mcp.WithDescription("Create a FirewallRule resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("action", mcp.Description("One of: drop|reject|accept"), mcp.Enum("drop", "reject", "accept")),
@@ -472,7 +472,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithBoolean("state_new"),
 		mcp.WithBoolean("state_related"),
 	), CreateFirewallRule(client))
-	s.AddTool(mcp.NewTool("unifi_update_firewall_rule",
+	s.AddTool(mcp.NewTool("update_firewall_rule",
 		mcp.WithDescription("Update a FirewallRule resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -512,21 +512,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithBoolean("state_new"),
 		mcp.WithBoolean("state_related"),
 	), UpdateFirewallRule(client))
-	s.AddTool(mcp.NewTool("unifi_delete_firewall_rule",
+	s.AddTool(mcp.NewTool("delete_firewall_rule",
 		mcp.WithDescription("Delete a FirewallRule resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteFirewallRule(client))
-	s.AddTool(mcp.NewTool("unifi_list_firewall_zone",
+	s.AddTool(mcp.NewTool("list_firewall_zone",
 		mcp.WithDescription("List all FirewallZone resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListFirewallZone(client))
-	s.AddTool(mcp.NewTool("unifi_get_firewall_zone",
+	s.AddTool(mcp.NewTool("get_firewall_zone",
 		mcp.WithDescription("Get a FirewallZone resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetFirewallZone(client))
-	s.AddTool(mcp.NewTool("unifi_create_firewall_zone",
+	s.AddTool(mcp.NewTool("create_firewall_zone",
 		mcp.WithDescription("Create a FirewallZone resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -537,7 +537,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithArray("network_ids", mcp.WithStringItems()),
 		mcp.WithString("site_id"),
 	), CreateFirewallZone(client))
-	s.AddTool(mcp.NewTool("unifi_update_firewall_zone",
+	s.AddTool(mcp.NewTool("update_firewall_zone",
 		mcp.WithDescription("Update a FirewallZone resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -549,21 +549,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithArray("network_ids", mcp.WithStringItems()),
 		mcp.WithString("site_id"),
 	), UpdateFirewallZone(client))
-	s.AddTool(mcp.NewTool("unifi_delete_firewall_zone",
+	s.AddTool(mcp.NewTool("delete_firewall_zone",
 		mcp.WithDescription("Delete a FirewallZone resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteFirewallZone(client))
-	s.AddTool(mcp.NewTool("unifi_list_firewall_zone_policy",
+	s.AddTool(mcp.NewTool("list_firewall_zone_policy",
 		mcp.WithDescription("List all FirewallZonePolicy resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListFirewallZonePolicy(client))
-	s.AddTool(mcp.NewTool("unifi_get_firewall_zone_policy",
+	s.AddTool(mcp.NewTool("get_firewall_zone_policy",
 		mcp.WithDescription("Get a FirewallZonePolicy resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetFirewallZonePolicy(client))
-	s.AddTool(mcp.NewTool("unifi_create_firewall_zone_policy",
+	s.AddTool(mcp.NewTool("create_firewall_zone_policy",
 		mcp.WithDescription("Create a FirewallZonePolicy resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("action", mcp.Description("One of: ALLOW|BLOCK|REJECT"), mcp.Enum("ALLOW", "BLOCK", "REJECT")),
@@ -590,7 +590,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithObject("source"),
 	), CreateFirewallZonePolicy(client))
-	s.AddTool(mcp.NewTool("unifi_update_firewall_zone_policy",
+	s.AddTool(mcp.NewTool("update_firewall_zone_policy",
 		mcp.WithDescription("Update a FirewallZonePolicy resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -618,21 +618,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithObject("source"),
 	), UpdateFirewallZonePolicy(client))
-	s.AddTool(mcp.NewTool("unifi_delete_firewall_zone_policy",
+	s.AddTool(mcp.NewTool("delete_firewall_zone_policy",
 		mcp.WithDescription("Delete a FirewallZonePolicy resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteFirewallZonePolicy(client))
-	s.AddTool(mcp.NewTool("unifi_list_heat_map",
+	s.AddTool(mcp.NewTool("list_heat_map",
 		mcp.WithDescription("List all HeatMap resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListHeatMap(client))
-	s.AddTool(mcp.NewTool("unifi_get_heat_map",
+	s.AddTool(mcp.NewTool("get_heat_map",
 		mcp.WithDescription("Get a HeatMap resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetHeatMap(client))
-	s.AddTool(mcp.NewTool("unifi_create_heat_map",
+	s.AddTool(mcp.NewTool("create_heat_map",
 		mcp.WithDescription("Create a HeatMap resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -645,7 +645,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithString("type", mcp.Description("One of: download|upload"), mcp.Enum("download", "upload")),
 	), CreateHeatMap(client))
-	s.AddTool(mcp.NewTool("unifi_update_heat_map",
+	s.AddTool(mcp.NewTool("update_heat_map",
 		mcp.WithDescription("Update a HeatMap resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -659,21 +659,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithString("type", mcp.Description("One of: download|upload"), mcp.Enum("download", "upload")),
 	), UpdateHeatMap(client))
-	s.AddTool(mcp.NewTool("unifi_delete_heat_map",
+	s.AddTool(mcp.NewTool("delete_heat_map",
 		mcp.WithDescription("Delete a HeatMap resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteHeatMap(client))
-	s.AddTool(mcp.NewTool("unifi_list_heat_map_point",
+	s.AddTool(mcp.NewTool("list_heat_map_point",
 		mcp.WithDescription("List all HeatMapPoint resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListHeatMapPoint(client))
-	s.AddTool(mcp.NewTool("unifi_get_heat_map_point",
+	s.AddTool(mcp.NewTool("get_heat_map_point",
 		mcp.WithDescription("Get a HeatMapPoint resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetHeatMapPoint(client))
-	s.AddTool(mcp.NewTool("unifi_create_heat_map_point",
+	s.AddTool(mcp.NewTool("create_heat_map_point",
 		mcp.WithDescription("Create a HeatMapPoint resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -687,7 +687,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithNumber("x"),
 		mcp.WithNumber("y"),
 	), CreateHeatMapPoint(client))
-	s.AddTool(mcp.NewTool("unifi_update_heat_map_point",
+	s.AddTool(mcp.NewTool("update_heat_map_point",
 		mcp.WithDescription("Update a HeatMapPoint resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -702,21 +702,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithNumber("x"),
 		mcp.WithNumber("y"),
 	), UpdateHeatMapPoint(client))
-	s.AddTool(mcp.NewTool("unifi_delete_heat_map_point",
+	s.AddTool(mcp.NewTool("delete_heat_map_point",
 		mcp.WithDescription("Delete a HeatMapPoint resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteHeatMapPoint(client))
-	s.AddTool(mcp.NewTool("unifi_list_hotspot_2_conf",
+	s.AddTool(mcp.NewTool("list_hotspot_2_conf",
 		mcp.WithDescription("List all Hotspot2Conf resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListHotspot2Conf(client))
-	s.AddTool(mcp.NewTool("unifi_get_hotspot_2_conf",
+	s.AddTool(mcp.NewTool("get_hotspot_2_conf",
 		mcp.WithDescription("Get a Hotspot2Conf resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetHotspot2Conf(client))
-	s.AddTool(mcp.NewTool("unifi_create_hotspot_2_conf",
+	s.AddTool(mcp.NewTool("create_hotspot_2_conf",
 		mcp.WithDescription("Create a Hotspot2Conf resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithNumber("anqp_domain_id", mcp.Pattern("^0|[1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]|$")),
@@ -775,7 +775,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithArray("venue_name"),
 		mcp.WithNumber("venue_type", mcp.Description("One of: 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"), mcp.Enum("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15")),
 	), CreateHotspot2Conf(client))
-	s.AddTool(mcp.NewTool("unifi_update_hotspot_2_conf",
+	s.AddTool(mcp.NewTool("update_hotspot_2_conf",
 		mcp.WithDescription("Update a Hotspot2Conf resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -835,21 +835,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithArray("venue_name"),
 		mcp.WithNumber("venue_type", mcp.Description("One of: 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15"), mcp.Enum("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15")),
 	), UpdateHotspot2Conf(client))
-	s.AddTool(mcp.NewTool("unifi_delete_hotspot_2_conf",
+	s.AddTool(mcp.NewTool("delete_hotspot_2_conf",
 		mcp.WithDescription("Delete a Hotspot2Conf resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteHotspot2Conf(client))
-	s.AddTool(mcp.NewTool("unifi_list_hotspot_op",
+	s.AddTool(mcp.NewTool("list_hotspot_op",
 		mcp.WithDescription("List all HotspotOp resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListHotspotOp(client))
-	s.AddTool(mcp.NewTool("unifi_get_hotspot_op",
+	s.AddTool(mcp.NewTool("get_hotspot_op",
 		mcp.WithDescription("Get a HotspotOp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetHotspotOp(client))
-	s.AddTool(mcp.NewTool("unifi_create_hotspot_op",
+	s.AddTool(mcp.NewTool("create_hotspot_op",
 		mcp.WithDescription("Create a HotspotOp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -861,7 +861,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithString("x_password", mcp.Pattern(".{1,256}")),
 	), CreateHotspotOp(client))
-	s.AddTool(mcp.NewTool("unifi_update_hotspot_op",
+	s.AddTool(mcp.NewTool("update_hotspot_op",
 		mcp.WithDescription("Update a HotspotOp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -874,21 +874,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithString("x_password", mcp.Pattern(".{1,256}")),
 	), UpdateHotspotOp(client))
-	s.AddTool(mcp.NewTool("unifi_delete_hotspot_op",
+	s.AddTool(mcp.NewTool("delete_hotspot_op",
 		mcp.WithDescription("Delete a HotspotOp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteHotspotOp(client))
-	s.AddTool(mcp.NewTool("unifi_list_hotspot_package",
+	s.AddTool(mcp.NewTool("list_hotspot_package",
 		mcp.WithDescription("List all HotspotPackage resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListHotspotPackage(client))
-	s.AddTool(mcp.NewTool("unifi_get_hotspot_package",
+	s.AddTool(mcp.NewTool("get_hotspot_package",
 		mcp.WithDescription("Get a HotspotPackage resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetHotspotPackage(client))
-	s.AddTool(mcp.NewTool("unifi_create_hotspot_package",
+	s.AddTool(mcp.NewTool("create_hotspot_package",
 		mcp.WithDescription("Create a HotspotPackage resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithNumber("amount"),
@@ -926,7 +926,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithNumber("trial_duration_minutes"),
 		mcp.WithNumber("trial_reset"),
 	), CreateHotspotPackage(client))
-	s.AddTool(mcp.NewTool("unifi_update_hotspot_package",
+	s.AddTool(mcp.NewTool("update_hotspot_package",
 		mcp.WithDescription("Update a HotspotPackage resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -965,21 +965,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithNumber("trial_duration_minutes"),
 		mcp.WithNumber("trial_reset"),
 	), UpdateHotspotPackage(client))
-	s.AddTool(mcp.NewTool("unifi_delete_hotspot_package",
+	s.AddTool(mcp.NewTool("delete_hotspot_package",
 		mcp.WithDescription("Delete a HotspotPackage resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteHotspotPackage(client))
-	s.AddTool(mcp.NewTool("unifi_list_map",
+	s.AddTool(mcp.NewTool("list_map",
 		mcp.WithDescription("List all Map resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListMap(client))
-	s.AddTool(mcp.NewTool("unifi_get_map",
+	s.AddTool(mcp.NewTool("get_map",
 		mcp.WithDescription("Get a Map resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetMap(client))
-	s.AddTool(mcp.NewTool("unifi_create_map",
+	s.AddTool(mcp.NewTool("create_map",
 		mcp.WithDescription("Create a Map resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -1001,7 +1001,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithNumber("upp"),
 		mcp.WithNumber("zoom"),
 	), CreateMap(client))
-	s.AddTool(mcp.NewTool("unifi_update_map",
+	s.AddTool(mcp.NewTool("update_map",
 		mcp.WithDescription("Update a Map resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1024,21 +1024,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithNumber("upp"),
 		mcp.WithNumber("zoom"),
 	), UpdateMap(client))
-	s.AddTool(mcp.NewTool("unifi_delete_map",
+	s.AddTool(mcp.NewTool("delete_map",
 		mcp.WithDescription("Delete a Map resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteMap(client))
-	s.AddTool(mcp.NewTool("unifi_list_media_file",
+	s.AddTool(mcp.NewTool("list_media_file",
 		mcp.WithDescription("List all MediaFile resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListMediaFile(client))
-	s.AddTool(mcp.NewTool("unifi_get_media_file",
+	s.AddTool(mcp.NewTool("get_media_file",
 		mcp.WithDescription("Get a MediaFile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetMediaFile(client))
-	s.AddTool(mcp.NewTool("unifi_create_media_file",
+	s.AddTool(mcp.NewTool("create_media_file",
 		mcp.WithDescription("Create a MediaFile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -1048,7 +1048,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name"),
 		mcp.WithString("site_id"),
 	), CreateMediaFile(client))
-	s.AddTool(mcp.NewTool("unifi_update_media_file",
+	s.AddTool(mcp.NewTool("update_media_file",
 		mcp.WithDescription("Update a MediaFile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1059,21 +1059,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name"),
 		mcp.WithString("site_id"),
 	), UpdateMediaFile(client))
-	s.AddTool(mcp.NewTool("unifi_delete_media_file",
+	s.AddTool(mcp.NewTool("delete_media_file",
 		mcp.WithDescription("Delete a MediaFile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteMediaFile(client))
-	s.AddTool(mcp.NewTool("unifi_list_network",
+	s.AddTool(mcp.NewTool("list_network",
 		mcp.WithDescription("List all Network resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListNetwork(client))
-	s.AddTool(mcp.NewTool("unifi_get_network",
+	s.AddTool(mcp.NewTool("get_network",
 		mcp.WithDescription("Get a Network resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetNetwork(client))
-	s.AddTool(mcp.NewTool("unifi_create_network",
+	s.AddTool(mcp.NewTool("create_network",
 		mcp.WithDescription("Create a Network resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -1316,7 +1316,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_wan_password", mcp.Pattern("[^\"' ]+|^$")),
 		mcp.WithString("x_wireguard_private_key"),
 	), CreateNetwork(client))
-	s.AddTool(mcp.NewTool("unifi_update_network",
+	s.AddTool(mcp.NewTool("update_network",
 		mcp.WithDescription("Update a Network resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1560,21 +1560,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_wan_password", mcp.Pattern("[^\"' ]+|^$")),
 		mcp.WithString("x_wireguard_private_key"),
 	), UpdateNetwork(client))
-	s.AddTool(mcp.NewTool("unifi_delete_network",
+	s.AddTool(mcp.NewTool("delete_network",
 		mcp.WithDescription("Delete a Network resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteNetwork(client))
-	s.AddTool(mcp.NewTool("unifi_list_port_forward",
+	s.AddTool(mcp.NewTool("list_port_forward",
 		mcp.WithDescription("List all PortForward resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListPortForward(client))
-	s.AddTool(mcp.NewTool("unifi_get_port_forward",
+	s.AddTool(mcp.NewTool("get_port_forward",
 		mcp.WithDescription("Get a PortForward resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetPortForward(client))
-	s.AddTool(mcp.NewTool("unifi_create_port_forward",
+	s.AddTool(mcp.NewTool("create_port_forward",
 		mcp.WithDescription("Create a PortForward resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -1597,7 +1597,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithBoolean("src_limiting_enabled"),
 		mcp.WithString("src_limiting_type", mcp.Description("One of: ip|firewall_group"), mcp.Enum("ip", "firewall_group")),
 	), CreatePortForward(client))
-	s.AddTool(mcp.NewTool("unifi_update_port_forward",
+	s.AddTool(mcp.NewTool("update_port_forward",
 		mcp.WithDescription("Update a PortForward resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1621,21 +1621,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithBoolean("src_limiting_enabled"),
 		mcp.WithString("src_limiting_type", mcp.Description("One of: ip|firewall_group"), mcp.Enum("ip", "firewall_group")),
 	), UpdatePortForward(client))
-	s.AddTool(mcp.NewTool("unifi_delete_port_forward",
+	s.AddTool(mcp.NewTool("delete_port_forward",
 		mcp.WithDescription("Delete a PortForward resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeletePortForward(client))
-	s.AddTool(mcp.NewTool("unifi_list_port_profile",
+	s.AddTool(mcp.NewTool("list_port_profile",
 		mcp.WithDescription("List all PortProfile resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListPortProfile(client))
-	s.AddTool(mcp.NewTool("unifi_get_port_profile",
+	s.AddTool(mcp.NewTool("get_port_profile",
 		mcp.WithDescription("Get a PortProfile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetPortProfile(client))
-	s.AddTool(mcp.NewTool("unifi_create_port_profile",
+	s.AddTool(mcp.NewTool("create_port_profile",
 		mcp.WithDescription("Create a PortProfile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -1684,7 +1684,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("tagged_vlan_mgmt", mcp.Description("One of: auto|block_all|custom"), mcp.Enum("auto", "block_all", "custom")),
 		mcp.WithString("voice_networkconf_id"),
 	), CreatePortProfile(client))
-	s.AddTool(mcp.NewTool("unifi_update_port_profile",
+	s.AddTool(mcp.NewTool("update_port_profile",
 		mcp.WithDescription("Update a PortProfile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1734,21 +1734,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("tagged_vlan_mgmt", mcp.Description("One of: auto|block_all|custom"), mcp.Enum("auto", "block_all", "custom")),
 		mcp.WithString("voice_networkconf_id"),
 	), UpdatePortProfile(client))
-	s.AddTool(mcp.NewTool("unifi_delete_port_profile",
+	s.AddTool(mcp.NewTool("delete_port_profile",
 		mcp.WithDescription("Delete a PortProfile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeletePortProfile(client))
-	s.AddTool(mcp.NewTool("unifi_list_radius_profile",
+	s.AddTool(mcp.NewTool("list_radius_profile",
 		mcp.WithDescription("List all RADIUSProfile resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListRADIUSProfile(client))
-	s.AddTool(mcp.NewTool("unifi_get_radius_profile",
+	s.AddTool(mcp.NewTool("get_radius_profile",
 		mcp.WithDescription("Get a RADIUSProfile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetRADIUSProfile(client))
-	s.AddTool(mcp.NewTool("unifi_create_radius_profile",
+	s.AddTool(mcp.NewTool("create_radius_profile",
 		mcp.WithDescription("Create a RADIUSProfile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("accounting_enabled"),
@@ -1774,7 +1774,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_client_private_key_filename"),
 		mcp.WithString("x_client_private_key_password"),
 	), CreateRADIUSProfile(client))
-	s.AddTool(mcp.NewTool("unifi_update_radius_profile",
+	s.AddTool(mcp.NewTool("update_radius_profile",
 		mcp.WithDescription("Update a RADIUSProfile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1801,21 +1801,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_client_private_key_filename"),
 		mcp.WithString("x_client_private_key_password"),
 	), UpdateRADIUSProfile(client))
-	s.AddTool(mcp.NewTool("unifi_delete_radius_profile",
+	s.AddTool(mcp.NewTool("delete_radius_profile",
 		mcp.WithDescription("Delete a RADIUSProfile resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteRADIUSProfile(client))
-	s.AddTool(mcp.NewTool("unifi_list_routing",
+	s.AddTool(mcp.NewTool("list_routing",
 		mcp.WithDescription("List all Routing resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListRouting(client))
-	s.AddTool(mcp.NewTool("unifi_get_routing",
+	s.AddTool(mcp.NewTool("get_routing",
 		mcp.WithDescription("Get a Routing resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetRouting(client))
-	s.AddTool(mcp.NewTool("unifi_create_routing",
+	s.AddTool(mcp.NewTool("create_routing",
 		mcp.WithDescription("Create a Routing resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -1834,7 +1834,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("static-route_type", mcp.Description("One of: nexthop-route|interface-route|blackhole"), mcp.Enum("nexthop-route", "interface-route", "blackhole")),
 		mcp.WithString("type", mcp.Pattern("static-route")),
 	), CreateRouting(client))
-	s.AddTool(mcp.NewTool("unifi_update_routing",
+	s.AddTool(mcp.NewTool("update_routing",
 		mcp.WithDescription("Update a Routing resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1854,21 +1854,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("static-route_type", mcp.Description("One of: nexthop-route|interface-route|blackhole"), mcp.Enum("nexthop-route", "interface-route", "blackhole")),
 		mcp.WithString("type", mcp.Pattern("static-route")),
 	), UpdateRouting(client))
-	s.AddTool(mcp.NewTool("unifi_delete_routing",
+	s.AddTool(mcp.NewTool("delete_routing",
 		mcp.WithDescription("Delete a Routing resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteRouting(client))
-	s.AddTool(mcp.NewTool("unifi_list_schedule_task",
+	s.AddTool(mcp.NewTool("list_schedule_task",
 		mcp.WithDescription("List all ScheduleTask resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListScheduleTask(client))
-	s.AddTool(mcp.NewTool("unifi_get_schedule_task",
+	s.AddTool(mcp.NewTool("get_schedule_task",
 		mcp.WithDescription("Get a ScheduleTask resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetScheduleTask(client))
-	s.AddTool(mcp.NewTool("unifi_create_schedule_task",
+	s.AddTool(mcp.NewTool("create_schedule_task",
 		mcp.WithDescription("Create a ScheduleTask resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("action", mcp.Pattern("upgrade")),
@@ -1882,7 +1882,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithArray("upgrade_targets"),
 	), CreateScheduleTask(client))
-	s.AddTool(mcp.NewTool("unifi_update_schedule_task",
+	s.AddTool(mcp.NewTool("update_schedule_task",
 		mcp.WithDescription("Update a ScheduleTask resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1897,16 +1897,16 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithArray("upgrade_targets"),
 	), UpdateScheduleTask(client))
-	s.AddTool(mcp.NewTool("unifi_delete_schedule_task",
+	s.AddTool(mcp.NewTool("delete_schedule_task",
 		mcp.WithDescription("Delete a ScheduleTask resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteScheduleTask(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_auto_speedtest",
+	s.AddTool(mcp.NewTool("get_setting_auto_speedtest",
 		mcp.WithDescription("Get a SettingAutoSpeedtest resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingAutoSpeedtest(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_auto_speedtest",
+	s.AddTool(mcp.NewTool("update_setting_auto_speedtest",
 		mcp.WithDescription("Update a SettingAutoSpeedtest resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1919,11 +1919,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("key"),
 		mcp.WithString("site_id"),
 	), UpdateSettingAutoSpeedtest(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_baresip",
+	s.AddTool(mcp.NewTool("get_setting_baresip",
 		mcp.WithDescription("Get a SettingBaresip resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingBaresip(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_baresip",
+	s.AddTool(mcp.NewTool("update_setting_baresip",
 		mcp.WithDescription("Update a SettingBaresip resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1938,11 +1938,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("server"),
 		mcp.WithString("site_id"),
 	), UpdateSettingBaresip(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_broadcast",
+	s.AddTool(mcp.NewTool("get_setting_broadcast",
 		mcp.WithDescription("Get a SettingBroadcast resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingBroadcast(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_broadcast",
+	s.AddTool(mcp.NewTool("update_setting_broadcast",
 		mcp.WithDescription("Update a SettingBroadcast resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1959,11 +1959,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("sound_before_resource"),
 		mcp.WithString("sound_before_type", mcp.Description("One of: sample|media"), mcp.Enum("sample", "media")),
 	), UpdateSettingBroadcast(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_connectivity",
+	s.AddTool(mcp.NewTool("get_setting_connectivity",
 		mcp.WithDescription("Get a SettingConnectivity resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingConnectivity(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_connectivity",
+	s.AddTool(mcp.NewTool("update_setting_connectivity",
 		mcp.WithDescription("Update a SettingConnectivity resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1980,11 +1980,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_mesh_essid"),
 		mcp.WithString("x_mesh_psk"),
 	), UpdateSettingConnectivity(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_country",
+	s.AddTool(mcp.NewTool("get_setting_country",
 		mcp.WithDescription("Get a SettingCountry resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingCountry(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_country",
+	s.AddTool(mcp.NewTool("update_setting_country",
 		mcp.WithDescription("Update a SettingCountry resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -1996,11 +1996,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("key"),
 		mcp.WithString("site_id"),
 	), UpdateSettingCountry(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_dashboard",
+	s.AddTool(mcp.NewTool("get_setting_dashboard",
 		mcp.WithDescription("Get a SettingDashboard resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingDashboard(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_dashboard",
+	s.AddTool(mcp.NewTool("update_setting_dashboard",
 		mcp.WithDescription("Update a SettingDashboard resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2013,11 +2013,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithArray("widgets"),
 	), UpdateSettingDashboard(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_doh",
+	s.AddTool(mcp.NewTool("get_setting_doh",
 		mcp.WithDescription("Get a SettingDoh resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingDoh(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_doh",
+	s.AddTool(mcp.NewTool("update_setting_doh",
 		mcp.WithDescription("Update a SettingDoh resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2031,11 +2031,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithString("state", mcp.Description("One of: off|auto|manual|custom"), mcp.Enum("off", "auto", "manual", "custom")),
 	), UpdateSettingDoh(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_dpi",
+	s.AddTool(mcp.NewTool("get_setting_dpi",
 		mcp.WithDescription("Get a SettingDpi resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingDpi(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_dpi",
+	s.AddTool(mcp.NewTool("update_setting_dpi",
 		mcp.WithDescription("Update a SettingDpi resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2048,11 +2048,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("key"),
 		mcp.WithString("site_id"),
 	), UpdateSettingDpi(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_element_adopt",
+	s.AddTool(mcp.NewTool("get_setting_element_adopt",
 		mcp.WithDescription("Get a SettingElementAdopt resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingElementAdopt(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_element_adopt",
+	s.AddTool(mcp.NewTool("update_setting_element_adopt",
 		mcp.WithDescription("Update a SettingElementAdopt resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2066,11 +2066,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_element_essid"),
 		mcp.WithString("x_element_psk"),
 	), UpdateSettingElementAdopt(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_ether_lighting",
+	s.AddTool(mcp.NewTool("get_setting_ether_lighting",
 		mcp.WithDescription("Get a SettingEtherLighting resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingEtherLighting(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_ether_lighting",
+	s.AddTool(mcp.NewTool("update_setting_ether_lighting",
 		mcp.WithDescription("Update a SettingEtherLighting resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2083,11 +2083,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithArray("speed_overrides"),
 	), UpdateSettingEtherLighting(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_evaluation_score",
+	s.AddTool(mcp.NewTool("get_setting_evaluation_score",
 		mcp.WithDescription("Get a SettingEvaluationScore resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingEvaluationScore(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_evaluation_score",
+	s.AddTool(mcp.NewTool("update_setting_evaluation_score",
 		mcp.WithDescription("Update a SettingEvaluationScore resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2099,11 +2099,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("key"),
 		mcp.WithString("site_id"),
 	), UpdateSettingEvaluationScore(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_global_ap",
+	s.AddTool(mcp.NewTool("get_setting_global_ap",
 		mcp.WithDescription("Get a SettingGlobalAp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingGlobalAp(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_global_ap",
+	s.AddTool(mcp.NewTool("update_setting_global_ap",
 		mcp.WithDescription("Update a SettingGlobalAp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2124,11 +2124,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("ng_tx_power_mode", mcp.Description("One of: auto|medium|high|low|custom"), mcp.Enum("auto", "medium", "high", "low", "custom")),
 		mcp.WithString("site_id"),
 	), UpdateSettingGlobalAp(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_global_nat",
+	s.AddTool(mcp.NewTool("get_setting_global_nat",
 		mcp.WithDescription("Get a SettingGlobalNat resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingGlobalNat(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_global_nat",
+	s.AddTool(mcp.NewTool("update_setting_global_nat",
 		mcp.WithDescription("Update a SettingGlobalNat resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2141,11 +2141,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("mode", mcp.Description("One of: auto|custom|off"), mcp.Enum("auto", "custom", "off")),
 		mcp.WithString("site_id"),
 	), UpdateSettingGlobalNat(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_global_switch",
+	s.AddTool(mcp.NewTool("get_setting_global_switch",
 		mcp.WithDescription("Get a SettingGlobalSwitch resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingGlobalSwitch(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_global_switch",
+	s.AddTool(mcp.NewTool("update_setting_global_switch",
 		mcp.WithDescription("Update a SettingGlobalSwitch resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2166,11 +2166,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("stp_version", mcp.Description("One of: stp|rstp|disabled"), mcp.Enum("stp", "rstp", "disabled")),
 		mcp.WithArray("switch_exclusions", mcp.Pattern("^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$"), mcp.WithStringItems()),
 	), UpdateSettingGlobalSwitch(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_guest_access",
+	s.AddTool(mcp.NewTool("get_setting_guest_access",
 		mcp.WithDescription("Get a SettingGuestAccess resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingGuestAccess(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_guest_access",
+	s.AddTool(mcp.NewTool("update_setting_guest_access",
 		mcp.WithDescription("Update a SettingGuestAccess resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2278,11 +2278,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_wechat_app_secret"),
 		mcp.WithString("x_wechat_secret_key"),
 	), UpdateSettingGuestAccess(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_ips",
+	s.AddTool(mcp.NewTool("get_setting_ips",
 		mcp.WithDescription("Get a SettingIps resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingIps(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_ips",
+	s.AddTool(mcp.NewTool("update_setting_ips",
 		mcp.WithDescription("Update a SettingIps resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2306,11 +2306,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithObject("suppression"),
 	), UpdateSettingIps(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_lcm",
+	s.AddTool(mcp.NewTool("get_setting_lcm",
 		mcp.WithDescription("Get a SettingLcm resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingLcm(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_lcm",
+	s.AddTool(mcp.NewTool("update_setting_lcm",
 		mcp.WithDescription("Update a SettingLcm resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2326,11 +2326,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithBoolean("sync"),
 		mcp.WithBoolean("touch_event"),
 	), UpdateSettingLcm(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_locale",
+	s.AddTool(mcp.NewTool("get_setting_locale",
 		mcp.WithDescription("Get a SettingLocale resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingLocale(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_locale",
+	s.AddTool(mcp.NewTool("update_setting_locale",
 		mcp.WithDescription("Update a SettingLocale resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2342,11 +2342,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithString("timezone"),
 	), UpdateSettingLocale(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_magic_site_to_site_vpn",
+	s.AddTool(mcp.NewTool("get_setting_magic_site_to_site_vpn",
 		mcp.WithDescription("Get a SettingMagicSiteToSiteVpn resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingMagicSiteToSiteVpn(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_magic_site_to_site_vpn",
+	s.AddTool(mcp.NewTool("update_setting_magic_site_to_site_vpn",
 		mcp.WithDescription("Update a SettingMagicSiteToSiteVpn resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2358,11 +2358,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("key"),
 		mcp.WithString("site_id"),
 	), UpdateSettingMagicSiteToSiteVpn(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_mgmt",
+	s.AddTool(mcp.NewTool("get_setting_mgmt",
 		mcp.WithDescription("Get a SettingMgmt resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingMgmt(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_mgmt",
+	s.AddTool(mcp.NewTool("update_setting_mgmt",
 		mcp.WithDescription("Update a SettingMgmt resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2393,11 +2393,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_ssh_sha512passwd"),
 		mcp.WithString("x_ssh_username", mcp.Pattern("^[_A-Za-z0-9][-_.A-Za-z0-9]{0,29}$")),
 	), UpdateSettingMgmt(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_netflow",
+	s.AddTool(mcp.NewTool("get_setting_netflow",
 		mcp.WithDescription("Get a SettingNetflow resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingNetflow(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_netflow",
+	s.AddTool(mcp.NewTool("update_setting_netflow",
 		mcp.WithDescription("Update a SettingNetflow resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2419,11 +2419,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithNumber("version", mcp.Description("One of: 5|9|10"), mcp.Enum("5", "9", "10")),
 	), UpdateSettingNetflow(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_network_optimization",
+	s.AddTool(mcp.NewTool("get_setting_network_optimization",
 		mcp.WithDescription("Get a SettingNetworkOptimization resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingNetworkOptimization(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_network_optimization",
+	s.AddTool(mcp.NewTool("update_setting_network_optimization",
 		mcp.WithDescription("Update a SettingNetworkOptimization resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2435,11 +2435,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("key"),
 		mcp.WithString("site_id"),
 	), UpdateSettingNetworkOptimization(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_ntp",
+	s.AddTool(mcp.NewTool("get_setting_ntp",
 		mcp.WithDescription("Get a SettingNtp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingNtp(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_ntp",
+	s.AddTool(mcp.NewTool("update_setting_ntp",
 		mcp.WithDescription("Update a SettingNtp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2455,11 +2455,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("setting_preference", mcp.Description("One of: auto|manual"), mcp.Enum("auto", "manual")),
 		mcp.WithString("site_id"),
 	), UpdateSettingNtp(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_porta",
+	s.AddTool(mcp.NewTool("get_setting_porta",
 		mcp.WithDescription("Get a SettingPorta resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingPorta(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_porta",
+	s.AddTool(mcp.NewTool("update_setting_porta",
 		mcp.WithDescription("Update a SettingPorta resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2471,11 +2471,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithBoolean("ugw3_wan2_enabled"),
 	), UpdateSettingPorta(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_radio_ai",
+	s.AddTool(mcp.NewTool("get_setting_radio_ai",
 		mcp.WithDescription("Get a SettingRadioAi resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingRadioAi(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_radio_ai",
+	s.AddTool(mcp.NewTool("update_setting_radio_ai",
 		mcp.WithDescription("Update a SettingRadioAi resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2501,11 +2501,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithBoolean("useXY"),
 	), UpdateSettingRadioAi(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_radius",
+	s.AddTool(mcp.NewTool("get_setting_radius",
 		mcp.WithDescription("Get a SettingRadius resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingRadius(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_radius",
+	s.AddTool(mcp.NewTool("update_setting_radius",
 		mcp.WithDescription("Update a SettingRadius resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2524,11 +2524,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithBoolean("tunneled_reply"),
 		mcp.WithString("x_secret", mcp.Pattern("^[^\\\\\"' ]{1,48}$")),
 	), UpdateSettingRadius(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_rsyslogd",
+	s.AddTool(mcp.NewTool("get_setting_rsyslogd",
 		mcp.WithDescription("Get a SettingRsyslogd resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingRsyslogd(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_rsyslogd",
+	s.AddTool(mcp.NewTool("update_setting_rsyslogd",
 		mcp.WithDescription("Update a SettingRsyslogd resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2550,11 +2550,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithBoolean("this_controller"),
 		mcp.WithBoolean("this_controller_encrypted_only"),
 	), UpdateSettingRsyslogd(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_snmp",
+	s.AddTool(mcp.NewTool("get_setting_snmp",
 		mcp.WithDescription("Get a SettingSnmp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingSnmp(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_snmp",
+	s.AddTool(mcp.NewTool("update_setting_snmp",
 		mcp.WithDescription("Update a SettingSnmp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2570,11 +2570,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("username", mcp.Pattern("[a-zA-Z0-9_-]{1,30}")),
 		mcp.WithString("x_password", mcp.Pattern("[^'\"]{8,32}")),
 	), UpdateSettingSnmp(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_ssl_inspection",
+	s.AddTool(mcp.NewTool("get_setting_ssl_inspection",
 		mcp.WithDescription("Get a SettingSslInspection resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingSslInspection(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_ssl_inspection",
+	s.AddTool(mcp.NewTool("update_setting_ssl_inspection",
 		mcp.WithDescription("Update a SettingSslInspection resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2586,11 +2586,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithString("state", mcp.Description("One of: off|simple|advanced"), mcp.Enum("off", "simple", "advanced")),
 	), UpdateSettingSslInspection(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_super_cloudaccess",
+	s.AddTool(mcp.NewTool("get_setting_super_cloudaccess",
 		mcp.WithDescription("Get a SettingSuperCloudaccess resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingSuperCloudaccess(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_super_cloudaccess",
+	s.AddTool(mcp.NewTool("update_setting_super_cloudaccess",
 		mcp.WithDescription("Update a SettingSuperCloudaccess resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2608,11 +2608,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_certificate_pem"),
 		mcp.WithString("x_private_key"),
 	), UpdateSettingSuperCloudaccess(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_super_events",
+	s.AddTool(mcp.NewTool("get_setting_super_events",
 		mcp.WithDescription("Get a SettingSuperEvents resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingSuperEvents(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_super_events",
+	s.AddTool(mcp.NewTool("update_setting_super_events",
 		mcp.WithDescription("Update a SettingSuperEvents resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2624,11 +2624,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("key"),
 		mcp.WithString("site_id"),
 	), UpdateSettingSuperEvents(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_super_fwupdate",
+	s.AddTool(mcp.NewTool("get_setting_super_fwupdate",
 		mcp.WithDescription("Get a SettingSuperFwupdate resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingSuperFwupdate(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_super_fwupdate",
+	s.AddTool(mcp.NewTool("update_setting_super_fwupdate",
 		mcp.WithDescription("Update a SettingSuperFwupdate resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2642,11 +2642,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithBoolean("sso_enabled"),
 	), UpdateSettingSuperFwupdate(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_super_identity",
+	s.AddTool(mcp.NewTool("get_setting_super_identity",
 		mcp.WithDescription("Get a SettingSuperIdentity resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingSuperIdentity(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_super_identity",
+	s.AddTool(mcp.NewTool("update_setting_super_identity",
 		mcp.WithDescription("Update a SettingSuperIdentity resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2659,11 +2659,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name"),
 		mcp.WithString("site_id"),
 	), UpdateSettingSuperIdentity(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_super_mail",
+	s.AddTool(mcp.NewTool("get_setting_super_mail",
 		mcp.WithDescription("Get a SettingSuperMail resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingSuperMail(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_super_mail",
+	s.AddTool(mcp.NewTool("update_setting_super_mail",
 		mcp.WithDescription("Update a SettingSuperMail resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2675,11 +2675,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("provider", mcp.Description("One of: smtp|cloud|disabled"), mcp.Enum("smtp", "cloud", "disabled")),
 		mcp.WithString("site_id"),
 	), UpdateSettingSuperMail(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_super_mgmt",
+	s.AddTool(mcp.NewTool("get_setting_super_mgmt",
 		mcp.WithDescription("Get a SettingSuperMgmt resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingSuperMgmt(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_super_mgmt",
+	s.AddTool(mcp.NewTool("update_setting_super_mgmt",
 		mcp.WithDescription("Update a SettingSuperMgmt resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2737,11 +2737,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_ssh_password"),
 		mcp.WithString("x_ssh_username"),
 	), UpdateSettingSuperMgmt(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_super_sdn",
+	s.AddTool(mcp.NewTool("get_setting_super_sdn",
 		mcp.WithDescription("Get a SettingSuperSdn resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingSuperSdn(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_super_sdn",
+	s.AddTool(mcp.NewTool("update_setting_super_sdn",
 		mcp.WithDescription("Update a SettingSuperSdn resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2758,11 +2758,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("sso_login_enabled"),
 		mcp.WithString("ubic_uuid"),
 	), UpdateSettingSuperSdn(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_super_smtp",
+	s.AddTool(mcp.NewTool("get_setting_super_smtp",
 		mcp.WithDescription("Get a SettingSuperSmtp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingSuperSmtp(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_super_smtp",
+	s.AddTool(mcp.NewTool("update_setting_super_smtp",
 		mcp.WithDescription("Update a SettingSuperSmtp resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2782,11 +2782,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("username"),
 		mcp.WithString("x_password"),
 	), UpdateSettingSuperSmtp(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_teleport",
+	s.AddTool(mcp.NewTool("get_setting_teleport",
 		mcp.WithDescription("Get a SettingTeleport resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingTeleport(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_teleport",
+	s.AddTool(mcp.NewTool("update_setting_teleport",
 		mcp.WithDescription("Update a SettingTeleport resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2799,11 +2799,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("site_id"),
 		mcp.WithString("subnet_cidr", mcp.Pattern("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([8-9]|[1-2][0-9]|3[0-2])$|^$")),
 	), UpdateSettingTeleport(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_usg",
+	s.AddTool(mcp.NewTool("get_setting_usg",
 		mcp.WithDescription("Get a SettingUsg resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingUsg(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_usg",
+	s.AddTool(mcp.NewTool("update_setting_usg",
 		mcp.WithDescription("Update a SettingUsg resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2869,11 +2869,11 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithBoolean("upnp_secure_mode"),
 		mcp.WithString("upnp_wan_interface", mcp.Description("One of: WAN|WAN2"), mcp.Enum("WAN", "WAN2")),
 	), UpdateSettingUsg(client))
-	s.AddTool(mcp.NewTool("unifi_get_setting_usw",
+	s.AddTool(mcp.NewTool("get_setting_usw",
 		mcp.WithDescription("Get a SettingUsw resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), GetSettingUsw(client))
-	s.AddTool(mcp.NewTool("unifi_update_setting_usw",
+	s.AddTool(mcp.NewTool("update_setting_usw",
 		mcp.WithDescription("Update a SettingUsw resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2885,16 +2885,16 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("key"),
 		mcp.WithString("site_id"),
 	), UpdateSettingUsw(client))
-	s.AddTool(mcp.NewTool("unifi_list_spatial_record",
+	s.AddTool(mcp.NewTool("list_spatial_record",
 		mcp.WithDescription("List all SpatialRecord resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListSpatialRecord(client))
-	s.AddTool(mcp.NewTool("unifi_get_spatial_record",
+	s.AddTool(mcp.NewTool("get_spatial_record",
 		mcp.WithDescription("Get a SpatialRecord resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetSpatialRecord(client))
-	s.AddTool(mcp.NewTool("unifi_create_spatial_record",
+	s.AddTool(mcp.NewTool("create_spatial_record",
 		mcp.WithDescription("Create a SpatialRecord resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -2905,7 +2905,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name", mcp.Pattern(".{1,128}")),
 		mcp.WithString("site_id"),
 	), CreateSpatialRecord(client))
-	s.AddTool(mcp.NewTool("unifi_update_spatial_record",
+	s.AddTool(mcp.NewTool("update_spatial_record",
 		mcp.WithDescription("Update a SpatialRecord resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2917,21 +2917,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name", mcp.Pattern(".{1,128}")),
 		mcp.WithString("site_id"),
 	), UpdateSpatialRecord(client))
-	s.AddTool(mcp.NewTool("unifi_delete_spatial_record",
+	s.AddTool(mcp.NewTool("delete_spatial_record",
 		mcp.WithDescription("Delete a SpatialRecord resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteSpatialRecord(client))
-	s.AddTool(mcp.NewTool("unifi_list_tag",
+	s.AddTool(mcp.NewTool("list_tag",
 		mcp.WithDescription("List all Tag resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListTag(client))
-	s.AddTool(mcp.NewTool("unifi_get_tag",
+	s.AddTool(mcp.NewTool("get_tag",
 		mcp.WithDescription("Get a Tag resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetTag(client))
-	s.AddTool(mcp.NewTool("unifi_create_tag",
+	s.AddTool(mcp.NewTool("create_tag",
 		mcp.WithDescription("Create a Tag resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -2942,7 +2942,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name"),
 		mcp.WithString("site_id"),
 	), CreateTag(client))
-	s.AddTool(mcp.NewTool("unifi_update_tag",
+	s.AddTool(mcp.NewTool("update_tag",
 		mcp.WithDescription("Update a Tag resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -2954,21 +2954,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name"),
 		mcp.WithString("site_id"),
 	), UpdateTag(client))
-	s.AddTool(mcp.NewTool("unifi_delete_tag",
+	s.AddTool(mcp.NewTool("delete_tag",
 		mcp.WithDescription("Delete a Tag resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteTag(client))
-	s.AddTool(mcp.NewTool("unifi_list_user",
+	s.AddTool(mcp.NewTool("list_user",
 		mcp.WithDescription("List all User resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListUser(client))
-	s.AddTool(mcp.NewTool("unifi_get_user",
+	s.AddTool(mcp.NewTool("get_user",
 		mcp.WithDescription("Get a User resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetUser(client))
-	s.AddTool(mcp.NewTool("unifi_create_user",
+	s.AddTool(mcp.NewTool("create_user",
 		mcp.WithDescription("Create a User resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -2995,7 +2995,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithBoolean("virtual_network_override_enabled"),
 		mcp.WithString("virtual_network_override_id"),
 	), CreateUser(client))
-	s.AddTool(mcp.NewTool("unifi_update_user",
+	s.AddTool(mcp.NewTool("update_user",
 		mcp.WithDescription("Update a User resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -3023,21 +3023,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithBoolean("virtual_network_override_enabled"),
 		mcp.WithString("virtual_network_override_id"),
 	), UpdateUser(client))
-	s.AddTool(mcp.NewTool("unifi_delete_user",
+	s.AddTool(mcp.NewTool("delete_user",
 		mcp.WithDescription("Delete a User resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteUser(client))
-	s.AddTool(mcp.NewTool("unifi_list_user_group",
+	s.AddTool(mcp.NewTool("list_user_group",
 		mcp.WithDescription("List all UserGroup resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListUserGroup(client))
-	s.AddTool(mcp.NewTool("unifi_get_user_group",
+	s.AddTool(mcp.NewTool("get_user_group",
 		mcp.WithDescription("Get a UserGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetUserGroup(client))
-	s.AddTool(mcp.NewTool("unifi_create_user_group",
+	s.AddTool(mcp.NewTool("create_user_group",
 		mcp.WithDescription("Create a UserGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -3049,7 +3049,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithNumber("qos_rate_max_up", mcp.Pattern("-1|[2-9]|[1-9][0-9]{1,4}|100000")),
 		mcp.WithString("site_id"),
 	), CreateUserGroup(client))
-	s.AddTool(mcp.NewTool("unifi_update_user_group",
+	s.AddTool(mcp.NewTool("update_user_group",
 		mcp.WithDescription("Update a UserGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -3062,21 +3062,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithNumber("qos_rate_max_up", mcp.Pattern("-1|[2-9]|[1-9][0-9]{1,4}|100000")),
 		mcp.WithString("site_id"),
 	), UpdateUserGroup(client))
-	s.AddTool(mcp.NewTool("unifi_delete_user_group",
+	s.AddTool(mcp.NewTool("delete_user_group",
 		mcp.WithDescription("Delete a UserGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteUserGroup(client))
-	s.AddTool(mcp.NewTool("unifi_list_virtual_device",
+	s.AddTool(mcp.NewTool("list_virtual_device",
 		mcp.WithDescription("List all VirtualDevice resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListVirtualDevice(client))
-	s.AddTool(mcp.NewTool("unifi_get_virtual_device",
+	s.AddTool(mcp.NewTool("get_virtual_device",
 		mcp.WithDescription("Get a VirtualDevice resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetVirtualDevice(client))
-	s.AddTool(mcp.NewTool("unifi_create_virtual_device",
+	s.AddTool(mcp.NewTool("create_virtual_device",
 		mcp.WithDescription("Create a VirtualDevice resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -3091,7 +3091,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x"),
 		mcp.WithString("y"),
 	), CreateVirtualDevice(client))
-	s.AddTool(mcp.NewTool("unifi_update_virtual_device",
+	s.AddTool(mcp.NewTool("update_virtual_device",
 		mcp.WithDescription("Update a VirtualDevice resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -3107,21 +3107,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x"),
 		mcp.WithString("y"),
 	), UpdateVirtualDevice(client))
-	s.AddTool(mcp.NewTool("unifi_delete_virtual_device",
+	s.AddTool(mcp.NewTool("delete_virtual_device",
 		mcp.WithDescription("Delete a VirtualDevice resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteVirtualDevice(client))
-	s.AddTool(mcp.NewTool("unifi_list_wlan",
+	s.AddTool(mcp.NewTool("list_wlan",
 		mcp.WithDescription("List all WLAN resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListWLAN(client))
-	s.AddTool(mcp.NewTool("unifi_get_wlan",
+	s.AddTool(mcp.NewTool("get_wlan",
 		mcp.WithDescription("Get a WLAN resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetWLAN(client))
-	s.AddTool(mcp.NewTool("unifi_create_wlan",
+	s.AddTool(mcp.NewTool("create_wlan",
 		mcp.WithDescription("Create a WLAN resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithArray("ap_group_ids", mcp.WithStringItems()),
@@ -3222,7 +3222,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_passphrase", mcp.Pattern("[\\x20-\\x7E]{8,255}|[0-9a-fA-F]{64}")),
 		mcp.WithString("x_wep"),
 	), CreateWLAN(client))
-	s.AddTool(mcp.NewTool("unifi_update_wlan",
+	s.AddTool(mcp.NewTool("update_wlan",
 		mcp.WithDescription("Update a WLAN resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -3324,21 +3324,21 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("x_passphrase", mcp.Pattern("[\\x20-\\x7E]{8,255}|[0-9a-fA-F]{64}")),
 		mcp.WithString("x_wep"),
 	), UpdateWLAN(client))
-	s.AddTool(mcp.NewTool("unifi_delete_wlan",
+	s.AddTool(mcp.NewTool("delete_wlan",
 		mcp.WithDescription("Delete a WLAN resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),
 	), DeleteWLAN(client))
-	s.AddTool(mcp.NewTool("unifi_list_wlan_group",
+	s.AddTool(mcp.NewTool("list_wlan_group",
 		mcp.WithDescription("List all WLANGroup resources"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 	), ListWLANGroup(client))
-	s.AddTool(mcp.NewTool("unifi_get_wlan_group",
+	s.AddTool(mcp.NewTool("get_wlan_group",
 		mcp.WithDescription("Get a WLANGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
 	), GetWLANGroup(client))
-	s.AddTool(mcp.NewTool("unifi_create_wlan_group",
+	s.AddTool(mcp.NewTool("create_wlan_group",
 		mcp.WithDescription("Create a WLANGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithBoolean("attr_hidden"),
@@ -3348,7 +3348,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name", mcp.Pattern(".{1,128}")),
 		mcp.WithString("site_id"),
 	), CreateWLANGroup(client))
-	s.AddTool(mcp.NewTool("unifi_update_wlan_group",
+	s.AddTool(mcp.NewTool("update_wlan_group",
 		mcp.WithDescription("Update a WLANGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID")),
@@ -3359,7 +3359,7 @@ func RegisterAllTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithString("name", mcp.Pattern(".{1,128}")),
 		mcp.WithString("site_id"),
 	), UpdateWLANGroup(client))
-	s.AddTool(mcp.NewTool("unifi_delete_wlan_group",
+	s.AddTool(mcp.NewTool("delete_wlan_group",
 		mcp.WithDescription("Delete a WLANGroup resource"),
 		mcp.WithString("site", mcp.Description("UniFi site name (default: 'default')")),
 		mcp.WithString("id", mcp.Required(), mcp.Description("Resource ID to delete")),

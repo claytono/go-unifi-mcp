@@ -14,7 +14,7 @@ type ToolMetadata struct {
 // AllToolMetadata is the complete catalog of all generated tools.
 var AllToolMetadata = []ToolMetadata{
 	{
-		Name:        "unifi_list_ap_group",
+		Name:        "list_ap_group",
 		Description: "List all APGroup resources",
 		Category:    "list",
 		Resource:    "APGroup",
@@ -29,7 +29,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_ap_group",
+		Name:        "get_ap_group",
 		Description: "Get APGroup by ID",
 		Category:    "get",
 		Resource:    "APGroup",
@@ -49,7 +49,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_ap_group",
+		Name:        "create_ap_group",
 		Description: "Create new APGroup",
 		Category:    "create",
 		Resource:    "APGroup",
@@ -68,7 +68,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_ap_group",
+		Name:        "update_ap_group",
 		Description: "Update APGroup by ID",
 		Category:    "update",
 		Resource:    "APGroup",
@@ -92,7 +92,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_ap_group",
+		Name:        "delete_ap_group",
 		Description: "Delete APGroup by ID",
 		Category:    "delete",
 		Resource:    "APGroup",
@@ -112,7 +112,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_account",
+		Name:        "list_account",
 		Description: "List all Account resources",
 		Category:    "list",
 		Resource:    "Account",
@@ -127,7 +127,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_account",
+		Name:        "get_account",
 		Description: "Get Account by ID",
 		Category:    "get",
 		Resource:    "Account",
@@ -147,7 +147,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_account",
+		Name:        "create_account",
 		Description: "Create new Account",
 		Category:    "create",
 		Resource:    "Account",
@@ -166,7 +166,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_account",
+		Name:        "update_account",
 		Description: "Update Account by ID",
 		Category:    "update",
 		Resource:    "Account",
@@ -190,7 +190,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_account",
+		Name:        "delete_account",
 		Description: "Delete Account by ID",
 		Category:    "delete",
 		Resource:    "Account",
@@ -210,7 +210,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_broadcast_group",
+		Name:        "list_broadcast_group",
 		Description: "List all BroadcastGroup resources",
 		Category:    "list",
 		Resource:    "BroadcastGroup",
@@ -225,7 +225,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_broadcast_group",
+		Name:        "get_broadcast_group",
 		Description: "Get BroadcastGroup by ID",
 		Category:    "get",
 		Resource:    "BroadcastGroup",
@@ -245,7 +245,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_broadcast_group",
+		Name:        "create_broadcast_group",
 		Description: "Create new BroadcastGroup",
 		Category:    "create",
 		Resource:    "BroadcastGroup",
@@ -264,7 +264,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_broadcast_group",
+		Name:        "update_broadcast_group",
 		Description: "Update BroadcastGroup by ID",
 		Category:    "update",
 		Resource:    "BroadcastGroup",
@@ -288,7 +288,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_broadcast_group",
+		Name:        "delete_broadcast_group",
 		Description: "Delete BroadcastGroup by ID",
 		Category:    "delete",
 		Resource:    "BroadcastGroup",
@@ -308,7 +308,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_channel_plan",
+		Name:        "list_channel_plan",
 		Description: "List all ChannelPlan resources",
 		Category:    "list",
 		Resource:    "ChannelPlan",
@@ -323,7 +323,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_channel_plan",
+		Name:        "get_channel_plan",
 		Description: "Get ChannelPlan by ID",
 		Category:    "get",
 		Resource:    "ChannelPlan",
@@ -343,7 +343,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_channel_plan",
+		Name:        "create_channel_plan",
 		Description: "Create new ChannelPlan",
 		Category:    "create",
 		Resource:    "ChannelPlan",
@@ -362,7 +362,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_channel_plan",
+		Name:        "update_channel_plan",
 		Description: "Update ChannelPlan by ID",
 		Category:    "update",
 		Resource:    "ChannelPlan",
@@ -386,7 +386,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_channel_plan",
+		Name:        "delete_channel_plan",
 		Description: "Delete ChannelPlan by ID",
 		Category:    "delete",
 		Resource:    "ChannelPlan",
@@ -406,7 +406,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_dhcp_option",
+		Name:        "list_dhcp_option",
 		Description: "List all DHCPOption resources",
 		Category:    "list",
 		Resource:    "DHCPOption",
@@ -421,7 +421,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_dhcp_option",
+		Name:        "get_dhcp_option",
 		Description: "Get DHCPOption by ID",
 		Category:    "get",
 		Resource:    "DHCPOption",
@@ -441,7 +441,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_dhcp_option",
+		Name:        "create_dhcp_option",
 		Description: "Create new DHCPOption",
 		Category:    "create",
 		Resource:    "DHCPOption",
@@ -460,7 +460,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_dhcp_option",
+		Name:        "update_dhcp_option",
 		Description: "Update DHCPOption by ID",
 		Category:    "update",
 		Resource:    "DHCPOption",
@@ -484,7 +484,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_dhcp_option",
+		Name:        "delete_dhcp_option",
 		Description: "Delete DHCPOption by ID",
 		Category:    "delete",
 		Resource:    "DHCPOption",
@@ -504,7 +504,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_dns_record",
+		Name:        "list_dns_record",
 		Description: "List all DNSRecord resources",
 		Category:    "list",
 		Resource:    "DNSRecord",
@@ -519,7 +519,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_dns_record",
+		Name:        "get_dns_record",
 		Description: "Get DNSRecord by ID",
 		Category:    "get",
 		Resource:    "DNSRecord",
@@ -539,7 +539,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_dns_record",
+		Name:        "create_dns_record",
 		Description: "Create new DNSRecord",
 		Category:    "create",
 		Resource:    "DNSRecord",
@@ -558,7 +558,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_dns_record",
+		Name:        "update_dns_record",
 		Description: "Update DNSRecord by ID",
 		Category:    "update",
 		Resource:    "DNSRecord",
@@ -582,7 +582,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_dns_record",
+		Name:        "delete_dns_record",
 		Description: "Delete DNSRecord by ID",
 		Category:    "delete",
 		Resource:    "DNSRecord",
@@ -602,7 +602,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_dashboard",
+		Name:        "list_dashboard",
 		Description: "List all Dashboard resources",
 		Category:    "list",
 		Resource:    "Dashboard",
@@ -617,7 +617,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_dashboard",
+		Name:        "get_dashboard",
 		Description: "Get Dashboard by ID",
 		Category:    "get",
 		Resource:    "Dashboard",
@@ -637,7 +637,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_dashboard",
+		Name:        "create_dashboard",
 		Description: "Create new Dashboard",
 		Category:    "create",
 		Resource:    "Dashboard",
@@ -656,7 +656,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_dashboard",
+		Name:        "update_dashboard",
 		Description: "Update Dashboard by ID",
 		Category:    "update",
 		Resource:    "Dashboard",
@@ -680,7 +680,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_dashboard",
+		Name:        "delete_dashboard",
 		Description: "Delete Dashboard by ID",
 		Category:    "delete",
 		Resource:    "Dashboard",
@@ -700,7 +700,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_device",
+		Name:        "list_device",
 		Description: "List all Device resources",
 		Category:    "list",
 		Resource:    "Device",
@@ -715,7 +715,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_device",
+		Name:        "get_device",
 		Description: "Get Device by ID",
 		Category:    "get",
 		Resource:    "Device",
@@ -735,7 +735,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_dynamic_dns",
+		Name:        "list_dynamic_dns",
 		Description: "List all DynamicDNS resources",
 		Category:    "list",
 		Resource:    "DynamicDNS",
@@ -750,7 +750,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_dynamic_dns",
+		Name:        "get_dynamic_dns",
 		Description: "Get DynamicDNS by ID",
 		Category:    "get",
 		Resource:    "DynamicDNS",
@@ -770,7 +770,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_dynamic_dns",
+		Name:        "create_dynamic_dns",
 		Description: "Create new DynamicDNS",
 		Category:    "create",
 		Resource:    "DynamicDNS",
@@ -789,7 +789,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_dynamic_dns",
+		Name:        "update_dynamic_dns",
 		Description: "Update DynamicDNS by ID",
 		Category:    "update",
 		Resource:    "DynamicDNS",
@@ -813,7 +813,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_dynamic_dns",
+		Name:        "delete_dynamic_dns",
 		Description: "Delete DynamicDNS by ID",
 		Category:    "delete",
 		Resource:    "DynamicDNS",
@@ -833,7 +833,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_firewall_group",
+		Name:        "list_firewall_group",
 		Description: "List all FirewallGroup resources",
 		Category:    "list",
 		Resource:    "FirewallGroup",
@@ -848,7 +848,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_firewall_group",
+		Name:        "get_firewall_group",
 		Description: "Get FirewallGroup by ID",
 		Category:    "get",
 		Resource:    "FirewallGroup",
@@ -868,7 +868,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_firewall_group",
+		Name:        "create_firewall_group",
 		Description: "Create new FirewallGroup",
 		Category:    "create",
 		Resource:    "FirewallGroup",
@@ -887,7 +887,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_firewall_group",
+		Name:        "update_firewall_group",
 		Description: "Update FirewallGroup by ID",
 		Category:    "update",
 		Resource:    "FirewallGroup",
@@ -911,7 +911,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_firewall_group",
+		Name:        "delete_firewall_group",
 		Description: "Delete FirewallGroup by ID",
 		Category:    "delete",
 		Resource:    "FirewallGroup",
@@ -931,7 +931,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_firewall_rule",
+		Name:        "list_firewall_rule",
 		Description: "List all FirewallRule resources",
 		Category:    "list",
 		Resource:    "FirewallRule",
@@ -946,7 +946,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_firewall_rule",
+		Name:        "get_firewall_rule",
 		Description: "Get FirewallRule by ID",
 		Category:    "get",
 		Resource:    "FirewallRule",
@@ -966,7 +966,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_firewall_rule",
+		Name:        "create_firewall_rule",
 		Description: "Create new FirewallRule",
 		Category:    "create",
 		Resource:    "FirewallRule",
@@ -985,7 +985,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_firewall_rule",
+		Name:        "update_firewall_rule",
 		Description: "Update FirewallRule by ID",
 		Category:    "update",
 		Resource:    "FirewallRule",
@@ -1009,7 +1009,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_firewall_rule",
+		Name:        "delete_firewall_rule",
 		Description: "Delete FirewallRule by ID",
 		Category:    "delete",
 		Resource:    "FirewallRule",
@@ -1029,7 +1029,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_firewall_zone",
+		Name:        "list_firewall_zone",
 		Description: "List all FirewallZone resources",
 		Category:    "list",
 		Resource:    "FirewallZone",
@@ -1044,7 +1044,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_firewall_zone",
+		Name:        "get_firewall_zone",
 		Description: "Get FirewallZone by ID",
 		Category:    "get",
 		Resource:    "FirewallZone",
@@ -1064,7 +1064,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_firewall_zone",
+		Name:        "create_firewall_zone",
 		Description: "Create new FirewallZone",
 		Category:    "create",
 		Resource:    "FirewallZone",
@@ -1083,7 +1083,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_firewall_zone",
+		Name:        "update_firewall_zone",
 		Description: "Update FirewallZone by ID",
 		Category:    "update",
 		Resource:    "FirewallZone",
@@ -1107,7 +1107,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_firewall_zone",
+		Name:        "delete_firewall_zone",
 		Description: "Delete FirewallZone by ID",
 		Category:    "delete",
 		Resource:    "FirewallZone",
@@ -1127,7 +1127,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_firewall_zone_policy",
+		Name:        "list_firewall_zone_policy",
 		Description: "List all FirewallZonePolicy resources",
 		Category:    "list",
 		Resource:    "FirewallZonePolicy",
@@ -1142,7 +1142,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_firewall_zone_policy",
+		Name:        "get_firewall_zone_policy",
 		Description: "Get FirewallZonePolicy by ID",
 		Category:    "get",
 		Resource:    "FirewallZonePolicy",
@@ -1162,7 +1162,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_firewall_zone_policy",
+		Name:        "create_firewall_zone_policy",
 		Description: "Create new FirewallZonePolicy",
 		Category:    "create",
 		Resource:    "FirewallZonePolicy",
@@ -1181,7 +1181,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_firewall_zone_policy",
+		Name:        "update_firewall_zone_policy",
 		Description: "Update FirewallZonePolicy by ID",
 		Category:    "update",
 		Resource:    "FirewallZonePolicy",
@@ -1205,7 +1205,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_firewall_zone_policy",
+		Name:        "delete_firewall_zone_policy",
 		Description: "Delete FirewallZonePolicy by ID",
 		Category:    "delete",
 		Resource:    "FirewallZonePolicy",
@@ -1225,7 +1225,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_heat_map",
+		Name:        "list_heat_map",
 		Description: "List all HeatMap resources",
 		Category:    "list",
 		Resource:    "HeatMap",
@@ -1240,7 +1240,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_heat_map",
+		Name:        "get_heat_map",
 		Description: "Get HeatMap by ID",
 		Category:    "get",
 		Resource:    "HeatMap",
@@ -1260,7 +1260,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_heat_map",
+		Name:        "create_heat_map",
 		Description: "Create new HeatMap",
 		Category:    "create",
 		Resource:    "HeatMap",
@@ -1279,7 +1279,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_heat_map",
+		Name:        "update_heat_map",
 		Description: "Update HeatMap by ID",
 		Category:    "update",
 		Resource:    "HeatMap",
@@ -1303,7 +1303,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_heat_map",
+		Name:        "delete_heat_map",
 		Description: "Delete HeatMap by ID",
 		Category:    "delete",
 		Resource:    "HeatMap",
@@ -1323,7 +1323,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_heat_map_point",
+		Name:        "list_heat_map_point",
 		Description: "List all HeatMapPoint resources",
 		Category:    "list",
 		Resource:    "HeatMapPoint",
@@ -1338,7 +1338,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_heat_map_point",
+		Name:        "get_heat_map_point",
 		Description: "Get HeatMapPoint by ID",
 		Category:    "get",
 		Resource:    "HeatMapPoint",
@@ -1358,7 +1358,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_heat_map_point",
+		Name:        "create_heat_map_point",
 		Description: "Create new HeatMapPoint",
 		Category:    "create",
 		Resource:    "HeatMapPoint",
@@ -1377,7 +1377,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_heat_map_point",
+		Name:        "update_heat_map_point",
 		Description: "Update HeatMapPoint by ID",
 		Category:    "update",
 		Resource:    "HeatMapPoint",
@@ -1401,7 +1401,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_heat_map_point",
+		Name:        "delete_heat_map_point",
 		Description: "Delete HeatMapPoint by ID",
 		Category:    "delete",
 		Resource:    "HeatMapPoint",
@@ -1421,7 +1421,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_hotspot_2_conf",
+		Name:        "list_hotspot_2_conf",
 		Description: "List all Hotspot2Conf resources",
 		Category:    "list",
 		Resource:    "Hotspot2Conf",
@@ -1436,7 +1436,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_hotspot_2_conf",
+		Name:        "get_hotspot_2_conf",
 		Description: "Get Hotspot2Conf by ID",
 		Category:    "get",
 		Resource:    "Hotspot2Conf",
@@ -1456,7 +1456,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_hotspot_2_conf",
+		Name:        "create_hotspot_2_conf",
 		Description: "Create new Hotspot2Conf",
 		Category:    "create",
 		Resource:    "Hotspot2Conf",
@@ -1475,7 +1475,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_hotspot_2_conf",
+		Name:        "update_hotspot_2_conf",
 		Description: "Update Hotspot2Conf by ID",
 		Category:    "update",
 		Resource:    "Hotspot2Conf",
@@ -1499,7 +1499,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_hotspot_2_conf",
+		Name:        "delete_hotspot_2_conf",
 		Description: "Delete Hotspot2Conf by ID",
 		Category:    "delete",
 		Resource:    "Hotspot2Conf",
@@ -1519,7 +1519,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_hotspot_op",
+		Name:        "list_hotspot_op",
 		Description: "List all HotspotOp resources",
 		Category:    "list",
 		Resource:    "HotspotOp",
@@ -1534,7 +1534,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_hotspot_op",
+		Name:        "get_hotspot_op",
 		Description: "Get HotspotOp by ID",
 		Category:    "get",
 		Resource:    "HotspotOp",
@@ -1554,7 +1554,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_hotspot_op",
+		Name:        "create_hotspot_op",
 		Description: "Create new HotspotOp",
 		Category:    "create",
 		Resource:    "HotspotOp",
@@ -1573,7 +1573,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_hotspot_op",
+		Name:        "update_hotspot_op",
 		Description: "Update HotspotOp by ID",
 		Category:    "update",
 		Resource:    "HotspotOp",
@@ -1597,7 +1597,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_hotspot_op",
+		Name:        "delete_hotspot_op",
 		Description: "Delete HotspotOp by ID",
 		Category:    "delete",
 		Resource:    "HotspotOp",
@@ -1617,7 +1617,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_hotspot_package",
+		Name:        "list_hotspot_package",
 		Description: "List all HotspotPackage resources",
 		Category:    "list",
 		Resource:    "HotspotPackage",
@@ -1632,7 +1632,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_hotspot_package",
+		Name:        "get_hotspot_package",
 		Description: "Get HotspotPackage by ID",
 		Category:    "get",
 		Resource:    "HotspotPackage",
@@ -1652,7 +1652,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_hotspot_package",
+		Name:        "create_hotspot_package",
 		Description: "Create new HotspotPackage",
 		Category:    "create",
 		Resource:    "HotspotPackage",
@@ -1671,7 +1671,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_hotspot_package",
+		Name:        "update_hotspot_package",
 		Description: "Update HotspotPackage by ID",
 		Category:    "update",
 		Resource:    "HotspotPackage",
@@ -1695,7 +1695,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_hotspot_package",
+		Name:        "delete_hotspot_package",
 		Description: "Delete HotspotPackage by ID",
 		Category:    "delete",
 		Resource:    "HotspotPackage",
@@ -1715,7 +1715,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_map",
+		Name:        "list_map",
 		Description: "List all Map resources",
 		Category:    "list",
 		Resource:    "Map",
@@ -1730,7 +1730,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_map",
+		Name:        "get_map",
 		Description: "Get Map by ID",
 		Category:    "get",
 		Resource:    "Map",
@@ -1750,7 +1750,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_map",
+		Name:        "create_map",
 		Description: "Create new Map",
 		Category:    "create",
 		Resource:    "Map",
@@ -1769,7 +1769,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_map",
+		Name:        "update_map",
 		Description: "Update Map by ID",
 		Category:    "update",
 		Resource:    "Map",
@@ -1793,7 +1793,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_map",
+		Name:        "delete_map",
 		Description: "Delete Map by ID",
 		Category:    "delete",
 		Resource:    "Map",
@@ -1813,7 +1813,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_media_file",
+		Name:        "list_media_file",
 		Description: "List all MediaFile resources",
 		Category:    "list",
 		Resource:    "MediaFile",
@@ -1828,7 +1828,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_media_file",
+		Name:        "get_media_file",
 		Description: "Get MediaFile by ID",
 		Category:    "get",
 		Resource:    "MediaFile",
@@ -1848,7 +1848,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_media_file",
+		Name:        "create_media_file",
 		Description: "Create new MediaFile",
 		Category:    "create",
 		Resource:    "MediaFile",
@@ -1867,7 +1867,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_media_file",
+		Name:        "update_media_file",
 		Description: "Update MediaFile by ID",
 		Category:    "update",
 		Resource:    "MediaFile",
@@ -1891,7 +1891,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_media_file",
+		Name:        "delete_media_file",
 		Description: "Delete MediaFile by ID",
 		Category:    "delete",
 		Resource:    "MediaFile",
@@ -1911,7 +1911,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_network",
+		Name:        "list_network",
 		Description: "List all Network resources",
 		Category:    "list",
 		Resource:    "Network",
@@ -1926,7 +1926,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_network",
+		Name:        "get_network",
 		Description: "Get Network by ID",
 		Category:    "get",
 		Resource:    "Network",
@@ -1946,7 +1946,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_network",
+		Name:        "create_network",
 		Description: "Create new Network",
 		Category:    "create",
 		Resource:    "Network",
@@ -1965,7 +1965,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_network",
+		Name:        "update_network",
 		Description: "Update Network by ID",
 		Category:    "update",
 		Resource:    "Network",
@@ -1989,7 +1989,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_network",
+		Name:        "delete_network",
 		Description: "Delete Network by ID",
 		Category:    "delete",
 		Resource:    "Network",
@@ -2009,7 +2009,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_port_forward",
+		Name:        "list_port_forward",
 		Description: "List all PortForward resources",
 		Category:    "list",
 		Resource:    "PortForward",
@@ -2024,7 +2024,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_port_forward",
+		Name:        "get_port_forward",
 		Description: "Get PortForward by ID",
 		Category:    "get",
 		Resource:    "PortForward",
@@ -2044,7 +2044,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_port_forward",
+		Name:        "create_port_forward",
 		Description: "Create new PortForward",
 		Category:    "create",
 		Resource:    "PortForward",
@@ -2063,7 +2063,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_port_forward",
+		Name:        "update_port_forward",
 		Description: "Update PortForward by ID",
 		Category:    "update",
 		Resource:    "PortForward",
@@ -2087,7 +2087,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_port_forward",
+		Name:        "delete_port_forward",
 		Description: "Delete PortForward by ID",
 		Category:    "delete",
 		Resource:    "PortForward",
@@ -2107,7 +2107,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_port_profile",
+		Name:        "list_port_profile",
 		Description: "List all PortProfile resources",
 		Category:    "list",
 		Resource:    "PortProfile",
@@ -2122,7 +2122,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_port_profile",
+		Name:        "get_port_profile",
 		Description: "Get PortProfile by ID",
 		Category:    "get",
 		Resource:    "PortProfile",
@@ -2142,7 +2142,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_port_profile",
+		Name:        "create_port_profile",
 		Description: "Create new PortProfile",
 		Category:    "create",
 		Resource:    "PortProfile",
@@ -2161,7 +2161,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_port_profile",
+		Name:        "update_port_profile",
 		Description: "Update PortProfile by ID",
 		Category:    "update",
 		Resource:    "PortProfile",
@@ -2185,7 +2185,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_port_profile",
+		Name:        "delete_port_profile",
 		Description: "Delete PortProfile by ID",
 		Category:    "delete",
 		Resource:    "PortProfile",
@@ -2205,7 +2205,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_radius_profile",
+		Name:        "list_radius_profile",
 		Description: "List all RADIUSProfile resources",
 		Category:    "list",
 		Resource:    "RADIUSProfile",
@@ -2220,7 +2220,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_radius_profile",
+		Name:        "get_radius_profile",
 		Description: "Get RADIUSProfile by ID",
 		Category:    "get",
 		Resource:    "RADIUSProfile",
@@ -2240,7 +2240,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_radius_profile",
+		Name:        "create_radius_profile",
 		Description: "Create new RADIUSProfile",
 		Category:    "create",
 		Resource:    "RADIUSProfile",
@@ -2259,7 +2259,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_radius_profile",
+		Name:        "update_radius_profile",
 		Description: "Update RADIUSProfile by ID",
 		Category:    "update",
 		Resource:    "RADIUSProfile",
@@ -2283,7 +2283,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_radius_profile",
+		Name:        "delete_radius_profile",
 		Description: "Delete RADIUSProfile by ID",
 		Category:    "delete",
 		Resource:    "RADIUSProfile",
@@ -2303,7 +2303,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_routing",
+		Name:        "list_routing",
 		Description: "List all Routing resources",
 		Category:    "list",
 		Resource:    "Routing",
@@ -2318,7 +2318,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_routing",
+		Name:        "get_routing",
 		Description: "Get Routing by ID",
 		Category:    "get",
 		Resource:    "Routing",
@@ -2338,7 +2338,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_routing",
+		Name:        "create_routing",
 		Description: "Create new Routing",
 		Category:    "create",
 		Resource:    "Routing",
@@ -2357,7 +2357,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_routing",
+		Name:        "update_routing",
 		Description: "Update Routing by ID",
 		Category:    "update",
 		Resource:    "Routing",
@@ -2381,7 +2381,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_routing",
+		Name:        "delete_routing",
 		Description: "Delete Routing by ID",
 		Category:    "delete",
 		Resource:    "Routing",
@@ -2401,7 +2401,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_schedule_task",
+		Name:        "list_schedule_task",
 		Description: "List all ScheduleTask resources",
 		Category:    "list",
 		Resource:    "ScheduleTask",
@@ -2416,7 +2416,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_schedule_task",
+		Name:        "get_schedule_task",
 		Description: "Get ScheduleTask by ID",
 		Category:    "get",
 		Resource:    "ScheduleTask",
@@ -2436,7 +2436,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_schedule_task",
+		Name:        "create_schedule_task",
 		Description: "Create new ScheduleTask",
 		Category:    "create",
 		Resource:    "ScheduleTask",
@@ -2455,7 +2455,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_schedule_task",
+		Name:        "update_schedule_task",
 		Description: "Update ScheduleTask by ID",
 		Category:    "update",
 		Resource:    "ScheduleTask",
@@ -2479,7 +2479,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_schedule_task",
+		Name:        "delete_schedule_task",
 		Description: "Delete ScheduleTask by ID",
 		Category:    "delete",
 		Resource:    "ScheduleTask",
@@ -2499,7 +2499,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_auto_speedtest",
+		Name:        "get_setting_auto_speedtest",
 		Description: "Get SettingAutoSpeedtest by ID",
 		Category:    "get",
 		Resource:    "SettingAutoSpeedtest",
@@ -2514,7 +2514,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_auto_speedtest",
+		Name:        "update_setting_auto_speedtest",
 		Description: "Update SettingAutoSpeedtest by ID",
 		Category:    "update",
 		Resource:    "SettingAutoSpeedtest",
@@ -2538,7 +2538,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_baresip",
+		Name:        "get_setting_baresip",
 		Description: "Get SettingBaresip by ID",
 		Category:    "get",
 		Resource:    "SettingBaresip",
@@ -2553,7 +2553,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_baresip",
+		Name:        "update_setting_baresip",
 		Description: "Update SettingBaresip by ID",
 		Category:    "update",
 		Resource:    "SettingBaresip",
@@ -2577,7 +2577,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_broadcast",
+		Name:        "get_setting_broadcast",
 		Description: "Get SettingBroadcast by ID",
 		Category:    "get",
 		Resource:    "SettingBroadcast",
@@ -2592,7 +2592,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_broadcast",
+		Name:        "update_setting_broadcast",
 		Description: "Update SettingBroadcast by ID",
 		Category:    "update",
 		Resource:    "SettingBroadcast",
@@ -2616,7 +2616,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_connectivity",
+		Name:        "get_setting_connectivity",
 		Description: "Get SettingConnectivity by ID",
 		Category:    "get",
 		Resource:    "SettingConnectivity",
@@ -2631,7 +2631,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_connectivity",
+		Name:        "update_setting_connectivity",
 		Description: "Update SettingConnectivity by ID",
 		Category:    "update",
 		Resource:    "SettingConnectivity",
@@ -2655,7 +2655,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_country",
+		Name:        "get_setting_country",
 		Description: "Get SettingCountry by ID",
 		Category:    "get",
 		Resource:    "SettingCountry",
@@ -2670,7 +2670,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_country",
+		Name:        "update_setting_country",
 		Description: "Update SettingCountry by ID",
 		Category:    "update",
 		Resource:    "SettingCountry",
@@ -2694,7 +2694,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_dashboard",
+		Name:        "get_setting_dashboard",
 		Description: "Get SettingDashboard by ID",
 		Category:    "get",
 		Resource:    "SettingDashboard",
@@ -2709,7 +2709,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_dashboard",
+		Name:        "update_setting_dashboard",
 		Description: "Update SettingDashboard by ID",
 		Category:    "update",
 		Resource:    "SettingDashboard",
@@ -2733,7 +2733,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_doh",
+		Name:        "get_setting_doh",
 		Description: "Get SettingDoh by ID",
 		Category:    "get",
 		Resource:    "SettingDoh",
@@ -2748,7 +2748,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_doh",
+		Name:        "update_setting_doh",
 		Description: "Update SettingDoh by ID",
 		Category:    "update",
 		Resource:    "SettingDoh",
@@ -2772,7 +2772,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_dpi",
+		Name:        "get_setting_dpi",
 		Description: "Get SettingDpi by ID",
 		Category:    "get",
 		Resource:    "SettingDpi",
@@ -2787,7 +2787,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_dpi",
+		Name:        "update_setting_dpi",
 		Description: "Update SettingDpi by ID",
 		Category:    "update",
 		Resource:    "SettingDpi",
@@ -2811,7 +2811,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_element_adopt",
+		Name:        "get_setting_element_adopt",
 		Description: "Get SettingElementAdopt by ID",
 		Category:    "get",
 		Resource:    "SettingElementAdopt",
@@ -2826,7 +2826,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_element_adopt",
+		Name:        "update_setting_element_adopt",
 		Description: "Update SettingElementAdopt by ID",
 		Category:    "update",
 		Resource:    "SettingElementAdopt",
@@ -2850,7 +2850,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_ether_lighting",
+		Name:        "get_setting_ether_lighting",
 		Description: "Get SettingEtherLighting by ID",
 		Category:    "get",
 		Resource:    "SettingEtherLighting",
@@ -2865,7 +2865,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_ether_lighting",
+		Name:        "update_setting_ether_lighting",
 		Description: "Update SettingEtherLighting by ID",
 		Category:    "update",
 		Resource:    "SettingEtherLighting",
@@ -2889,7 +2889,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_evaluation_score",
+		Name:        "get_setting_evaluation_score",
 		Description: "Get SettingEvaluationScore by ID",
 		Category:    "get",
 		Resource:    "SettingEvaluationScore",
@@ -2904,7 +2904,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_evaluation_score",
+		Name:        "update_setting_evaluation_score",
 		Description: "Update SettingEvaluationScore by ID",
 		Category:    "update",
 		Resource:    "SettingEvaluationScore",
@@ -2928,7 +2928,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_global_ap",
+		Name:        "get_setting_global_ap",
 		Description: "Get SettingGlobalAp by ID",
 		Category:    "get",
 		Resource:    "SettingGlobalAp",
@@ -2943,7 +2943,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_global_ap",
+		Name:        "update_setting_global_ap",
 		Description: "Update SettingGlobalAp by ID",
 		Category:    "update",
 		Resource:    "SettingGlobalAp",
@@ -2967,7 +2967,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_global_nat",
+		Name:        "get_setting_global_nat",
 		Description: "Get SettingGlobalNat by ID",
 		Category:    "get",
 		Resource:    "SettingGlobalNat",
@@ -2982,7 +2982,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_global_nat",
+		Name:        "update_setting_global_nat",
 		Description: "Update SettingGlobalNat by ID",
 		Category:    "update",
 		Resource:    "SettingGlobalNat",
@@ -3006,7 +3006,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_global_switch",
+		Name:        "get_setting_global_switch",
 		Description: "Get SettingGlobalSwitch by ID",
 		Category:    "get",
 		Resource:    "SettingGlobalSwitch",
@@ -3021,7 +3021,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_global_switch",
+		Name:        "update_setting_global_switch",
 		Description: "Update SettingGlobalSwitch by ID",
 		Category:    "update",
 		Resource:    "SettingGlobalSwitch",
@@ -3045,7 +3045,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_guest_access",
+		Name:        "get_setting_guest_access",
 		Description: "Get SettingGuestAccess by ID",
 		Category:    "get",
 		Resource:    "SettingGuestAccess",
@@ -3060,7 +3060,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_guest_access",
+		Name:        "update_setting_guest_access",
 		Description: "Update SettingGuestAccess by ID",
 		Category:    "update",
 		Resource:    "SettingGuestAccess",
@@ -3084,7 +3084,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_ips",
+		Name:        "get_setting_ips",
 		Description: "Get SettingIps by ID",
 		Category:    "get",
 		Resource:    "SettingIps",
@@ -3099,7 +3099,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_ips",
+		Name:        "update_setting_ips",
 		Description: "Update SettingIps by ID",
 		Category:    "update",
 		Resource:    "SettingIps",
@@ -3123,7 +3123,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_lcm",
+		Name:        "get_setting_lcm",
 		Description: "Get SettingLcm by ID",
 		Category:    "get",
 		Resource:    "SettingLcm",
@@ -3138,7 +3138,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_lcm",
+		Name:        "update_setting_lcm",
 		Description: "Update SettingLcm by ID",
 		Category:    "update",
 		Resource:    "SettingLcm",
@@ -3162,7 +3162,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_locale",
+		Name:        "get_setting_locale",
 		Description: "Get SettingLocale by ID",
 		Category:    "get",
 		Resource:    "SettingLocale",
@@ -3177,7 +3177,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_locale",
+		Name:        "update_setting_locale",
 		Description: "Update SettingLocale by ID",
 		Category:    "update",
 		Resource:    "SettingLocale",
@@ -3201,7 +3201,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_magic_site_to_site_vpn",
+		Name:        "get_setting_magic_site_to_site_vpn",
 		Description: "Get SettingMagicSiteToSiteVpn by ID",
 		Category:    "get",
 		Resource:    "SettingMagicSiteToSiteVpn",
@@ -3216,7 +3216,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_magic_site_to_site_vpn",
+		Name:        "update_setting_magic_site_to_site_vpn",
 		Description: "Update SettingMagicSiteToSiteVpn by ID",
 		Category:    "update",
 		Resource:    "SettingMagicSiteToSiteVpn",
@@ -3240,7 +3240,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_mgmt",
+		Name:        "get_setting_mgmt",
 		Description: "Get SettingMgmt by ID",
 		Category:    "get",
 		Resource:    "SettingMgmt",
@@ -3255,7 +3255,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_mgmt",
+		Name:        "update_setting_mgmt",
 		Description: "Update SettingMgmt by ID",
 		Category:    "update",
 		Resource:    "SettingMgmt",
@@ -3279,7 +3279,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_netflow",
+		Name:        "get_setting_netflow",
 		Description: "Get SettingNetflow by ID",
 		Category:    "get",
 		Resource:    "SettingNetflow",
@@ -3294,7 +3294,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_netflow",
+		Name:        "update_setting_netflow",
 		Description: "Update SettingNetflow by ID",
 		Category:    "update",
 		Resource:    "SettingNetflow",
@@ -3318,7 +3318,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_network_optimization",
+		Name:        "get_setting_network_optimization",
 		Description: "Get SettingNetworkOptimization by ID",
 		Category:    "get",
 		Resource:    "SettingNetworkOptimization",
@@ -3333,7 +3333,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_network_optimization",
+		Name:        "update_setting_network_optimization",
 		Description: "Update SettingNetworkOptimization by ID",
 		Category:    "update",
 		Resource:    "SettingNetworkOptimization",
@@ -3357,7 +3357,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_ntp",
+		Name:        "get_setting_ntp",
 		Description: "Get SettingNtp by ID",
 		Category:    "get",
 		Resource:    "SettingNtp",
@@ -3372,7 +3372,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_ntp",
+		Name:        "update_setting_ntp",
 		Description: "Update SettingNtp by ID",
 		Category:    "update",
 		Resource:    "SettingNtp",
@@ -3396,7 +3396,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_porta",
+		Name:        "get_setting_porta",
 		Description: "Get SettingPorta by ID",
 		Category:    "get",
 		Resource:    "SettingPorta",
@@ -3411,7 +3411,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_porta",
+		Name:        "update_setting_porta",
 		Description: "Update SettingPorta by ID",
 		Category:    "update",
 		Resource:    "SettingPorta",
@@ -3435,7 +3435,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_radio_ai",
+		Name:        "get_setting_radio_ai",
 		Description: "Get SettingRadioAi by ID",
 		Category:    "get",
 		Resource:    "SettingRadioAi",
@@ -3450,7 +3450,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_radio_ai",
+		Name:        "update_setting_radio_ai",
 		Description: "Update SettingRadioAi by ID",
 		Category:    "update",
 		Resource:    "SettingRadioAi",
@@ -3474,7 +3474,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_radius",
+		Name:        "get_setting_radius",
 		Description: "Get SettingRadius by ID",
 		Category:    "get",
 		Resource:    "SettingRadius",
@@ -3489,7 +3489,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_radius",
+		Name:        "update_setting_radius",
 		Description: "Update SettingRadius by ID",
 		Category:    "update",
 		Resource:    "SettingRadius",
@@ -3513,7 +3513,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_rsyslogd",
+		Name:        "get_setting_rsyslogd",
 		Description: "Get SettingRsyslogd by ID",
 		Category:    "get",
 		Resource:    "SettingRsyslogd",
@@ -3528,7 +3528,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_rsyslogd",
+		Name:        "update_setting_rsyslogd",
 		Description: "Update SettingRsyslogd by ID",
 		Category:    "update",
 		Resource:    "SettingRsyslogd",
@@ -3552,7 +3552,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_snmp",
+		Name:        "get_setting_snmp",
 		Description: "Get SettingSnmp by ID",
 		Category:    "get",
 		Resource:    "SettingSnmp",
@@ -3567,7 +3567,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_snmp",
+		Name:        "update_setting_snmp",
 		Description: "Update SettingSnmp by ID",
 		Category:    "update",
 		Resource:    "SettingSnmp",
@@ -3591,7 +3591,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_ssl_inspection",
+		Name:        "get_setting_ssl_inspection",
 		Description: "Get SettingSslInspection by ID",
 		Category:    "get",
 		Resource:    "SettingSslInspection",
@@ -3606,7 +3606,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_ssl_inspection",
+		Name:        "update_setting_ssl_inspection",
 		Description: "Update SettingSslInspection by ID",
 		Category:    "update",
 		Resource:    "SettingSslInspection",
@@ -3630,7 +3630,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_super_cloudaccess",
+		Name:        "get_setting_super_cloudaccess",
 		Description: "Get SettingSuperCloudaccess by ID",
 		Category:    "get",
 		Resource:    "SettingSuperCloudaccess",
@@ -3645,7 +3645,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_super_cloudaccess",
+		Name:        "update_setting_super_cloudaccess",
 		Description: "Update SettingSuperCloudaccess by ID",
 		Category:    "update",
 		Resource:    "SettingSuperCloudaccess",
@@ -3669,7 +3669,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_super_events",
+		Name:        "get_setting_super_events",
 		Description: "Get SettingSuperEvents by ID",
 		Category:    "get",
 		Resource:    "SettingSuperEvents",
@@ -3684,7 +3684,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_super_events",
+		Name:        "update_setting_super_events",
 		Description: "Update SettingSuperEvents by ID",
 		Category:    "update",
 		Resource:    "SettingSuperEvents",
@@ -3708,7 +3708,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_super_fwupdate",
+		Name:        "get_setting_super_fwupdate",
 		Description: "Get SettingSuperFwupdate by ID",
 		Category:    "get",
 		Resource:    "SettingSuperFwupdate",
@@ -3723,7 +3723,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_super_fwupdate",
+		Name:        "update_setting_super_fwupdate",
 		Description: "Update SettingSuperFwupdate by ID",
 		Category:    "update",
 		Resource:    "SettingSuperFwupdate",
@@ -3747,7 +3747,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_super_identity",
+		Name:        "get_setting_super_identity",
 		Description: "Get SettingSuperIdentity by ID",
 		Category:    "get",
 		Resource:    "SettingSuperIdentity",
@@ -3762,7 +3762,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_super_identity",
+		Name:        "update_setting_super_identity",
 		Description: "Update SettingSuperIdentity by ID",
 		Category:    "update",
 		Resource:    "SettingSuperIdentity",
@@ -3786,7 +3786,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_super_mail",
+		Name:        "get_setting_super_mail",
 		Description: "Get SettingSuperMail by ID",
 		Category:    "get",
 		Resource:    "SettingSuperMail",
@@ -3801,7 +3801,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_super_mail",
+		Name:        "update_setting_super_mail",
 		Description: "Update SettingSuperMail by ID",
 		Category:    "update",
 		Resource:    "SettingSuperMail",
@@ -3825,7 +3825,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_super_mgmt",
+		Name:        "get_setting_super_mgmt",
 		Description: "Get SettingSuperMgmt by ID",
 		Category:    "get",
 		Resource:    "SettingSuperMgmt",
@@ -3840,7 +3840,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_super_mgmt",
+		Name:        "update_setting_super_mgmt",
 		Description: "Update SettingSuperMgmt by ID",
 		Category:    "update",
 		Resource:    "SettingSuperMgmt",
@@ -3864,7 +3864,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_super_sdn",
+		Name:        "get_setting_super_sdn",
 		Description: "Get SettingSuperSdn by ID",
 		Category:    "get",
 		Resource:    "SettingSuperSdn",
@@ -3879,7 +3879,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_super_sdn",
+		Name:        "update_setting_super_sdn",
 		Description: "Update SettingSuperSdn by ID",
 		Category:    "update",
 		Resource:    "SettingSuperSdn",
@@ -3903,7 +3903,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_super_smtp",
+		Name:        "get_setting_super_smtp",
 		Description: "Get SettingSuperSmtp by ID",
 		Category:    "get",
 		Resource:    "SettingSuperSmtp",
@@ -3918,7 +3918,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_super_smtp",
+		Name:        "update_setting_super_smtp",
 		Description: "Update SettingSuperSmtp by ID",
 		Category:    "update",
 		Resource:    "SettingSuperSmtp",
@@ -3942,7 +3942,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_teleport",
+		Name:        "get_setting_teleport",
 		Description: "Get SettingTeleport by ID",
 		Category:    "get",
 		Resource:    "SettingTeleport",
@@ -3957,7 +3957,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_teleport",
+		Name:        "update_setting_teleport",
 		Description: "Update SettingTeleport by ID",
 		Category:    "update",
 		Resource:    "SettingTeleport",
@@ -3981,7 +3981,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_usg",
+		Name:        "get_setting_usg",
 		Description: "Get SettingUsg by ID",
 		Category:    "get",
 		Resource:    "SettingUsg",
@@ -3996,7 +3996,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_usg",
+		Name:        "update_setting_usg",
 		Description: "Update SettingUsg by ID",
 		Category:    "update",
 		Resource:    "SettingUsg",
@@ -4020,7 +4020,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_setting_usw",
+		Name:        "get_setting_usw",
 		Description: "Get SettingUsw by ID",
 		Category:    "get",
 		Resource:    "SettingUsw",
@@ -4035,7 +4035,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_setting_usw",
+		Name:        "update_setting_usw",
 		Description: "Update SettingUsw by ID",
 		Category:    "update",
 		Resource:    "SettingUsw",
@@ -4059,7 +4059,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_spatial_record",
+		Name:        "list_spatial_record",
 		Description: "List all SpatialRecord resources",
 		Category:    "list",
 		Resource:    "SpatialRecord",
@@ -4074,7 +4074,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_spatial_record",
+		Name:        "get_spatial_record",
 		Description: "Get SpatialRecord by ID",
 		Category:    "get",
 		Resource:    "SpatialRecord",
@@ -4094,7 +4094,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_spatial_record",
+		Name:        "create_spatial_record",
 		Description: "Create new SpatialRecord",
 		Category:    "create",
 		Resource:    "SpatialRecord",
@@ -4113,7 +4113,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_spatial_record",
+		Name:        "update_spatial_record",
 		Description: "Update SpatialRecord by ID",
 		Category:    "update",
 		Resource:    "SpatialRecord",
@@ -4137,7 +4137,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_spatial_record",
+		Name:        "delete_spatial_record",
 		Description: "Delete SpatialRecord by ID",
 		Category:    "delete",
 		Resource:    "SpatialRecord",
@@ -4157,7 +4157,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_tag",
+		Name:        "list_tag",
 		Description: "List all Tag resources",
 		Category:    "list",
 		Resource:    "Tag",
@@ -4172,7 +4172,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_tag",
+		Name:        "get_tag",
 		Description: "Get Tag by ID",
 		Category:    "get",
 		Resource:    "Tag",
@@ -4192,7 +4192,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_tag",
+		Name:        "create_tag",
 		Description: "Create new Tag",
 		Category:    "create",
 		Resource:    "Tag",
@@ -4211,7 +4211,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_tag",
+		Name:        "update_tag",
 		Description: "Update Tag by ID",
 		Category:    "update",
 		Resource:    "Tag",
@@ -4235,7 +4235,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_tag",
+		Name:        "delete_tag",
 		Description: "Delete Tag by ID",
 		Category:    "delete",
 		Resource:    "Tag",
@@ -4255,7 +4255,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_user",
+		Name:        "list_user",
 		Description: "List all User resources",
 		Category:    "list",
 		Resource:    "User",
@@ -4270,7 +4270,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_user",
+		Name:        "get_user",
 		Description: "Get User by ID",
 		Category:    "get",
 		Resource:    "User",
@@ -4290,7 +4290,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_user",
+		Name:        "create_user",
 		Description: "Create new User",
 		Category:    "create",
 		Resource:    "User",
@@ -4309,7 +4309,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_user",
+		Name:        "update_user",
 		Description: "Update User by ID",
 		Category:    "update",
 		Resource:    "User",
@@ -4333,7 +4333,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_user",
+		Name:        "delete_user",
 		Description: "Delete User by ID",
 		Category:    "delete",
 		Resource:    "User",
@@ -4353,7 +4353,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_user_group",
+		Name:        "list_user_group",
 		Description: "List all UserGroup resources",
 		Category:    "list",
 		Resource:    "UserGroup",
@@ -4368,7 +4368,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_user_group",
+		Name:        "get_user_group",
 		Description: "Get UserGroup by ID",
 		Category:    "get",
 		Resource:    "UserGroup",
@@ -4388,7 +4388,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_user_group",
+		Name:        "create_user_group",
 		Description: "Create new UserGroup",
 		Category:    "create",
 		Resource:    "UserGroup",
@@ -4407,7 +4407,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_user_group",
+		Name:        "update_user_group",
 		Description: "Update UserGroup by ID",
 		Category:    "update",
 		Resource:    "UserGroup",
@@ -4431,7 +4431,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_user_group",
+		Name:        "delete_user_group",
 		Description: "Delete UserGroup by ID",
 		Category:    "delete",
 		Resource:    "UserGroup",
@@ -4451,7 +4451,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_virtual_device",
+		Name:        "list_virtual_device",
 		Description: "List all VirtualDevice resources",
 		Category:    "list",
 		Resource:    "VirtualDevice",
@@ -4466,7 +4466,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_virtual_device",
+		Name:        "get_virtual_device",
 		Description: "Get VirtualDevice by ID",
 		Category:    "get",
 		Resource:    "VirtualDevice",
@@ -4486,7 +4486,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_virtual_device",
+		Name:        "create_virtual_device",
 		Description: "Create new VirtualDevice",
 		Category:    "create",
 		Resource:    "VirtualDevice",
@@ -4505,7 +4505,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_virtual_device",
+		Name:        "update_virtual_device",
 		Description: "Update VirtualDevice by ID",
 		Category:    "update",
 		Resource:    "VirtualDevice",
@@ -4529,7 +4529,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_virtual_device",
+		Name:        "delete_virtual_device",
 		Description: "Delete VirtualDevice by ID",
 		Category:    "delete",
 		Resource:    "VirtualDevice",
@@ -4549,7 +4549,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_wlan",
+		Name:        "list_wlan",
 		Description: "List all WLAN resources",
 		Category:    "list",
 		Resource:    "WLAN",
@@ -4564,7 +4564,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_wlan",
+		Name:        "get_wlan",
 		Description: "Get WLAN by ID",
 		Category:    "get",
 		Resource:    "WLAN",
@@ -4584,7 +4584,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_wlan",
+		Name:        "create_wlan",
 		Description: "Create new WLAN",
 		Category:    "create",
 		Resource:    "WLAN",
@@ -4603,7 +4603,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_wlan",
+		Name:        "update_wlan",
 		Description: "Update WLAN by ID",
 		Category:    "update",
 		Resource:    "WLAN",
@@ -4627,7 +4627,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_wlan",
+		Name:        "delete_wlan",
 		Description: "Delete WLAN by ID",
 		Category:    "delete",
 		Resource:    "WLAN",
@@ -4647,7 +4647,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_list_wlan_group",
+		Name:        "list_wlan_group",
 		Description: "List all WLANGroup resources",
 		Category:    "list",
 		Resource:    "WLANGroup",
@@ -4662,7 +4662,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_get_wlan_group",
+		Name:        "get_wlan_group",
 		Description: "Get WLANGroup by ID",
 		Category:    "get",
 		Resource:    "WLANGroup",
@@ -4682,7 +4682,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_create_wlan_group",
+		Name:        "create_wlan_group",
 		Description: "Create new WLANGroup",
 		Category:    "create",
 		Resource:    "WLANGroup",
@@ -4701,7 +4701,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_update_wlan_group",
+		Name:        "update_wlan_group",
 		Description: "Update WLANGroup by ID",
 		Category:    "update",
 		Resource:    "WLANGroup",
@@ -4725,7 +4725,7 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
-		Name:        "unifi_delete_wlan_group",
+		Name:        "delete_wlan_group",
 		Description: "Delete WLANGroup by ID",
 		Category:    "delete",
 		Resource:    "WLANGroup",

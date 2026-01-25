@@ -20,7 +20,7 @@ var AllToolMetadata = []ToolMetadata{
 {{- $fields := .Fields }}
 {{- if has "List" .Operations }}
 	{
-		Name:        "unifi_list_{{ $snake }}",
+		Name:        "list_{{ $snake }}",
 		Description: "List all {{ $name }} resources",
 		Category:    "list",
 		Resource:    "{{ $name }}",
@@ -37,7 +37,7 @@ var AllToolMetadata = []ToolMetadata{
 {{- end }}
 {{- if has "Get" .Operations }}
 	{
-		Name:        "unifi_get_{{ $snake }}",
+		Name:        "get_{{ $snake }}",
 		Description: "Get {{ $name }} by ID",
 		Category:    "get",
 		Resource:    "{{ $name }}",
@@ -63,7 +63,7 @@ var AllToolMetadata = []ToolMetadata{
 {{- end }}
 {{- if has "Create" .Operations }}
 	{
-		Name:        "unifi_create_{{ $snake }}",
+		Name:        "create_{{ $snake }}",
 		Description: "Create new {{ $name }}",
 		Category:    "create",
 		Resource:    "{{ $name }}",
@@ -84,7 +84,7 @@ var AllToolMetadata = []ToolMetadata{
 {{- end }}
 {{- if has "Update" .Operations }}
 	{
-		Name:        "unifi_update_{{ $snake }}",
+		Name:        "update_{{ $snake }}",
 		Description: "Update {{ $name }} by ID",
 		Category:    "update",
 		Resource:    "{{ $name }}",
@@ -110,7 +110,7 @@ var AllToolMetadata = []ToolMetadata{
 {{- end }}
 {{- if has "Delete" .Operations }}
 	{
-		Name:        "unifi_delete_{{ $snake }}",
+		Name:        "delete_{{ $snake }}",
 		Description: "Delete {{ $name }} by ID",
 		Category:    "delete",
 		Resource:    "{{ $name }}",
