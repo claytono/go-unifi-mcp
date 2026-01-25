@@ -3,6 +3,7 @@ package meta
 import (
 	"context"
 	"encoding/json"
+	"sync/atomic"
 	"testing"
 
 	"github.com/claytono/go-unifi-mcp/internal/tools/generated"
@@ -248,9 +249,9 @@ func TestBatch_MissingCallsReturnsError(t *testing.T) {
 }
 
 func TestBatch_ParallelExecution(t *testing.T) {
-	callCount := 0
+	var callCount int32
 	mockHandler := func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) { //nolint:unparam
-		callCount++
+		atomic.AddInt32(&callCount, 1)
 		return mcp.NewToolResultText(`{"result": "ok"}`), nil
 	}
 
@@ -275,7 +276,7 @@ func TestBatch_ParallelExecution(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, result)
 	assert.False(t, result.IsError)
-	assert.Equal(t, 3, callCount)
+	assert.Equal(t, int32(3), atomic.LoadInt32(&callCount))
 
 	// Parse results
 	var results []map[string]any

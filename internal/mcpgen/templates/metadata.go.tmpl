@@ -38,7 +38,7 @@ var AllToolMetadata = []ToolMetadata{
 {{- if has "Get" .Operations }}
 	{
 		Name:        "unifi_get_{{ $snake }}",
-		Description: "Get a {{ $name }} resource",
+		Description: "Get {{ $name }} by ID",
 		Category:    "get",
 		Resource:    "{{ $name }}",
 		InputSchema: map[string]any{
@@ -64,7 +64,7 @@ var AllToolMetadata = []ToolMetadata{
 {{- if has "Create" .Operations }}
 	{
 		Name:        "unifi_create_{{ $snake }}",
-		Description: "Create a {{ $name }} resource",
+		Description: "Create new {{ $name }}",
 		Category:    "create",
 		Resource:    "{{ $name }}",
 		InputSchema: map[string]any{
@@ -85,7 +85,7 @@ var AllToolMetadata = []ToolMetadata{
 {{- if has "Update" .Operations }}
 	{
 		Name:        "unifi_update_{{ $snake }}",
-		Description: "Update a {{ $name }} resource",
+		Description: "Update {{ $name }} by ID",
 		Category:    "update",
 		Resource:    "{{ $name }}",
 		InputSchema: map[string]any{
@@ -111,7 +111,7 @@ var AllToolMetadata = []ToolMetadata{
 {{- if has "Delete" .Operations }}
 	{
 		Name:        "unifi_delete_{{ $snake }}",
-		Description: "Delete a {{ $name }} resource",
+		Description: "Delete {{ $name }} by ID",
 		Category:    "delete",
 		Resource:    "{{ $name }}",
 		InputSchema: map[string]any{

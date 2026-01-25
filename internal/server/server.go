@@ -22,7 +22,7 @@ type Mode string
 const (
 	// ModeLazy registers only 3 meta-tools (~200 tokens context).
 	ModeLazy Mode = "lazy"
-	// ModeEager registers all 242 direct tools (~5000 tokens context).
+	// ModeEager registers all 242 direct tools (~55K tokens context).
 	ModeEager Mode = "eager"
 )
 

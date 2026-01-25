@@ -30,7 +30,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_ap_group",
-		Description: "Get a APGroup resource",
+		Description: "Get APGroup by ID",
 		Category:    "get",
 		Resource:    "APGroup",
 		InputSchema: map[string]any{
@@ -50,7 +50,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_ap_group",
-		Description: "Create a APGroup resource",
+		Description: "Create new APGroup",
 		Category:    "create",
 		Resource:    "APGroup",
 		InputSchema: map[string]any{
@@ -69,7 +69,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_ap_group",
-		Description: "Update a APGroup resource",
+		Description: "Update APGroup by ID",
 		Category:    "update",
 		Resource:    "APGroup",
 		InputSchema: map[string]any{
@@ -93,7 +93,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_ap_group",
-		Description: "Delete a APGroup resource",
+		Description: "Delete APGroup by ID",
 		Category:    "delete",
 		Resource:    "APGroup",
 		InputSchema: map[string]any{
@@ -128,7 +128,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_account",
-		Description: "Get a Account resource",
+		Description: "Get Account by ID",
 		Category:    "get",
 		Resource:    "Account",
 		InputSchema: map[string]any{
@@ -148,7 +148,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_account",
-		Description: "Create a Account resource",
+		Description: "Create new Account",
 		Category:    "create",
 		Resource:    "Account",
 		InputSchema: map[string]any{
@@ -167,7 +167,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_account",
-		Description: "Update a Account resource",
+		Description: "Update Account by ID",
 		Category:    "update",
 		Resource:    "Account",
 		InputSchema: map[string]any{
@@ -191,7 +191,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_account",
-		Description: "Delete a Account resource",
+		Description: "Delete Account by ID",
 		Category:    "delete",
 		Resource:    "Account",
 		InputSchema: map[string]any{
@@ -226,7 +226,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_broadcast_group",
-		Description: "Get a BroadcastGroup resource",
+		Description: "Get BroadcastGroup by ID",
 		Category:    "get",
 		Resource:    "BroadcastGroup",
 		InputSchema: map[string]any{
@@ -246,7 +246,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_broadcast_group",
-		Description: "Create a BroadcastGroup resource",
+		Description: "Create new BroadcastGroup",
 		Category:    "create",
 		Resource:    "BroadcastGroup",
 		InputSchema: map[string]any{
@@ -265,7 +265,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_broadcast_group",
-		Description: "Update a BroadcastGroup resource",
+		Description: "Update BroadcastGroup by ID",
 		Category:    "update",
 		Resource:    "BroadcastGroup",
 		InputSchema: map[string]any{
@@ -289,7 +289,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_broadcast_group",
-		Description: "Delete a BroadcastGroup resource",
+		Description: "Delete BroadcastGroup by ID",
 		Category:    "delete",
 		Resource:    "BroadcastGroup",
 		InputSchema: map[string]any{
@@ -324,7 +324,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_channel_plan",
-		Description: "Get a ChannelPlan resource",
+		Description: "Get ChannelPlan by ID",
 		Category:    "get",
 		Resource:    "ChannelPlan",
 		InputSchema: map[string]any{
@@ -344,7 +344,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_channel_plan",
-		Description: "Create a ChannelPlan resource",
+		Description: "Create new ChannelPlan",
 		Category:    "create",
 		Resource:    "ChannelPlan",
 		InputSchema: map[string]any{
@@ -363,7 +363,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_channel_plan",
-		Description: "Update a ChannelPlan resource",
+		Description: "Update ChannelPlan by ID",
 		Category:    "update",
 		Resource:    "ChannelPlan",
 		InputSchema: map[string]any{
@@ -387,7 +387,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_channel_plan",
-		Description: "Delete a ChannelPlan resource",
+		Description: "Delete ChannelPlan by ID",
 		Category:    "delete",
 		Resource:    "ChannelPlan",
 		InputSchema: map[string]any{
@@ -422,7 +422,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_dhcp_option",
-		Description: "Get a DHCPOption resource",
+		Description: "Get DHCPOption by ID",
 		Category:    "get",
 		Resource:    "DHCPOption",
 		InputSchema: map[string]any{
@@ -442,7 +442,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_dhcp_option",
-		Description: "Create a DHCPOption resource",
+		Description: "Create new DHCPOption",
 		Category:    "create",
 		Resource:    "DHCPOption",
 		InputSchema: map[string]any{
@@ -461,7 +461,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_dhcp_option",
-		Description: "Update a DHCPOption resource",
+		Description: "Update DHCPOption by ID",
 		Category:    "update",
 		Resource:    "DHCPOption",
 		InputSchema: map[string]any{
@@ -485,7 +485,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_dhcp_option",
-		Description: "Delete a DHCPOption resource",
+		Description: "Delete DHCPOption by ID",
 		Category:    "delete",
 		Resource:    "DHCPOption",
 		InputSchema: map[string]any{
@@ -520,7 +520,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_dns_record",
-		Description: "Get a DNSRecord resource",
+		Description: "Get DNSRecord by ID",
 		Category:    "get",
 		Resource:    "DNSRecord",
 		InputSchema: map[string]any{
@@ -540,7 +540,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_dns_record",
-		Description: "Create a DNSRecord resource",
+		Description: "Create new DNSRecord",
 		Category:    "create",
 		Resource:    "DNSRecord",
 		InputSchema: map[string]any{
@@ -559,7 +559,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_dns_record",
-		Description: "Update a DNSRecord resource",
+		Description: "Update DNSRecord by ID",
 		Category:    "update",
 		Resource:    "DNSRecord",
 		InputSchema: map[string]any{
@@ -583,7 +583,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_dns_record",
-		Description: "Delete a DNSRecord resource",
+		Description: "Delete DNSRecord by ID",
 		Category:    "delete",
 		Resource:    "DNSRecord",
 		InputSchema: map[string]any{
@@ -618,7 +618,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_dashboard",
-		Description: "Get a Dashboard resource",
+		Description: "Get Dashboard by ID",
 		Category:    "get",
 		Resource:    "Dashboard",
 		InputSchema: map[string]any{
@@ -638,7 +638,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_dashboard",
-		Description: "Create a Dashboard resource",
+		Description: "Create new Dashboard",
 		Category:    "create",
 		Resource:    "Dashboard",
 		InputSchema: map[string]any{
@@ -657,7 +657,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_dashboard",
-		Description: "Update a Dashboard resource",
+		Description: "Update Dashboard by ID",
 		Category:    "update",
 		Resource:    "Dashboard",
 		InputSchema: map[string]any{
@@ -681,7 +681,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_dashboard",
-		Description: "Delete a Dashboard resource",
+		Description: "Delete Dashboard by ID",
 		Category:    "delete",
 		Resource:    "Dashboard",
 		InputSchema: map[string]any{
@@ -716,7 +716,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_device",
-		Description: "Get a Device resource",
+		Description: "Get Device by ID",
 		Category:    "get",
 		Resource:    "Device",
 		InputSchema: map[string]any{
@@ -751,7 +751,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_dynamic_dns",
-		Description: "Get a DynamicDNS resource",
+		Description: "Get DynamicDNS by ID",
 		Category:    "get",
 		Resource:    "DynamicDNS",
 		InputSchema: map[string]any{
@@ -771,7 +771,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_dynamic_dns",
-		Description: "Create a DynamicDNS resource",
+		Description: "Create new DynamicDNS",
 		Category:    "create",
 		Resource:    "DynamicDNS",
 		InputSchema: map[string]any{
@@ -790,7 +790,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_dynamic_dns",
-		Description: "Update a DynamicDNS resource",
+		Description: "Update DynamicDNS by ID",
 		Category:    "update",
 		Resource:    "DynamicDNS",
 		InputSchema: map[string]any{
@@ -814,7 +814,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_dynamic_dns",
-		Description: "Delete a DynamicDNS resource",
+		Description: "Delete DynamicDNS by ID",
 		Category:    "delete",
 		Resource:    "DynamicDNS",
 		InputSchema: map[string]any{
@@ -849,7 +849,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_firewall_group",
-		Description: "Get a FirewallGroup resource",
+		Description: "Get FirewallGroup by ID",
 		Category:    "get",
 		Resource:    "FirewallGroup",
 		InputSchema: map[string]any{
@@ -869,7 +869,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_firewall_group",
-		Description: "Create a FirewallGroup resource",
+		Description: "Create new FirewallGroup",
 		Category:    "create",
 		Resource:    "FirewallGroup",
 		InputSchema: map[string]any{
@@ -888,7 +888,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_firewall_group",
-		Description: "Update a FirewallGroup resource",
+		Description: "Update FirewallGroup by ID",
 		Category:    "update",
 		Resource:    "FirewallGroup",
 		InputSchema: map[string]any{
@@ -912,7 +912,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_firewall_group",
-		Description: "Delete a FirewallGroup resource",
+		Description: "Delete FirewallGroup by ID",
 		Category:    "delete",
 		Resource:    "FirewallGroup",
 		InputSchema: map[string]any{
@@ -947,7 +947,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_firewall_rule",
-		Description: "Get a FirewallRule resource",
+		Description: "Get FirewallRule by ID",
 		Category:    "get",
 		Resource:    "FirewallRule",
 		InputSchema: map[string]any{
@@ -967,7 +967,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_firewall_rule",
-		Description: "Create a FirewallRule resource",
+		Description: "Create new FirewallRule",
 		Category:    "create",
 		Resource:    "FirewallRule",
 		InputSchema: map[string]any{
@@ -986,7 +986,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_firewall_rule",
-		Description: "Update a FirewallRule resource",
+		Description: "Update FirewallRule by ID",
 		Category:    "update",
 		Resource:    "FirewallRule",
 		InputSchema: map[string]any{
@@ -1010,7 +1010,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_firewall_rule",
-		Description: "Delete a FirewallRule resource",
+		Description: "Delete FirewallRule by ID",
 		Category:    "delete",
 		Resource:    "FirewallRule",
 		InputSchema: map[string]any{
@@ -1045,7 +1045,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_firewall_zone",
-		Description: "Get a FirewallZone resource",
+		Description: "Get FirewallZone by ID",
 		Category:    "get",
 		Resource:    "FirewallZone",
 		InputSchema: map[string]any{
@@ -1065,7 +1065,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_firewall_zone",
-		Description: "Create a FirewallZone resource",
+		Description: "Create new FirewallZone",
 		Category:    "create",
 		Resource:    "FirewallZone",
 		InputSchema: map[string]any{
@@ -1084,7 +1084,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_firewall_zone",
-		Description: "Update a FirewallZone resource",
+		Description: "Update FirewallZone by ID",
 		Category:    "update",
 		Resource:    "FirewallZone",
 		InputSchema: map[string]any{
@@ -1108,7 +1108,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_firewall_zone",
-		Description: "Delete a FirewallZone resource",
+		Description: "Delete FirewallZone by ID",
 		Category:    "delete",
 		Resource:    "FirewallZone",
 		InputSchema: map[string]any{
@@ -1143,7 +1143,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_firewall_zone_policy",
-		Description: "Get a FirewallZonePolicy resource",
+		Description: "Get FirewallZonePolicy by ID",
 		Category:    "get",
 		Resource:    "FirewallZonePolicy",
 		InputSchema: map[string]any{
@@ -1163,7 +1163,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_firewall_zone_policy",
-		Description: "Create a FirewallZonePolicy resource",
+		Description: "Create new FirewallZonePolicy",
 		Category:    "create",
 		Resource:    "FirewallZonePolicy",
 		InputSchema: map[string]any{
@@ -1182,7 +1182,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_firewall_zone_policy",
-		Description: "Update a FirewallZonePolicy resource",
+		Description: "Update FirewallZonePolicy by ID",
 		Category:    "update",
 		Resource:    "FirewallZonePolicy",
 		InputSchema: map[string]any{
@@ -1206,7 +1206,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_firewall_zone_policy",
-		Description: "Delete a FirewallZonePolicy resource",
+		Description: "Delete FirewallZonePolicy by ID",
 		Category:    "delete",
 		Resource:    "FirewallZonePolicy",
 		InputSchema: map[string]any{
@@ -1241,7 +1241,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_heat_map",
-		Description: "Get a HeatMap resource",
+		Description: "Get HeatMap by ID",
 		Category:    "get",
 		Resource:    "HeatMap",
 		InputSchema: map[string]any{
@@ -1261,7 +1261,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_heat_map",
-		Description: "Create a HeatMap resource",
+		Description: "Create new HeatMap",
 		Category:    "create",
 		Resource:    "HeatMap",
 		InputSchema: map[string]any{
@@ -1280,7 +1280,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_heat_map",
-		Description: "Update a HeatMap resource",
+		Description: "Update HeatMap by ID",
 		Category:    "update",
 		Resource:    "HeatMap",
 		InputSchema: map[string]any{
@@ -1304,7 +1304,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_heat_map",
-		Description: "Delete a HeatMap resource",
+		Description: "Delete HeatMap by ID",
 		Category:    "delete",
 		Resource:    "HeatMap",
 		InputSchema: map[string]any{
@@ -1339,7 +1339,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_heat_map_point",
-		Description: "Get a HeatMapPoint resource",
+		Description: "Get HeatMapPoint by ID",
 		Category:    "get",
 		Resource:    "HeatMapPoint",
 		InputSchema: map[string]any{
@@ -1359,7 +1359,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_heat_map_point",
-		Description: "Create a HeatMapPoint resource",
+		Description: "Create new HeatMapPoint",
 		Category:    "create",
 		Resource:    "HeatMapPoint",
 		InputSchema: map[string]any{
@@ -1378,7 +1378,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_heat_map_point",
-		Description: "Update a HeatMapPoint resource",
+		Description: "Update HeatMapPoint by ID",
 		Category:    "update",
 		Resource:    "HeatMapPoint",
 		InputSchema: map[string]any{
@@ -1402,7 +1402,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_heat_map_point",
-		Description: "Delete a HeatMapPoint resource",
+		Description: "Delete HeatMapPoint by ID",
 		Category:    "delete",
 		Resource:    "HeatMapPoint",
 		InputSchema: map[string]any{
@@ -1437,7 +1437,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_hotspot_2_conf",
-		Description: "Get a Hotspot2Conf resource",
+		Description: "Get Hotspot2Conf by ID",
 		Category:    "get",
 		Resource:    "Hotspot2Conf",
 		InputSchema: map[string]any{
@@ -1457,7 +1457,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_hotspot_2_conf",
-		Description: "Create a Hotspot2Conf resource",
+		Description: "Create new Hotspot2Conf",
 		Category:    "create",
 		Resource:    "Hotspot2Conf",
 		InputSchema: map[string]any{
@@ -1476,7 +1476,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_hotspot_2_conf",
-		Description: "Update a Hotspot2Conf resource",
+		Description: "Update Hotspot2Conf by ID",
 		Category:    "update",
 		Resource:    "Hotspot2Conf",
 		InputSchema: map[string]any{
@@ -1500,7 +1500,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_hotspot_2_conf",
-		Description: "Delete a Hotspot2Conf resource",
+		Description: "Delete Hotspot2Conf by ID",
 		Category:    "delete",
 		Resource:    "Hotspot2Conf",
 		InputSchema: map[string]any{
@@ -1535,7 +1535,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_hotspot_op",
-		Description: "Get a HotspotOp resource",
+		Description: "Get HotspotOp by ID",
 		Category:    "get",
 		Resource:    "HotspotOp",
 		InputSchema: map[string]any{
@@ -1555,7 +1555,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_hotspot_op",
-		Description: "Create a HotspotOp resource",
+		Description: "Create new HotspotOp",
 		Category:    "create",
 		Resource:    "HotspotOp",
 		InputSchema: map[string]any{
@@ -1574,7 +1574,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_hotspot_op",
-		Description: "Update a HotspotOp resource",
+		Description: "Update HotspotOp by ID",
 		Category:    "update",
 		Resource:    "HotspotOp",
 		InputSchema: map[string]any{
@@ -1598,7 +1598,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_hotspot_op",
-		Description: "Delete a HotspotOp resource",
+		Description: "Delete HotspotOp by ID",
 		Category:    "delete",
 		Resource:    "HotspotOp",
 		InputSchema: map[string]any{
@@ -1633,7 +1633,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_hotspot_package",
-		Description: "Get a HotspotPackage resource",
+		Description: "Get HotspotPackage by ID",
 		Category:    "get",
 		Resource:    "HotspotPackage",
 		InputSchema: map[string]any{
@@ -1653,7 +1653,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_hotspot_package",
-		Description: "Create a HotspotPackage resource",
+		Description: "Create new HotspotPackage",
 		Category:    "create",
 		Resource:    "HotspotPackage",
 		InputSchema: map[string]any{
@@ -1672,7 +1672,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_hotspot_package",
-		Description: "Update a HotspotPackage resource",
+		Description: "Update HotspotPackage by ID",
 		Category:    "update",
 		Resource:    "HotspotPackage",
 		InputSchema: map[string]any{
@@ -1696,7 +1696,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_hotspot_package",
-		Description: "Delete a HotspotPackage resource",
+		Description: "Delete HotspotPackage by ID",
 		Category:    "delete",
 		Resource:    "HotspotPackage",
 		InputSchema: map[string]any{
@@ -1731,7 +1731,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_map",
-		Description: "Get a Map resource",
+		Description: "Get Map by ID",
 		Category:    "get",
 		Resource:    "Map",
 		InputSchema: map[string]any{
@@ -1751,7 +1751,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_map",
-		Description: "Create a Map resource",
+		Description: "Create new Map",
 		Category:    "create",
 		Resource:    "Map",
 		InputSchema: map[string]any{
@@ -1770,7 +1770,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_map",
-		Description: "Update a Map resource",
+		Description: "Update Map by ID",
 		Category:    "update",
 		Resource:    "Map",
 		InputSchema: map[string]any{
@@ -1794,7 +1794,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_map",
-		Description: "Delete a Map resource",
+		Description: "Delete Map by ID",
 		Category:    "delete",
 		Resource:    "Map",
 		InputSchema: map[string]any{
@@ -1829,7 +1829,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_media_file",
-		Description: "Get a MediaFile resource",
+		Description: "Get MediaFile by ID",
 		Category:    "get",
 		Resource:    "MediaFile",
 		InputSchema: map[string]any{
@@ -1849,7 +1849,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_media_file",
-		Description: "Create a MediaFile resource",
+		Description: "Create new MediaFile",
 		Category:    "create",
 		Resource:    "MediaFile",
 		InputSchema: map[string]any{
@@ -1868,7 +1868,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_media_file",
-		Description: "Update a MediaFile resource",
+		Description: "Update MediaFile by ID",
 		Category:    "update",
 		Resource:    "MediaFile",
 		InputSchema: map[string]any{
@@ -1892,7 +1892,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_media_file",
-		Description: "Delete a MediaFile resource",
+		Description: "Delete MediaFile by ID",
 		Category:    "delete",
 		Resource:    "MediaFile",
 		InputSchema: map[string]any{
@@ -1927,7 +1927,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_network",
-		Description: "Get a Network resource",
+		Description: "Get Network by ID",
 		Category:    "get",
 		Resource:    "Network",
 		InputSchema: map[string]any{
@@ -1947,7 +1947,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_network",
-		Description: "Create a Network resource",
+		Description: "Create new Network",
 		Category:    "create",
 		Resource:    "Network",
 		InputSchema: map[string]any{
@@ -1966,7 +1966,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_network",
-		Description: "Update a Network resource",
+		Description: "Update Network by ID",
 		Category:    "update",
 		Resource:    "Network",
 		InputSchema: map[string]any{
@@ -1990,7 +1990,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_network",
-		Description: "Delete a Network resource",
+		Description: "Delete Network by ID",
 		Category:    "delete",
 		Resource:    "Network",
 		InputSchema: map[string]any{
@@ -2025,7 +2025,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_port_forward",
-		Description: "Get a PortForward resource",
+		Description: "Get PortForward by ID",
 		Category:    "get",
 		Resource:    "PortForward",
 		InputSchema: map[string]any{
@@ -2045,7 +2045,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_port_forward",
-		Description: "Create a PortForward resource",
+		Description: "Create new PortForward",
 		Category:    "create",
 		Resource:    "PortForward",
 		InputSchema: map[string]any{
@@ -2064,7 +2064,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_port_forward",
-		Description: "Update a PortForward resource",
+		Description: "Update PortForward by ID",
 		Category:    "update",
 		Resource:    "PortForward",
 		InputSchema: map[string]any{
@@ -2088,7 +2088,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_port_forward",
-		Description: "Delete a PortForward resource",
+		Description: "Delete PortForward by ID",
 		Category:    "delete",
 		Resource:    "PortForward",
 		InputSchema: map[string]any{
@@ -2123,7 +2123,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_port_profile",
-		Description: "Get a PortProfile resource",
+		Description: "Get PortProfile by ID",
 		Category:    "get",
 		Resource:    "PortProfile",
 		InputSchema: map[string]any{
@@ -2143,7 +2143,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_port_profile",
-		Description: "Create a PortProfile resource",
+		Description: "Create new PortProfile",
 		Category:    "create",
 		Resource:    "PortProfile",
 		InputSchema: map[string]any{
@@ -2162,7 +2162,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_port_profile",
-		Description: "Update a PortProfile resource",
+		Description: "Update PortProfile by ID",
 		Category:    "update",
 		Resource:    "PortProfile",
 		InputSchema: map[string]any{
@@ -2186,7 +2186,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_port_profile",
-		Description: "Delete a PortProfile resource",
+		Description: "Delete PortProfile by ID",
 		Category:    "delete",
 		Resource:    "PortProfile",
 		InputSchema: map[string]any{
@@ -2221,7 +2221,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_radius_profile",
-		Description: "Get a RADIUSProfile resource",
+		Description: "Get RADIUSProfile by ID",
 		Category:    "get",
 		Resource:    "RADIUSProfile",
 		InputSchema: map[string]any{
@@ -2241,7 +2241,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_radius_profile",
-		Description: "Create a RADIUSProfile resource",
+		Description: "Create new RADIUSProfile",
 		Category:    "create",
 		Resource:    "RADIUSProfile",
 		InputSchema: map[string]any{
@@ -2260,7 +2260,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_radius_profile",
-		Description: "Update a RADIUSProfile resource",
+		Description: "Update RADIUSProfile by ID",
 		Category:    "update",
 		Resource:    "RADIUSProfile",
 		InputSchema: map[string]any{
@@ -2284,7 +2284,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_radius_profile",
-		Description: "Delete a RADIUSProfile resource",
+		Description: "Delete RADIUSProfile by ID",
 		Category:    "delete",
 		Resource:    "RADIUSProfile",
 		InputSchema: map[string]any{
@@ -2319,7 +2319,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_routing",
-		Description: "Get a Routing resource",
+		Description: "Get Routing by ID",
 		Category:    "get",
 		Resource:    "Routing",
 		InputSchema: map[string]any{
@@ -2339,7 +2339,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_routing",
-		Description: "Create a Routing resource",
+		Description: "Create new Routing",
 		Category:    "create",
 		Resource:    "Routing",
 		InputSchema: map[string]any{
@@ -2358,7 +2358,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_routing",
-		Description: "Update a Routing resource",
+		Description: "Update Routing by ID",
 		Category:    "update",
 		Resource:    "Routing",
 		InputSchema: map[string]any{
@@ -2382,7 +2382,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_routing",
-		Description: "Delete a Routing resource",
+		Description: "Delete Routing by ID",
 		Category:    "delete",
 		Resource:    "Routing",
 		InputSchema: map[string]any{
@@ -2417,7 +2417,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_schedule_task",
-		Description: "Get a ScheduleTask resource",
+		Description: "Get ScheduleTask by ID",
 		Category:    "get",
 		Resource:    "ScheduleTask",
 		InputSchema: map[string]any{
@@ -2437,7 +2437,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_schedule_task",
-		Description: "Create a ScheduleTask resource",
+		Description: "Create new ScheduleTask",
 		Category:    "create",
 		Resource:    "ScheduleTask",
 		InputSchema: map[string]any{
@@ -2456,7 +2456,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_schedule_task",
-		Description: "Update a ScheduleTask resource",
+		Description: "Update ScheduleTask by ID",
 		Category:    "update",
 		Resource:    "ScheduleTask",
 		InputSchema: map[string]any{
@@ -2480,7 +2480,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_schedule_task",
-		Description: "Delete a ScheduleTask resource",
+		Description: "Delete ScheduleTask by ID",
 		Category:    "delete",
 		Resource:    "ScheduleTask",
 		InputSchema: map[string]any{
@@ -2500,7 +2500,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_auto_speedtest",
-		Description: "Get a SettingAutoSpeedtest resource",
+		Description: "Get SettingAutoSpeedtest by ID",
 		Category:    "get",
 		Resource:    "SettingAutoSpeedtest",
 		InputSchema: map[string]any{
@@ -2515,7 +2515,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_auto_speedtest",
-		Description: "Update a SettingAutoSpeedtest resource",
+		Description: "Update SettingAutoSpeedtest by ID",
 		Category:    "update",
 		Resource:    "SettingAutoSpeedtest",
 		InputSchema: map[string]any{
@@ -2539,7 +2539,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_baresip",
-		Description: "Get a SettingBaresip resource",
+		Description: "Get SettingBaresip by ID",
 		Category:    "get",
 		Resource:    "SettingBaresip",
 		InputSchema: map[string]any{
@@ -2554,7 +2554,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_baresip",
-		Description: "Update a SettingBaresip resource",
+		Description: "Update SettingBaresip by ID",
 		Category:    "update",
 		Resource:    "SettingBaresip",
 		InputSchema: map[string]any{
@@ -2578,7 +2578,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_broadcast",
-		Description: "Get a SettingBroadcast resource",
+		Description: "Get SettingBroadcast by ID",
 		Category:    "get",
 		Resource:    "SettingBroadcast",
 		InputSchema: map[string]any{
@@ -2593,7 +2593,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_broadcast",
-		Description: "Update a SettingBroadcast resource",
+		Description: "Update SettingBroadcast by ID",
 		Category:    "update",
 		Resource:    "SettingBroadcast",
 		InputSchema: map[string]any{
@@ -2617,7 +2617,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_connectivity",
-		Description: "Get a SettingConnectivity resource",
+		Description: "Get SettingConnectivity by ID",
 		Category:    "get",
 		Resource:    "SettingConnectivity",
 		InputSchema: map[string]any{
@@ -2632,7 +2632,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_connectivity",
-		Description: "Update a SettingConnectivity resource",
+		Description: "Update SettingConnectivity by ID",
 		Category:    "update",
 		Resource:    "SettingConnectivity",
 		InputSchema: map[string]any{
@@ -2656,7 +2656,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_country",
-		Description: "Get a SettingCountry resource",
+		Description: "Get SettingCountry by ID",
 		Category:    "get",
 		Resource:    "SettingCountry",
 		InputSchema: map[string]any{
@@ -2671,7 +2671,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_country",
-		Description: "Update a SettingCountry resource",
+		Description: "Update SettingCountry by ID",
 		Category:    "update",
 		Resource:    "SettingCountry",
 		InputSchema: map[string]any{
@@ -2695,7 +2695,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_dashboard",
-		Description: "Get a SettingDashboard resource",
+		Description: "Get SettingDashboard by ID",
 		Category:    "get",
 		Resource:    "SettingDashboard",
 		InputSchema: map[string]any{
@@ -2710,7 +2710,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_dashboard",
-		Description: "Update a SettingDashboard resource",
+		Description: "Update SettingDashboard by ID",
 		Category:    "update",
 		Resource:    "SettingDashboard",
 		InputSchema: map[string]any{
@@ -2734,7 +2734,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_doh",
-		Description: "Get a SettingDoh resource",
+		Description: "Get SettingDoh by ID",
 		Category:    "get",
 		Resource:    "SettingDoh",
 		InputSchema: map[string]any{
@@ -2749,7 +2749,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_doh",
-		Description: "Update a SettingDoh resource",
+		Description: "Update SettingDoh by ID",
 		Category:    "update",
 		Resource:    "SettingDoh",
 		InputSchema: map[string]any{
@@ -2773,7 +2773,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_dpi",
-		Description: "Get a SettingDpi resource",
+		Description: "Get SettingDpi by ID",
 		Category:    "get",
 		Resource:    "SettingDpi",
 		InputSchema: map[string]any{
@@ -2788,7 +2788,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_dpi",
-		Description: "Update a SettingDpi resource",
+		Description: "Update SettingDpi by ID",
 		Category:    "update",
 		Resource:    "SettingDpi",
 		InputSchema: map[string]any{
@@ -2812,7 +2812,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_element_adopt",
-		Description: "Get a SettingElementAdopt resource",
+		Description: "Get SettingElementAdopt by ID",
 		Category:    "get",
 		Resource:    "SettingElementAdopt",
 		InputSchema: map[string]any{
@@ -2827,7 +2827,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_element_adopt",
-		Description: "Update a SettingElementAdopt resource",
+		Description: "Update SettingElementAdopt by ID",
 		Category:    "update",
 		Resource:    "SettingElementAdopt",
 		InputSchema: map[string]any{
@@ -2851,7 +2851,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_ether_lighting",
-		Description: "Get a SettingEtherLighting resource",
+		Description: "Get SettingEtherLighting by ID",
 		Category:    "get",
 		Resource:    "SettingEtherLighting",
 		InputSchema: map[string]any{
@@ -2866,7 +2866,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_ether_lighting",
-		Description: "Update a SettingEtherLighting resource",
+		Description: "Update SettingEtherLighting by ID",
 		Category:    "update",
 		Resource:    "SettingEtherLighting",
 		InputSchema: map[string]any{
@@ -2890,7 +2890,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_evaluation_score",
-		Description: "Get a SettingEvaluationScore resource",
+		Description: "Get SettingEvaluationScore by ID",
 		Category:    "get",
 		Resource:    "SettingEvaluationScore",
 		InputSchema: map[string]any{
@@ -2905,7 +2905,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_evaluation_score",
-		Description: "Update a SettingEvaluationScore resource",
+		Description: "Update SettingEvaluationScore by ID",
 		Category:    "update",
 		Resource:    "SettingEvaluationScore",
 		InputSchema: map[string]any{
@@ -2929,7 +2929,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_global_ap",
-		Description: "Get a SettingGlobalAp resource",
+		Description: "Get SettingGlobalAp by ID",
 		Category:    "get",
 		Resource:    "SettingGlobalAp",
 		InputSchema: map[string]any{
@@ -2944,7 +2944,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_global_ap",
-		Description: "Update a SettingGlobalAp resource",
+		Description: "Update SettingGlobalAp by ID",
 		Category:    "update",
 		Resource:    "SettingGlobalAp",
 		InputSchema: map[string]any{
@@ -2968,7 +2968,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_global_nat",
-		Description: "Get a SettingGlobalNat resource",
+		Description: "Get SettingGlobalNat by ID",
 		Category:    "get",
 		Resource:    "SettingGlobalNat",
 		InputSchema: map[string]any{
@@ -2983,7 +2983,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_global_nat",
-		Description: "Update a SettingGlobalNat resource",
+		Description: "Update SettingGlobalNat by ID",
 		Category:    "update",
 		Resource:    "SettingGlobalNat",
 		InputSchema: map[string]any{
@@ -3007,7 +3007,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_global_switch",
-		Description: "Get a SettingGlobalSwitch resource",
+		Description: "Get SettingGlobalSwitch by ID",
 		Category:    "get",
 		Resource:    "SettingGlobalSwitch",
 		InputSchema: map[string]any{
@@ -3022,7 +3022,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_global_switch",
-		Description: "Update a SettingGlobalSwitch resource",
+		Description: "Update SettingGlobalSwitch by ID",
 		Category:    "update",
 		Resource:    "SettingGlobalSwitch",
 		InputSchema: map[string]any{
@@ -3046,7 +3046,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_guest_access",
-		Description: "Get a SettingGuestAccess resource",
+		Description: "Get SettingGuestAccess by ID",
 		Category:    "get",
 		Resource:    "SettingGuestAccess",
 		InputSchema: map[string]any{
@@ -3061,7 +3061,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_guest_access",
-		Description: "Update a SettingGuestAccess resource",
+		Description: "Update SettingGuestAccess by ID",
 		Category:    "update",
 		Resource:    "SettingGuestAccess",
 		InputSchema: map[string]any{
@@ -3085,7 +3085,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_ips",
-		Description: "Get a SettingIps resource",
+		Description: "Get SettingIps by ID",
 		Category:    "get",
 		Resource:    "SettingIps",
 		InputSchema: map[string]any{
@@ -3100,7 +3100,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_ips",
-		Description: "Update a SettingIps resource",
+		Description: "Update SettingIps by ID",
 		Category:    "update",
 		Resource:    "SettingIps",
 		InputSchema: map[string]any{
@@ -3124,7 +3124,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_lcm",
-		Description: "Get a SettingLcm resource",
+		Description: "Get SettingLcm by ID",
 		Category:    "get",
 		Resource:    "SettingLcm",
 		InputSchema: map[string]any{
@@ -3139,7 +3139,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_lcm",
-		Description: "Update a SettingLcm resource",
+		Description: "Update SettingLcm by ID",
 		Category:    "update",
 		Resource:    "SettingLcm",
 		InputSchema: map[string]any{
@@ -3163,7 +3163,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_locale",
-		Description: "Get a SettingLocale resource",
+		Description: "Get SettingLocale by ID",
 		Category:    "get",
 		Resource:    "SettingLocale",
 		InputSchema: map[string]any{
@@ -3178,7 +3178,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_locale",
-		Description: "Update a SettingLocale resource",
+		Description: "Update SettingLocale by ID",
 		Category:    "update",
 		Resource:    "SettingLocale",
 		InputSchema: map[string]any{
@@ -3202,7 +3202,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_magic_site_to_site_vpn",
-		Description: "Get a SettingMagicSiteToSiteVpn resource",
+		Description: "Get SettingMagicSiteToSiteVpn by ID",
 		Category:    "get",
 		Resource:    "SettingMagicSiteToSiteVpn",
 		InputSchema: map[string]any{
@@ -3217,7 +3217,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_magic_site_to_site_vpn",
-		Description: "Update a SettingMagicSiteToSiteVpn resource",
+		Description: "Update SettingMagicSiteToSiteVpn by ID",
 		Category:    "update",
 		Resource:    "SettingMagicSiteToSiteVpn",
 		InputSchema: map[string]any{
@@ -3241,7 +3241,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_mgmt",
-		Description: "Get a SettingMgmt resource",
+		Description: "Get SettingMgmt by ID",
 		Category:    "get",
 		Resource:    "SettingMgmt",
 		InputSchema: map[string]any{
@@ -3256,7 +3256,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_mgmt",
-		Description: "Update a SettingMgmt resource",
+		Description: "Update SettingMgmt by ID",
 		Category:    "update",
 		Resource:    "SettingMgmt",
 		InputSchema: map[string]any{
@@ -3280,7 +3280,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_netflow",
-		Description: "Get a SettingNetflow resource",
+		Description: "Get SettingNetflow by ID",
 		Category:    "get",
 		Resource:    "SettingNetflow",
 		InputSchema: map[string]any{
@@ -3295,7 +3295,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_netflow",
-		Description: "Update a SettingNetflow resource",
+		Description: "Update SettingNetflow by ID",
 		Category:    "update",
 		Resource:    "SettingNetflow",
 		InputSchema: map[string]any{
@@ -3319,7 +3319,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_network_optimization",
-		Description: "Get a SettingNetworkOptimization resource",
+		Description: "Get SettingNetworkOptimization by ID",
 		Category:    "get",
 		Resource:    "SettingNetworkOptimization",
 		InputSchema: map[string]any{
@@ -3334,7 +3334,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_network_optimization",
-		Description: "Update a SettingNetworkOptimization resource",
+		Description: "Update SettingNetworkOptimization by ID",
 		Category:    "update",
 		Resource:    "SettingNetworkOptimization",
 		InputSchema: map[string]any{
@@ -3358,7 +3358,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_ntp",
-		Description: "Get a SettingNtp resource",
+		Description: "Get SettingNtp by ID",
 		Category:    "get",
 		Resource:    "SettingNtp",
 		InputSchema: map[string]any{
@@ -3373,7 +3373,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_ntp",
-		Description: "Update a SettingNtp resource",
+		Description: "Update SettingNtp by ID",
 		Category:    "update",
 		Resource:    "SettingNtp",
 		InputSchema: map[string]any{
@@ -3397,7 +3397,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_porta",
-		Description: "Get a SettingPorta resource",
+		Description: "Get SettingPorta by ID",
 		Category:    "get",
 		Resource:    "SettingPorta",
 		InputSchema: map[string]any{
@@ -3412,7 +3412,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_porta",
-		Description: "Update a SettingPorta resource",
+		Description: "Update SettingPorta by ID",
 		Category:    "update",
 		Resource:    "SettingPorta",
 		InputSchema: map[string]any{
@@ -3436,7 +3436,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_radio_ai",
-		Description: "Get a SettingRadioAi resource",
+		Description: "Get SettingRadioAi by ID",
 		Category:    "get",
 		Resource:    "SettingRadioAi",
 		InputSchema: map[string]any{
@@ -3451,7 +3451,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_radio_ai",
-		Description: "Update a SettingRadioAi resource",
+		Description: "Update SettingRadioAi by ID",
 		Category:    "update",
 		Resource:    "SettingRadioAi",
 		InputSchema: map[string]any{
@@ -3475,7 +3475,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_radius",
-		Description: "Get a SettingRadius resource",
+		Description: "Get SettingRadius by ID",
 		Category:    "get",
 		Resource:    "SettingRadius",
 		InputSchema: map[string]any{
@@ -3490,7 +3490,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_radius",
-		Description: "Update a SettingRadius resource",
+		Description: "Update SettingRadius by ID",
 		Category:    "update",
 		Resource:    "SettingRadius",
 		InputSchema: map[string]any{
@@ -3514,7 +3514,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_rsyslogd",
-		Description: "Get a SettingRsyslogd resource",
+		Description: "Get SettingRsyslogd by ID",
 		Category:    "get",
 		Resource:    "SettingRsyslogd",
 		InputSchema: map[string]any{
@@ -3529,7 +3529,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_rsyslogd",
-		Description: "Update a SettingRsyslogd resource",
+		Description: "Update SettingRsyslogd by ID",
 		Category:    "update",
 		Resource:    "SettingRsyslogd",
 		InputSchema: map[string]any{
@@ -3553,7 +3553,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_snmp",
-		Description: "Get a SettingSnmp resource",
+		Description: "Get SettingSnmp by ID",
 		Category:    "get",
 		Resource:    "SettingSnmp",
 		InputSchema: map[string]any{
@@ -3568,7 +3568,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_snmp",
-		Description: "Update a SettingSnmp resource",
+		Description: "Update SettingSnmp by ID",
 		Category:    "update",
 		Resource:    "SettingSnmp",
 		InputSchema: map[string]any{
@@ -3592,7 +3592,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_ssl_inspection",
-		Description: "Get a SettingSslInspection resource",
+		Description: "Get SettingSslInspection by ID",
 		Category:    "get",
 		Resource:    "SettingSslInspection",
 		InputSchema: map[string]any{
@@ -3607,7 +3607,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_ssl_inspection",
-		Description: "Update a SettingSslInspection resource",
+		Description: "Update SettingSslInspection by ID",
 		Category:    "update",
 		Resource:    "SettingSslInspection",
 		InputSchema: map[string]any{
@@ -3631,7 +3631,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_super_cloudaccess",
-		Description: "Get a SettingSuperCloudaccess resource",
+		Description: "Get SettingSuperCloudaccess by ID",
 		Category:    "get",
 		Resource:    "SettingSuperCloudaccess",
 		InputSchema: map[string]any{
@@ -3646,7 +3646,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_super_cloudaccess",
-		Description: "Update a SettingSuperCloudaccess resource",
+		Description: "Update SettingSuperCloudaccess by ID",
 		Category:    "update",
 		Resource:    "SettingSuperCloudaccess",
 		InputSchema: map[string]any{
@@ -3670,7 +3670,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_super_events",
-		Description: "Get a SettingSuperEvents resource",
+		Description: "Get SettingSuperEvents by ID",
 		Category:    "get",
 		Resource:    "SettingSuperEvents",
 		InputSchema: map[string]any{
@@ -3685,7 +3685,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_super_events",
-		Description: "Update a SettingSuperEvents resource",
+		Description: "Update SettingSuperEvents by ID",
 		Category:    "update",
 		Resource:    "SettingSuperEvents",
 		InputSchema: map[string]any{
@@ -3709,7 +3709,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_super_fwupdate",
-		Description: "Get a SettingSuperFwupdate resource",
+		Description: "Get SettingSuperFwupdate by ID",
 		Category:    "get",
 		Resource:    "SettingSuperFwupdate",
 		InputSchema: map[string]any{
@@ -3724,7 +3724,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_super_fwupdate",
-		Description: "Update a SettingSuperFwupdate resource",
+		Description: "Update SettingSuperFwupdate by ID",
 		Category:    "update",
 		Resource:    "SettingSuperFwupdate",
 		InputSchema: map[string]any{
@@ -3748,7 +3748,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_super_identity",
-		Description: "Get a SettingSuperIdentity resource",
+		Description: "Get SettingSuperIdentity by ID",
 		Category:    "get",
 		Resource:    "SettingSuperIdentity",
 		InputSchema: map[string]any{
@@ -3763,7 +3763,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_super_identity",
-		Description: "Update a SettingSuperIdentity resource",
+		Description: "Update SettingSuperIdentity by ID",
 		Category:    "update",
 		Resource:    "SettingSuperIdentity",
 		InputSchema: map[string]any{
@@ -3787,7 +3787,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_super_mail",
-		Description: "Get a SettingSuperMail resource",
+		Description: "Get SettingSuperMail by ID",
 		Category:    "get",
 		Resource:    "SettingSuperMail",
 		InputSchema: map[string]any{
@@ -3802,7 +3802,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_super_mail",
-		Description: "Update a SettingSuperMail resource",
+		Description: "Update SettingSuperMail by ID",
 		Category:    "update",
 		Resource:    "SettingSuperMail",
 		InputSchema: map[string]any{
@@ -3826,7 +3826,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_super_mgmt",
-		Description: "Get a SettingSuperMgmt resource",
+		Description: "Get SettingSuperMgmt by ID",
 		Category:    "get",
 		Resource:    "SettingSuperMgmt",
 		InputSchema: map[string]any{
@@ -3841,7 +3841,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_super_mgmt",
-		Description: "Update a SettingSuperMgmt resource",
+		Description: "Update SettingSuperMgmt by ID",
 		Category:    "update",
 		Resource:    "SettingSuperMgmt",
 		InputSchema: map[string]any{
@@ -3865,7 +3865,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_super_sdn",
-		Description: "Get a SettingSuperSdn resource",
+		Description: "Get SettingSuperSdn by ID",
 		Category:    "get",
 		Resource:    "SettingSuperSdn",
 		InputSchema: map[string]any{
@@ -3880,7 +3880,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_super_sdn",
-		Description: "Update a SettingSuperSdn resource",
+		Description: "Update SettingSuperSdn by ID",
 		Category:    "update",
 		Resource:    "SettingSuperSdn",
 		InputSchema: map[string]any{
@@ -3904,7 +3904,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_super_smtp",
-		Description: "Get a SettingSuperSmtp resource",
+		Description: "Get SettingSuperSmtp by ID",
 		Category:    "get",
 		Resource:    "SettingSuperSmtp",
 		InputSchema: map[string]any{
@@ -3919,7 +3919,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_super_smtp",
-		Description: "Update a SettingSuperSmtp resource",
+		Description: "Update SettingSuperSmtp by ID",
 		Category:    "update",
 		Resource:    "SettingSuperSmtp",
 		InputSchema: map[string]any{
@@ -3943,7 +3943,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_teleport",
-		Description: "Get a SettingTeleport resource",
+		Description: "Get SettingTeleport by ID",
 		Category:    "get",
 		Resource:    "SettingTeleport",
 		InputSchema: map[string]any{
@@ -3958,7 +3958,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_teleport",
-		Description: "Update a SettingTeleport resource",
+		Description: "Update SettingTeleport by ID",
 		Category:    "update",
 		Resource:    "SettingTeleport",
 		InputSchema: map[string]any{
@@ -3982,7 +3982,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_usg",
-		Description: "Get a SettingUsg resource",
+		Description: "Get SettingUsg by ID",
 		Category:    "get",
 		Resource:    "SettingUsg",
 		InputSchema: map[string]any{
@@ -3997,7 +3997,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_usg",
-		Description: "Update a SettingUsg resource",
+		Description: "Update SettingUsg by ID",
 		Category:    "update",
 		Resource:    "SettingUsg",
 		InputSchema: map[string]any{
@@ -4021,7 +4021,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_setting_usw",
-		Description: "Get a SettingUsw resource",
+		Description: "Get SettingUsw by ID",
 		Category:    "get",
 		Resource:    "SettingUsw",
 		InputSchema: map[string]any{
@@ -4036,7 +4036,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_setting_usw",
-		Description: "Update a SettingUsw resource",
+		Description: "Update SettingUsw by ID",
 		Category:    "update",
 		Resource:    "SettingUsw",
 		InputSchema: map[string]any{
@@ -4075,7 +4075,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_spatial_record",
-		Description: "Get a SpatialRecord resource",
+		Description: "Get SpatialRecord by ID",
 		Category:    "get",
 		Resource:    "SpatialRecord",
 		InputSchema: map[string]any{
@@ -4095,7 +4095,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_spatial_record",
-		Description: "Create a SpatialRecord resource",
+		Description: "Create new SpatialRecord",
 		Category:    "create",
 		Resource:    "SpatialRecord",
 		InputSchema: map[string]any{
@@ -4114,7 +4114,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_spatial_record",
-		Description: "Update a SpatialRecord resource",
+		Description: "Update SpatialRecord by ID",
 		Category:    "update",
 		Resource:    "SpatialRecord",
 		InputSchema: map[string]any{
@@ -4138,7 +4138,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_spatial_record",
-		Description: "Delete a SpatialRecord resource",
+		Description: "Delete SpatialRecord by ID",
 		Category:    "delete",
 		Resource:    "SpatialRecord",
 		InputSchema: map[string]any{
@@ -4173,7 +4173,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_tag",
-		Description: "Get a Tag resource",
+		Description: "Get Tag by ID",
 		Category:    "get",
 		Resource:    "Tag",
 		InputSchema: map[string]any{
@@ -4193,7 +4193,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_tag",
-		Description: "Create a Tag resource",
+		Description: "Create new Tag",
 		Category:    "create",
 		Resource:    "Tag",
 		InputSchema: map[string]any{
@@ -4212,7 +4212,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_tag",
-		Description: "Update a Tag resource",
+		Description: "Update Tag by ID",
 		Category:    "update",
 		Resource:    "Tag",
 		InputSchema: map[string]any{
@@ -4236,7 +4236,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_tag",
-		Description: "Delete a Tag resource",
+		Description: "Delete Tag by ID",
 		Category:    "delete",
 		Resource:    "Tag",
 		InputSchema: map[string]any{
@@ -4271,7 +4271,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_user",
-		Description: "Get a User resource",
+		Description: "Get User by ID",
 		Category:    "get",
 		Resource:    "User",
 		InputSchema: map[string]any{
@@ -4291,7 +4291,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_user",
-		Description: "Create a User resource",
+		Description: "Create new User",
 		Category:    "create",
 		Resource:    "User",
 		InputSchema: map[string]any{
@@ -4310,7 +4310,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_user",
-		Description: "Update a User resource",
+		Description: "Update User by ID",
 		Category:    "update",
 		Resource:    "User",
 		InputSchema: map[string]any{
@@ -4334,7 +4334,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_user",
-		Description: "Delete a User resource",
+		Description: "Delete User by ID",
 		Category:    "delete",
 		Resource:    "User",
 		InputSchema: map[string]any{
@@ -4369,7 +4369,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_user_group",
-		Description: "Get a UserGroup resource",
+		Description: "Get UserGroup by ID",
 		Category:    "get",
 		Resource:    "UserGroup",
 		InputSchema: map[string]any{
@@ -4389,7 +4389,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_user_group",
-		Description: "Create a UserGroup resource",
+		Description: "Create new UserGroup",
 		Category:    "create",
 		Resource:    "UserGroup",
 		InputSchema: map[string]any{
@@ -4408,7 +4408,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_user_group",
-		Description: "Update a UserGroup resource",
+		Description: "Update UserGroup by ID",
 		Category:    "update",
 		Resource:    "UserGroup",
 		InputSchema: map[string]any{
@@ -4432,7 +4432,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_user_group",
-		Description: "Delete a UserGroup resource",
+		Description: "Delete UserGroup by ID",
 		Category:    "delete",
 		Resource:    "UserGroup",
 		InputSchema: map[string]any{
@@ -4467,7 +4467,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_virtual_device",
-		Description: "Get a VirtualDevice resource",
+		Description: "Get VirtualDevice by ID",
 		Category:    "get",
 		Resource:    "VirtualDevice",
 		InputSchema: map[string]any{
@@ -4487,7 +4487,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_virtual_device",
-		Description: "Create a VirtualDevice resource",
+		Description: "Create new VirtualDevice",
 		Category:    "create",
 		Resource:    "VirtualDevice",
 		InputSchema: map[string]any{
@@ -4506,7 +4506,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_virtual_device",
-		Description: "Update a VirtualDevice resource",
+		Description: "Update VirtualDevice by ID",
 		Category:    "update",
 		Resource:    "VirtualDevice",
 		InputSchema: map[string]any{
@@ -4530,7 +4530,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_virtual_device",
-		Description: "Delete a VirtualDevice resource",
+		Description: "Delete VirtualDevice by ID",
 		Category:    "delete",
 		Resource:    "VirtualDevice",
 		InputSchema: map[string]any{
@@ -4565,7 +4565,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_wlan",
-		Description: "Get a WLAN resource",
+		Description: "Get WLAN by ID",
 		Category:    "get",
 		Resource:    "WLAN",
 		InputSchema: map[string]any{
@@ -4585,7 +4585,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_wlan",
-		Description: "Create a WLAN resource",
+		Description: "Create new WLAN",
 		Category:    "create",
 		Resource:    "WLAN",
 		InputSchema: map[string]any{
@@ -4604,7 +4604,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_wlan",
-		Description: "Update a WLAN resource",
+		Description: "Update WLAN by ID",
 		Category:    "update",
 		Resource:    "WLAN",
 		InputSchema: map[string]any{
@@ -4628,7 +4628,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_wlan",
-		Description: "Delete a WLAN resource",
+		Description: "Delete WLAN by ID",
 		Category:    "delete",
 		Resource:    "WLAN",
 		InputSchema: map[string]any{
@@ -4663,7 +4663,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_get_wlan_group",
-		Description: "Get a WLANGroup resource",
+		Description: "Get WLANGroup by ID",
 		Category:    "get",
 		Resource:    "WLANGroup",
 		InputSchema: map[string]any{
@@ -4683,7 +4683,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_create_wlan_group",
-		Description: "Create a WLANGroup resource",
+		Description: "Create new WLANGroup",
 		Category:    "create",
 		Resource:    "WLANGroup",
 		InputSchema: map[string]any{
@@ -4702,7 +4702,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_update_wlan_group",
-		Description: "Update a WLANGroup resource",
+		Description: "Update WLANGroup by ID",
 		Category:    "update",
 		Resource:    "WLANGroup",
 		InputSchema: map[string]any{
@@ -4726,7 +4726,7 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "unifi_delete_wlan_group",
-		Description: "Delete a WLANGroup resource",
+		Description: "Delete WLANGroup by ID",
 		Category:    "delete",
 		Resource:    "WLANGroup",
 		InputSchema: map[string]any{
