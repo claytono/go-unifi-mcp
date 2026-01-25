@@ -26,9 +26,11 @@
 
         vendorHash = "sha256-iJ3VFnzPYd0ovyK/QdCDolh5p8fe/aXulnHxAia5UuE=";
 
-        # Skip tests - upstream has integration tests that require GitHub credentials
-        # https://github.com/vladopajic/go-test-coverage/issues/243
+        # Skip tests entirely - upstream has two issues:
+        # 1. Integration tests that require GitHub credentials (#243)
+        # 2. Nil pointer bug in Test_Github_Error with Go 1.25 (#266)
         doCheck = false;
+        checkPhase = "";
 
         meta = {
           description = "Tool to report issues when test coverage falls below threshold";
