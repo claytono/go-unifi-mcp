@@ -2,7 +2,17 @@
   "mcpServers": {
     "go-unifi-mcp": {
       "command": "./go-unifi-mcp",
-      "args": []
+      "args": [],
+      "env": {
+        "UNIFI_TOOL_MODE": "eager"
+      }
+    },
+    "go-unifi-mcp-lazy": {
+      "command": "./go-unifi-mcp",
+      "args": [],
+      "env": {
+        "UNIFI_TOOL_MODE": "lazy"
+      }
     }
   }
 }
