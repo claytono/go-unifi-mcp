@@ -224,14 +224,46 @@ MCP server.
    # export UNIFI_PASSWORD="password"
    ```
 
-2. Build and test:
+2. Build the binary:
 
    ```bash
    task build
-   mcp-cli go-unifi-mcp/unifi_list_device '{}'
    ```
 
-The `.mcp_servers.json` config is pre-configured to use the local binary.
+3. Test with mcp-cli:
+
+   The `.mcp_servers.json` config provides two server entries:
+   - `go-unifi-mcp` - eager mode (242 tools)
+   - `go-unifi-mcp-lazy` - lazy mode (3 meta-tools)
+
+   **Eager mode** (direct tool access):
+
+   ```bash
+   # List tools (shows all 242)
+   mcp-cli go-unifi-mcp --list-tools
+
+   # Call a tool directly
+   mcp-cli go-unifi-mcp/unifi_list_device '{}'
+   mcp-cli go-unifi-mcp/unifi_list_network '{"site": "default"}'
+   ```
+
+   **Lazy mode** (meta-tools):
+
+   ```bash
+   # List tools (shows only 3 meta-tools)
+   mcp-cli go-unifi-mcp-lazy --list-tools
+
+   # Query the tool index
+   mcp-cli go-unifi-mcp-lazy/unifi_tool_index '{}'
+   mcp-cli go-unifi-mcp-lazy/unifi_tool_index '{"category": "list"}'
+   mcp-cli go-unifi-mcp-lazy/unifi_tool_index '{"resource": "network"}'
+
+   # Execute a tool via the dispatcher
+   mcp-cli go-unifi-mcp-lazy/unifi_execute '{"tool": "unifi_list_device", "arguments": {}}'
+
+   # Batch execute multiple tools
+   mcp-cli go-unifi-mcp-lazy/unifi_batch '{"calls": [{"tool": "unifi_list_network", "arguments": {}}, {"tool": "unifi_list_device", "arguments": {}}]}'
+   ```
 
 ## Credits
 
