@@ -107,20 +107,16 @@ func Generate(cfg GeneratorConfig) error {
 	}
 
 	// Render templates
-	if err := renderTemplate("templates/tools.go.tmpl", filepath.Join(cfg.OutDir, "tools.gen.go"), tools); err != nil {
-		return fmt.Errorf("failed to render tools template: %w", err)
-	}
-
-	if err := renderTemplate("templates/registry.go.tmpl", filepath.Join(cfg.OutDir, "registry.gen.go"), tools); err != nil {
-		return fmt.Errorf("failed to render registry template: %w", err)
-	}
-
 	if err := renderTemplate("templates/metadata.go.tmpl", filepath.Join(cfg.OutDir, "metadata.gen.go"), tools); err != nil {
 		return fmt.Errorf("failed to render metadata template: %w", err)
 	}
 
 	if err := renderTemplate("templates/handlers.go.tmpl", filepath.Join(cfg.OutDir, "handlers.gen.go"), tools); err != nil {
 		return fmt.Errorf("failed to render handlers template: %w", err)
+	}
+
+	if err := renderTemplate("templates/types.go.tmpl", filepath.Join(cfg.OutDir, "types.gen.go"), tools); err != nil {
+		return fmt.Errorf("failed to render types template: %w", err)
 	}
 
 	return nil

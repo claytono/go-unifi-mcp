@@ -2,16 +2,17 @@
 
 package generated
 
-// ToolMetadata contains serializable metadata for a tool.
+// ToolMetadata contains metadata for a tool.
 type ToolMetadata struct {
-	Name        string         `json:"name"`
-	Description string         `json:"description"`
-	Category    string         `json:"category"`    // list, get, create, update, delete
-	Resource    string         `json:"resource"`    // e.g., "Network"
-	InputSchema map[string]any `json:"inputSchema"` // JSON Schema
+	Name        string
+	Description string
+	Category    string         // list, get, create, update, delete
+	Resource    string         // e.g., "Network"
+	IsSetting   bool           // true for settings resources
+	InputSchema map[string]any // JSON Schema
 }
 
-// AllToolMetadata is the complete catalog of all generated tools.
+// AllToolMetadata contains metadata for all generated tools.
 var AllToolMetadata = []ToolMetadata{
 	{
 		Name:        "list_ap_group",
@@ -45,7 +46,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -60,9 +61,27 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"device_macs": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -83,12 +102,30 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"device_macs": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -108,7 +145,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -143,7 +180,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -158,9 +195,58 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"filter_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"ip": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$",
+				},
+				"networkconf_id": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"tunnel_config_type": map[string]any{
+					"type":        "string",
+					"description": "One of: vpn|802.1x|custom",
+					"enum":        []any{"vpn", "802.1x", "custom"},
+				},
+				"tunnel_medium_type": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9]|1[0-5]|^$",
+				},
+				"tunnel_type": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9]|1[0-3]|^$",
+				},
+				"ulp_user_id": map[string]any{
+					"type": "string",
+				},
+				"vlan": map[string]any{
+					"type":    "integer",
+					"pattern": "[2-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|400[0-9]|^$",
+				},
+				"x_password": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -181,12 +267,61 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"filter_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"ip": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$",
+				},
+				"networkconf_id": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"tunnel_config_type": map[string]any{
+					"type":        "string",
+					"description": "One of: vpn|802.1x|custom",
+					"enum":        []any{"vpn", "802.1x", "custom"},
+				},
+				"tunnel_medium_type": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9]|1[0-5]|^$",
+				},
+				"tunnel_type": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9]|1[0-3]|^$",
+				},
+				"ulp_user_id": map[string]any{
+					"type": "string",
+				},
+				"vlan": map[string]any{
+					"type":    "integer",
+					"pattern": "[2-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|400[0-9]|^$",
+				},
+				"x_password": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -206,7 +341,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -241,7 +376,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -256,9 +391,27 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"member_table": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -279,12 +432,30 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"member_table": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -304,7 +475,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -339,7 +510,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -354,9 +525,63 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"ap_blacklisted_channels": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"conf_source": map[string]any{
+					"type":        "string",
+					"description": "One of: manual|radio-ai",
+					"enum":        []any{"manual", "radio-ai"},
+				},
+				"coupling": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"date": map[string]any{
+					"type":    "string",
+					"pattern": "^$|^(20[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z?$",
+				},
+				"fitness": map[string]any{
+					"type": "number",
+				},
+				"note": map[string]any{
+					"type":    "string",
+					"pattern": ".{0,1024}",
+				},
+				"radio": map[string]any{
+					"type":    "string",
+					"pattern": "na|ng|ng\\+na",
+				},
+				"radio_table": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"satisfaction": map[string]any{
+					"type": "number",
+				},
+				"satisfaction_table": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"site_blacklisted_channels": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -377,12 +602,66 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"ap_blacklisted_channels": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"conf_source": map[string]any{
+					"type":        "string",
+					"description": "One of: manual|radio-ai",
+					"enum":        []any{"manual", "radio-ai"},
+				},
+				"coupling": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"date": map[string]any{
+					"type":    "string",
+					"pattern": "^$|^(20[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z?$",
+				},
+				"fitness": map[string]any{
+					"type": "number",
+				},
+				"note": map[string]any{
+					"type":    "string",
+					"pattern": ".{0,1024}",
+				},
+				"radio": map[string]any{
+					"type":    "string",
+					"pattern": "na|ng|ng\\+na",
+				},
+				"radio_table": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"satisfaction": map[string]any{
+					"type": "number",
+				},
+				"satisfaction_table": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"site_blacklisted_channels": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -402,7 +681,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -437,7 +716,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -452,9 +731,39 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"code": map[string]any{
+					"type":    "string",
+					"pattern": "^(?!(?:15|42|43|44|51|66|67|252)$)([7-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-4])$",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": "^[A-Za-z0-9-_]{1,25}$",
+				},
+				"signed": map[string]any{
+					"type": "boolean",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"type": map[string]any{
+					"type":    "string",
+					"pattern": "^(boolean|hexarray|integer|ipaddress|macaddress|text)$",
+				},
+				"width": map[string]any{
+					"type":    "integer",
+					"pattern": "^(8|16|32)$",
 				},
 			},
 		},
@@ -475,12 +784,42 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"code": map[string]any{
+					"type":    "string",
+					"pattern": "^(?!(?:15|42|43|44|51|66|67|252)$)([7-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-4])$",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": "^[A-Za-z0-9-_]{1,25}$",
+				},
+				"signed": map[string]any{
+					"type": "boolean",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"type": map[string]any{
+					"type":    "string",
+					"pattern": "^(boolean|hexarray|integer|ipaddress|macaddress|text)$",
+				},
+				"width": map[string]any{
+					"type":    "integer",
+					"pattern": "^(8|16|32)$",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -500,7 +839,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -535,7 +874,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -550,9 +889,52 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
+				},
+				"port": map[string]any{
+					"type":    "integer",
+					"pattern": "^[0-9][0-9]?$|^",
+				},
+				"priority": map[string]any{
+					"type":    "integer",
+					"pattern": "^[0-9][0-9]?$|^",
+				},
+				"record_type": map[string]any{
+					"type":        "string",
+					"description": "One of: A|AAAA|CNAME|MX|NS|PTR|SOA|SRV|TXT",
+					"enum":        []any{"A", "AAAA", "CNAME", "MX", "NS", "PTR", "SOA", "SRV", "TXT"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"ttl": map[string]any{
+					"type":    "integer",
+					"pattern": "^[0-9][0-9]?$|^",
+				},
+				"value": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
+				},
+				"weight": map[string]any{
+					"type":    "integer",
+					"pattern": "^[0-9][0-9]?$|^",
 				},
 			},
 		},
@@ -573,12 +955,55 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
+				},
+				"port": map[string]any{
+					"type":    "integer",
+					"pattern": "^[0-9][0-9]?$|^",
+				},
+				"priority": map[string]any{
+					"type":    "integer",
+					"pattern": "^[0-9][0-9]?$|^",
+				},
+				"record_type": map[string]any{
+					"type":        "string",
+					"description": "One of: A|AAAA|CNAME|MX|NS|PTR|SOA|SRV|TXT",
+					"enum":        []any{"A", "AAAA", "CNAME", "MX", "NS", "PTR", "SOA", "SRV", "TXT"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"ttl": map[string]any{
+					"type":    "integer",
+					"pattern": "^[0-9][0-9]?$|^",
+				},
+				"value": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
+				},
+				"weight": map[string]any{
+					"type":    "integer",
+					"pattern": "^[0-9][0-9]?$|^",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -598,7 +1023,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -633,7 +1058,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -648,9 +1073,36 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"controller_version": map[string]any{
+					"type": "string",
+				},
+				"desc": map[string]any{
+					"type": "string",
+				},
+				"is_public": map[string]any{
+					"type": "boolean",
+				},
+				"modules": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -671,12 +1123,39 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"controller_version": map[string]any{
+					"type": "string",
+				},
+				"desc": map[string]any{
+					"type": "string",
+				},
+				"is_public": map[string]any{
+					"type": "boolean",
+				},
+				"modules": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -696,7 +1175,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -731,7 +1210,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -766,7 +1245,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -781,9 +1260,55 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"custom_service": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$",
+				},
+				"host_name": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$",
+				},
+				"interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"login": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$",
+				},
+				"options": map[string]any{
+					"type":    "array",
+					"pattern": "^[^\"' ]+$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"server": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$|^$",
+				},
+				"service": map[string]any{
+					"type":        "string",
+					"description": "One of: afraid|changeip|cloudflare|cloudxns|ddnss|dhis|dnsexit|dnsomatic|dnspark|dnspod|dslreports|dtdns|duckdns|duiadns|dyn|dyndns|dynv6|easydns|freemyip|googledomains|loopia|namecheap|noip|nsupdate|ovh|sitelutions|spdyn|strato|tunnelbroker|zoneedit|custom",
+					"enum":        []any{"afraid", "changeip", "cloudflare", "cloudxns", "ddnss", "dhis", "dnsexit", "dnsomatic", "dnspark", "dnspod", "dslreports", "dtdns", "duckdns", "duiadns", "dyn", "dyndns", "dynv6", "easydns", "freemyip", "googledomains", "loopia", "namecheap", "noip", "nsupdate", "ovh", "sitelutions", "spdyn", "strato", "tunnelbroker", "zoneedit", "custom"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"x_password": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$",
 				},
 			},
 		},
@@ -804,12 +1329,58 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"custom_service": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$",
+				},
+				"host_name": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$",
+				},
+				"interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"login": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$",
+				},
+				"options": map[string]any{
+					"type":    "array",
+					"pattern": "^[^\"' ]+$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"server": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$|^$",
+				},
+				"service": map[string]any{
+					"type":        "string",
+					"description": "One of: afraid|changeip|cloudflare|cloudxns|ddnss|dhis|dnsexit|dnsomatic|dnspark|dnspod|dslreports|dtdns|duckdns|duiadns|dyn|dyndns|dynv6|easydns|freemyip|googledomains|loopia|namecheap|noip|nsupdate|ovh|sitelutions|spdyn|strato|tunnelbroker|zoneedit|custom",
+					"enum":        []any{"afraid", "changeip", "cloudflare", "cloudxns", "ddnss", "dhis", "dnsexit", "dnsomatic", "dnspark", "dnspod", "dslreports", "dtdns", "duckdns", "duiadns", "dyn", "dyndns", "dynv6", "easydns", "freemyip", "googledomains", "loopia", "namecheap", "noip", "nsupdate", "ovh", "sitelutions", "spdyn", "strato", "tunnelbroker", "zoneedit", "custom"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"x_password": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\"' ]+$",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -829,7 +1400,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -864,7 +1435,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -879,9 +1450,33 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"group_members": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"group_type": map[string]any{
+					"type":        "string",
+					"description": "One of: address-group|port-group|ipv6-address-group",
+					"enum":        []any{"address-group", "port-group", "ipv6-address-group"},
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,64}",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -902,12 +1497,36 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"group_members": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"group_type": map[string]any{
+					"type":        "string",
+					"description": "One of: address-group|port-group|ipv6-address-group",
+					"enum":        []any{"address-group", "port-group", "ipv6-address-group"},
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,64}",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -927,7 +1546,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -962,7 +1581,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -977,9 +1596,134 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"action": map[string]any{
+					"type":        "string",
+					"description": "One of: drop|reject|accept",
+					"enum":        []any{"drop", "reject", "accept"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"dst_address": map[string]any{
+					"type": "string",
+				},
+				"dst_address_ipv6": map[string]any{
+					"type": "string",
+				},
+				"dst_firewallgroup_ids": map[string]any{
+					"type":    "array",
+					"pattern": "[\\d\\w]+",
+					"items":   map[string]any{"type": "string"},
+				},
+				"dst_networkconf_id": map[string]any{
+					"type":    "string",
+					"pattern": "[\\d\\w]+|^$",
+				},
+				"dst_networkconf_type": map[string]any{
+					"type":        "string",
+					"description": "One of: ADDRv4|NETv4",
+					"enum":        []any{"ADDRv4", "NETv4"},
+				},
+				"dst_port": map[string]any{
+					"type": "string",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"icmp_typename": map[string]any{
+					"type":    "string",
+					"pattern": "^$|address-mask-reply|address-mask-request|any|communication-prohibited|destination-unreachable|echo-reply|echo-request|fragmentation-needed|host-precedence-violation|host-prohibited|host-redirect|host-unknown|host-unreachable|ip-header-bad|network-prohibited|network-redirect|network-unknown|network-unreachable|parameter-problem|port-unreachable|precedence-cutoff|protocol-unreachable|redirect|required-option-missing|router-advertisement|router-solicitation|source-quench|source-route-failed|time-exceeded|timestamp-reply|timestamp-request|TOS-host-redirect|TOS-host-unreachable|TOS-network-redirect|TOS-network-unreachable|ttl-zero-during-reassembly|ttl-zero-during-transit",
+				},
+				"icmpv6_typename": map[string]any{
+					"type":    "string",
+					"pattern": "^$|address-unreachable|bad-header|beyond-scope|communication-prohibited|destination-unreachable|echo-reply|echo-request|failed-policy|neighbor-advertisement|neighbor-solicitation|no-route|packet-too-big|parameter-problem|port-unreachable|redirect|reject-route|router-advertisement|router-solicitation|time-exceeded|ttl-zero-during-reassembly|ttl-zero-during-transit|unknown-header-type|unknown-option",
+				},
+				"ipsec": map[string]any{
+					"type":    "string",
+					"pattern": "match-ipsec|match-none|^$",
+				},
+				"logging": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"protocol": map[string]any{
+					"type":    "string",
+					"pattern": "^$|all|([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|tcp_udp|ah|ax.25|dccp|ddp|egp|eigrp|encap|esp|etherip|fc|ggp|gre|hip|hmp|icmp|idpr-cmtp|idrp|igmp|igp|ip|ipcomp|ipencap|ipip|ipv6|ipv6-frag|ipv6-icmp|ipv6-nonxt|ipv6-opts|ipv6-route|isis|iso-tp4|l2tp|manet|mobility-header|mpls-in-ip|ospf|pim|pup|rdp|rohc|rspf|rsvp|sctp|shim6|skip|st|tcp|udp|udplite|vmtp|vrrp|wesp|xns-idp|xtp",
+				},
+				"protocol_match_excepted": map[string]any{
+					"type": "boolean",
+				},
+				"protocol_v6": map[string]any{
+					"type":    "string",
+					"pattern": "^$|([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|ah|all|dccp|eigrp|esp|gre|icmpv6|ipcomp|ipv6|ipv6-frag|ipv6-icmp|ipv6-nonxt|ipv6-opts|ipv6-route|isis|l2tp|manet|mobility-header|mpls-in-ip|ospf|pim|rsvp|sctp|shim6|tcp|tcp_udp|udp|vrrp",
+				},
+				"rule_index": map[string]any{
+					"type":    "integer",
+					"pattern": "2[0-9]{3,4}|4[0-9]{3,4}",
+				},
+				"ruleset": map[string]any{
+					"type":        "string",
+					"description": "One of: WAN_IN|WAN_OUT|WAN_LOCAL|LAN_IN|LAN_OUT|LAN_LOCAL|GUEST_IN|GUEST_OUT|GUEST_LOCAL|WANv6_IN|WANv6_OUT|WANv6_LOCAL|LANv6_IN|LANv6_OUT|LANv6_LOCAL|GUESTv6_IN|GUESTv6_OUT|GUESTv6_LOCAL",
+					"enum":        []any{"WAN_IN", "WAN_OUT", "WAN_LOCAL", "LAN_IN", "LAN_OUT", "LAN_LOCAL", "GUEST_IN", "GUEST_OUT", "GUEST_LOCAL", "WANv6_IN", "WANv6_OUT", "WANv6_LOCAL", "LANv6_IN", "LANv6_OUT", "LANv6_LOCAL", "GUESTv6_IN", "GUESTv6_OUT", "GUESTv6_LOCAL"},
+				},
+				"setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"src_address": map[string]any{
+					"type": "string",
+				},
+				"src_address_ipv6": map[string]any{
+					"type": "string",
+				},
+				"src_firewallgroup_ids": map[string]any{
+					"type":    "array",
+					"pattern": "[\\d\\w]+",
+					"items":   map[string]any{"type": "string"},
+				},
+				"src_mac_address": map[string]any{
+					"type":    "string",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$|^$",
+				},
+				"src_networkconf_id": map[string]any{
+					"type":    "string",
+					"pattern": "[\\d\\w]+|^$",
+				},
+				"src_networkconf_type": map[string]any{
+					"type":        "string",
+					"description": "One of: ADDRv4|NETv4",
+					"enum":        []any{"ADDRv4", "NETv4"},
+				},
+				"src_port": map[string]any{
+					"type": "string",
+				},
+				"state_established": map[string]any{
+					"type": "boolean",
+				},
+				"state_invalid": map[string]any{
+					"type": "boolean",
+				},
+				"state_new": map[string]any{
+					"type": "boolean",
+				},
+				"state_related": map[string]any{
+					"type": "boolean",
 				},
 			},
 		},
@@ -1000,12 +1744,137 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"action": map[string]any{
+					"type":        "string",
+					"description": "One of: drop|reject|accept",
+					"enum":        []any{"drop", "reject", "accept"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"dst_address": map[string]any{
+					"type": "string",
+				},
+				"dst_address_ipv6": map[string]any{
+					"type": "string",
+				},
+				"dst_firewallgroup_ids": map[string]any{
+					"type":    "array",
+					"pattern": "[\\d\\w]+",
+					"items":   map[string]any{"type": "string"},
+				},
+				"dst_networkconf_id": map[string]any{
+					"type":    "string",
+					"pattern": "[\\d\\w]+|^$",
+				},
+				"dst_networkconf_type": map[string]any{
+					"type":        "string",
+					"description": "One of: ADDRv4|NETv4",
+					"enum":        []any{"ADDRv4", "NETv4"},
+				},
+				"dst_port": map[string]any{
+					"type": "string",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"icmp_typename": map[string]any{
+					"type":    "string",
+					"pattern": "^$|address-mask-reply|address-mask-request|any|communication-prohibited|destination-unreachable|echo-reply|echo-request|fragmentation-needed|host-precedence-violation|host-prohibited|host-redirect|host-unknown|host-unreachable|ip-header-bad|network-prohibited|network-redirect|network-unknown|network-unreachable|parameter-problem|port-unreachable|precedence-cutoff|protocol-unreachable|redirect|required-option-missing|router-advertisement|router-solicitation|source-quench|source-route-failed|time-exceeded|timestamp-reply|timestamp-request|TOS-host-redirect|TOS-host-unreachable|TOS-network-redirect|TOS-network-unreachable|ttl-zero-during-reassembly|ttl-zero-during-transit",
+				},
+				"icmpv6_typename": map[string]any{
+					"type":    "string",
+					"pattern": "^$|address-unreachable|bad-header|beyond-scope|communication-prohibited|destination-unreachable|echo-reply|echo-request|failed-policy|neighbor-advertisement|neighbor-solicitation|no-route|packet-too-big|parameter-problem|port-unreachable|redirect|reject-route|router-advertisement|router-solicitation|time-exceeded|ttl-zero-during-reassembly|ttl-zero-during-transit|unknown-header-type|unknown-option",
+				},
+				"ipsec": map[string]any{
+					"type":    "string",
+					"pattern": "match-ipsec|match-none|^$",
+				},
+				"logging": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"protocol": map[string]any{
+					"type":    "string",
+					"pattern": "^$|all|([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|tcp_udp|ah|ax.25|dccp|ddp|egp|eigrp|encap|esp|etherip|fc|ggp|gre|hip|hmp|icmp|idpr-cmtp|idrp|igmp|igp|ip|ipcomp|ipencap|ipip|ipv6|ipv6-frag|ipv6-icmp|ipv6-nonxt|ipv6-opts|ipv6-route|isis|iso-tp4|l2tp|manet|mobility-header|mpls-in-ip|ospf|pim|pup|rdp|rohc|rspf|rsvp|sctp|shim6|skip|st|tcp|udp|udplite|vmtp|vrrp|wesp|xns-idp|xtp",
+				},
+				"protocol_match_excepted": map[string]any{
+					"type": "boolean",
+				},
+				"protocol_v6": map[string]any{
+					"type":    "string",
+					"pattern": "^$|([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|ah|all|dccp|eigrp|esp|gre|icmpv6|ipcomp|ipv6|ipv6-frag|ipv6-icmp|ipv6-nonxt|ipv6-opts|ipv6-route|isis|l2tp|manet|mobility-header|mpls-in-ip|ospf|pim|rsvp|sctp|shim6|tcp|tcp_udp|udp|vrrp",
+				},
+				"rule_index": map[string]any{
+					"type":    "integer",
+					"pattern": "2[0-9]{3,4}|4[0-9]{3,4}",
+				},
+				"ruleset": map[string]any{
+					"type":        "string",
+					"description": "One of: WAN_IN|WAN_OUT|WAN_LOCAL|LAN_IN|LAN_OUT|LAN_LOCAL|GUEST_IN|GUEST_OUT|GUEST_LOCAL|WANv6_IN|WANv6_OUT|WANv6_LOCAL|LANv6_IN|LANv6_OUT|LANv6_LOCAL|GUESTv6_IN|GUESTv6_OUT|GUESTv6_LOCAL",
+					"enum":        []any{"WAN_IN", "WAN_OUT", "WAN_LOCAL", "LAN_IN", "LAN_OUT", "LAN_LOCAL", "GUEST_IN", "GUEST_OUT", "GUEST_LOCAL", "WANv6_IN", "WANv6_OUT", "WANv6_LOCAL", "LANv6_IN", "LANv6_OUT", "LANv6_LOCAL", "GUESTv6_IN", "GUESTv6_OUT", "GUESTv6_LOCAL"},
+				},
+				"setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"src_address": map[string]any{
+					"type": "string",
+				},
+				"src_address_ipv6": map[string]any{
+					"type": "string",
+				},
+				"src_firewallgroup_ids": map[string]any{
+					"type":    "array",
+					"pattern": "[\\d\\w]+",
+					"items":   map[string]any{"type": "string"},
+				},
+				"src_mac_address": map[string]any{
+					"type":    "string",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$|^$",
+				},
+				"src_networkconf_id": map[string]any{
+					"type":    "string",
+					"pattern": "[\\d\\w]+|^$",
+				},
+				"src_networkconf_type": map[string]any{
+					"type":        "string",
+					"description": "One of: ADDRv4|NETv4",
+					"enum":        []any{"ADDRv4", "NETv4"},
+				},
+				"src_port": map[string]any{
+					"type": "string",
+				},
+				"state_established": map[string]any{
+					"type": "boolean",
+				},
+				"state_invalid": map[string]any{
+					"type": "boolean",
+				},
+				"state_new": map[string]any{
+					"type": "boolean",
+				},
+				"state_related": map[string]any{
+					"type": "boolean",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1025,7 +1894,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1060,7 +1929,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1075,9 +1944,27 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"network_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -1098,12 +1985,30 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"network_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1123,7 +2028,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1158,7 +2063,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1173,9 +2078,88 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"action": map[string]any{
+					"type":        "string",
+					"description": "One of: ALLOW|BLOCK|REJECT",
+					"enum":        []any{"ALLOW", "BLOCK", "REJECT"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"connection_state_type": map[string]any{
+					"type":        "string",
+					"description": "One of: ALL|RESPOND_ONLY|CUSTOM",
+					"enum":        []any{"ALL", "RESPOND_ONLY", "CUSTOM"},
+				},
+				"connection_states": map[string]any{
+					"type":        "array",
+					"description": "One of: ESTABLISHED|NEW|RELATED|INVALID",
+					"enum":        []any{"ESTABLISHED", "NEW", "RELATED", "INVALID"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"create_allow_respond": map[string]any{
+					"type": "boolean",
+				},
+				"description": map[string]any{
+					"type": "string",
+				},
+				"destination": map[string]any{
+					"type": "object",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"index": map[string]any{
+					"type":    "integer",
+					"pattern": "^[0-9][0-9]?$|^",
+				},
+				"ip_version": map[string]any{
+					"type":        "string",
+					"description": "One of: BOTH|IPV4|IPV6",
+					"enum":        []any{"BOTH", "IPV4", "IPV6"},
+				},
+				"logging": map[string]any{
+					"type": "boolean",
+				},
+				"match_ip_sec": map[string]any{
+					"type": "boolean",
+				},
+				"match_ip_sec_type": map[string]any{
+					"type":        "string",
+					"description": "One of: MATCH_IP_SEC|MATCH_NON_IP_SEC",
+					"enum":        []any{"MATCH_IP_SEC", "MATCH_NON_IP_SEC"},
+				},
+				"match_opposite_protocol": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"predefined": map[string]any{
+					"type": "boolean",
+				},
+				"protocol": map[string]any{
+					"type":        "string",
+					"description": "One of: all|tcp_udp|tcp|udp|ah|dccp|eigrp|esp|gre|icmp|icmpv6|igmp|igp|ip|ipcomp|ipip|ipv6|isis|l2tp|manet|mobility-header|mpls-in-ip|number|ospf|pim|pup|rdp|rohc|rspf|rcvp|sctp|shim6|skip|st|vmtp|vrrp|wesp|xtp",
+					"enum":        []any{"all", "tcp_udp", "tcp", "udp", "ah", "dccp", "eigrp", "esp", "gre", "icmp", "icmpv6", "igmp", "igp", "ip", "ipcomp", "ipip", "ipv6", "isis", "l2tp", "manet", "mobility-header", "mpls-in-ip", "number", "ospf", "pim", "pup", "rdp", "rohc", "rspf", "rcvp", "sctp", "shim6", "skip", "st", "vmtp", "vrrp", "wesp", "xtp"},
+				},
+				"schedule": map[string]any{
+					"type": "object",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"source": map[string]any{
+					"type": "object",
 				},
 			},
 		},
@@ -1196,12 +2180,91 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"action": map[string]any{
+					"type":        "string",
+					"description": "One of: ALLOW|BLOCK|REJECT",
+					"enum":        []any{"ALLOW", "BLOCK", "REJECT"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"connection_state_type": map[string]any{
+					"type":        "string",
+					"description": "One of: ALL|RESPOND_ONLY|CUSTOM",
+					"enum":        []any{"ALL", "RESPOND_ONLY", "CUSTOM"},
+				},
+				"connection_states": map[string]any{
+					"type":        "array",
+					"description": "One of: ESTABLISHED|NEW|RELATED|INVALID",
+					"enum":        []any{"ESTABLISHED", "NEW", "RELATED", "INVALID"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"create_allow_respond": map[string]any{
+					"type": "boolean",
+				},
+				"description": map[string]any{
+					"type": "string",
+				},
+				"destination": map[string]any{
+					"type": "object",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"index": map[string]any{
+					"type":    "integer",
+					"pattern": "^[0-9][0-9]?$|^",
+				},
+				"ip_version": map[string]any{
+					"type":        "string",
+					"description": "One of: BOTH|IPV4|IPV6",
+					"enum":        []any{"BOTH", "IPV4", "IPV6"},
+				},
+				"logging": map[string]any{
+					"type": "boolean",
+				},
+				"match_ip_sec": map[string]any{
+					"type": "boolean",
+				},
+				"match_ip_sec_type": map[string]any{
+					"type":        "string",
+					"description": "One of: MATCH_IP_SEC|MATCH_NON_IP_SEC",
+					"enum":        []any{"MATCH_IP_SEC", "MATCH_NON_IP_SEC"},
+				},
+				"match_opposite_protocol": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"predefined": map[string]any{
+					"type": "boolean",
+				},
+				"protocol": map[string]any{
+					"type":        "string",
+					"description": "One of: all|tcp_udp|tcp|udp|ah|dccp|eigrp|esp|gre|icmp|icmpv6|igmp|igp|ip|ipcomp|ipip|ipv6|isis|l2tp|manet|mobility-header|mpls-in-ip|number|ospf|pim|pup|rdp|rohc|rspf|rcvp|sctp|shim6|skip|st|vmtp|vrrp|wesp|xtp",
+					"enum":        []any{"all", "tcp_udp", "tcp", "udp", "ah", "dccp", "eigrp", "esp", "gre", "icmp", "icmpv6", "igmp", "igp", "ip", "ipcomp", "ipip", "ipv6", "isis", "l2tp", "manet", "mobility-header", "mpls-in-ip", "number", "ospf", "pim", "pup", "rdp", "rohc", "rspf", "rcvp", "sctp", "shim6", "skip", "st", "vmtp", "vrrp", "wesp", "xtp"},
+				},
+				"schedule": map[string]any{
+					"type": "object",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"source": map[string]any{
+					"type": "object",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1221,7 +2284,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1256,7 +2319,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1271,9 +2334,35 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"description": map[string]any{
+					"type": "string",
+				},
+				"map_id": map[string]any{
+					"type": "string",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".*[^\\s]+.*",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"type": map[string]any{
+					"type":        "string",
+					"description": "One of: download|upload",
+					"enum":        []any{"download", "upload"},
 				},
 			},
 		},
@@ -1294,12 +2383,38 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"description": map[string]any{
+					"type": "string",
+				},
+				"map_id": map[string]any{
+					"type": "string",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".*[^\\s]+.*",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"type": map[string]any{
+					"type":        "string",
+					"description": "One of: download|upload",
+					"enum":        []any{"download", "upload"},
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1319,7 +2434,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1354,7 +2469,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1369,9 +2484,35 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"download_speed": map[string]any{
+					"type": "number",
+				},
+				"heatmap_id": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"upload_speed": map[string]any{
+					"type": "number",
+				},
+				"x": map[string]any{
+					"type": "number",
+				},
+				"y": map[string]any{
+					"type": "number",
 				},
 			},
 		},
@@ -1392,12 +2533,38 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"download_speed": map[string]any{
+					"type": "number",
+				},
+				"heatmap_id": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"upload_speed": map[string]any{
+					"type": "number",
+				},
+				"x": map[string]any{
+					"type": "number",
+				},
+				"y": map[string]any{
+					"type": "number",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1417,7 +2584,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1452,7 +2619,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1467,9 +2634,201 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"anqp_domain_id": map[string]any{
+					"type":    "integer",
+					"pattern": "^0|[1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]|$",
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"capab": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"cellular_network_list": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"deauth_req_timeout": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9][0-9]|[1-9][0-9][0-9]|[1-2][0-9][0-9][0-9]|3[0-5][0-9][0-9]|3600",
+				},
+				"disable_dgaf": map[string]any{
+					"type": "boolean",
+				},
+				"domain_name_list": map[string]any{
+					"type":    "array",
+					"pattern": ".{1,128}",
+					"items":   map[string]any{"type": "string"},
+				},
+				"friendly_name": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"gas_advanced": map[string]any{
+					"type": "boolean",
+				},
+				"gas_comeback_delay": map[string]any{
+					"type": "integer",
+				},
+				"gas_frag_limit": map[string]any{
+					"type": "integer",
+				},
+				"hessid": map[string]any{
+					"type":    "string",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$|^$",
+				},
+				"hessid_used": map[string]any{
+					"type": "boolean",
+				},
+				"icons": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"ipaddr_type_avail_v4": map[string]any{
+					"type":        "integer",
+					"description": "One of: 0|1|2|3|4|5|6|7",
+					"enum":        []any{"0", "1", "2", "3", "4", "5", "6", "7"},
+				},
+				"ipaddr_type_avail_v6": map[string]any{
+					"type":        "integer",
+					"description": "One of: 0|1|2",
+					"enum":        []any{"0", "1", "2"},
+				},
+				"metrics_downlink_load": map[string]any{
+					"type": "integer",
+				},
+				"metrics_downlink_load_set": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_downlink_speed": map[string]any{
+					"type": "integer",
+				},
+				"metrics_downlink_speed_set": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_info_at_capacity": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_info_link_status": map[string]any{
+					"type":        "string",
+					"description": "One of: up|down|test",
+					"enum":        []any{"up", "down", "test"},
+				},
+				"metrics_info_symmetric": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_measurement": map[string]any{
+					"type": "integer",
+				},
+				"metrics_measurement_set": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_status": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_uplink_load": map[string]any{
+					"type": "integer",
+				},
+				"metrics_uplink_load_set": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_uplink_speed": map[string]any{
+					"type": "integer",
+				},
+				"metrics_uplink_speed_set": map[string]any{
+					"type": "boolean",
+				},
+				"nai_realm_list": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"network_access_asra": map[string]any{
+					"type": "boolean",
+				},
+				"network_access_esr": map[string]any{
+					"type": "boolean",
+				},
+				"network_access_internet": map[string]any{
+					"type": "boolean",
+				},
+				"network_access_uesa": map[string]any{
+					"type": "boolean",
+				},
+				"network_auth_type": map[string]any{
+					"type":        "integer",
+					"description": "One of: -1|0|1|2|3",
+					"enum":        []any{"-1", "0", "1", "2", "3"},
+				},
+				"network_auth_url": map[string]any{
+					"type": "string",
+				},
+				"network_type": map[string]any{
+					"type":        "integer",
+					"description": "One of: 0|1|2|3|4|5|14|15",
+					"enum":        []any{"0", "1", "2", "3", "4", "5", "14", "15"},
+				},
+				"osu": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"osu_ssid": map[string]any{
+					"type": "string",
+				},
+				"qos_map_dcsp": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"qos_map_exceptions": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"qos_map_status": map[string]any{
+					"type": "boolean",
+				},
+				"roaming_consortium_list": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"save_timestamp": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"t_c_filename": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
+				},
+				"t_c_timestamp": map[string]any{
+					"type": "integer",
+				},
+				"venue_group": map[string]any{
+					"type":        "integer",
+					"description": "One of: 0|1|2|3|4|5|6|7|8|9|10|11",
+					"enum":        []any{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
+				},
+				"venue_name": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"venue_type": map[string]any{
+					"type":        "integer",
+					"description": "One of: 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15",
+					"enum":        []any{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"},
 				},
 			},
 		},
@@ -1490,12 +2849,204 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"anqp_domain_id": map[string]any{
+					"type":    "integer",
+					"pattern": "^0|[1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]|$",
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"capab": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"cellular_network_list": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"deauth_req_timeout": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9][0-9]|[1-9][0-9][0-9]|[1-2][0-9][0-9][0-9]|3[0-5][0-9][0-9]|3600",
+				},
+				"disable_dgaf": map[string]any{
+					"type": "boolean",
+				},
+				"domain_name_list": map[string]any{
+					"type":    "array",
+					"pattern": ".{1,128}",
+					"items":   map[string]any{"type": "string"},
+				},
+				"friendly_name": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"gas_advanced": map[string]any{
+					"type": "boolean",
+				},
+				"gas_comeback_delay": map[string]any{
+					"type": "integer",
+				},
+				"gas_frag_limit": map[string]any{
+					"type": "integer",
+				},
+				"hessid": map[string]any{
+					"type":    "string",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$|^$",
+				},
+				"hessid_used": map[string]any{
+					"type": "boolean",
+				},
+				"icons": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"ipaddr_type_avail_v4": map[string]any{
+					"type":        "integer",
+					"description": "One of: 0|1|2|3|4|5|6|7",
+					"enum":        []any{"0", "1", "2", "3", "4", "5", "6", "7"},
+				},
+				"ipaddr_type_avail_v6": map[string]any{
+					"type":        "integer",
+					"description": "One of: 0|1|2",
+					"enum":        []any{"0", "1", "2"},
+				},
+				"metrics_downlink_load": map[string]any{
+					"type": "integer",
+				},
+				"metrics_downlink_load_set": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_downlink_speed": map[string]any{
+					"type": "integer",
+				},
+				"metrics_downlink_speed_set": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_info_at_capacity": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_info_link_status": map[string]any{
+					"type":        "string",
+					"description": "One of: up|down|test",
+					"enum":        []any{"up", "down", "test"},
+				},
+				"metrics_info_symmetric": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_measurement": map[string]any{
+					"type": "integer",
+				},
+				"metrics_measurement_set": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_status": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_uplink_load": map[string]any{
+					"type": "integer",
+				},
+				"metrics_uplink_load_set": map[string]any{
+					"type": "boolean",
+				},
+				"metrics_uplink_speed": map[string]any{
+					"type": "integer",
+				},
+				"metrics_uplink_speed_set": map[string]any{
+					"type": "boolean",
+				},
+				"nai_realm_list": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"network_access_asra": map[string]any{
+					"type": "boolean",
+				},
+				"network_access_esr": map[string]any{
+					"type": "boolean",
+				},
+				"network_access_internet": map[string]any{
+					"type": "boolean",
+				},
+				"network_access_uesa": map[string]any{
+					"type": "boolean",
+				},
+				"network_auth_type": map[string]any{
+					"type":        "integer",
+					"description": "One of: -1|0|1|2|3",
+					"enum":        []any{"-1", "0", "1", "2", "3"},
+				},
+				"network_auth_url": map[string]any{
+					"type": "string",
+				},
+				"network_type": map[string]any{
+					"type":        "integer",
+					"description": "One of: 0|1|2|3|4|5|14|15",
+					"enum":        []any{"0", "1", "2", "3", "4", "5", "14", "15"},
+				},
+				"osu": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"osu_ssid": map[string]any{
+					"type": "string",
+				},
+				"qos_map_dcsp": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"qos_map_exceptions": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"qos_map_status": map[string]any{
+					"type": "boolean",
+				},
+				"roaming_consortium_list": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"save_timestamp": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"t_c_filename": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
+				},
+				"t_c_timestamp": map[string]any{
+					"type": "integer",
+				},
+				"venue_group": map[string]any{
+					"type":        "integer",
+					"description": "One of: 0|1|2|3|4|5|6|7|8|9|10|11",
+					"enum":        []any{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
+				},
+				"venue_name": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"venue_type": map[string]any{
+					"type":        "integer",
+					"description": "One of: 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15",
+					"enum":        []any{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"},
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1515,7 +3066,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1550,7 +3101,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1565,9 +3116,31 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
+				},
+				"note": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"x_password": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
 				},
 			},
 		},
@@ -1588,12 +3161,34 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
+				},
+				"note": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"x_password": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1613,7 +3208,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1648,7 +3243,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1663,9 +3258,108 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"amount": map[string]any{
+					"type": "number",
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"charged_as": map[string]any{
+					"type": "string",
+				},
+				"currency": map[string]any{
+					"type":    "string",
+					"pattern": "[A-Z]{3}",
+				},
+				"custom_payment_fields_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"hours": map[string]any{
+					"type": "integer",
+				},
+				"index": map[string]any{
+					"type": "integer",
+				},
+				"limit_down": map[string]any{
+					"type": "integer",
+				},
+				"limit_overwrite": map[string]any{
+					"type": "boolean",
+				},
+				"limit_quota": map[string]any{
+					"type": "integer",
+				},
+				"limit_up": map[string]any{
+					"type": "integer",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"payment_fields_address_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_address_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_city_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_city_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_country_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_country_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_email_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_email_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_first_name_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_first_name_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_last_name_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_last_name_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_state_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_state_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_zip_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_zip_required": map[string]any{
+					"type": "boolean",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"trial_duration_minutes": map[string]any{
+					"type": "integer",
+				},
+				"trial_reset": map[string]any{
+					"type": "number",
 				},
 			},
 		},
@@ -1686,12 +3380,111 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"amount": map[string]any{
+					"type": "number",
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"charged_as": map[string]any{
+					"type": "string",
+				},
+				"currency": map[string]any{
+					"type":    "string",
+					"pattern": "[A-Z]{3}",
+				},
+				"custom_payment_fields_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"hours": map[string]any{
+					"type": "integer",
+				},
+				"index": map[string]any{
+					"type": "integer",
+				},
+				"limit_down": map[string]any{
+					"type": "integer",
+				},
+				"limit_overwrite": map[string]any{
+					"type": "boolean",
+				},
+				"limit_quota": map[string]any{
+					"type": "integer",
+				},
+				"limit_up": map[string]any{
+					"type": "integer",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"payment_fields_address_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_address_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_city_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_city_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_country_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_country_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_email_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_email_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_first_name_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_first_name_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_last_name_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_last_name_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_state_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_state_required": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_zip_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_fields_zip_required": map[string]any{
+					"type": "boolean",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"trial_duration_minutes": map[string]any{
+					"type": "integer",
+				},
+				"trial_reset": map[string]any{
+					"type": "number",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1711,7 +3504,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1746,7 +3539,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1761,9 +3554,68 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"lat": map[string]any{
+					"type":    "string",
+					"pattern": "^([-]?[\\d]+[.]?[\\d]*([eE][-+]?[\\d]+)?)$",
+				},
+				"lng": map[string]any{
+					"type":    "string",
+					"pattern": "^([-]?[\\d]+[.]?[\\d]*([eE][-+]?[\\d]+)?)$",
+				},
+				"mapTypeId": map[string]any{
+					"type":        "string",
+					"description": "One of: satellite|roadmap|hybrid|terrain",
+					"enum":        []any{"satellite", "roadmap", "hybrid", "terrain"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"offset_left": map[string]any{
+					"type": "number",
+				},
+				"offset_top": map[string]any{
+					"type": "number",
+				},
+				"opacity": map[string]any{
+					"type":    "number",
+					"pattern": "^(0(\\.[\\d]{1,2})?|1)$|^$",
+				},
+				"selected": map[string]any{
+					"type": "boolean",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"tilt": map[string]any{
+					"type": "integer",
+				},
+				"type": map[string]any{
+					"type":        "string",
+					"description": "One of: designerMap|imageMap|googleMap",
+					"enum":        []any{"designerMap", "imageMap", "googleMap"},
+				},
+				"unit": map[string]any{
+					"type":        "string",
+					"description": "One of: m|f",
+					"enum":        []any{"m", "f"},
+				},
+				"upp": map[string]any{
+					"type": "number",
+				},
+				"zoom": map[string]any{
+					"type": "integer",
 				},
 			},
 		},
@@ -1784,12 +3636,71 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"lat": map[string]any{
+					"type":    "string",
+					"pattern": "^([-]?[\\d]+[.]?[\\d]*([eE][-+]?[\\d]+)?)$",
+				},
+				"lng": map[string]any{
+					"type":    "string",
+					"pattern": "^([-]?[\\d]+[.]?[\\d]*([eE][-+]?[\\d]+)?)$",
+				},
+				"mapTypeId": map[string]any{
+					"type":        "string",
+					"description": "One of: satellite|roadmap|hybrid|terrain",
+					"enum":        []any{"satellite", "roadmap", "hybrid", "terrain"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"offset_left": map[string]any{
+					"type": "number",
+				},
+				"offset_top": map[string]any{
+					"type": "number",
+				},
+				"opacity": map[string]any{
+					"type":    "number",
+					"pattern": "^(0(\\.[\\d]{1,2})?|1)$|^$",
+				},
+				"selected": map[string]any{
+					"type": "boolean",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"tilt": map[string]any{
+					"type": "integer",
+				},
+				"type": map[string]any{
+					"type":        "string",
+					"description": "One of: designerMap|imageMap|googleMap",
+					"enum":        []any{"designerMap", "imageMap", "googleMap"},
+				},
+				"unit": map[string]any{
+					"type":        "string",
+					"description": "One of: m|f",
+					"enum":        []any{"m", "f"},
+				},
+				"upp": map[string]any{
+					"type": "number",
+				},
+				"zoom": map[string]any{
+					"type": "integer",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1809,7 +3720,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1844,7 +3755,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1859,9 +3770,23 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -1882,12 +3807,26 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1907,7 +3846,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1942,7 +3881,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -1957,9 +3896,892 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auto_scale_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcp_relay_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_boot_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_boot_filename": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
+				},
+				"dhcpd_boot_server": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$|(?=^.{3,253}$)(^((?!-)[a-zA-Z0-9-]{1,63}(?<!-)\\.)+[a-zA-Z]{2,63}$)|[a-zA-Z0-9-]{1,63}|^$",
+				},
+				"dhcpd_conflict_checking": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_dns_1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_dns_2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_dns_3": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_dns_4": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_dns_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_gateway": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_gateway_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_ip_1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_ip_2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_ip_3": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_leasetime": map[string]any{
+					"type": "integer",
+				},
+				"dhcpd_mac_1": map[string]any{
+					"type":    "string",
+					"pattern": "(^$|^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$)",
+				},
+				"dhcpd_mac_2": map[string]any{
+					"type":    "string",
+					"pattern": "(^$|^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$)",
+				},
+				"dhcpd_mac_3": map[string]any{
+					"type":    "string",
+					"pattern": "(^$|^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$)",
+				},
+				"dhcpd_ntp_1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_ntp_2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_ntp_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_start": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_stop": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_tftp_server": map[string]any{
+					"type": "string",
+				},
+				"dhcpd_time_offset": map[string]any{
+					"type":    "integer",
+					"pattern": "^0$|^-?([1-9]([0-9]{1,3})?|[1-7][0-9]{4}|[8][0-5][0-9]{3}|86[0-3][0-9]{2}|86400)$",
+				},
+				"dhcpd_time_offset_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_unifi_controller": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_wins_1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_wins_2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_wins_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_wpad_url": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_allow_slaac": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpdv6_dns_1": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_dns_2": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_dns_3": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_dns_4": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_dns_auto": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpdv6_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpdv6_leasetime": map[string]any{
+					"type": "integer",
+				},
+				"dhcpdv6_start": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_stop": map[string]any{
+					"type": "string",
+				},
+				"dhcpguard_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"domain_name": map[string]any{
+					"type":    "string",
+					"pattern": "(?=^.{3,253}$)(^((?!-)[a-zA-Z0-9-]{1,63}(?<!-)\\.)+[a-zA-Z]{2,63}$)|^$|[a-zA-Z0-9-]{1,63}",
+				},
+				"dpi_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dpigroup_id": map[string]any{
+					"type":    "string",
+					"pattern": "[\\d\\w]+|^$",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"exposed_to_site_vpn": map[string]any{
+					"type": "boolean",
+				},
+				"firewall_zone_id": map[string]any{
+					"type": "string",
+				},
+				"gateway_device": map[string]any{
+					"type":    "string",
+					"pattern": "(^$|^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$)",
+				},
+				"gateway_type": map[string]any{
+					"type":        "string",
+					"description": "One of: default|switch",
+					"enum":        []any{"default", "switch"},
+				},
+				"igmp_fastleave": map[string]any{
+					"type": "boolean",
+				},
+				"igmp_forward_unknown_multicast": map[string]any{
+					"type": "boolean",
+				},
+				"igmp_groupmembership": map[string]any{
+					"type":    "integer",
+					"pattern": "[2-9]|[1-9][0-9]{1,2}|[1-2][0-9]{3}|3[0-5][0-9]{2}|3600|^$",
+				},
+				"igmp_maxresponse": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9]|1[0-9]|2[0-5]|^$",
+				},
+				"igmp_mcrtrexpiretime": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,2}|[1-2][0-9]{3}|3[0-5][0-9]{2}|3600|^$",
+				},
+				"igmp_proxy_downstream_networkconf_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"igmp_proxy_for": map[string]any{
+					"type":        "string",
+					"description": "One of: all|some|none",
+					"enum":        []any{"all", "some", "none"},
+				},
+				"igmp_proxy_upstream": map[string]any{
+					"type": "boolean",
+				},
+				"igmp_querier_switches": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"igmp_snooping": map[string]any{
+					"type": "boolean",
+				},
+				"igmp_supression": map[string]any{
+					"type": "boolean",
+				},
+				"interface_mtu": map[string]any{
+					"type":    "integer",
+					"pattern": "^(6[89]|[7-9][0-9]|[1-9][0-9]{2,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|65500)$",
+				},
+				"interface_mtu_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"internet_access_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ip_subnet": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|3[0-2])$",
+				},
+				"ipsec_dh_group": map[string]any{
+					"type":        "integer",
+					"description": "One of: 2|5|14|15|16|19|20|21|25|26",
+					"enum":        []any{"2", "5", "14", "15", "16", "19", "20", "21", "25", "26"},
+				},
+				"ipsec_dynamic_routing": map[string]any{
+					"type": "boolean",
+				},
+				"ipsec_encryption": map[string]any{
+					"type":        "string",
+					"description": "One of: aes128|aes192|aes256|3des",
+					"enum":        []any{"aes128", "aes192", "aes256", "3des"},
+				},
+				"ipsec_esp_dh_group": map[string]any{
+					"type":        "integer",
+					"description": "One of: 1|2|5|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32",
+					"enum":        []any{"1", "2", "5", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32"},
+				},
+				"ipsec_esp_encryption": map[string]any{
+					"type":        "string",
+					"description": "One of: aes128|aes192|aes256|3des",
+					"enum":        []any{"aes128", "aes192", "aes256", "3des"},
+				},
+				"ipsec_esp_hash": map[string]any{
+					"type":        "string",
+					"description": "One of: sha1|md5|sha256|sha384|sha512",
+					"enum":        []any{"sha1", "md5", "sha256", "sha384", "sha512"},
+				},
+				"ipsec_esp_lifetime": map[string]any{
+					"type":    "string",
+					"pattern": "^(?:3[0-9]|[4-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9]{2}|86400)$",
+				},
+				"ipsec_hash": map[string]any{
+					"type":        "string",
+					"description": "One of: sha1|md5|sha256|sha384|sha512",
+					"enum":        []any{"sha1", "md5", "sha256", "sha384", "sha512"},
+				},
+				"ipsec_ike_dh_group": map[string]any{
+					"type":        "integer",
+					"description": "One of: 1|2|5|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32",
+					"enum":        []any{"1", "2", "5", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32"},
+				},
+				"ipsec_ike_encryption": map[string]any{
+					"type":        "string",
+					"description": "One of: aes128|aes192|aes256|3des",
+					"enum":        []any{"aes128", "aes192", "aes256", "3des"},
+				},
+				"ipsec_ike_hash": map[string]any{
+					"type":        "string",
+					"description": "One of: sha1|md5|sha256|sha384|sha512",
+					"enum":        []any{"sha1", "md5", "sha256", "sha384", "sha512"},
+				},
+				"ipsec_ike_lifetime": map[string]any{
+					"type":    "string",
+					"pattern": "^(?:3[0-9]|[4-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9]{2}|86400)$",
+				},
+				"ipsec_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"ipsec_key_exchange": map[string]any{
+					"type":        "string",
+					"description": "One of: ikev1|ikev2",
+					"enum":        []any{"ikev1", "ikev2"},
+				},
+				"ipsec_local_identifier": map[string]any{
+					"type": "string",
+				},
+				"ipsec_local_identifier_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ipsec_local_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^any$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"ipsec_peer_ip": map[string]any{
+					"type": "string",
+				},
+				"ipsec_pfs": map[string]any{
+					"type": "boolean",
+				},
+				"ipsec_profile": map[string]any{
+					"type":        "string",
+					"description": "One of: customized|azure_dynamic|azure_static",
+					"enum":        []any{"customized", "azure_dynamic", "azure_static"},
+				},
+				"ipsec_remote_identifier": map[string]any{
+					"type": "string",
+				},
+				"ipsec_remote_identifier_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ipsec_separate_ikev2_networks": map[string]any{
+					"type": "boolean",
+				},
+				"ipsec_tunnel_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|3[0-2])$",
+				},
+				"ipsec_tunnel_ip_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ipv6_client_address_assignment": map[string]any{
+					"type":        "string",
+					"description": "One of: slaac|dhcpv6",
+					"enum":        []any{"slaac", "dhcpv6"},
+				},
+				"ipv6_interface_type": map[string]any{
+					"type":        "string",
+					"description": "One of: static|pd|single_network|none",
+					"enum":        []any{"static", "pd", "single_network", "none"},
+				},
+				"ipv6_pd_auto_prefixid_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ipv6_pd_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"ipv6_pd_prefixid": map[string]any{
+					"type":    "string",
+					"pattern": "^$|[a-fA-F0-9]{1,4}",
+				},
+				"ipv6_pd_start": map[string]any{
+					"type": "string",
+				},
+				"ipv6_pd_stop": map[string]any{
+					"type": "string",
+				},
+				"ipv6_ra_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ipv6_ra_preferred_lifetime": map[string]any{
+					"type":    "integer",
+					"pattern": "^([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|[1-8][0-9]{5}|9[0-8][0-9]{4}|99[0-8][0-9]{3}|999[0-8][0-9]{2}|9999[0-8][0-9]|99999[0-9]|[1-8][0-9]{6}|9[0-8][0-9]{5}|99[0-8][0-9]{4}|999[0-8][0-9]{3}|9999[0-8][0-9]{2}|99999[0-8][0-9]|999999[0-9]|[12][0-9]{7}|30[0-9]{6}|31[0-4][0-9]{5}|315[0-2][0-9]{4}|3153[0-5][0-9]{3}|31536000)$|^$",
+				},
+				"ipv6_ra_priority": map[string]any{
+					"type":        "string",
+					"description": "One of: high|medium|low",
+					"enum":        []any{"high", "medium", "low"},
+				},
+				"ipv6_ra_valid_lifetime": map[string]any{
+					"type":    "integer",
+					"pattern": "^([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|[1-8][0-9]{5}|9[0-8][0-9]{4}|99[0-8][0-9]{3}|999[0-8][0-9]{2}|9999[0-8][0-9]|99999[0-9]|[1-8][0-9]{6}|9[0-8][0-9]{5}|99[0-8][0-9]{4}|999[0-8][0-9]{3}|9999[0-8][0-9]{2}|99999[0-8][0-9]|999999[0-9]|[12][0-9]{7}|30[0-9]{6}|31[0-4][0-9]{5}|315[0-2][0-9]{4}|3153[0-5][0-9]{3}|31536000)$|^$",
+				},
+				"ipv6_setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"ipv6_single_network_interface": map[string]any{
+					"type": "string",
+				},
+				"ipv6_subnet": map[string]any{
+					"type": "string",
+				},
+				"ipv6_wan_delegation_type": map[string]any{
+					"type":        "string",
+					"description": "One of: pd|single_network|none",
+					"enum":        []any{"pd", "single_network", "none"},
+				},
+				"is_nat": map[string]any{
+					"type": "boolean",
+				},
+				"l2tp_allow_weak_ciphers": map[string]any{
+					"type": "boolean",
+				},
+				"l2tp_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"l2tp_local_wan_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^any$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"local_port": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])$",
+				},
+				"lte_lan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"mac_override": map[string]any{
+					"type":    "string",
+					"pattern": "(^$|^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$)",
+				},
+				"mac_override_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"mdns_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"nat_outbound_ip_addresses": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"network_isolation_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"networkgroup": map[string]any{
+					"type":    "string",
+					"pattern": "LAN[2-8]?",
+				},
+				"openvpn_configuration": map[string]any{
+					"type": "string",
+				},
+				"openvpn_configuration_filename": map[string]any{
+					"type": "string",
+				},
+				"openvpn_encryption_cipher": map[string]any{
+					"type":        "string",
+					"description": "One of: AES_256_GCM|AES_256_CBC|BF_CBC",
+					"enum":        []any{"AES_256_GCM", "AES_256_CBC", "BF_CBC"},
+				},
+				"openvpn_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"openvpn_local_address": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"openvpn_local_port": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])$",
+				},
+				"openvpn_local_wan_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^any$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"openvpn_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: site-to-site|client|server",
+					"enum":        []any{"site-to-site", "client", "server"},
+				},
+				"openvpn_remote_address": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"openvpn_remote_host": map[string]any{
+					"type":    "string",
+					"pattern": "[^\\\"\\' ]+|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"openvpn_remote_port": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])$",
+				},
+				"openvpn_username": map[string]any{
+					"type": "string",
+				},
+				"pptpc_require_mppe": map[string]any{
+					"type": "boolean",
+				},
+				"pptpc_route_distance": map[string]any{
+					"type":    "integer",
+					"pattern": "^[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]$|^$",
+				},
+				"pptpc_server_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|(?=^.{3,253}$)(^((?!-)[a-zA-Z0-9-]{1,63}(?<!-)\\.)+[a-zA-Z]{2,63}$)|^[a-zA-Z0-9-]{1,63}$",
+				},
+				"pptpc_username": map[string]any{
+					"type":    "string",
+					"pattern": "[^\\\"\\' ]+",
+				},
+				"priority": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-4]",
+				},
+				"purpose": map[string]any{
+					"type":        "string",
+					"description": "One of: corporate|guest|remote-user-vpn|site-vpn|vlan-only|vpn-client|wan",
+					"enum":        []any{"corporate", "guest", "remote-user-vpn", "site-vpn", "vlan-only", "vpn-client", "wan"},
+				},
+				"radiusprofile_id": map[string]any{
+					"type": "string",
+				},
+				"remote_site_id": map[string]any{
+					"type": "string",
+				},
+				"remote_site_subnets": map[string]any{
+					"type":    "array",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|30)$|^$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"remote_vpn_dynamic_subnets_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"remote_vpn_subnets": map[string]any{
+					"type":    "array",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|3[0-2])$|^$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"report_wan_event": map[string]any{
+					"type": "boolean",
+				},
+				"require_mschapv2": map[string]any{
+					"type": "boolean",
+				},
+				"route_distance": map[string]any{
+					"type":    "integer",
+					"pattern": "^[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]$|^$",
+				},
+				"sdwan_remote_site_id": map[string]any{
+					"type": "string",
+				},
+				"setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"single_network_lan": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"uid_policy_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"uid_policy_name": map[string]any{
+					"type": "string",
+				},
+				"uid_public_gateway_port": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])$",
+				},
+				"uid_traffic_rules_allowed_ips_and_hostnames": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"uid_traffic_rules_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"uid_vpn_custom_routing": map[string]any{
+					"type":    "array",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|3[0-2])$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"uid_vpn_default_dns_suffix": map[string]any{
+					"type": "string",
+				},
+				"uid_vpn_masquerade_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"uid_vpn_max_connection_time_seconds": map[string]any{
+					"type":    "integer",
+					"pattern": "^[1-9][0-9]*$",
+				},
+				"uid_vpn_sync_public_ip": map[string]any{
+					"type": "boolean",
+				},
+				"uid_vpn_type": map[string]any{
+					"type":        "string",
+					"description": "One of: openvpn|wireguard",
+					"enum":        []any{"openvpn", "wireguard"},
+				},
+				"uid_workspace_url": map[string]any{
+					"type": "string",
+				},
+				"upnp_lan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"usergroup_id": map[string]any{
+					"type": "string",
+				},
+				"vlan": map[string]any{
+					"type":    "integer",
+					"pattern": "[2-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|400[0-9]|401[0-8]|^$",
+				},
+				"vlan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"vpn_client_configuration_remote_ip_override": map[string]any{
+					"type": "string",
+				},
+				"vpn_client_configuration_remote_ip_override_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"vpn_client_default_route": map[string]any{
+					"type": "boolean",
+				},
+				"vpn_client_pull_dns": map[string]any{
+					"type": "boolean",
+				},
+				"vpn_protocol": map[string]any{
+					"type":        "string",
+					"description": "One of: TCP|UDP",
+					"enum":        []any{"TCP", "UDP"},
+				},
+				"vpn_type": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|ipsec-vpn|openvpn-client|openvpn-server|openvpn-vpn|pptp-client|l2tp-server|pptp-server|sdwan-hub-spoke-tunnel|sdwan-mesh-tunnel|uid-server|wireguard-server|wireguard-client",
+					"enum":        []any{"auto", "ipsec-vpn", "openvpn-client", "openvpn-server", "openvpn-vpn", "pptp-client", "l2tp-server", "pptp-server", "sdwan-hub-spoke-tunnel", "sdwan-mesh-tunnel", "uid-server", "wireguard-server", "wireguard-client"},
+				},
+				"vrrp_ip_subnet_gw1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|30)$",
+				},
+				"vrrp_ip_subnet_gw2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|30)$",
+				},
+				"vrrp_vrid": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9]|[1-9][0-9]",
+				},
+				"wan_dhcp_cos": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-7]|^$",
+				},
+				"wan_dhcp_options": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"wan_dhcpv6_pd_size": map[string]any{
+					"type":    "integer",
+					"pattern": "^(4[89]|5[0-9]|6[0-4])$|^$",
+				},
+				"wan_dns1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"wan_dns2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"wan_dns3": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"wan_dns4": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"wan_dns_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"wan_dslite_remote_host": map[string]any{
+					"type": "string",
+				},
+				"wan_egress_qos": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-7]|^$",
+				},
+				"wan_gateway": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"wan_gateway_v6": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$|^$",
+				},
+				"wan_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"wan_ip_aliases": map[string]any{
+					"type":    "array",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([8-9]|[1-2][0-9]|3[0-2])$|^$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"wan_ipv6": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$|^$",
+				},
+				"wan_ipv6_dns1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$|^$",
+				},
+				"wan_ipv6_dns2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$|^$",
+				},
+				"wan_ipv6_dns_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"wan_load_balance_type": map[string]any{
+					"type":        "string",
+					"description": "One of: failover-only|weighted",
+					"enum":        []any{"failover-only", "weighted"},
+				},
+				"wan_load_balance_weight": map[string]any{
+					"type":    "integer",
+					"pattern": "^$|[1-9]|[1-9][0-9]",
+				},
+				"wan_netmask": map[string]any{
+					"type":    "string",
+					"pattern": "^((128|192|224|240|248|252|254)\\.0\\.0\\.0)|(255\\.(((0|128|192|224|240|248|252|254)\\.0\\.0)|(255\\.(((0|128|192|224|240|248|252|254)\\.0)|255\\.(0|128|192|224|240|248|252|254)))))$",
+				},
+				"wan_networkgroup": map[string]any{
+					"type":    "string",
+					"pattern": "WAN[2]?|WAN_LTE_FAILOVER",
+				},
+				"wan_pppoe_password_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wan_pppoe_username_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wan_prefixlen": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9]|[1-8][0-9]|9[0-9]|1[01][0-9]|12[0-8])$|^$",
+				},
+				"wan_provider_capabilities": map[string]any{
+					"type": "object",
+				},
+				"wan_smartq_down_rate": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]{1,6}|1000000",
+				},
+				"wan_smartq_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wan_smartq_up_rate": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]{1,6}|1000000",
+				},
+				"wan_type": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|dhcp|static|pppoe|dslite",
+					"enum":        []any{"disabled", "dhcp", "static", "pppoe", "dslite"},
+				},
+				"wan_type_v6": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|slaac|dhcpv6|static",
+					"enum":        []any{"disabled", "slaac", "dhcpv6", "static"},
+				},
+				"wan_username": map[string]any{
+					"type":    "string",
+					"pattern": "[^\"' ]+|^$",
+				},
+				"wan_vlan": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-4]|^$",
+				},
+				"wan_vlan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wireguard_client_configuration_file": map[string]any{
+					"type": "string",
+				},
+				"wireguard_client_configuration_filename": map[string]any{
+					"type": "string",
+				},
+				"wireguard_client_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: file|manual",
+					"enum":        []any{"file", "manual"},
+				},
+				"wireguard_client_peer_ip": map[string]any{
+					"type": "string",
+				},
+				"wireguard_client_peer_port": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])$",
+				},
+				"wireguard_client_peer_public_key": map[string]any{
+					"type": "string",
+				},
+				"wireguard_client_preshared_key": map[string]any{
+					"type": "string",
+				},
+				"wireguard_client_preshared_key_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wireguard_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"wireguard_local_wan_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^any$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"wireguard_public_key": map[string]any{
+					"type": "string",
+				},
+				"x_auth_key": map[string]any{
+					"type": "string",
+				},
+				"x_ca_crt": map[string]any{
+					"type": "string",
+				},
+				"x_ca_key": map[string]any{
+					"type": "string",
+				},
+				"x_dh_key": map[string]any{
+					"type": "string",
+				},
+				"x_ipsec_pre_shared_key": map[string]any{
+					"type":    "string",
+					"pattern": "[^\\\"\\' ]+",
+				},
+				"x_openvpn_password": map[string]any{
+					"type": "string",
+				},
+				"x_openvpn_shared_secret_key": map[string]any{
+					"type":    "string",
+					"pattern": "[0-9A-Fa-f]{512}",
+				},
+				"x_pptpc_password": map[string]any{
+					"type":    "string",
+					"pattern": "[^\\\"\\' ]+",
+				},
+				"x_server_crt": map[string]any{
+					"type": "string",
+				},
+				"x_server_key": map[string]any{
+					"type": "string",
+				},
+				"x_shared_client_crt": map[string]any{
+					"type": "string",
+				},
+				"x_shared_client_key": map[string]any{
+					"type": "string",
+				},
+				"x_wan_password": map[string]any{
+					"type":    "string",
+					"pattern": "[^\"' ]+|^$",
+				},
+				"x_wireguard_private_key": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -1980,12 +4802,895 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auto_scale_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcp_relay_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_boot_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_boot_filename": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
+				},
+				"dhcpd_boot_server": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$|(?=^.{3,253}$)(^((?!-)[a-zA-Z0-9-]{1,63}(?<!-)\\.)+[a-zA-Z]{2,63}$)|[a-zA-Z0-9-]{1,63}|^$",
+				},
+				"dhcpd_conflict_checking": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_dns_1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_dns_2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_dns_3": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_dns_4": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_dns_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_gateway": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_gateway_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_ip_1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_ip_2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_ip_3": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_leasetime": map[string]any{
+					"type": "integer",
+				},
+				"dhcpd_mac_1": map[string]any{
+					"type":    "string",
+					"pattern": "(^$|^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$)",
+				},
+				"dhcpd_mac_2": map[string]any{
+					"type":    "string",
+					"pattern": "(^$|^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$)",
+				},
+				"dhcpd_mac_3": map[string]any{
+					"type":    "string",
+					"pattern": "(^$|^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$)",
+				},
+				"dhcpd_ntp_1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_ntp_2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_ntp_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_start": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_stop": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_tftp_server": map[string]any{
+					"type": "string",
+				},
+				"dhcpd_time_offset": map[string]any{
+					"type":    "integer",
+					"pattern": "^0$|^-?([1-9]([0-9]{1,3})?|[1-7][0-9]{4}|[8][0-5][0-9]{3}|86[0-3][0-9]{2}|86400)$",
+				},
+				"dhcpd_time_offset_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_unifi_controller": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_wins_1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_wins_2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_wins_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_wpad_url": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_allow_slaac": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpdv6_dns_1": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_dns_2": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_dns_3": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_dns_4": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_dns_auto": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpdv6_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpdv6_leasetime": map[string]any{
+					"type": "integer",
+				},
+				"dhcpdv6_start": map[string]any{
+					"type": "string",
+				},
+				"dhcpdv6_stop": map[string]any{
+					"type": "string",
+				},
+				"dhcpguard_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"domain_name": map[string]any{
+					"type":    "string",
+					"pattern": "(?=^.{3,253}$)(^((?!-)[a-zA-Z0-9-]{1,63}(?<!-)\\.)+[a-zA-Z]{2,63}$)|^$|[a-zA-Z0-9-]{1,63}",
+				},
+				"dpi_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dpigroup_id": map[string]any{
+					"type":    "string",
+					"pattern": "[\\d\\w]+|^$",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"exposed_to_site_vpn": map[string]any{
+					"type": "boolean",
+				},
+				"firewall_zone_id": map[string]any{
+					"type": "string",
+				},
+				"gateway_device": map[string]any{
+					"type":    "string",
+					"pattern": "(^$|^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$)",
+				},
+				"gateway_type": map[string]any{
+					"type":        "string",
+					"description": "One of: default|switch",
+					"enum":        []any{"default", "switch"},
+				},
+				"igmp_fastleave": map[string]any{
+					"type": "boolean",
+				},
+				"igmp_forward_unknown_multicast": map[string]any{
+					"type": "boolean",
+				},
+				"igmp_groupmembership": map[string]any{
+					"type":    "integer",
+					"pattern": "[2-9]|[1-9][0-9]{1,2}|[1-2][0-9]{3}|3[0-5][0-9]{2}|3600|^$",
+				},
+				"igmp_maxresponse": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9]|1[0-9]|2[0-5]|^$",
+				},
+				"igmp_mcrtrexpiretime": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,2}|[1-2][0-9]{3}|3[0-5][0-9]{2}|3600|^$",
+				},
+				"igmp_proxy_downstream_networkconf_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"igmp_proxy_for": map[string]any{
+					"type":        "string",
+					"description": "One of: all|some|none",
+					"enum":        []any{"all", "some", "none"},
+				},
+				"igmp_proxy_upstream": map[string]any{
+					"type": "boolean",
+				},
+				"igmp_querier_switches": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"igmp_snooping": map[string]any{
+					"type": "boolean",
+				},
+				"igmp_supression": map[string]any{
+					"type": "boolean",
+				},
+				"interface_mtu": map[string]any{
+					"type":    "integer",
+					"pattern": "^(6[89]|[7-9][0-9]|[1-9][0-9]{2,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|65500)$",
+				},
+				"interface_mtu_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"internet_access_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ip_subnet": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|3[0-2])$",
+				},
+				"ipsec_dh_group": map[string]any{
+					"type":        "integer",
+					"description": "One of: 2|5|14|15|16|19|20|21|25|26",
+					"enum":        []any{"2", "5", "14", "15", "16", "19", "20", "21", "25", "26"},
+				},
+				"ipsec_dynamic_routing": map[string]any{
+					"type": "boolean",
+				},
+				"ipsec_encryption": map[string]any{
+					"type":        "string",
+					"description": "One of: aes128|aes192|aes256|3des",
+					"enum":        []any{"aes128", "aes192", "aes256", "3des"},
+				},
+				"ipsec_esp_dh_group": map[string]any{
+					"type":        "integer",
+					"description": "One of: 1|2|5|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32",
+					"enum":        []any{"1", "2", "5", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32"},
+				},
+				"ipsec_esp_encryption": map[string]any{
+					"type":        "string",
+					"description": "One of: aes128|aes192|aes256|3des",
+					"enum":        []any{"aes128", "aes192", "aes256", "3des"},
+				},
+				"ipsec_esp_hash": map[string]any{
+					"type":        "string",
+					"description": "One of: sha1|md5|sha256|sha384|sha512",
+					"enum":        []any{"sha1", "md5", "sha256", "sha384", "sha512"},
+				},
+				"ipsec_esp_lifetime": map[string]any{
+					"type":    "string",
+					"pattern": "^(?:3[0-9]|[4-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9]{2}|86400)$",
+				},
+				"ipsec_hash": map[string]any{
+					"type":        "string",
+					"description": "One of: sha1|md5|sha256|sha384|sha512",
+					"enum":        []any{"sha1", "md5", "sha256", "sha384", "sha512"},
+				},
+				"ipsec_ike_dh_group": map[string]any{
+					"type":        "integer",
+					"description": "One of: 1|2|5|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32",
+					"enum":        []any{"1", "2", "5", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32"},
+				},
+				"ipsec_ike_encryption": map[string]any{
+					"type":        "string",
+					"description": "One of: aes128|aes192|aes256|3des",
+					"enum":        []any{"aes128", "aes192", "aes256", "3des"},
+				},
+				"ipsec_ike_hash": map[string]any{
+					"type":        "string",
+					"description": "One of: sha1|md5|sha256|sha384|sha512",
+					"enum":        []any{"sha1", "md5", "sha256", "sha384", "sha512"},
+				},
+				"ipsec_ike_lifetime": map[string]any{
+					"type":    "string",
+					"pattern": "^(?:3[0-9]|[4-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9]{2}|86400)$",
+				},
+				"ipsec_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"ipsec_key_exchange": map[string]any{
+					"type":        "string",
+					"description": "One of: ikev1|ikev2",
+					"enum":        []any{"ikev1", "ikev2"},
+				},
+				"ipsec_local_identifier": map[string]any{
+					"type": "string",
+				},
+				"ipsec_local_identifier_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ipsec_local_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^any$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"ipsec_peer_ip": map[string]any{
+					"type": "string",
+				},
+				"ipsec_pfs": map[string]any{
+					"type": "boolean",
+				},
+				"ipsec_profile": map[string]any{
+					"type":        "string",
+					"description": "One of: customized|azure_dynamic|azure_static",
+					"enum":        []any{"customized", "azure_dynamic", "azure_static"},
+				},
+				"ipsec_remote_identifier": map[string]any{
+					"type": "string",
+				},
+				"ipsec_remote_identifier_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ipsec_separate_ikev2_networks": map[string]any{
+					"type": "boolean",
+				},
+				"ipsec_tunnel_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|3[0-2])$",
+				},
+				"ipsec_tunnel_ip_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ipv6_client_address_assignment": map[string]any{
+					"type":        "string",
+					"description": "One of: slaac|dhcpv6",
+					"enum":        []any{"slaac", "dhcpv6"},
+				},
+				"ipv6_interface_type": map[string]any{
+					"type":        "string",
+					"description": "One of: static|pd|single_network|none",
+					"enum":        []any{"static", "pd", "single_network", "none"},
+				},
+				"ipv6_pd_auto_prefixid_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ipv6_pd_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"ipv6_pd_prefixid": map[string]any{
+					"type":    "string",
+					"pattern": "^$|[a-fA-F0-9]{1,4}",
+				},
+				"ipv6_pd_start": map[string]any{
+					"type": "string",
+				},
+				"ipv6_pd_stop": map[string]any{
+					"type": "string",
+				},
+				"ipv6_ra_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ipv6_ra_preferred_lifetime": map[string]any{
+					"type":    "integer",
+					"pattern": "^([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|[1-8][0-9]{5}|9[0-8][0-9]{4}|99[0-8][0-9]{3}|999[0-8][0-9]{2}|9999[0-8][0-9]|99999[0-9]|[1-8][0-9]{6}|9[0-8][0-9]{5}|99[0-8][0-9]{4}|999[0-8][0-9]{3}|9999[0-8][0-9]{2}|99999[0-8][0-9]|999999[0-9]|[12][0-9]{7}|30[0-9]{6}|31[0-4][0-9]{5}|315[0-2][0-9]{4}|3153[0-5][0-9]{3}|31536000)$|^$",
+				},
+				"ipv6_ra_priority": map[string]any{
+					"type":        "string",
+					"description": "One of: high|medium|low",
+					"enum":        []any{"high", "medium", "low"},
+				},
+				"ipv6_ra_valid_lifetime": map[string]any{
+					"type":    "integer",
+					"pattern": "^([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|[1-8][0-9]{5}|9[0-8][0-9]{4}|99[0-8][0-9]{3}|999[0-8][0-9]{2}|9999[0-8][0-9]|99999[0-9]|[1-8][0-9]{6}|9[0-8][0-9]{5}|99[0-8][0-9]{4}|999[0-8][0-9]{3}|9999[0-8][0-9]{2}|99999[0-8][0-9]|999999[0-9]|[12][0-9]{7}|30[0-9]{6}|31[0-4][0-9]{5}|315[0-2][0-9]{4}|3153[0-5][0-9]{3}|31536000)$|^$",
+				},
+				"ipv6_setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"ipv6_single_network_interface": map[string]any{
+					"type": "string",
+				},
+				"ipv6_subnet": map[string]any{
+					"type": "string",
+				},
+				"ipv6_wan_delegation_type": map[string]any{
+					"type":        "string",
+					"description": "One of: pd|single_network|none",
+					"enum":        []any{"pd", "single_network", "none"},
+				},
+				"is_nat": map[string]any{
+					"type": "boolean",
+				},
+				"l2tp_allow_weak_ciphers": map[string]any{
+					"type": "boolean",
+				},
+				"l2tp_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"l2tp_local_wan_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^any$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"local_port": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])$",
+				},
+				"lte_lan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"mac_override": map[string]any{
+					"type":    "string",
+					"pattern": "(^$|^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$)",
+				},
+				"mac_override_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"mdns_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"nat_outbound_ip_addresses": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"network_isolation_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"networkgroup": map[string]any{
+					"type":    "string",
+					"pattern": "LAN[2-8]?",
+				},
+				"openvpn_configuration": map[string]any{
+					"type": "string",
+				},
+				"openvpn_configuration_filename": map[string]any{
+					"type": "string",
+				},
+				"openvpn_encryption_cipher": map[string]any{
+					"type":        "string",
+					"description": "One of: AES_256_GCM|AES_256_CBC|BF_CBC",
+					"enum":        []any{"AES_256_GCM", "AES_256_CBC", "BF_CBC"},
+				},
+				"openvpn_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"openvpn_local_address": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"openvpn_local_port": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])$",
+				},
+				"openvpn_local_wan_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^any$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"openvpn_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: site-to-site|client|server",
+					"enum":        []any{"site-to-site", "client", "server"},
+				},
+				"openvpn_remote_address": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"openvpn_remote_host": map[string]any{
+					"type":    "string",
+					"pattern": "[^\\\"\\' ]+|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"openvpn_remote_port": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])$",
+				},
+				"openvpn_username": map[string]any{
+					"type": "string",
+				},
+				"pptpc_require_mppe": map[string]any{
+					"type": "boolean",
+				},
+				"pptpc_route_distance": map[string]any{
+					"type":    "integer",
+					"pattern": "^[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]$|^$",
+				},
+				"pptpc_server_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|(?=^.{3,253}$)(^((?!-)[a-zA-Z0-9-]{1,63}(?<!-)\\.)+[a-zA-Z]{2,63}$)|^[a-zA-Z0-9-]{1,63}$",
+				},
+				"pptpc_username": map[string]any{
+					"type":    "string",
+					"pattern": "[^\\\"\\' ]+",
+				},
+				"priority": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-4]",
+				},
+				"purpose": map[string]any{
+					"type":        "string",
+					"description": "One of: corporate|guest|remote-user-vpn|site-vpn|vlan-only|vpn-client|wan",
+					"enum":        []any{"corporate", "guest", "remote-user-vpn", "site-vpn", "vlan-only", "vpn-client", "wan"},
+				},
+				"radiusprofile_id": map[string]any{
+					"type": "string",
+				},
+				"remote_site_id": map[string]any{
+					"type": "string",
+				},
+				"remote_site_subnets": map[string]any{
+					"type":    "array",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|30)$|^$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"remote_vpn_dynamic_subnets_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"remote_vpn_subnets": map[string]any{
+					"type":    "array",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|3[0-2])$|^$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"report_wan_event": map[string]any{
+					"type": "boolean",
+				},
+				"require_mschapv2": map[string]any{
+					"type": "boolean",
+				},
+				"route_distance": map[string]any{
+					"type":    "integer",
+					"pattern": "^[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]$|^$",
+				},
+				"sdwan_remote_site_id": map[string]any{
+					"type": "string",
+				},
+				"setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"single_network_lan": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"uid_policy_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"uid_policy_name": map[string]any{
+					"type": "string",
+				},
+				"uid_public_gateway_port": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])$",
+				},
+				"uid_traffic_rules_allowed_ips_and_hostnames": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"uid_traffic_rules_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"uid_vpn_custom_routing": map[string]any{
+					"type":    "array",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|3[0-2])$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"uid_vpn_default_dns_suffix": map[string]any{
+					"type": "string",
+				},
+				"uid_vpn_masquerade_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"uid_vpn_max_connection_time_seconds": map[string]any{
+					"type":    "integer",
+					"pattern": "^[1-9][0-9]*$",
+				},
+				"uid_vpn_sync_public_ip": map[string]any{
+					"type": "boolean",
+				},
+				"uid_vpn_type": map[string]any{
+					"type":        "string",
+					"description": "One of: openvpn|wireguard",
+					"enum":        []any{"openvpn", "wireguard"},
+				},
+				"uid_workspace_url": map[string]any{
+					"type": "string",
+				},
+				"upnp_lan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"usergroup_id": map[string]any{
+					"type": "string",
+				},
+				"vlan": map[string]any{
+					"type":    "integer",
+					"pattern": "[2-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|400[0-9]|401[0-8]|^$",
+				},
+				"vlan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"vpn_client_configuration_remote_ip_override": map[string]any{
+					"type": "string",
+				},
+				"vpn_client_configuration_remote_ip_override_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"vpn_client_default_route": map[string]any{
+					"type": "boolean",
+				},
+				"vpn_client_pull_dns": map[string]any{
+					"type": "boolean",
+				},
+				"vpn_protocol": map[string]any{
+					"type":        "string",
+					"description": "One of: TCP|UDP",
+					"enum":        []any{"TCP", "UDP"},
+				},
+				"vpn_type": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|ipsec-vpn|openvpn-client|openvpn-server|openvpn-vpn|pptp-client|l2tp-server|pptp-server|sdwan-hub-spoke-tunnel|sdwan-mesh-tunnel|uid-server|wireguard-server|wireguard-client",
+					"enum":        []any{"auto", "ipsec-vpn", "openvpn-client", "openvpn-server", "openvpn-vpn", "pptp-client", "l2tp-server", "pptp-server", "sdwan-hub-spoke-tunnel", "sdwan-mesh-tunnel", "uid-server", "wireguard-server", "wireguard-client"},
+				},
+				"vrrp_ip_subnet_gw1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|30)$",
+				},
+				"vrrp_ip_subnet_gw2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|30)$",
+				},
+				"vrrp_vrid": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9]|[1-9][0-9]",
+				},
+				"wan_dhcp_cos": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-7]|^$",
+				},
+				"wan_dhcp_options": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"wan_dhcpv6_pd_size": map[string]any{
+					"type":    "integer",
+					"pattern": "^(4[89]|5[0-9]|6[0-4])$|^$",
+				},
+				"wan_dns1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"wan_dns2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"wan_dns3": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"wan_dns4": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"wan_dns_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"wan_dslite_remote_host": map[string]any{
+					"type": "string",
+				},
+				"wan_egress_qos": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-7]|^$",
+				},
+				"wan_gateway": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"wan_gateway_v6": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$|^$",
+				},
+				"wan_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"wan_ip_aliases": map[string]any{
+					"type":    "array",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([8-9]|[1-2][0-9]|3[0-2])$|^$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"wan_ipv6": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$|^$",
+				},
+				"wan_ipv6_dns1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$|^$",
+				},
+				"wan_ipv6_dns2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$|^$",
+				},
+				"wan_ipv6_dns_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"wan_load_balance_type": map[string]any{
+					"type":        "string",
+					"description": "One of: failover-only|weighted",
+					"enum":        []any{"failover-only", "weighted"},
+				},
+				"wan_load_balance_weight": map[string]any{
+					"type":    "integer",
+					"pattern": "^$|[1-9]|[1-9][0-9]",
+				},
+				"wan_netmask": map[string]any{
+					"type":    "string",
+					"pattern": "^((128|192|224|240|248|252|254)\\.0\\.0\\.0)|(255\\.(((0|128|192|224|240|248|252|254)\\.0\\.0)|(255\\.(((0|128|192|224|240|248|252|254)\\.0)|255\\.(0|128|192|224|240|248|252|254)))))$",
+				},
+				"wan_networkgroup": map[string]any{
+					"type":    "string",
+					"pattern": "WAN[2]?|WAN_LTE_FAILOVER",
+				},
+				"wan_pppoe_password_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wan_pppoe_username_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wan_prefixlen": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9]|[1-8][0-9]|9[0-9]|1[01][0-9]|12[0-8])$|^$",
+				},
+				"wan_provider_capabilities": map[string]any{
+					"type": "object",
+				},
+				"wan_smartq_down_rate": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]{1,6}|1000000",
+				},
+				"wan_smartq_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wan_smartq_up_rate": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]{1,6}|1000000",
+				},
+				"wan_type": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|dhcp|static|pppoe|dslite",
+					"enum":        []any{"disabled", "dhcp", "static", "pppoe", "dslite"},
+				},
+				"wan_type_v6": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|slaac|dhcpv6|static",
+					"enum":        []any{"disabled", "slaac", "dhcpv6", "static"},
+				},
+				"wan_username": map[string]any{
+					"type":    "string",
+					"pattern": "[^\"' ]+|^$",
+				},
+				"wan_vlan": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-4]|^$",
+				},
+				"wan_vlan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wireguard_client_configuration_file": map[string]any{
+					"type": "string",
+				},
+				"wireguard_client_configuration_filename": map[string]any{
+					"type": "string",
+				},
+				"wireguard_client_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: file|manual",
+					"enum":        []any{"file", "manual"},
+				},
+				"wireguard_client_peer_ip": map[string]any{
+					"type": "string",
+				},
+				"wireguard_client_peer_port": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])$",
+				},
+				"wireguard_client_peer_public_key": map[string]any{
+					"type": "string",
+				},
+				"wireguard_client_preshared_key": map[string]any{
+					"type": "string",
+				},
+				"wireguard_client_preshared_key_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wireguard_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2",
+					"enum":        []any{"wan", "wan2"},
+				},
+				"wireguard_local_wan_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^any$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"wireguard_public_key": map[string]any{
+					"type": "string",
+				},
+				"x_auth_key": map[string]any{
+					"type": "string",
+				},
+				"x_ca_crt": map[string]any{
+					"type": "string",
+				},
+				"x_ca_key": map[string]any{
+					"type": "string",
+				},
+				"x_dh_key": map[string]any{
+					"type": "string",
+				},
+				"x_ipsec_pre_shared_key": map[string]any{
+					"type":    "string",
+					"pattern": "[^\\\"\\' ]+",
+				},
+				"x_openvpn_password": map[string]any{
+					"type": "string",
+				},
+				"x_openvpn_shared_secret_key": map[string]any{
+					"type":    "string",
+					"pattern": "[0-9A-Fa-f]{512}",
+				},
+				"x_pptpc_password": map[string]any{
+					"type":    "string",
+					"pattern": "[^\\\"\\' ]+",
+				},
+				"x_server_crt": map[string]any{
+					"type": "string",
+				},
+				"x_server_key": map[string]any{
+					"type": "string",
+				},
+				"x_shared_client_crt": map[string]any{
+					"type": "string",
+				},
+				"x_shared_client_key": map[string]any{
+					"type": "string",
+				},
+				"x_wan_password": map[string]any{
+					"type":    "string",
+					"pattern": "[^\"' ]+|^$",
+				},
+				"x_wireguard_private_key": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2005,7 +5710,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2040,7 +5745,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2055,9 +5760,75 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"destination_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^any$",
+				},
+				"destination_ips": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"dst_port": map[string]any{
+					"type":    "string",
+					"pattern": "(([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])|([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])-([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]))+(,([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])|,([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])-([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])){0,14}",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"fwd": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"fwd_port": map[string]any{
+					"type":    "string",
+					"pattern": "(([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])|([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])-([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]))+(,([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])|,([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])-([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])){0,14}",
+				},
+				"log": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"pfwd_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2|both|all",
+					"enum":        []any{"wan", "wan2", "both", "all"},
+				},
+				"proto": map[string]any{
+					"type":        "string",
+					"description": "One of: tcp_udp|tcp|udp",
+					"enum":        []any{"tcp_udp", "tcp", "udp"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"src": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])-(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])/([0-9]|[1-2][0-9]|3[0-2])$|^!(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^!(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])-(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^!(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])/([0-9]|[1-2][0-9]|3[0-2])$|^any$",
+				},
+				"src_firewall_group_id": map[string]any{
+					"type": "string",
+				},
+				"src_limiting_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"src_limiting_type": map[string]any{
+					"type":        "string",
+					"description": "One of: ip|firewall_group",
+					"enum":        []any{"ip", "firewall_group"},
 				},
 			},
 		},
@@ -2078,12 +5849,78 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"destination_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^any$",
+				},
+				"destination_ips": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"dst_port": map[string]any{
+					"type":    "string",
+					"pattern": "(([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])|([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])-([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]))+(,([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])|,([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])-([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])){0,14}",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"fwd": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+				},
+				"fwd_port": map[string]any{
+					"type":    "string",
+					"pattern": "(([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])|([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])-([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]))+(,([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])|,([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])-([1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5])){0,14}",
+				},
+				"log": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"pfwd_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: wan|wan2|both|all",
+					"enum":        []any{"wan", "wan2", "both", "all"},
+				},
+				"proto": map[string]any{
+					"type":        "string",
+					"description": "One of: tcp_udp|tcp|udp",
+					"enum":        []any{"tcp_udp", "tcp", "udp"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"src": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])-(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])/([0-9]|[1-2][0-9]|3[0-2])$|^!(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^!(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])-(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^!(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])/([0-9]|[1-2][0-9]|3[0-2])$|^any$",
+				},
+				"src_firewall_group_id": map[string]any{
+					"type": "string",
+				},
+				"src_limiting_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"src_limiting_type": map[string]any{
+					"type":        "string",
+					"description": "One of: ip|firewall_group",
+					"enum":        []any{"ip", "firewall_group"},
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2103,7 +5940,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2138,7 +5975,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2153,9 +5990,173 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"autoneg": map[string]any{
+					"type": "boolean",
+				},
+				"dot1x_ctrl": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|force_authorized|force_unauthorized|mac_based|multi_host",
+					"enum":        []any{"auto", "force_authorized", "force_unauthorized", "mac_based", "multi_host"},
+				},
+				"dot1x_idle_timeout": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]",
+				},
+				"egress_rate_limit_kbps": map[string]any{
+					"type":    "integer",
+					"pattern": "6[4-9]|[7-9][0-9]|[1-9][0-9]{2,6}",
+				},
+				"egress_rate_limit_kbps_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"excluded_networkconf_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"fec_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: rs-fec|fc-fec|default|disabled",
+					"enum":        []any{"rs-fec", "fc-fec", "default", "disabled"},
+				},
+				"forward": map[string]any{
+					"type":        "string",
+					"description": "One of: all|native|customize|disabled",
+					"enum":        []any{"all", "native", "customize", "disabled"},
+				},
+				"full_duplex": map[string]any{
+					"type": "boolean",
+				},
+				"isolation": map[string]any{
+					"type": "boolean",
+				},
+				"lldpmed_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"lldpmed_notify_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"multicast_router_networkconf_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"native_networkconf_id": map[string]any{
+					"type": "string",
+				},
+				"op_mode": map[string]any{
+					"type":    "string",
+					"pattern": "switch",
+				},
+				"poe_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|off",
+					"enum":        []any{"auto", "off"},
+				},
+				"port_keepalive_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"port_security_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"port_security_mac_address": map[string]any{
+					"type":    "array",
+					"pattern": "^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"priority_queue1_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"priority_queue2_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"priority_queue3_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"priority_queue4_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"qos_profile": map[string]any{
+					"type": "object",
+				},
+				"setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"speed": map[string]any{
+					"type":        "integer",
+					"description": "One of: 10|100|1000|2500|5000|10000|20000|25000|40000|50000|100000",
+					"enum":        []any{"10", "100", "1000", "2500", "5000", "10000", "20000", "25000", "40000", "50000", "100000"},
+				},
+				"stormctrl_bcast_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"stormctrl_bcast_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"stormctrl_bcast_rate": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,6}|1[0-3][0-9]{6}|14[0-7][0-9]{5}|148[0-7][0-9]{4}|14880000",
+				},
+				"stormctrl_mcast_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"stormctrl_mcast_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"stormctrl_mcast_rate": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,6}|1[0-3][0-9]{6}|14[0-7][0-9]{5}|148[0-7][0-9]{4}|14880000",
+				},
+				"stormctrl_type": map[string]any{
+					"type":        "string",
+					"description": "One of: level|rate",
+					"enum":        []any{"level", "rate"},
+				},
+				"stormctrl_ucast_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"stormctrl_ucast_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"stormctrl_ucast_rate": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,6}|1[0-3][0-9]{6}|14[0-7][0-9]{5}|148[0-7][0-9]{4}|14880000",
+				},
+				"stp_port_mode": map[string]any{
+					"type": "boolean",
+				},
+				"tagged_vlan_mgmt": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|block_all|custom",
+					"enum":        []any{"auto", "block_all", "custom"},
+				},
+				"voice_networkconf_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -2176,12 +6177,176 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"autoneg": map[string]any{
+					"type": "boolean",
+				},
+				"dot1x_ctrl": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|force_authorized|force_unauthorized|mac_based|multi_host",
+					"enum":        []any{"auto", "force_authorized", "force_unauthorized", "mac_based", "multi_host"},
+				},
+				"dot1x_idle_timeout": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]",
+				},
+				"egress_rate_limit_kbps": map[string]any{
+					"type":    "integer",
+					"pattern": "6[4-9]|[7-9][0-9]|[1-9][0-9]{2,6}",
+				},
+				"egress_rate_limit_kbps_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"excluded_networkconf_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"fec_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: rs-fec|fc-fec|default|disabled",
+					"enum":        []any{"rs-fec", "fc-fec", "default", "disabled"},
+				},
+				"forward": map[string]any{
+					"type":        "string",
+					"description": "One of: all|native|customize|disabled",
+					"enum":        []any{"all", "native", "customize", "disabled"},
+				},
+				"full_duplex": map[string]any{
+					"type": "boolean",
+				},
+				"isolation": map[string]any{
+					"type": "boolean",
+				},
+				"lldpmed_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"lldpmed_notify_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"multicast_router_networkconf_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"native_networkconf_id": map[string]any{
+					"type": "string",
+				},
+				"op_mode": map[string]any{
+					"type":    "string",
+					"pattern": "switch",
+				},
+				"poe_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|off",
+					"enum":        []any{"auto", "off"},
+				},
+				"port_keepalive_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"port_security_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"port_security_mac_address": map[string]any{
+					"type":    "array",
+					"pattern": "^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"priority_queue1_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"priority_queue2_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"priority_queue3_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"priority_queue4_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"qos_profile": map[string]any{
+					"type": "object",
+				},
+				"setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"speed": map[string]any{
+					"type":        "integer",
+					"description": "One of: 10|100|1000|2500|5000|10000|20000|25000|40000|50000|100000",
+					"enum":        []any{"10", "100", "1000", "2500", "5000", "10000", "20000", "25000", "40000", "50000", "100000"},
+				},
+				"stormctrl_bcast_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"stormctrl_bcast_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"stormctrl_bcast_rate": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,6}|1[0-3][0-9]{6}|14[0-7][0-9]{5}|148[0-7][0-9]{4}|14880000",
+				},
+				"stormctrl_mcast_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"stormctrl_mcast_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"stormctrl_mcast_rate": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,6}|1[0-3][0-9]{6}|14[0-7][0-9]{5}|148[0-7][0-9]{4}|14880000",
+				},
+				"stormctrl_type": map[string]any{
+					"type":        "string",
+					"description": "One of: level|rate",
+					"enum":        []any{"level", "rate"},
+				},
+				"stormctrl_ucast_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"stormctrl_ucast_level": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]|100",
+				},
+				"stormctrl_ucast_rate": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-9][0-9]{1,6}|1[0-3][0-9]{6}|14[0-7][0-9]{5}|148[0-7][0-9]{4}|14880000",
+				},
+				"stp_port_mode": map[string]any{
+					"type": "boolean",
+				},
+				"tagged_vlan_mgmt": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|block_all|custom",
+					"enum":        []any{"auto", "block_all", "custom"},
+				},
+				"voice_networkconf_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2201,7 +6366,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2236,7 +6401,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2251,9 +6416,78 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"accounting_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"acct_servers": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auth_servers": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"interim_update_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"interim_update_interval": map[string]any{
+					"type":    "integer",
+					"pattern": "^([6-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9][0-9]|86400)$",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"tls_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"use_usg_acct_server": map[string]any{
+					"type": "boolean",
+				},
+				"use_usg_auth_server": map[string]any{
+					"type": "boolean",
+				},
+				"vlan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"vlan_wlan_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|optional|required",
+					"enum":        []any{"disabled", "optional", "required"},
+				},
+				"x_ca_crts": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"x_client_crt": map[string]any{
+					"type": "string",
+				},
+				"x_client_crt_filename": map[string]any{
+					"type": "string",
+				},
+				"x_client_private_key": map[string]any{
+					"type": "string",
+				},
+				"x_client_private_key_filename": map[string]any{
+					"type": "string",
+				},
+				"x_client_private_key_password": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -2274,12 +6508,81 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"accounting_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"acct_servers": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auth_servers": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"interim_update_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"interim_update_interval": map[string]any{
+					"type":    "integer",
+					"pattern": "^([6-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9][0-9]|86400)$",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"tls_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"use_usg_acct_server": map[string]any{
+					"type": "boolean",
+				},
+				"use_usg_auth_server": map[string]any{
+					"type": "boolean",
+				},
+				"vlan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"vlan_wlan_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|optional|required",
+					"enum":        []any{"disabled", "optional", "required"},
+				},
+				"x_ca_crts": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"x_client_crt": map[string]any{
+					"type": "string",
+				},
+				"x_client_crt_filename": map[string]any{
+					"type": "string",
+				},
+				"x_client_private_key": map[string]any{
+					"type": "string",
+				},
+				"x_client_private_key_filename": map[string]any{
+					"type": "string",
+				},
+				"x_client_private_key_password": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2299,7 +6602,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2334,7 +6637,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2349,9 +6652,61 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"gateway_device": map[string]any{
+					"type":    "string",
+					"pattern": "^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$",
+				},
+				"gateway_type": map[string]any{
+					"type":        "string",
+					"description": "One of: default|switch",
+					"enum":        []any{"default", "switch"},
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"static-route_distance": map[string]any{
+					"type":    "integer",
+					"pattern": "^[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]$|^$",
+				},
+				"static-route_interface": map[string]any{
+					"type":    "string",
+					"pattern": "WAN1|WAN2|[\\d\\w]+|^$",
+				},
+				"static-route_network": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|3[0-2])$|^([a-fA-F0-9:]+\\/(([1-9]|[1-8][0-9]|9[0-9]|1[01][0-9]|12[0-8])))$",
+				},
+				"static-route_nexthop": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^([a-fA-F0-9:]+)$|^$",
+				},
+				"static-route_type": map[string]any{
+					"type":        "string",
+					"description": "One of: nexthop-route|interface-route|blackhole",
+					"enum":        []any{"nexthop-route", "interface-route", "blackhole"},
+				},
+				"type": map[string]any{
+					"type":    "string",
+					"pattern": "static-route",
 				},
 			},
 		},
@@ -2372,12 +6727,64 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"gateway_device": map[string]any{
+					"type":    "string",
+					"pattern": "^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$",
+				},
+				"gateway_type": map[string]any{
+					"type":        "string",
+					"description": "One of: default|switch",
+					"enum":        []any{"default", "switch"},
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"static-route_distance": map[string]any{
+					"type":    "integer",
+					"pattern": "^[1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]$|^$",
+				},
+				"static-route_interface": map[string]any{
+					"type":    "string",
+					"pattern": "WAN1|WAN2|[\\d\\w]+|^$",
+				},
+				"static-route_network": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([1-9]|[1-2][0-9]|3[0-2])$|^([a-fA-F0-9:]+\\/(([1-9]|[1-8][0-9]|9[0-9]|1[01][0-9]|12[0-8])))$",
+				},
+				"static-route_nexthop": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^([a-fA-F0-9:]+)$|^$",
+				},
+				"static-route_type": map[string]any{
+					"type":        "string",
+					"description": "One of: nexthop-route|interface-route|blackhole",
+					"enum":        []any{"nexthop-route", "interface-route", "blackhole"},
+				},
+				"type": map[string]any{
+					"type":    "string",
+					"pattern": "static-route",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2397,7 +6804,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2432,7 +6839,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2447,9 +6854,37 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"action": map[string]any{
+					"type":    "string",
+					"pattern": "upgrade",
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"cron_expr": map[string]any{
+					"type": "string",
+				},
+				"execute_only_once": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"upgrade_targets": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
 				},
 			},
 		},
@@ -2470,12 +6905,40 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"action": map[string]any{
+					"type":    "string",
+					"pattern": "upgrade",
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"cron_expr": map[string]any{
+					"type": "string",
+				},
+				"execute_only_once": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"upgrade_targets": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -2495,14 +6958,15 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_auto_speedtest",
-		Description: "Get SettingAutoSpeedtest by ID",
+		Description: "Get SettingAutoSpeedtest",
 		Category:    "get",
 		Resource:    "SettingAutoSpeedtest",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2515,9 +6979,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_auto_speedtest",
-		Description: "Update SettingAutoSpeedtest by ID",
+		Description: "Update SettingAutoSpeedtest",
 		Category:    "update",
 		Resource:    "SettingAutoSpeedtest",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2525,23 +6990,39 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"cron_expr": map[string]any{
+					"type": "string",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_baresip",
-		Description: "Get SettingBaresip by ID",
+		Description: "Get SettingBaresip",
 		Category:    "get",
 		Resource:    "SettingBaresip",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2554,9 +7035,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_baresip",
-		Description: "Update SettingBaresip by ID",
+		Description: "Update SettingBaresip",
 		Category:    "update",
 		Resource:    "SettingBaresip",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2564,23 +7046,45 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"outbound_proxy": map[string]any{
+					"type": "string",
+				},
+				"package_url": map[string]any{
+					"type": "string",
+				},
+				"server": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_broadcast",
-		Description: "Get SettingBroadcast by ID",
+		Description: "Get SettingBroadcast",
 		Category:    "get",
 		Resource:    "SettingBroadcast",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2593,9 +7097,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_broadcast",
-		Description: "Update SettingBroadcast by ID",
+		Description: "Update SettingBroadcast",
 		Category:    "update",
 		Resource:    "SettingBroadcast",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2603,23 +7108,55 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"sound_after_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"sound_after_resource": map[string]any{
+					"type": "string",
+				},
+				"sound_after_type": map[string]any{
+					"type":        "string",
+					"description": "One of: sample|media",
+					"enum":        []any{"sample", "media"},
+				},
+				"sound_before_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"sound_before_resource": map[string]any{
+					"type": "string",
+				},
+				"sound_before_type": map[string]any{
+					"type":        "string",
+					"description": "One of: sample|media",
+					"enum":        []any{"sample", "media"},
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_connectivity",
-		Description: "Get SettingConnectivity by ID",
+		Description: "Get SettingConnectivity",
 		Category:    "get",
 		Resource:    "SettingConnectivity",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2632,9 +7169,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_connectivity",
-		Description: "Update SettingConnectivity by ID",
+		Description: "Update SettingConnectivity",
 		Category:    "update",
 		Resource:    "SettingConnectivity",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2642,23 +7180,51 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enable_isolated_wlan": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"uplink_host": map[string]any{
+					"type": "string",
+				},
+				"uplink_type": map[string]any{
+					"type": "string",
+				},
+				"x_mesh_essid": map[string]any{
+					"type": "string",
+				},
+				"x_mesh_psk": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_country",
-		Description: "Get SettingCountry by ID",
+		Description: "Get SettingCountry",
 		Category:    "get",
 		Resource:    "SettingCountry",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2671,9 +7237,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_country",
-		Description: "Update SettingCountry by ID",
+		Description: "Update SettingCountry",
 		Category:    "update",
 		Resource:    "SettingCountry",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2681,23 +7248,36 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"code": map[string]any{
+					"type": "integer",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_dashboard",
-		Description: "Get SettingDashboard by ID",
+		Description: "Get SettingDashboard",
 		Category:    "get",
 		Resource:    "SettingDashboard",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2710,9 +7290,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_dashboard",
-		Description: "Update SettingDashboard by ID",
+		Description: "Update SettingDashboard",
 		Category:    "update",
 		Resource:    "SettingDashboard",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2720,23 +7301,42 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"layout_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"widgets": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_doh",
-		Description: "Get SettingDoh by ID",
+		Description: "Get SettingDoh",
 		Category:    "get",
 		Resource:    "SettingDoh",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2749,9 +7349,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_doh",
-		Description: "Update SettingDoh by ID",
+		Description: "Update SettingDoh",
 		Category:    "update",
 		Resource:    "SettingDoh",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2759,23 +7360,46 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"custom_servers": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"server_names": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"state": map[string]any{
+					"type":        "string",
+					"description": "One of: off|auto|manual|custom",
+					"enum":        []any{"off", "auto", "manual", "custom"},
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_dpi",
-		Description: "Get SettingDpi by ID",
+		Description: "Get SettingDpi",
 		Category:    "get",
 		Resource:    "SettingDpi",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2788,9 +7412,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_dpi",
-		Description: "Update SettingDpi by ID",
+		Description: "Update SettingDpi",
 		Category:    "update",
 		Resource:    "SettingDpi",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2798,23 +7423,39 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"fingerprintingEnabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_element_adopt",
-		Description: "Get SettingElementAdopt by ID",
+		Description: "Get SettingElementAdopt",
 		Category:    "get",
 		Resource:    "SettingElementAdopt",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2827,9 +7468,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_element_adopt",
-		Description: "Update SettingElementAdopt by ID",
+		Description: "Update SettingElementAdopt",
 		Category:    "update",
 		Resource:    "SettingElementAdopt",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2837,23 +7479,42 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"x_element_essid": map[string]any{
+					"type": "string",
+				},
+				"x_element_psk": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_ether_lighting",
-		Description: "Get SettingEtherLighting by ID",
+		Description: "Get SettingEtherLighting",
 		Category:    "get",
 		Resource:    "SettingEtherLighting",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2866,9 +7527,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_ether_lighting",
-		Description: "Update SettingEtherLighting by ID",
+		Description: "Update SettingEtherLighting",
 		Category:    "update",
 		Resource:    "SettingEtherLighting",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2876,23 +7538,41 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"network_overrides": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"speed_overrides": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_evaluation_score",
-		Description: "Get SettingEvaluationScore by ID",
+		Description: "Get SettingEvaluationScore",
 		Category:    "get",
 		Resource:    "SettingEvaluationScore",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2905,9 +7585,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_evaluation_score",
-		Description: "Update SettingEvaluationScore by ID",
+		Description: "Update SettingEvaluationScore",
 		Category:    "update",
 		Resource:    "SettingEvaluationScore",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2915,23 +7596,38 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"dismissed_ids": map[string]any{
+					"type":    "array",
+					"pattern": "^[a-zA-Z]{2}[0-9]{2,3}$|^$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_global_ap",
-		Description: "Get SettingGlobalAp by ID",
+		Description: "Get SettingGlobalAp",
 		Category:    "get",
 		Resource:    "SettingGlobalAp",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2944,9 +7640,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_global_ap",
-		Description: "Update SettingGlobalAp by ID",
+		Description: "Update SettingGlobalAp",
 		Category:    "update",
 		Resource:    "SettingGlobalAp",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2954,23 +7651,80 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"6e_channel_size": map[string]any{
+					"type":        "integer",
+					"description": "One of: 20|40|80|160",
+					"enum":        []any{"20", "40", "80", "160"},
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"6e_tx_power": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-4][0-9]",
+				},
+				"6e_tx_power_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|medium|high|low|custom",
+					"enum":        []any{"auto", "medium", "high", "low", "custom"},
+				},
+				"ap_exclusions": map[string]any{
+					"type":    "array",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"na_channel_size": map[string]any{
+					"type":        "integer",
+					"description": "One of: 20|40|80|160",
+					"enum":        []any{"20", "40", "80", "160"},
+				},
+				"na_tx_power": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-4][0-9]",
+				},
+				"na_tx_power_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|medium|high|low|custom",
+					"enum":        []any{"auto", "medium", "high", "low", "custom"},
+				},
+				"ng_channel_size": map[string]any{
+					"type":        "integer",
+					"description": "One of: 20|40",
+					"enum":        []any{"20", "40"},
+				},
+				"ng_tx_power": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-4][0-9]",
+				},
+				"ng_tx_power_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|medium|high|low|custom",
+					"enum":        []any{"auto", "medium", "high", "low", "custom"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_global_nat",
-		Description: "Get SettingGlobalNat by ID",
+		Description: "Get SettingGlobalNat",
 		Category:    "get",
 		Resource:    "SettingGlobalNat",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2983,9 +7737,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_global_nat",
-		Description: "Update SettingGlobalNat by ID",
+		Description: "Update SettingGlobalNat",
 		Category:    "update",
 		Resource:    "SettingGlobalNat",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -2993,23 +7748,42 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"excluded_network_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"mode": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|custom|off",
+					"enum":        []any{"auto", "custom", "off"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_global_switch",
-		Description: "Get SettingGlobalSwitch by ID",
+		Description: "Get SettingGlobalSwitch",
 		Category:    "get",
 		Resource:    "SettingGlobalSwitch",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3022,9 +7796,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_global_switch",
-		Description: "Update SettingGlobalSwitch by ID",
+		Description: "Update SettingGlobalSwitch",
 		Category:    "update",
 		Resource:    "SettingGlobalSwitch",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3032,23 +7807,70 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"acl_device_isolation": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"acl_l3_isolation": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"dhcp_snoop": map[string]any{
+					"type": "boolean",
+				},
+				"dot1x_fallback_networkconf_id": map[string]any{
+					"type":    "string",
+					"pattern": "[\\d\\w]+|",
+				},
+				"dot1x_portctrl_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"flowctrl_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"jumboframe_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"radiusprofile_id": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"stp_version": map[string]any{
+					"type":        "string",
+					"description": "One of: stp|rstp|disabled",
+					"enum":        []any{"stp", "rstp", "disabled"},
+				},
+				"switch_exclusions": map[string]any{
+					"type":    "array",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+					"items":   map[string]any{"type": "string"},
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_guest_access",
-		Description: "Get SettingGuestAccess by ID",
+		Description: "Get SettingGuestAccess",
 		Category:    "get",
 		Resource:    "SettingGuestAccess",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3061,9 +7883,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_guest_access",
-		Description: "Update SettingGuestAccess by ID",
+		Description: "Update SettingGuestAccess",
 		Category:    "update",
 		Resource:    "SettingGuestAccess",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3071,23 +7894,360 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"allowed_subnet": map[string]any{
+					"type": "string",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auth": map[string]any{
+					"type":        "string",
+					"description": "One of: none|hotspot|facebook_wifi|custom",
+					"enum":        []any{"none", "hotspot", "facebook_wifi", "custom"},
+				},
+				"auth_url": map[string]any{
+					"type": "string",
+				},
+				"authorize_use_sandbox": map[string]any{
+					"type": "boolean",
+				},
+				"custom_ip": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"ec_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"expire": map[string]any{
+					"type":    "integer",
+					"pattern": "[\\d]+|custom",
+				},
+				"expire_number": map[string]any{
+					"type":    "integer",
+					"pattern": "^[1-9][0-9]{0,5}|1000000$",
+				},
+				"expire_unit": map[string]any{
+					"type":        "integer",
+					"description": "One of: 1|60|1440",
+					"enum":        []any{"1", "60", "1440"},
+				},
+				"facebook_app_id": map[string]any{
+					"type": "string",
+				},
+				"facebook_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"facebook_scope_email": map[string]any{
+					"type": "boolean",
+				},
+				"facebook_wifi_block_https": map[string]any{
+					"type": "boolean",
+				},
+				"facebook_wifi_gw_id": map[string]any{
+					"type": "string",
+				},
+				"facebook_wifi_gw_name": map[string]any{
+					"type": "string",
+				},
+				"gateway": map[string]any{
+					"type":        "string",
+					"description": "One of: paypal|stripe|authorize|quickpay|merchantwarrior|ippay",
+					"enum":        []any{"paypal", "stripe", "authorize", "quickpay", "merchantwarrior", "ippay"},
+				},
+				"google_client_id": map[string]any{
+					"type": "string",
+				},
+				"google_domain": map[string]any{
+					"type": "string",
+				},
+				"google_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"google_scope_email": map[string]any{
+					"type": "boolean",
+				},
+				"ippay_use_sandbox": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"merchantwarrior_use_sandbox": map[string]any{
+					"type": "boolean",
+				},
+				"password_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"payment_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"paypal_use_sandbox": map[string]any{
+					"type": "boolean",
+				},
+				"portal_customized": map[string]any{
+					"type": "boolean",
+				},
+				"portal_customized_authentication_text": map[string]any{
+					"type": "string",
+				},
+				"portal_customized_bg_color": map[string]any{
+					"type":    "string",
+					"pattern": "^#[a-zA-Z0-9]{6}$|^#[a-zA-Z0-9]{3}$|^$",
+				},
+				"portal_customized_bg_image_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"portal_customized_bg_image_filename": map[string]any{
+					"type": "string",
+				},
+				"portal_customized_bg_image_tile": map[string]any{
+					"type": "boolean",
+				},
+				"portal_customized_bg_type": map[string]any{
+					"type":        "string",
+					"description": "One of: color|image|gallery",
+					"enum":        []any{"color", "image", "gallery"},
+				},
+				"portal_customized_box_color": map[string]any{
+					"type":    "string",
+					"pattern": "^#[a-zA-Z0-9]{6}$|^#[a-zA-Z0-9]{3}$|^$",
+				},
+				"portal_customized_box_link_color": map[string]any{
+					"type":    "string",
+					"pattern": "^#[a-zA-Z0-9]{6}$|^#[a-zA-Z0-9]{3}$|^$",
+				},
+				"portal_customized_box_opacity": map[string]any{
+					"type":    "integer",
+					"pattern": "^[1-9][0-9]?$|^100$|^$",
+				},
+				"portal_customized_box_radius": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-4][0-9]|50",
+				},
+				"portal_customized_box_text_color": map[string]any{
+					"type":    "string",
+					"pattern": "^#[a-zA-Z0-9]{6}$|^#[a-zA-Z0-9]{3}$|^$",
+				},
+				"portal_customized_button_color": map[string]any{
+					"type":    "string",
+					"pattern": "^#[a-zA-Z0-9]{6}$|^#[a-zA-Z0-9]{3}$|^$",
+				},
+				"portal_customized_button_text": map[string]any{
+					"type": "string",
+				},
+				"portal_customized_button_text_color": map[string]any{
+					"type":    "string",
+					"pattern": "^#[a-zA-Z0-9]{6}$|^#[a-zA-Z0-9]{3}$|^$",
+				},
+				"portal_customized_languages": map[string]any{
+					"type":    "array",
+					"pattern": "^[a-z]{2}([_-][a-zA-Z]{2,4})*$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"portal_customized_link_color": map[string]any{
+					"type":    "string",
+					"pattern": "^#[a-zA-Z0-9]{6}$|^#[a-zA-Z0-9]{3}$|^$",
+				},
+				"portal_customized_logo_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"portal_customized_logo_filename": map[string]any{
+					"type": "string",
+				},
+				"portal_customized_logo_position": map[string]any{
+					"type":        "string",
+					"description": "One of: left|center|right",
+					"enum":        []any{"left", "center", "right"},
+				},
+				"portal_customized_logo_size": map[string]any{
+					"type":    "integer",
+					"pattern": "6[4-9]|[7-9][0-9]|1[0-8][0-9]|19[0-2]",
+				},
+				"portal_customized_success_text": map[string]any{
+					"type": "string",
+				},
+				"portal_customized_text_color": map[string]any{
+					"type":    "string",
+					"pattern": "^#[a-zA-Z0-9]{6}$|^#[a-zA-Z0-9]{3}$|^$",
+				},
+				"portal_customized_title": map[string]any{
+					"type": "string",
+				},
+				"portal_customized_tos": map[string]any{
+					"type": "string",
+				},
+				"portal_customized_tos_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"portal_customized_unsplash_author_name": map[string]any{
+					"type": "string",
+				},
+				"portal_customized_unsplash_author_username": map[string]any{
+					"type": "string",
+				},
+				"portal_customized_welcome_text": map[string]any{
+					"type": "string",
+				},
+				"portal_customized_welcome_text_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"portal_customized_welcome_text_position": map[string]any{
+					"type":        "string",
+					"description": "One of: under_logo|above_boxes",
+					"enum":        []any{"under_logo", "above_boxes"},
+				},
+				"portal_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"portal_hostname": map[string]any{
+					"type":    "string",
+					"pattern": "^[a-zA-Z0-9.-]+$|^$",
+				},
+				"portal_use_hostname": map[string]any{
+					"type": "boolean",
+				},
+				"quickpay_testmode": map[string]any{
+					"type": "boolean",
+				},
+				"radius_auth_type": map[string]any{
+					"type":        "string",
+					"description": "One of: chap|mschapv2",
+					"enum":        []any{"chap", "mschapv2"},
+				},
+				"radius_disconnect_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"radius_disconnect_port": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]",
+				},
+				"radius_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"radiusprofile_id": map[string]any{
+					"type": "string",
+				},
+				"redirect_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"redirect_https": map[string]any{
+					"type": "boolean",
+				},
+				"redirect_to_https": map[string]any{
+					"type": "boolean",
+				},
+				"redirect_url": map[string]any{
+					"type": "string",
+				},
+				"restricted_dns_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"restricted_dns_servers": map[string]any{
+					"type":    "array",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"restricted_subnet": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"template_engine": map[string]any{
+					"type":        "string",
+					"description": "One of: jsp|angular",
+					"enum":        []any{"jsp", "angular"},
+				},
+				"voucher_customized": map[string]any{
+					"type": "boolean",
+				},
+				"voucher_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wechat_app_id": map[string]any{
+					"type": "string",
+				},
+				"wechat_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wechat_shop_id": map[string]any{
+					"type": "string",
+				},
+				"x_authorize_loginid": map[string]any{
+					"type": "string",
+				},
+				"x_authorize_transactionkey": map[string]any{
+					"type": "string",
+				},
+				"x_facebook_app_secret": map[string]any{
+					"type": "string",
+				},
+				"x_facebook_wifi_gw_secret": map[string]any{
+					"type": "string",
+				},
+				"x_google_client_secret": map[string]any{
+					"type": "string",
+				},
+				"x_ippay_terminalid": map[string]any{
+					"type": "string",
+				},
+				"x_merchantwarrior_apikey": map[string]any{
+					"type": "string",
+				},
+				"x_merchantwarrior_apipassphrase": map[string]any{
+					"type": "string",
+				},
+				"x_merchantwarrior_merchantuuid": map[string]any{
+					"type": "string",
+				},
+				"x_password": map[string]any{
+					"type": "string",
+				},
+				"x_paypal_password": map[string]any{
+					"type": "string",
+				},
+				"x_paypal_signature": map[string]any{
+					"type": "string",
+				},
+				"x_paypal_username": map[string]any{
+					"type": "string",
+				},
+				"x_quickpay_agreementid": map[string]any{
+					"type": "string",
+				},
+				"x_quickpay_apikey": map[string]any{
+					"type": "string",
+				},
+				"x_quickpay_merchantid": map[string]any{
+					"type": "string",
+				},
+				"x_stripe_api_key": map[string]any{
+					"type": "string",
+				},
+				"x_wechat_app_secret": map[string]any{
+					"type": "string",
+				},
+				"x_wechat_secret_key": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_ips",
-		Description: "Get SettingIps by ID",
+		Description: "Get SettingIps",
 		Category:    "get",
 		Resource:    "SettingIps",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3100,9 +8260,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_ips",
-		Description: "Update SettingIps by ID",
+		Description: "Update SettingIps",
 		Category:    "update",
 		Resource:    "SettingIps",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3110,23 +8271,83 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"ad_blocking_configurations": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"ad_blocking_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"advanced_filtering_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: |manual|disabled",
+					"enum":        []any{"manual", "disabled"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"dns_filtering": map[string]any{
+					"type": "boolean",
+				},
+				"dns_filters": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"enabled_categories": map[string]any{
+					"type":        "array",
+					"description": "One of: emerging-activex|emerging-attackresponse|botcc|emerging-chat|ciarmy|compromised|emerging-dns|emerging-dos|dshield|emerging-exploit|emerging-ftp|emerging-games|emerging-icmp|emerging-icmpinfo|emerging-imap|emerging-inappropriate|emerging-info|emerging-malware|emerging-misc|emerging-mobile|emerging-netbios|emerging-p2p|emerging-policy|emerging-pop3|emerging-rpc|emerging-scada|emerging-scan|emerging-shellcode|emerging-smtp|emerging-snmp|emerging-sql|emerging-telnet|emerging-tftp|tor|emerging-useragent|emerging-voip|emerging-webapps|emerging-webclient|emerging-webserver|emerging-worm|exploit-kit|adware-pup|botcc-portgrouped|phishing|threatview-cs-c2|3coresec|chat|coinminer|current-events|drop|hunting|icmp-info|inappropriate|info|ja3|policy|scada|dark-web-blocker-list|malicious-hosts",
+					"enum":        []any{"emerging-activex", "emerging-attackresponse", "botcc", "emerging-chat", "ciarmy", "compromised", "emerging-dns", "emerging-dos", "dshield", "emerging-exploit", "emerging-ftp", "emerging-games", "emerging-icmp", "emerging-icmpinfo", "emerging-imap", "emerging-inappropriate", "emerging-info", "emerging-malware", "emerging-misc", "emerging-mobile", "emerging-netbios", "emerging-p2p", "emerging-policy", "emerging-pop3", "emerging-rpc", "emerging-scada", "emerging-scan", "emerging-shellcode", "emerging-smtp", "emerging-snmp", "emerging-sql", "emerging-telnet", "emerging-tftp", "tor", "emerging-useragent", "emerging-voip", "emerging-webapps", "emerging-webclient", "emerging-webserver", "emerging-worm", "exploit-kit", "adware-pup", "botcc-portgrouped", "phishing", "threatview-cs-c2", "3coresec", "chat", "coinminer", "current-events", "drop", "hunting", "icmp-info", "inappropriate", "info", "ja3", "policy", "scada", "dark-web-blocker-list", "malicious-hosts"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"enabled_networks": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"honeypot": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"honeypot_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ips_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: ids|ips|ipsInline|disabled",
+					"enum":        []any{"ids", "ips", "ipsInline", "disabled"},
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"memory_optimized": map[string]any{
+					"type": "boolean",
+				},
+				"restrict_torrents": map[string]any{
+					"type": "boolean",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"suppression": map[string]any{
+					"type": "object",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_lcm",
-		Description: "Get SettingLcm by ID",
+		Description: "Get SettingLcm",
 		Category:    "get",
 		Resource:    "SettingLcm",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3139,9 +8360,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_lcm",
-		Description: "Update SettingLcm by ID",
+		Description: "Update SettingLcm",
 		Category:    "update",
 		Resource:    "SettingLcm",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3149,23 +8371,50 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"brightness": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9]|[1-9][0-9]|100",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"idle_timeout": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9][0-9]|[1-9][0-9][0-9]|[1-2][0-9][0-9][0-9]|3[0-5][0-9][0-9]|3600",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"sync": map[string]any{
+					"type": "boolean",
+				},
+				"touch_event": map[string]any{
+					"type": "boolean",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_locale",
-		Description: "Get SettingLocale by ID",
+		Description: "Get SettingLocale",
 		Category:    "get",
 		Resource:    "SettingLocale",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3178,9 +8427,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_locale",
-		Description: "Update SettingLocale by ID",
+		Description: "Update SettingLocale",
 		Category:    "update",
 		Resource:    "SettingLocale",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3188,23 +8438,36 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"timezone": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_magic_site_to_site_vpn",
-		Description: "Get SettingMagicSiteToSiteVpn by ID",
+		Description: "Get SettingMagicSiteToSiteVpn",
 		Category:    "get",
 		Resource:    "SettingMagicSiteToSiteVpn",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3217,9 +8480,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_magic_site_to_site_vpn",
-		Description: "Update SettingMagicSiteToSiteVpn by ID",
+		Description: "Update SettingMagicSiteToSiteVpn",
 		Category:    "update",
 		Resource:    "SettingMagicSiteToSiteVpn",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3227,23 +8491,36 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_mgmt",
-		Description: "Get SettingMgmt by ID",
+		Description: "Get SettingMgmt",
 		Category:    "get",
 		Resource:    "SettingMgmt",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3256,9 +8533,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_mgmt",
-		Description: "Update SettingMgmt by ID",
+		Description: "Update SettingMgmt",
 		Category:    "update",
 		Resource:    "SettingMgmt",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3266,23 +8544,98 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"advanced_feature_enabled": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"alert_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auto_upgrade": map[string]any{
+					"type": "boolean",
+				},
+				"auto_upgrade_hour": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|1[0-9]|2[0-3]|^$",
+				},
+				"boot_sound": map[string]any{
+					"type": "boolean",
+				},
+				"debug_tools_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"direct_connect_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"led_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"outdoor_mode_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"unifi_idp_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wifiman_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"x_mgmt_key": map[string]any{
+					"type":    "string",
+					"pattern": "[0-9a-f]{32}",
+				},
+				"x_ssh_auth_password_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"x_ssh_bind_wildcard": map[string]any{
+					"type": "boolean",
+				},
+				"x_ssh_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"x_ssh_keys": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"x_ssh_md5passwd": map[string]any{
+					"type": "string",
+				},
+				"x_ssh_password": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"x_ssh_sha512passwd": map[string]any{
+					"type": "string",
+				},
+				"x_ssh_username": map[string]any{
+					"type":    "string",
+					"pattern": "^[_A-Za-z0-9][-_.A-Za-z0-9]{0,29}$",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_netflow",
-		Description: "Get SettingNetflow by ID",
+		Description: "Get SettingNetflow",
 		Category:    "get",
 		Resource:    "SettingNetflow",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3295,9 +8648,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_netflow",
-		Description: "Update SettingNetflow by ID",
+		Description: "Update SettingNetflow",
 		Category:    "update",
 		Resource:    "SettingNetflow",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3305,23 +8659,75 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auto_engine_id_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"engine_id": map[string]any{
+					"type":    "integer",
+					"pattern": "^$|[1-9][0-9]*",
+				},
+				"export_frequency": map[string]any{
+					"type": "integer",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"network_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"port": map[string]any{
+					"type":    "integer",
+					"pattern": "102[4-9]|10[3-9][0-9]|1[1-9][0-9]{2}|[2-9][0-9]{3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]",
+				},
+				"refresh_rate": map[string]any{
+					"type": "integer",
+				},
+				"sampling_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: off|hash|random|deterministic",
+					"enum":        []any{"off", "hash", "random", "deterministic"},
+				},
+				"sampling_rate": map[string]any{
+					"type":    "integer",
+					"pattern": "[2-9]|[1-9][0-9]{1,3}|1[0-5][0-9]{3}|16[0-2][0-9]{2}|163[0-7][0-9]|1638[0-3]|^$",
+				},
+				"server": map[string]any{
+					"type":    "string",
+					"pattern": ".{0,252}[^\\.]$",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"version": map[string]any{
+					"type":        "integer",
+					"description": "One of: 5|9|10",
+					"enum":        []any{"5", "9", "10"},
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_network_optimization",
-		Description: "Get SettingNetworkOptimization by ID",
+		Description: "Get SettingNetworkOptimization",
 		Category:    "get",
 		Resource:    "SettingNetworkOptimization",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3334,9 +8740,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_network_optimization",
-		Description: "Update SettingNetworkOptimization by ID",
+		Description: "Update SettingNetworkOptimization",
 		Category:    "update",
 		Resource:    "SettingNetworkOptimization",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3344,23 +8751,36 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_ntp",
-		Description: "Get SettingNtp by ID",
+		Description: "Get SettingNtp",
 		Category:    "get",
 		Resource:    "SettingNtp",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3373,9 +8793,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_ntp",
-		Description: "Update SettingNtp by ID",
+		Description: "Update SettingNtp",
 		Category:    "update",
 		Resource:    "SettingNtp",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3383,23 +8804,50 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"ntp_server_1": map[string]any{
+					"type": "string",
+				},
+				"ntp_server_2": map[string]any{
+					"type": "string",
+				},
+				"ntp_server_3": map[string]any{
+					"type": "string",
+				},
+				"ntp_server_4": map[string]any{
+					"type": "string",
+				},
+				"setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_porta",
-		Description: "Get SettingPorta by ID",
+		Description: "Get SettingPorta",
 		Category:    "get",
 		Resource:    "SettingPorta",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3412,9 +8860,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_porta",
-		Description: "Update SettingPorta by ID",
+		Description: "Update SettingPorta",
 		Category:    "update",
 		Resource:    "SettingPorta",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3422,23 +8871,36 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"ugw3_wan2_enabled": map[string]any{
+					"type": "boolean",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_radio_ai",
-		Description: "Get SettingRadioAi by ID",
+		Description: "Get SettingRadioAi",
 		Category:    "get",
 		Resource:    "SettingRadioAi",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3451,9 +8913,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_radio_ai",
-		Description: "Update SettingRadioAi by ID",
+		Description: "Update SettingRadioAi",
 		Category:    "update",
 		Resource:    "SettingRadioAi",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3461,23 +8924,101 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auto_adjust_channels_to_country": map[string]any{
+					"type": "boolean",
+				},
+				"channels_6e": map[string]any{
+					"type":    "array",
+					"pattern": "[1-9]|[1-2][0-9]|3[3-9]|[4-5][0-9]|6[0-1]|6[5-9]|[7-8][0-9]|9[0-3]|9[7-9]|1[0-1][0-9]|12[0-5]|129|1[3-4][0-9]|15[0-7]|16[1-9]|1[7-8][0-9]|19[3-9]|2[0-1][0-9]|22[0-1]|22[5-9]|233",
+					"items":   map[string]any{"type": "integer"},
+				},
+				"channels_blacklist": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"channels_na": map[string]any{
+					"type":        "array",
+					"description": "One of: 34|36|38|40|42|44|46|48|52|56|60|64|100|104|108|112|116|120|124|128|132|136|140|144|149|153|157|161|165|169",
+					"enum":        []any{"34", "36", "38", "40", "42", "44", "46", "48", "52", "56", "60", "64", "100", "104", "108", "112", "116", "120", "124", "128", "132", "136", "140", "144", "149", "153", "157", "161", "165", "169"},
+					"items":       map[string]any{"type": "integer"},
+				},
+				"channels_ng": map[string]any{
+					"type":        "array",
+					"description": "One of: 1|2|3|4|5|6|7|8|9|10|11|12|13|14",
+					"enum":        []any{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"},
+					"items":       map[string]any{"type": "integer"},
+				},
+				"cron_expr": map[string]any{
+					"type": "string",
+				},
+				"default": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"exclude_devices": map[string]any{
+					"type":    "array",
+					"pattern": "([0-9a-z]{2}:){5}[0-9a-z]{2}",
+					"items":   map[string]any{"type": "string"},
+				},
+				"ht_modes_na": map[string]any{
+					"type":    "array",
+					"pattern": "^(20|40|80|160)$",
+					"items":   map[string]any{"type": "integer"},
+				},
+				"ht_modes_ng": map[string]any{
+					"type":    "array",
+					"pattern": "^(20|40)$",
+					"items":   map[string]any{"type": "integer"},
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"optimize": map[string]any{
+					"type":        "array",
+					"description": "One of: channel|power",
+					"enum":        []any{"channel", "power"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"radios": map[string]any{
+					"type":        "array",
+					"description": "One of: na|ng",
+					"enum":        []any{"na", "ng"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"useXY": map[string]any{
+					"type": "boolean",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_radius",
-		Description: "Get SettingRadius by ID",
+		Description: "Get SettingRadius",
 		Category:    "get",
 		Resource:    "SettingRadius",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3490,9 +9031,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_radius",
-		Description: "Update SettingRadius by ID",
+		Description: "Update SettingRadius",
 		Category:    "update",
 		Resource:    "SettingRadius",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3500,23 +9042,61 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"accounting_enabled": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"acct_port": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]",
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auth_port": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]",
+				},
+				"configure_whole_network": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"interim_update_interval": map[string]any{
+					"type":    "integer",
+					"pattern": "^([6-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9][0-9]|86400)$",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"tunneled_reply": map[string]any{
+					"type": "boolean",
+				},
+				"x_secret": map[string]any{
+					"type":    "string",
+					"pattern": "^[^\\\\\"' ]{1,48}$",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_rsyslogd",
-		Description: "Get SettingRsyslogd by ID",
+		Description: "Get SettingRsyslogd",
 		Category:    "get",
 		Resource:    "SettingRsyslogd",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3529,9 +9109,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_rsyslogd",
-		Description: "Update SettingRsyslogd by ID",
+		Description: "Update SettingRsyslogd",
 		Category:    "update",
 		Resource:    "SettingRsyslogd",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3539,23 +9120,71 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"contents": map[string]any{
+					"type":        "array",
+					"description": "One of: device|client|firewall_default_policy|triggers|updates|admin_activity|critical|security_detections|vpn",
+					"enum":        []any{"device", "client", "firewall_default_policy", "triggers", "updates", "admin_activity", "critical", "security_detections", "vpn"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"debug": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"ip": map[string]any{
+					"type": "string",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"log_all_contents": map[string]any{
+					"type": "boolean",
+				},
+				"netconsole_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"netconsole_host": map[string]any{
+					"type": "string",
+				},
+				"netconsole_port": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]",
+				},
+				"port": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"this_controller": map[string]any{
+					"type": "boolean",
+				},
+				"this_controller_encrypted_only": map[string]any{
+					"type": "boolean",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_snmp",
-		Description: "Get SettingSnmp by ID",
+		Description: "Get SettingSnmp",
 		Category:    "get",
 		Resource:    "SettingSnmp",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3568,9 +9197,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_snmp",
-		Description: "Update SettingSnmp by ID",
+		Description: "Update SettingSnmp",
 		Category:    "update",
 		Resource:    "SettingSnmp",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3578,23 +9208,51 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"community": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,256}",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"enabledV3": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"username": map[string]any{
+					"type":    "string",
+					"pattern": "[a-zA-Z0-9_-]{1,30}",
+				},
+				"x_password": map[string]any{
+					"type":    "string",
+					"pattern": "[^'\"]{8,32}",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_ssl_inspection",
-		Description: "Get SettingSslInspection by ID",
+		Description: "Get SettingSslInspection",
 		Category:    "get",
 		Resource:    "SettingSslInspection",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3607,9 +9265,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_ssl_inspection",
-		Description: "Update SettingSslInspection by ID",
+		Description: "Update SettingSslInspection",
 		Category:    "update",
 		Resource:    "SettingSslInspection",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3617,23 +9276,38 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"state": map[string]any{
+					"type":        "string",
+					"description": "One of: off|simple|advanced",
+					"enum":        []any{"off", "simple", "advanced"},
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_super_cloudaccess",
-		Description: "Get SettingSuperCloudaccess by ID",
+		Description: "Get SettingSuperCloudaccess",
 		Category:    "get",
 		Resource:    "SettingSuperCloudaccess",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3646,9 +9320,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_super_cloudaccess",
-		Description: "Update SettingSuperCloudaccess by ID",
+		Description: "Update SettingSuperCloudaccess",
 		Category:    "update",
 		Resource:    "SettingSuperCloudaccess",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3656,23 +9331,54 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"device_auth": map[string]any{
+					"type": "string",
+				},
+				"device_id": map[string]any{
+					"type": "string",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"ubic_uuid": map[string]any{
+					"type": "string",
+				},
+				"x_certificate_arn": map[string]any{
+					"type": "string",
+				},
+				"x_certificate_pem": map[string]any{
+					"type": "string",
+				},
+				"x_private_key": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_super_events",
-		Description: "Get SettingSuperEvents by ID",
+		Description: "Get SettingSuperEvents",
 		Category:    "get",
 		Resource:    "SettingSuperEvents",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3685,9 +9391,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_super_events",
-		Description: "Update SettingSuperEvents by ID",
+		Description: "Update SettingSuperEvents",
 		Category:    "update",
 		Resource:    "SettingSuperEvents",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3695,23 +9402,36 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"_ignored": map[string]any{
+					"type": "string",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_super_fwupdate",
-		Description: "Get SettingSuperFwupdate by ID",
+		Description: "Get SettingSuperFwupdate",
 		Category:    "get",
 		Resource:    "SettingSuperFwupdate",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3724,9 +9444,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_super_fwupdate",
-		Description: "Update SettingSuperFwupdate by ID",
+		Description: "Update SettingSuperFwupdate",
 		Category:    "update",
 		Resource:    "SettingSuperFwupdate",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3734,23 +9455,46 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"controller_channel": map[string]any{
+					"type":        "string",
+					"description": "One of: internal|alpha|beta|release-candidate|release",
+					"enum":        []any{"internal", "alpha", "beta", "release-candidate", "release"},
+				},
+				"firmware_channel": map[string]any{
+					"type":        "string",
+					"description": "One of: internal|alpha|beta|release-candidate|release",
+					"enum":        []any{"internal", "alpha", "beta", "release-candidate", "release"},
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"sso_enabled": map[string]any{
+					"type": "boolean",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_super_identity",
-		Description: "Get SettingSuperIdentity by ID",
+		Description: "Get SettingSuperIdentity",
 		Category:    "get",
 		Resource:    "SettingSuperIdentity",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3763,9 +9507,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_super_identity",
-		Description: "Update SettingSuperIdentity by ID",
+		Description: "Update SettingSuperIdentity",
 		Category:    "update",
 		Resource:    "SettingSuperIdentity",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3773,23 +9518,39 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"hostname": map[string]any{
+					"type": "string",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_super_mail",
-		Description: "Get SettingSuperMail by ID",
+		Description: "Get SettingSuperMail",
 		Category:    "get",
 		Resource:    "SettingSuperMail",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3802,9 +9563,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_super_mail",
-		Description: "Update SettingSuperMail by ID",
+		Description: "Update SettingSuperMail",
 		Category:    "update",
 		Resource:    "SettingSuperMail",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3812,23 +9574,38 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"provider": map[string]any{
+					"type":        "string",
+					"description": "One of: smtp|cloud|disabled",
+					"enum":        []any{"smtp", "cloud", "disabled"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_super_mgmt",
-		Description: "Get SettingSuperMgmt by ID",
+		Description: "Get SettingSuperMgmt",
 		Category:    "get",
 		Resource:    "SettingSuperMgmt",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3841,9 +9618,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_super_mgmt",
-		Description: "Update SettingSuperMgmt by ID",
+		Description: "Update SettingSuperMgmt",
 		Category:    "update",
 		Resource:    "SettingSuperMgmt",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3851,23 +9629,186 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"analytics_disapproved_for": map[string]any{
+					"type": "string",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auto_upgrade": map[string]any{
+					"type": "boolean",
+				},
+				"autobackup_cron_expr": map[string]any{
+					"type": "string",
+				},
+				"autobackup_days": map[string]any{
+					"type": "integer",
+				},
+				"autobackup_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"autobackup_gcs_bucket": map[string]any{
+					"type": "string",
+				},
+				"autobackup_gcs_certificate_path": map[string]any{
+					"type": "string",
+				},
+				"autobackup_local_path": map[string]any{
+					"type": "string",
+				},
+				"autobackup_max_files": map[string]any{
+					"type": "integer",
+				},
+				"autobackup_post_actions": map[string]any{
+					"type":        "array",
+					"description": "One of: copy_local|copy_s3|copy_gcs|copy_cloud",
+					"enum":        []any{"copy_local", "copy_s3", "copy_gcs", "copy_cloud"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"autobackup_s3_access_key": map[string]any{
+					"type": "string",
+				},
+				"autobackup_s3_access_secret": map[string]any{
+					"type": "string",
+				},
+				"autobackup_s3_bucket": map[string]any{
+					"type": "string",
+				},
+				"autobackup_timezone": map[string]any{
+					"type": "string",
+				},
+				"backup_to_cloud_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"contact_info_city": map[string]any{
+					"type": "string",
+				},
+				"contact_info_company_name": map[string]any{
+					"type": "string",
+				},
+				"contact_info_country": map[string]any{
+					"type": "string",
+				},
+				"contact_info_full_name": map[string]any{
+					"type": "string",
+				},
+				"contact_info_phone_number": map[string]any{
+					"type": "string",
+				},
+				"contact_info_shipping_address_1": map[string]any{
+					"type": "string",
+				},
+				"contact_info_shipping_address_2": map[string]any{
+					"type": "string",
+				},
+				"contact_info_state": map[string]any{
+					"type": "string",
+				},
+				"contact_info_zip": map[string]any{
+					"type": "string",
+				},
+				"data_retention_setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"data_retention_time_in_hours_for_5minutes_scale": map[string]any{
+					"type": "integer",
+				},
+				"data_retention_time_in_hours_for_daily_scale": map[string]any{
+					"type": "integer",
+				},
+				"data_retention_time_in_hours_for_hourly_scale": map[string]any{
+					"type": "integer",
+				},
+				"data_retention_time_in_hours_for_monthly_scale": map[string]any{
+					"type": "integer",
+				},
+				"data_retention_time_in_hours_for_others": map[string]any{
+					"type": "integer",
+				},
+				"default_site_device_auth_password_alert": map[string]any{
+					"type":    "string",
+					"pattern": "false",
+				},
+				"discoverable": map[string]any{
+					"type": "boolean",
+				},
+				"enable_analytics": map[string]any{
+					"type": "boolean",
+				},
+				"google_maps_api_key": map[string]any{
+					"type": "string",
+				},
+				"image_maps_use_google_engine": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"led_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"live_chat": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|super-only|everyone",
+					"enum":        []any{"disabled", "super-only", "everyone"},
+				},
+				"live_updates": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|live|auto",
+					"enum":        []any{"disabled", "live", "auto"},
+				},
+				"minimum_usable_hd_space": map[string]any{
+					"type": "integer",
+				},
+				"minimum_usable_sd_space": map[string]any{
+					"type": "integer",
+				},
+				"multiple_sites_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"override_inform_host": map[string]any{
+					"type": "boolean",
+				},
+				"override_inform_host_location": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"store_enabled": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|super-only|everyone",
+					"enum":        []any{"disabled", "super-only", "everyone"},
+				},
+				"time_series_per_client_stats_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"x_ssh_password": map[string]any{
+					"type": "string",
+				},
+				"x_ssh_username": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_super_sdn",
-		Description: "Get SettingSuperSdn by ID",
+		Description: "Get SettingSuperSdn",
 		Category:    "get",
 		Resource:    "SettingSuperSdn",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3880,9 +9821,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_super_sdn",
-		Description: "Update SettingSuperSdn by ID",
+		Description: "Update SettingSuperSdn",
 		Category:    "update",
 		Resource:    "SettingSuperSdn",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3890,23 +9832,51 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auth_token": map[string]any{
+					"type": "string",
+				},
+				"device_id": map[string]any{
+					"type": "string",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"migrated": map[string]any{
+					"type": "boolean",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"sso_login_enabled": map[string]any{
+					"type": "string",
+				},
+				"ubic_uuid": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_super_smtp",
-		Description: "Get SettingSuperSmtp by ID",
+		Description: "Get SettingSuperSmtp",
 		Category:    "get",
 		Resource:    "SettingSuperSmtp",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3919,9 +9889,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_super_smtp",
-		Description: "Update SettingSuperSmtp by ID",
+		Description: "Update SettingSuperSmtp",
 		Category:    "update",
 		Resource:    "SettingSuperSmtp",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3929,23 +9900,61 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"host": map[string]any{
+					"type": "string",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"port": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]|^$",
+				},
+				"sender": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"use_auth": map[string]any{
+					"type": "boolean",
+				},
+				"use_sender": map[string]any{
+					"type": "boolean",
+				},
+				"use_ssl": map[string]any{
+					"type": "boolean",
+				},
+				"username": map[string]any{
+					"type": "string",
+				},
+				"x_password": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_teleport",
-		Description: "Get SettingTeleport by ID",
+		Description: "Get SettingTeleport",
 		Category:    "get",
 		Resource:    "SettingTeleport",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3958,9 +9967,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_teleport",
-		Description: "Update SettingTeleport by ID",
+		Description: "Update SettingTeleport",
 		Category:    "update",
 		Resource:    "SettingTeleport",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3968,23 +9978,40 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"subnet_cidr": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([8-9]|[1-2][0-9]|3[0-2])$|^$",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_usg",
-		Description: "Get SettingUsg by ID",
+		Description: "Get SettingUsg",
 		Category:    "get",
 		Resource:    "SettingUsg",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -3997,9 +10024,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_usg",
-		Description: "Update SettingUsg by ID",
+		Description: "Update SettingUsg",
 		Category:    "update",
 		Resource:    "SettingUsg",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -4007,23 +10035,222 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"arp_cache_base_reachable": map[string]any{
+					"type":    "integer",
+					"pattern": "^$|^[1-9]{1}[0-9]{0,4}$",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"arp_cache_timeout": map[string]any{
+					"type":        "string",
+					"description": "One of: normal|min-dhcp-lease|custom",
+					"enum":        []any{"normal", "min-dhcp-lease", "custom"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"broadcast_ping": map[string]any{
+					"type": "boolean",
+				},
+				"dhcp_relay_agents_packets": map[string]any{
+					"type":    "string",
+					"pattern": "append|discard|forward|replace|^$",
+				},
+				"dhcp_relay_hop_count": map[string]any{
+					"type":    "integer",
+					"pattern": "([1-9]|[1-8][0-9]|9[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])|^$",
+				},
+				"dhcp_relay_max_size": map[string]any{
+					"type":    "integer",
+					"pattern": "(6[4-9]|[7-9][0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|1[0-3][0-9]{2}|1400)|^$",
+				},
+				"dhcp_relay_port": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9][0-9]{0,3}|[1-5][0-9]{4}|[6][0-4][0-9]{3}|[6][5][0-4][0-9]{2}|[6][5][5][0-2][0-9]|[6][5][5][3][0-5]|^$",
+				},
+				"dhcp_relay_server_1": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcp_relay_server_2": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcp_relay_server_3": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcp_relay_server_4": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcp_relay_server_5": map[string]any{
+					"type":    "string",
+					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dhcpd_hostfile_update": map[string]any{
+					"type": "boolean",
+				},
+				"dhcpd_use_dnsmasq": map[string]any{
+					"type": "boolean",
+				},
+				"dns_verification": map[string]any{
+					"type": "object",
+				},
+				"dnsmasq_all_servers": map[string]any{
+					"type": "boolean",
+				},
+				"echo_server": map[string]any{
+					"type":    "string",
+					"pattern": "[^\\\"\\' ]{1,255}",
+				},
+				"ftp_module": map[string]any{
+					"type": "boolean",
+				},
+				"geo_ip_filtering_block": map[string]any{
+					"type":        "string",
+					"description": "One of: block|allow",
+					"enum":        []any{"block", "allow"},
+				},
+				"geo_ip_filtering_countries": map[string]any{
+					"type":    "string",
+					"pattern": "^([A-Z]{2})?(,[A-Z]{2}){0,149}$",
+				},
+				"geo_ip_filtering_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"geo_ip_filtering_traffic_direction": map[string]any{
+					"type":    "string",
+					"pattern": "^(both|ingress|egress)$",
+				},
+				"gre_module": map[string]any{
+					"type": "boolean",
+				},
+				"h323_module": map[string]any{
+					"type": "boolean",
+				},
+				"icmp_timeout": map[string]any{
+					"type": "integer",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"lldp_enable_all": map[string]any{
+					"type": "boolean",
+				},
+				"mdns_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"mss_clamp": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|custom|disabled",
+					"enum":        []any{"auto", "custom", "disabled"},
+				},
+				"mss_clamp_mss": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9][0-9]{2,3}",
+				},
+				"offload_accounting": map[string]any{
+					"type": "boolean",
+				},
+				"offload_l2_blocking": map[string]any{
+					"type": "boolean",
+				},
+				"offload_sch": map[string]any{
+					"type": "boolean",
+				},
+				"other_timeout": map[string]any{
+					"type": "integer",
+				},
+				"pptp_module": map[string]any{
+					"type": "boolean",
+				},
+				"receive_redirects": map[string]any{
+					"type": "boolean",
+				},
+				"send_redirects": map[string]any{
+					"type": "boolean",
+				},
+				"sip_module": map[string]any{
+					"type": "boolean",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"syn_cookies": map[string]any{
+					"type": "boolean",
+				},
+				"tcp_close_timeout": map[string]any{
+					"type": "integer",
+				},
+				"tcp_close_wait_timeout": map[string]any{
+					"type": "integer",
+				},
+				"tcp_established_timeout": map[string]any{
+					"type": "integer",
+				},
+				"tcp_fin_wait_timeout": map[string]any{
+					"type": "integer",
+				},
+				"tcp_last_ack_timeout": map[string]any{
+					"type": "integer",
+				},
+				"tcp_syn_recv_timeout": map[string]any{
+					"type": "integer",
+				},
+				"tcp_syn_sent_timeout": map[string]any{
+					"type": "integer",
+				},
+				"tcp_time_wait_timeout": map[string]any{
+					"type": "integer",
+				},
+				"tftp_module": map[string]any{
+					"type": "boolean",
+				},
+				"timeout_setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"udp_other_timeout": map[string]any{
+					"type": "integer",
+				},
+				"udp_stream_timeout": map[string]any{
+					"type": "integer",
+				},
+				"unbind_wan_monitors": map[string]any{
+					"type": "boolean",
+				},
+				"upnp_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"upnp_nat_pmp_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"upnp_secure_mode": map[string]any{
+					"type": "boolean",
+				},
+				"upnp_wan_interface": map[string]any{
+					"type":        "string",
+					"description": "One of: WAN|WAN2",
+					"enum":        []any{"WAN", "WAN2"},
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
 		Name:        "get_setting_usw",
-		Description: "Get SettingUsw by ID",
+		Description: "Get SettingUsw",
 		Category:    "get",
 		Resource:    "SettingUsw",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -4036,9 +10263,10 @@ var AllToolMetadata = []ToolMetadata{
 	},
 	{
 		Name:        "update_setting_usw",
-		Description: "Update SettingUsw by ID",
+		Description: "Update SettingUsw",
 		Category:    "update",
 		Resource:    "SettingUsw",
+		IsSetting:   true,
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -4046,16 +10274,28 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"id": map[string]any{
-					"type":        "string",
-					"description": "Resource ID",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"dhcp_snoop": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
 		},
 	},
 	{
@@ -4090,7 +10330,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4105,9 +10345,28 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"devices": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -4128,12 +10387,31 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"devices": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4153,7 +10431,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4188,7 +10466,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4203,9 +10481,27 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"member_table": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -4226,12 +10522,30 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"member_table": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4251,7 +10565,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4286,7 +10600,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4301,9 +10615,78 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"blocked": map[string]any{
+					"type": "boolean",
+				},
+				"dev_id_override": map[string]any{
+					"type":    "integer",
+					"pattern": "non-generated field",
+				},
+				"fixed_ap_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"fixed_ap_mac": map[string]any{
+					"type":    "string",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+				},
+				"fixed_ip": map[string]any{
+					"type": "string",
+				},
+				"hostname": map[string]any{
+					"type": "string",
+				},
+				"ip": map[string]any{
+					"type":    "string",
+					"pattern": "non-generated field",
+				},
+				"last_seen": map[string]any{
+					"type": "integer",
+				},
+				"local_dns_record": map[string]any{
+					"type": "string",
+				},
+				"local_dns_record_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"mac": map[string]any{
+					"type":    "string",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"network_id": map[string]any{
+					"type": "string",
+				},
+				"note": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"use_fixedip": map[string]any{
+					"type": "boolean",
+				},
+				"usergroup_id": map[string]any{
+					"type": "string",
+				},
+				"virtual_network_override_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"virtual_network_override_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -4324,12 +10707,81 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"blocked": map[string]any{
+					"type": "boolean",
+				},
+				"dev_id_override": map[string]any{
+					"type":    "integer",
+					"pattern": "non-generated field",
+				},
+				"fixed_ap_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"fixed_ap_mac": map[string]any{
+					"type":    "string",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+				},
+				"fixed_ip": map[string]any{
+					"type": "string",
+				},
+				"hostname": map[string]any{
+					"type": "string",
+				},
+				"ip": map[string]any{
+					"type":    "string",
+					"pattern": "non-generated field",
+				},
+				"last_seen": map[string]any{
+					"type": "integer",
+				},
+				"local_dns_record": map[string]any{
+					"type": "string",
+				},
+				"local_dns_record_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"mac": map[string]any{
+					"type":    "string",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"network_id": map[string]any{
+					"type": "string",
+				},
+				"note": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"use_fixedip": map[string]any{
+					"type": "boolean",
+				},
+				"usergroup_id": map[string]any{
+					"type": "string",
+				},
+				"virtual_network_override_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"virtual_network_override_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4349,7 +10801,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4384,7 +10836,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4399,9 +10851,32 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"qos_rate_max_down": map[string]any{
+					"type":    "integer",
+					"pattern": "-1|[2-9]|[1-9][0-9]{1,4}|100000",
+				},
+				"qos_rate_max_up": map[string]any{
+					"type":    "integer",
+					"pattern": "-1|[2-9]|[1-9][0-9]{1,4}|100000",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -4422,12 +10897,35 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"qos_rate_max_down": map[string]any{
+					"type":    "integer",
+					"pattern": "-1|[2-9]|[1-9][0-9]{1,4}|100000",
+				},
+				"qos_rate_max_up": map[string]any{
+					"type":    "integer",
+					"pattern": "-1|[2-9]|[1-9][0-9]{1,4}|100000",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4447,7 +10945,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4482,7 +10980,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4497,9 +10995,40 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"heightInMeters": map[string]any{
+					"type": "number",
+				},
+				"locked": map[string]any{
+					"type": "boolean",
+				},
+				"map_id": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"type": map[string]any{
+					"type":        "string",
+					"description": "One of: uap|usg|usw",
+					"enum":        []any{"uap", "usg", "usw"},
+				},
+				"x": map[string]any{
+					"type": "string",
+				},
+				"y": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -4520,12 +11049,43 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"heightInMeters": map[string]any{
+					"type": "number",
+				},
+				"locked": map[string]any{
+					"type": "boolean",
+				},
+				"map_id": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"type": map[string]any{
+					"type":        "string",
+					"description": "One of: uap|usg|usw",
+					"enum":        []any{"uap", "usg", "usw"},
+				},
+				"x": map[string]any{
+					"type": "string",
+				},
+				"y": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4545,7 +11105,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4580,7 +11140,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4595,9 +11155,353 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"ap_group_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"ap_group_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: all|groups|devices",
+					"enum":        []any{"all", "groups", "devices"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auth_cache": map[string]any{
+					"type": "boolean",
+				},
+				"b_supported": map[string]any{
+					"type": "boolean",
+				},
+				"bc_filter_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"bc_filter_list": map[string]any{
+					"type":    "array",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"bss_transition": map[string]any{
+					"type": "boolean",
+				},
+				"country_beacon": map[string]any{
+					"type": "boolean",
+				},
+				"dpi_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dpigroup_id": map[string]any{
+					"type":    "string",
+					"pattern": "[\\d\\w]+|^$",
+				},
+				"dtim_6e": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dtim_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: default|custom",
+					"enum":        []any{"default", "custom"},
+				},
+				"dtim_na": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dtim_ng": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"element_adopt": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"enhanced_iot": map[string]any{
+					"type": "boolean",
+				},
+				"fast_roaming_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"group_rekey": map[string]any{
+					"type":    "integer",
+					"pattern": "^(0|[6-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9][0-9]|86400)$",
+				},
+				"hide_ssid": map[string]any{
+					"type": "boolean",
+				},
+				"hotspot2": map[string]any{
+					"type": "object",
+				},
+				"hotspot2conf_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"iapp_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"is_guest": map[string]any{
+					"type": "boolean",
+				},
+				"l2_isolation": map[string]any{
+					"type": "boolean",
+				},
+				"log_level": map[string]any{
+					"type": "string",
+				},
+				"mac_filter_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"mac_filter_list": map[string]any{
+					"type":    "array",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"mac_filter_policy": map[string]any{
+					"type":        "string",
+					"description": "One of: allow|deny",
+					"enum":        []any{"allow", "deny"},
+				},
+				"mcastenhance_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"minrate_na_advertising_rates": map[string]any{
+					"type": "boolean",
+				},
+				"minrate_na_data_rate_kbps": map[string]any{
+					"type": "integer",
+				},
+				"minrate_na_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"minrate_ng_advertising_rates": map[string]any{
+					"type": "boolean",
+				},
+				"minrate_ng_data_rate_kbps": map[string]any{
+					"type": "integer",
+				},
+				"minrate_ng_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"minrate_setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"mlo_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,32}",
+				},
+				"name_combine_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"name_combine_suffix": map[string]any{
+					"type":    "string",
+					"pattern": ".{0,8}",
+				},
+				"nas_identifier": map[string]any{
+					"type":    "string",
+					"pattern": ".{0,48}",
+				},
+				"nas_identifier_type": map[string]any{
+					"type":        "string",
+					"description": "One of: ap_name|ap_mac|bssid|site_name|custom",
+					"enum":        []any{"ap_name", "ap_mac", "bssid", "site_name", "custom"},
+				},
+				"networkconf_id": map[string]any{
+					"type": "string",
+				},
+				"no2ghz_oui": map[string]any{
+					"type": "boolean",
+				},
+				"optimize_iot_wifi_connectivity": map[string]any{
+					"type": "boolean",
+				},
+				"p2p": map[string]any{
+					"type": "boolean",
+				},
+				"p2p_cross_connect": map[string]any{
+					"type": "boolean",
+				},
+				"pmf_cipher": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|aes-128-cmac|bip-gmac-256",
+					"enum":        []any{"auto", "aes-128-cmac", "bip-gmac-256"},
+				},
+				"pmf_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|optional|required",
+					"enum":        []any{"disabled", "optional", "required"},
+				},
+				"priority": map[string]any{
+					"type":        "string",
+					"description": "One of: medium|high|low",
+					"enum":        []any{"medium", "high", "low"},
+				},
+				"private_preshared_keys": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"private_preshared_keys_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"proxy_arp": map[string]any{
+					"type": "boolean",
+				},
+				"radius_das_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"radius_mac_auth_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"radius_macacl_empty_password": map[string]any{
+					"type": "boolean",
+				},
+				"radius_macacl_format": map[string]any{
+					"type":        "string",
+					"description": "One of: none_lower|hyphen_lower|colon_lower|none_upper|hyphen_upper|colon_upper",
+					"enum":        []any{"none_lower", "hyphen_lower", "colon_lower", "none_upper", "hyphen_upper", "colon_upper"},
+				},
+				"radiusprofile_id": map[string]any{
+					"type": "string",
+				},
+				"roam_cluster_id": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-2][0-9]|[3][0-1]|^$",
+				},
+				"rrm_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"sae_anti_clogging": map[string]any{
+					"type": "integer",
+				},
+				"sae_groups": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "integer"},
+				},
+				"sae_psk": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"sae_psk_vlan_required": map[string]any{
+					"type": "boolean",
+				},
+				"sae_sync": map[string]any{
+					"type": "integer",
+				},
+				"schedule": map[string]any{
+					"type":    "array",
+					"pattern": "(sun|mon|tue|wed|thu|fri|sat)(\\-(sun|mon|tue|wed|thu|fri|sat))?\\|([0-2][0-9][0-5][0-9])\\-([0-2][0-9][0-5][0-9])",
+					"items":   map[string]any{"type": "string"},
+				},
+				"schedule_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"schedule_reversed": map[string]any{
+					"type": "boolean",
+				},
+				"schedule_with_duration": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"security": map[string]any{
+					"type":        "string",
+					"description": "One of: open|wpapsk|wep|wpaeap|osen",
+					"enum":        []any{"open", "wpapsk", "wep", "wpaeap", "osen"},
+				},
+				"setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"tdls_prohibit": map[string]any{
+					"type": "boolean",
+				},
+				"uapsd_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"uid_workspace_url": map[string]any{
+					"type": "string",
+				},
+				"usergroup_id": map[string]any{
+					"type": "string",
+				},
+				"vlan": map[string]any{
+					"type":    "integer",
+					"pattern": "[2-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-5]|^$",
+				},
+				"vlan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wep_idx": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-4]",
+				},
+				"wlan_band": map[string]any{
+					"type":        "string",
+					"description": "One of: 2g|5g|both",
+					"enum":        []any{"2g", "5g", "both"},
+				},
+				"wlan_bands": map[string]any{
+					"type":        "array",
+					"description": "One of: 2g|5g|6g",
+					"enum":        []any{"2g", "5g", "6g"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"wlangroup_id": map[string]any{
+					"type": "string",
+				},
+				"wpa3_enhanced_192": map[string]any{
+					"type": "boolean",
+				},
+				"wpa3_fast_roaming": map[string]any{
+					"type": "boolean",
+				},
+				"wpa3_support": map[string]any{
+					"type": "boolean",
+				},
+				"wpa3_transition": map[string]any{
+					"type": "boolean",
+				},
+				"wpa_enc": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|ccmp|gcmp|ccmp-256|gcmp-256",
+					"enum":        []any{"auto", "ccmp", "gcmp", "ccmp-256", "gcmp-256"},
+				},
+				"wpa_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|wpa1|wpa2",
+					"enum":        []any{"auto", "wpa1", "wpa2"},
+				},
+				"wpa_psk_radius": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|optional|required",
+					"enum":        []any{"disabled", "optional", "required"},
+				},
+				"x_iapp_key": map[string]any{
+					"type":    "string",
+					"pattern": "[0-9A-Fa-f]{32}",
+				},
+				"x_passphrase": map[string]any{
+					"type":    "string",
+					"pattern": "[\\x20-\\x7E]{8,255}|[0-9a-fA-F]{64}",
+				},
+				"x_wep": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -4618,12 +11522,356 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"ap_group_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"ap_group_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: all|groups|devices",
+					"enum":        []any{"all", "groups", "devices"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"auth_cache": map[string]any{
+					"type": "boolean",
+				},
+				"b_supported": map[string]any{
+					"type": "boolean",
+				},
+				"bc_filter_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"bc_filter_list": map[string]any{
+					"type":    "array",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"bss_transition": map[string]any{
+					"type": "boolean",
+				},
+				"country_beacon": map[string]any{
+					"type": "boolean",
+				},
+				"dpi_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"dpigroup_id": map[string]any{
+					"type":    "string",
+					"pattern": "[\\d\\w]+|^$",
+				},
+				"dtim_6e": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dtim_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: default|custom",
+					"enum":        []any{"default", "custom"},
+				},
+				"dtim_na": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"dtim_ng": map[string]any{
+					"type":    "integer",
+					"pattern": "^([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^$",
+				},
+				"element_adopt": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"enhanced_iot": map[string]any{
+					"type": "boolean",
+				},
+				"fast_roaming_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"group_rekey": map[string]any{
+					"type":    "integer",
+					"pattern": "^(0|[6-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9][0-9]|86400)$",
+				},
+				"hide_ssid": map[string]any{
+					"type": "boolean",
+				},
+				"hotspot2": map[string]any{
+					"type": "object",
+				},
+				"hotspot2conf_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"iapp_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"is_guest": map[string]any{
+					"type": "boolean",
+				},
+				"l2_isolation": map[string]any{
+					"type": "boolean",
+				},
+				"log_level": map[string]any{
+					"type": "string",
+				},
+				"mac_filter_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"mac_filter_list": map[string]any{
+					"type":    "array",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"mac_filter_policy": map[string]any{
+					"type":        "string",
+					"description": "One of: allow|deny",
+					"enum":        []any{"allow", "deny"},
+				},
+				"mcastenhance_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"minrate_na_advertising_rates": map[string]any{
+					"type": "boolean",
+				},
+				"minrate_na_data_rate_kbps": map[string]any{
+					"type": "integer",
+				},
+				"minrate_na_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"minrate_ng_advertising_rates": map[string]any{
+					"type": "boolean",
+				},
+				"minrate_ng_data_rate_kbps": map[string]any{
+					"type": "integer",
+				},
+				"minrate_ng_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"minrate_setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"mlo_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,32}",
+				},
+				"name_combine_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"name_combine_suffix": map[string]any{
+					"type":    "string",
+					"pattern": ".{0,8}",
+				},
+				"nas_identifier": map[string]any{
+					"type":    "string",
+					"pattern": ".{0,48}",
+				},
+				"nas_identifier_type": map[string]any{
+					"type":        "string",
+					"description": "One of: ap_name|ap_mac|bssid|site_name|custom",
+					"enum":        []any{"ap_name", "ap_mac", "bssid", "site_name", "custom"},
+				},
+				"networkconf_id": map[string]any{
+					"type": "string",
+				},
+				"no2ghz_oui": map[string]any{
+					"type": "boolean",
+				},
+				"optimize_iot_wifi_connectivity": map[string]any{
+					"type": "boolean",
+				},
+				"p2p": map[string]any{
+					"type": "boolean",
+				},
+				"p2p_cross_connect": map[string]any{
+					"type": "boolean",
+				},
+				"pmf_cipher": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|aes-128-cmac|bip-gmac-256",
+					"enum":        []any{"auto", "aes-128-cmac", "bip-gmac-256"},
+				},
+				"pmf_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|optional|required",
+					"enum":        []any{"disabled", "optional", "required"},
+				},
+				"priority": map[string]any{
+					"type":        "string",
+					"description": "One of: medium|high|low",
+					"enum":        []any{"medium", "high", "low"},
+				},
+				"private_preshared_keys": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"private_preshared_keys_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"proxy_arp": map[string]any{
+					"type": "boolean",
+				},
+				"radius_das_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"radius_mac_auth_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"radius_macacl_empty_password": map[string]any{
+					"type": "boolean",
+				},
+				"radius_macacl_format": map[string]any{
+					"type":        "string",
+					"description": "One of: none_lower|hyphen_lower|colon_lower|none_upper|hyphen_upper|colon_upper",
+					"enum":        []any{"none_lower", "hyphen_lower", "colon_lower", "none_upper", "hyphen_upper", "colon_upper"},
+				},
+				"radiusprofile_id": map[string]any{
+					"type": "string",
+				},
+				"roam_cluster_id": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-9]|[1-2][0-9]|[3][0-1]|^$",
+				},
+				"rrm_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"sae_anti_clogging": map[string]any{
+					"type": "integer",
+				},
+				"sae_groups": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "integer"},
+				},
+				"sae_psk": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"sae_psk_vlan_required": map[string]any{
+					"type": "boolean",
+				},
+				"sae_sync": map[string]any{
+					"type": "integer",
+				},
+				"schedule": map[string]any{
+					"type":    "array",
+					"pattern": "(sun|mon|tue|wed|thu|fri|sat)(\\-(sun|mon|tue|wed|thu|fri|sat))?\\|([0-2][0-9][0-5][0-9])\\-([0-2][0-9][0-5][0-9])",
+					"items":   map[string]any{"type": "string"},
+				},
+				"schedule_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"schedule_reversed": map[string]any{
+					"type": "boolean",
+				},
+				"schedule_with_duration": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"security": map[string]any{
+					"type":        "string",
+					"description": "One of: open|wpapsk|wep|wpaeap|osen",
+					"enum":        []any{"open", "wpapsk", "wep", "wpaeap", "osen"},
+				},
+				"setting_preference": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|manual",
+					"enum":        []any{"auto", "manual"},
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"tdls_prohibit": map[string]any{
+					"type": "boolean",
+				},
+				"uapsd_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"uid_workspace_url": map[string]any{
+					"type": "string",
+				},
+				"usergroup_id": map[string]any{
+					"type": "string",
+				},
+				"vlan": map[string]any{
+					"type":    "integer",
+					"pattern": "[2-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-5]|^$",
+				},
+				"vlan_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"wep_idx": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-4]",
+				},
+				"wlan_band": map[string]any{
+					"type":        "string",
+					"description": "One of: 2g|5g|both",
+					"enum":        []any{"2g", "5g", "both"},
+				},
+				"wlan_bands": map[string]any{
+					"type":        "array",
+					"description": "One of: 2g|5g|6g",
+					"enum":        []any{"2g", "5g", "6g"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"wlangroup_id": map[string]any{
+					"type": "string",
+				},
+				"wpa3_enhanced_192": map[string]any{
+					"type": "boolean",
+				},
+				"wpa3_fast_roaming": map[string]any{
+					"type": "boolean",
+				},
+				"wpa3_support": map[string]any{
+					"type": "boolean",
+				},
+				"wpa3_transition": map[string]any{
+					"type": "boolean",
+				},
+				"wpa_enc": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|ccmp|gcmp|ccmp-256|gcmp-256",
+					"enum":        []any{"auto", "ccmp", "gcmp", "ccmp-256", "gcmp-256"},
+				},
+				"wpa_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: auto|wpa1|wpa2",
+					"enum":        []any{"auto", "wpa1", "wpa2"},
+				},
+				"wpa_psk_radius": map[string]any{
+					"type":        "string",
+					"description": "One of: disabled|optional|required",
+					"enum":        []any{"disabled", "optional", "required"},
+				},
+				"x_iapp_key": map[string]any{
+					"type":    "string",
+					"pattern": "[0-9A-Fa-f]{32}",
+				},
+				"x_passphrase": map[string]any{
+					"type":    "string",
+					"pattern": "[\\x20-\\x7E]{8,255}|[0-9a-fA-F]{64}",
+				},
+				"x_wep": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4643,7 +11891,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4678,7 +11926,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4693,9 +11941,24 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
 		},
@@ -4716,12 +11979,27 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type":    "string",
+					"pattern": ".{1,128}",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 	{
@@ -4741,7 +12019,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 }
