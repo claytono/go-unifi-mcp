@@ -8,28 +8,34 @@ import (
 	"github.com/claytono/go-unifi-mcp/internal/server"
 )
 
+var loadConfig = config.Load
+var newClient = server.NewClient
+var newServer = server.New
+var serve = server.Serve
+var exit = os.Exit
+
 func main() {
 	if err := run(); err != nil {
 		log.Printf("Error: %v", err)
-		os.Exit(1)
+		exit(1)
 	}
 }
 
 func run() error {
 	// Load configuration
-	cfg, err := config.Load()
+	cfg, err := loadConfig()
 	if err != nil {
 		return err
 	}
 
 	// Create UniFi client
-	client, err := server.NewClient(cfg)
+	client, err := newClient(cfg)
 	if err != nil {
 		return err
 	}
 
 	// Create MCP server
-	s, err := server.New(server.Options{
+	s, err := newServer(server.Options{
 		Client: client,
 	})
 	if err != nil {
@@ -37,5 +43,5 @@ func run() error {
 	}
 
 	// Start serving
-	return server.Serve(s)
+	return serve(s)
 }

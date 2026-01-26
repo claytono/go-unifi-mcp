@@ -79,6 +79,12 @@ edit generated type files. See Phase 2 documentation for sync process.
 - Use testify for assertions
 - Mock external dependencies using mockery
 
+### Mocks
+
+- Generate mocks with `go generate ./internal/server/mocks`
+- Mock definitions live in `internal/server/mocks`
+- Do not edit generated mocks manually
+
 ## Issue Tracking
 
 This project uses **bd** (beads) for issue tracking. Run `bd onboard` to get

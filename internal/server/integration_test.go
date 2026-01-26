@@ -2,12 +2,17 @@ package server
 
 import (
 	"testing"
+
+	servermocks "github.com/claytono/go-unifi-mcp/internal/server/mocks"
+	"github.com/stretchr/testify/assert"
 )
 
 // TestServerToolCount verifies all tools are registered.
 func TestServerToolCount(t *testing.T) {
-	t.Skip("Requires mock client - implement with mockery")
+	client := servermocks.NewClient(t)
 
-	// With a mock client, create server and verify tool count
-	// Expected: 242 tools registered
+	s, err := New(Options{Client: client, Mode: ModeEager})
+	assert.NoError(t, err)
+	assert.NotNil(t, s)
+	assert.Len(t, s.ListTools(), 242)
 }

@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/claytono/go-unifi-mcp/internal/config"
+	servermocks "github.com/claytono/go-unifi-mcp/internal/server/mocks"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -15,10 +16,13 @@ func TestNew_RequiresClient(t *testing.T) {
 }
 
 func TestNew_CreatesServer(t *testing.T) {
-	// This test requires a mock client
-	// Since unifi.Client has many methods, we'd need mockery to generate a mock
-	// For now, we test the nil client case above
-	t.Skip("Requires mock generation - see integration_test.go")
+	client := servermocks.NewClient(t)
+	t.Setenv("UNIFI_TOOL_MODE", "")
+
+	s, err := New(Options{Client: client})
+	assert.NoError(t, err)
+	assert.NotNil(t, s)
+	assert.Len(t, s.ListTools(), 3)
 }
 
 func TestNewClient_APIKey(t *testing.T) {
