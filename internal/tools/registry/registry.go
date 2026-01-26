@@ -11,10 +11,28 @@ import (
 	"github.com/mark3labs/mcp-go/server"
 )
 
+// ValidatorFunc validates a client against tool metadata.
+type ValidatorFunc func(client any, tools []generated.ToolMetadata, typeRegistry map[string]func() any) error
+
+// defaultValidator is the production validator.
+var defaultValidator ValidatorFunc = generated.ValidateClientMethods
+
 // RegisterAllTools registers all generated UniFi MCP tools with the server.
 // It builds tools dynamically from the metadata and maps each to its
 // corresponding handler from the handler registry.
 func RegisterAllTools(s *server.MCPServer, client unifi.Client) error {
+	return registerAllToolsWithValidator(s, client, defaultValidator)
+}
+
+// registerAllToolsWithValidator is the internal implementation that allows testing with custom validators.
+func registerAllToolsWithValidator(s *server.MCPServer, client unifi.Client, validator ValidatorFunc) error {
+	// Validate all client methods exist with correct signatures before registration.
+	// Skip validation for nil client (used only in tests).
+	if client != nil {
+		if err := validator(client, generated.AllToolMetadata, generated.TypeRegistry); err != nil {
+			return fmt.Errorf("client validation failed: %w", err)
+		}
+	}
 	return registerTools(s, client, generated.AllToolMetadata, generated.GetHandlerRegistry())
 }
 

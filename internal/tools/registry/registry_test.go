@@ -1,6 +1,7 @@
 package registry
 
 import (
+	"errors"
 	"testing"
 
 	"github.com/claytono/go-unifi-mcp/internal/tools/generated"
@@ -155,6 +156,22 @@ func TestRegisterTools_MissingHandler(t *testing.T) {
 	err := registerTools(s, nil, tools, handlers)
 	require.Error(t, err)
 	assert.Contains(t, err.Error(), "no handler for tool")
+}
+
+func TestRegisterAllToolsWithValidator_ValidationFailure(t *testing.T) {
+	s := server.NewMCPServer("test", "1.0", server.WithToolCapabilities(true))
+
+	// Create a validator that always fails
+	failingValidator := func(_ any, _ []generated.ToolMetadata, _ map[string]func() any) error {
+		return errors.New("validation failed: missing method ListNetwork")
+	}
+
+	// Use mockClient which embeds unifi.Client - methods would panic if called
+	// but our validator fails before any methods are invoked
+	err := registerAllToolsWithValidator(s, &mockClient{}, failingValidator)
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "client validation failed")
+	assert.Contains(t, err.Error(), "missing method ListNetwork")
 }
 
 func TestBuildToolFromMetadata_PreservesSchema(t *testing.T) {

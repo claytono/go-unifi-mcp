@@ -85,12 +85,76 @@ func TestExtractError(t *testing.T) {
 	t.Skip("extractError tested implicitly through integration tests")
 }
 
+func TestValidateClientMethods_MissingMethod(t *testing.T) {
+	// Create a client missing a required method
+	type IncompleteClient struct{}
+	client := &IncompleteClient{}
+
+	tools := []ToolMetadata{
+		{Name: "list_test", Category: "list", Resource: "Test"},
+	}
+
+	err := ValidateClientMethods(client, tools, TypeRegistry)
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "missing client method")
+	assert.Contains(t, err.Error(), "ListTest")
+}
+
 func TestValidateClientMethods_MissingTypeInRegistry(t *testing.T) {
-	t.Skip("ValidateClientMethods requires real client implementation")
+	client := &FakeTestClient{}
+
+	tools := []ToolMetadata{
+		{Name: "create_nonexistent", Category: "create", Resource: "NonExistent"},
+	}
+
+	// Use empty registry
+	emptyRegistry := map[string]func() any{}
+
+	err := ValidateClientMethods(client, tools, emptyRegistry)
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "missing type in registry")
+	assert.Contains(t, err.Error(), "NonExistent")
 }
 
 func TestValidateClientMethods_UnknownCategory(t *testing.T) {
-	t.Skip("ValidateClientMethods requires real client implementation")
+	client := &FakeTestClient{}
+
+	tools := []ToolMetadata{
+		{Name: "unknown_test", Category: "unknown", Resource: "Test"},
+	}
+
+	err := ValidateClientMethods(client, tools, TypeRegistry)
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "unknown category")
+}
+
+func TestValidateClientMethods_WrongSignature(t *testing.T) {
+	// Create a client with wrong method signature
+	type WrongSignatureClient struct{}
+	// Add a method with wrong signature
+	client := &WrongSignatureClient{}
+
+	tools := []ToolMetadata{
+		{Name: "list_test", Category: "list", Resource: "Test"},
+	}
+
+	err := ValidateClientMethods(client, tools, TypeRegistry)
+	require.Error(t, err)
+	// Will fail on missing method first
+}
+
+func TestValidateClientMethods_Success(t *testing.T) {
+	client := &FakeTestClient{}
+
+	tools := []ToolMetadata{
+		{Name: "list_test", Category: "list", Resource: "Test"},
+		{Name: "get_test", Category: "get", Resource: "Test"},
+		{Name: "delete_test", Category: "delete", Resource: "Test"},
+	}
+
+	// Note: FakeTestClient methods have correct signatures
+	err := ValidateClientMethods(client, tools, TypeRegistry)
+	require.NoError(t, err)
 }
 
 func TestTypeRegistry(t *testing.T) {
@@ -234,6 +298,90 @@ func TestGenericDelete_MethodNotFound(t *testing.T) {
 	assert.Contains(t, content.Text, "not found")
 }
 
+func TestGenericGet_MissingID(t *testing.T) {
+	client := &FakeTestClient{}
+	handler := GenericGet(client, "Test", false)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{"site": "default"} // Missing "id"
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.True(t, result.IsError)
+
+	content := result.Content[0].(mcp.TextContent)
+	assert.Contains(t, content.Text, "id")
+	assert.Contains(t, content.Text, "missing")
+}
+
+func TestGenericGet_InvalidIDType(t *testing.T) {
+	client := &FakeTestClient{}
+	handler := GenericGet(client, "Test", false)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{"site": "default", "id": 123} // int instead of string
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.True(t, result.IsError)
+
+	content := result.Content[0].(mcp.TextContent)
+	assert.Contains(t, content.Text, "id")
+}
+
+func TestGenericDelete_MissingID(t *testing.T) {
+	client := &FakeTestClient{}
+	handler := GenericDelete(client, "Test")
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{"site": "default"} // Missing "id"
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.True(t, result.IsError)
+
+	content := result.Content[0].(mcp.TextContent)
+	assert.Contains(t, content.Text, "id")
+	assert.Contains(t, content.Text, "missing")
+}
+
+func TestGenericCreate_MissingData(t *testing.T) {
+	client := &FakeTestClient{}
+	handler := GenericCreate(client, "Test", func() any { return &struct{ Name string }{} })
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{"site": "default"} // Missing "data"
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.True(t, result.IsError)
+
+	content := result.Content[0].(mcp.TextContent)
+	assert.Contains(t, content.Text, "data")
+	assert.Contains(t, content.Text, "missing")
+}
+
+func TestGenericUpdate_MissingData(t *testing.T) {
+	client := &FakeTestClient{}
+	handler := GenericUpdate(client, "Test", func() any { return &struct{ Name string }{} })
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{"site": "default", "id": "123"} // Missing "data"
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.True(t, result.IsError)
+
+	content := result.Content[0].(mcp.TextContent)
+	assert.Contains(t, content.Text, "data")
+	assert.Contains(t, content.Text, "missing")
+}
+
 // FakeTestClient provides methods we can use for reflection-based testing.
 type FakeTestClient struct {
 	ShouldError bool
@@ -345,6 +493,22 @@ func TestGenericGet_WithFakeClient_Setting(t *testing.T) {
 
 	content := result.Content[0].(mcp.TextContent)
 	assert.Contains(t, content.Text, "enabled")
+}
+
+func TestGenericGet_WithFakeClient_Setting_Error(t *testing.T) {
+	client := &FakeTestClient{ShouldError: true}
+	handler := GenericGet(client, "TestSetting", true)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{"site": "default"}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.True(t, result.IsError)
+
+	content := result.Content[0].(mcp.TextContent)
+	assert.Contains(t, content.Text, "get setting error")
 }
 
 func TestGenericGet_WithFakeClient_Error(t *testing.T) {

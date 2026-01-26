@@ -34,7 +34,10 @@ func GenericList(client any, resourceName string) server.ToolHandlerFunc {
 			return mcp.NewToolResultError(err.Error()), nil
 		}
 
-		data, _ := json.MarshalIndent(results[0].Interface(), "", "  ")
+		data, err := json.MarshalIndent(results[0].Interface(), "", "  ")
+		if err != nil {
+			return mcp.NewToolResultError(fmt.Sprintf("failed to marshal response: %v", err)), nil
+		}
 		return mcp.NewToolResultText(string(data)), nil
 	}
 }
@@ -61,7 +64,10 @@ func GenericGet(client any, resourceName string, isSetting bool) server.ToolHand
 				reflect.ValueOf(site),
 			})
 		} else {
-			id, _ := req.GetArguments()["id"].(string)
+			id, ok := req.GetArguments()["id"].(string)
+			if !ok || id == "" {
+				return mcp.NewToolResultError("required parameter 'id' is missing or invalid"), nil
+			}
 			results = method.Call([]reflect.Value{
 				reflect.ValueOf(ctx),
 				reflect.ValueOf(site),
@@ -73,7 +79,10 @@ func GenericGet(client any, resourceName string, isSetting bool) server.ToolHand
 			return mcp.NewToolResultError(err.Error()), nil
 		}
 
-		data, _ := json.MarshalIndent(results[0].Interface(), "", "  ")
+		data, err := json.MarshalIndent(results[0].Interface(), "", "  ")
+		if err != nil {
+			return mcp.NewToolResultError(fmt.Sprintf("failed to marshal response: %v", err)), nil
+		}
 		return mcp.NewToolResultText(string(data)), nil
 	}
 }
@@ -89,7 +98,14 @@ func GenericCreate(client any, resourceName string, newTypeFunc func() any) serv
 		input := newTypeFunc()
 
 		// Unmarshal the data argument into the input struct
-		dataRaw, _ := json.Marshal(req.GetArguments()["data"])
+		dataArg, ok := req.GetArguments()["data"]
+		if !ok {
+			return mcp.NewToolResultError("required parameter 'data' is missing"), nil
+		}
+		dataRaw, err := json.Marshal(dataArg)
+		if err != nil {
+			return mcp.NewToolResultError(fmt.Sprintf("failed to parse data: %v", err)), nil
+		}
 		if err := json.Unmarshal(dataRaw, input); err != nil {
 			return mcp.NewToolResultError("invalid data: " + err.Error()), nil
 		}
@@ -110,7 +126,10 @@ func GenericCreate(client any, resourceName string, newTypeFunc func() any) serv
 			return mcp.NewToolResultError(err.Error()), nil
 		}
 
-		data, _ := json.MarshalIndent(results[0].Interface(), "", "  ")
+		data, err := json.MarshalIndent(results[0].Interface(), "", "  ")
+		if err != nil {
+			return mcp.NewToolResultError(fmt.Sprintf("failed to marshal response: %v", err)), nil
+		}
 		return mcp.NewToolResultText(string(data)), nil
 	}
 }
@@ -126,7 +145,14 @@ func GenericUpdate(client any, resourceName string, newTypeFunc func() any) serv
 		input := newTypeFunc()
 
 		// Unmarshal the data argument into the input struct
-		dataRaw, _ := json.Marshal(req.GetArguments()["data"])
+		dataArg, ok := req.GetArguments()["data"]
+		if !ok {
+			return mcp.NewToolResultError("required parameter 'data' is missing"), nil
+		}
+		dataRaw, err := json.Marshal(dataArg)
+		if err != nil {
+			return mcp.NewToolResultError(fmt.Sprintf("failed to parse data: %v", err)), nil
+		}
 		if err := json.Unmarshal(dataRaw, input); err != nil {
 			return mcp.NewToolResultError("invalid data: " + err.Error()), nil
 		}
@@ -147,7 +173,10 @@ func GenericUpdate(client any, resourceName string, newTypeFunc func() any) serv
 			return mcp.NewToolResultError(err.Error()), nil
 		}
 
-		data, _ := json.MarshalIndent(results[0].Interface(), "", "  ")
+		data, err := json.MarshalIndent(results[0].Interface(), "", "  ")
+		if err != nil {
+			return mcp.NewToolResultError(fmt.Sprintf("failed to marshal response: %v", err)), nil
+		}
 		return mcp.NewToolResultText(string(data)), nil
 	}
 }
@@ -158,7 +187,10 @@ func GenericDelete(client any, resourceName string) server.ToolHandlerFunc {
 
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		site := extractSite(req)
-		id, _ := req.GetArguments()["id"].(string)
+		id, ok := req.GetArguments()["id"].(string)
+		if !ok || id == "" {
+			return mcp.NewToolResultError("required parameter 'id' is missing or invalid"), nil
+		}
 
 		clientVal := reflect.ValueOf(client)
 		method := clientVal.MethodByName(methodName)
@@ -200,6 +232,9 @@ func extractError(val reflect.Value) error {
 // ValidateClientMethods checks that all expected client methods exist at startup.
 // This catches any go-unifi method naming changes immediately rather than on first tool call.
 func ValidateClientMethods(client any, tools []ToolMetadata, typeRegistry map[string]func() any) error {
+	if client == nil {
+		return fmt.Errorf("client cannot be nil")
+	}
 	clientVal := reflect.ValueOf(client)
 
 	for _, meta := range tools {
@@ -231,6 +266,32 @@ func ValidateClientMethods(client any, tools []ToolMetadata, typeRegistry map[st
 		method := clientVal.MethodByName(methodName)
 		if !method.IsValid() {
 			return fmt.Errorf("missing client method: %s (for tool %s)", methodName, meta.Name)
+		}
+
+		// Validate method signature
+		methodType := method.Type()
+		var expectedIn, expectedOut int
+		switch meta.Category {
+		case "list":
+			expectedIn, expectedOut = 2, 2 // (ctx, site) -> (result, error)
+		case "get":
+			if meta.IsSetting {
+				expectedIn, expectedOut = 2, 2 // (ctx, site) -> (result, error)
+			} else {
+				expectedIn, expectedOut = 3, 2 // (ctx, site, id) -> (result, error)
+			}
+		case "create", "update":
+			expectedIn, expectedOut = 3, 2 // (ctx, site, input) -> (result, error)
+		case "delete":
+			expectedIn, expectedOut = 3, 1 // (ctx, site, id) -> error
+		}
+		if methodType.NumIn() != expectedIn {
+			return fmt.Errorf("method %s has %d parameters, expected %d (for tool %s)",
+				methodName, methodType.NumIn(), expectedIn, meta.Name)
+		}
+		if methodType.NumOut() != expectedOut {
+			return fmt.Errorf("method %s has %d return values, expected %d (for tool %s)",
+				methodName, methodType.NumOut(), expectedOut, meta.Name)
 		}
 	}
 
