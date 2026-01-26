@@ -11,25 +11,37 @@ import (
 type HandlerFunc func(client unifi.Client) server.ToolHandlerFunc
 
 // GetHandlerRegistry returns tool handlers keyed by name.
+// Handlers use reflection to call client methods dynamically.
 func GetHandlerRegistry() map[string]HandlerFunc {
 	return map[string]HandlerFunc{
 {{- range . }}
 {{- $name := .Name }}
 {{- $snake := .SnakeName }}
+{{- $isSetting := .IsSetting }}
 {{- if has "List" .Operations }}
-		"list_{{ $snake }}": List{{ $name }},
+		"list_{{ $snake }}": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "{{ $name }}")
+		},
 {{- end }}
 {{- if has "Get" .Operations }}
-		"get_{{ $snake }}": Get{{ $name }},
+		"get_{{ $snake }}": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "{{ $name }}", {{ $isSetting }})
+		},
 {{- end }}
 {{- if has "Create" .Operations }}
-		"create_{{ $snake }}": Create{{ $name }},
+		"create_{{ $snake }}": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "{{ $name }}", TypeRegistry["{{ $name }}"])
+		},
 {{- end }}
 {{- if has "Update" .Operations }}
-		"update_{{ $snake }}": Update{{ $name }},
+		"update_{{ $snake }}": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "{{ $name }}", TypeRegistry["{{ $name }}"])
+		},
 {{- end }}
 {{- if has "Delete" .Operations }}
-		"delete_{{ $snake }}": Delete{{ $name }},
+		"delete_{{ $snake }}": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "{{ $name }}")
+		},
 {{- end }}
 {{- end }}
 	}

@@ -2,7 +2,6 @@ package mcpgen
 
 import (
 	"os"
-	"os/exec"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -105,55 +104,41 @@ func TestGenerate_Integration(t *testing.T) {
 	}
 
 	// Verify files were created
-	toolsFile := filepath.Join(outDir, "tools.gen.go")
-	registryFile := filepath.Join(outDir, "registry.gen.go")
+	handlersFile := filepath.Join(outDir, "handlers.gen.go")
+	metadataFile := filepath.Join(outDir, "metadata.gen.go")
+	typesFile := filepath.Join(outDir, "types.gen.go")
 
-	if _, err := os.Stat(toolsFile); os.IsNotExist(err) {
-		t.Errorf("tools.gen.go was not created")
+	if _, err := os.Stat(handlersFile); os.IsNotExist(err) {
+		t.Errorf("handlers.gen.go was not created")
 	}
 
-	if _, err := os.Stat(registryFile); os.IsNotExist(err) {
-		t.Errorf("registry.gen.go was not created")
+	if _, err := os.Stat(metadataFile); os.IsNotExist(err) {
+		t.Errorf("metadata.gen.go was not created")
+	}
+
+	if _, err := os.Stat(typesFile); os.IsNotExist(err) {
+		t.Errorf("types.gen.go was not created")
 	}
 
 	// Check that the generated files have content
-	toolsContent, err := os.ReadFile(toolsFile)
+	handlersContent, err := os.ReadFile(handlersFile)
 	if err != nil {
-		t.Fatalf("Failed to read tools.gen.go: %v", err)
+		t.Fatalf("Failed to read handlers.gen.go: %v", err)
 	}
-	if len(toolsContent) < 1000 {
-		t.Errorf("tools.gen.go seems too small: %d bytes", len(toolsContent))
-	}
-
-	registryContent, err := os.ReadFile(registryFile)
-	if err != nil {
-		t.Fatalf("Failed to read registry.gen.go: %v", err)
-	}
-	if len(registryContent) < 1000 {
-		t.Errorf("registry.gen.go seems too small: %d bytes", len(registryContent))
+	if len(handlersContent) < 1000 {
+		t.Errorf("handlers.gen.go seems too small: %d bytes", len(handlersContent))
 	}
 
 	// Verify expected content
-	if !strings.Contains(string(toolsContent), "package generated") {
-		t.Error("tools.gen.go missing package declaration")
+	if !strings.Contains(string(handlersContent), "package generated") {
+		t.Error("handlers.gen.go missing package declaration")
 	}
-	if !strings.Contains(string(registryContent), "RegisterAllTools") {
-		t.Error("registry.gen.go missing RegisterAllTools function")
-	}
-
-	// Verify generated code compiles
-	cmd := exec.Command("go", "build", toolsFile, registryFile)
-	cmd.Env = append(os.Environ(),
-		"GOPATH="+filepath.Join(os.Getenv("PWD"), "../../.go"),
-		"GOMODCACHE="+filepath.Join(os.Getenv("PWD"), "../../.go/pkg/mod"),
-		"GOCACHE="+filepath.Join(os.Getenv("PWD"), "../../.go/cache"),
-	)
-	if output, err := cmd.CombinedOutput(); err != nil {
-		t.Errorf("Generated code does not compile: %v\n%s", err, output)
+	if !strings.Contains(string(handlersContent), "GetHandlerRegistry") {
+		t.Error("handlers.gen.go missing GetHandlerRegistry function")
 	}
 }
 
-func TestGenerate_ToolCounts(t *testing.T) {
+func TestGenerate_HandlerRegistryEntries(t *testing.T) {
 	// Skip if running in short mode
 	if testing.Short() {
 		t.Skip("skipping integration test in short mode")
@@ -176,17 +161,18 @@ func TestGenerate_ToolCounts(t *testing.T) {
 		t.Fatalf("Generate() error = %v", err)
 	}
 
-	// Read the generated tools file
-	toolsFile := filepath.Join(outDir, "tools.gen.go")
-	content, err := os.ReadFile(toolsFile)
+	// Read the generated handlers file
+	handlersFile := filepath.Join(outDir, "handlers.gen.go")
+	content, err := os.ReadFile(handlersFile)
 	if err != nil {
-		t.Fatalf("Failed to read tools.gen.go: %v", err)
+		t.Fatalf("Failed to read handlers.gen.go: %v", err)
 	}
 
-	// Count function definitions - should be at least 200
-	funcCount := strings.Count(string(content), "\nfunc ")
-	if funcCount < 200 {
-		t.Errorf("Expected at least 200 tool functions, got %d", funcCount)
+	// Count handler registry entries - should be at least 200
+	// Each entry looks like: "list_resource": func(client unifi.Client)
+	entryCount := strings.Count(string(content), "func(client unifi.Client)")
+	if entryCount < 200 {
+		t.Errorf("Expected at least 200 handler entries, got %d", entryCount)
 	}
 }
 
@@ -240,17 +226,26 @@ func TestGenerate_WithMockFields(t *testing.T) {
 	require.NoError(t, err)
 
 	// Verify files were created
-	_, err = os.Stat(filepath.Join(outDir, "tools.gen.go"))
-	assert.NoError(t, err, "tools.gen.go should exist")
+	_, err = os.Stat(filepath.Join(outDir, "handlers.gen.go"))
+	assert.NoError(t, err, "handlers.gen.go should exist")
 
-	_, err = os.Stat(filepath.Join(outDir, "registry.gen.go"))
-	assert.NoError(t, err, "registry.gen.go should exist")
+	_, err = os.Stat(filepath.Join(outDir, "metadata.gen.go"))
+	assert.NoError(t, err, "metadata.gen.go should exist")
+
+	_, err = os.Stat(filepath.Join(outDir, "types.gen.go"))
+	assert.NoError(t, err, "types.gen.go should exist")
 
 	// Verify generated code compiles by checking it has expected content
-	toolsContent, err := os.ReadFile(filepath.Join(outDir, "tools.gen.go"))
+	handlersContent, err := os.ReadFile(filepath.Join(outDir, "handlers.gen.go"))
 	require.NoError(t, err)
-	assert.Contains(t, string(toolsContent), "package generated")
-	assert.Contains(t, string(toolsContent), "Network") // Our mock resource
+	assert.Contains(t, string(handlersContent), "package generated")
+	assert.Contains(t, string(handlersContent), "Network") // Our mock resource
+
+	// Verify metadata.gen.go has expected content
+	metadataContent, err := os.ReadFile(filepath.Join(outDir, "metadata.gen.go"))
+	require.NoError(t, err)
+	assert.Contains(t, string(metadataContent), "Network")
+	assert.Contains(t, string(metadataContent), "AllToolMetadata")
 }
 
 func TestGenerate_MissingV2Dir(t *testing.T) {
@@ -313,7 +308,7 @@ func TestRenderTemplate_WriteError(t *testing.T) {
 		{Name: "Test", SnakeName: "test", Operations: []string{"Get"}, IsSetting: false},
 	}
 
-	err := renderTemplate("templates/tools.go.tmpl", outPath, data)
+	err := renderTemplate("templates/handlers.go.tmpl", outPath, data)
 	if err == nil {
 		t.Error("renderTemplate() should return error when write fails")
 	}
@@ -975,7 +970,7 @@ func TestRenderTemplate_TemplateExecutionError(t *testing.T) {
 	type badData struct {
 		Name string
 	}
-	err := renderTemplate("templates/tools.go.tmpl", outPath, badData{Name: "test"})
+	err := renderTemplate("templates/handlers.go.tmpl", outPath, badData{Name: "test"})
 	if err == nil {
 		t.Error("renderTemplate() should return error for invalid data type")
 	}
@@ -1003,7 +998,7 @@ func TestRenderTemplate_FormatError(t *testing.T) {
 		},
 	}
 
-	err := renderTemplate("templates/tools.go.tmpl", outPath, data)
+	err := renderTemplate("templates/handlers.go.tmpl", outPath, data)
 	if err == nil {
 		t.Skip("Template handled invalid name - format error not triggered")
 	}

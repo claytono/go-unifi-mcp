@@ -11,249 +11,734 @@ import (
 type HandlerFunc func(client unifi.Client) server.ToolHandlerFunc
 
 // GetHandlerRegistry returns tool handlers keyed by name.
+// Handlers use reflection to call client methods dynamically.
 func GetHandlerRegistry() map[string]HandlerFunc {
 	return map[string]HandlerFunc{
-		"list_ap_group":                         ListAPGroup,
-		"get_ap_group":                          GetAPGroup,
-		"create_ap_group":                       CreateAPGroup,
-		"update_ap_group":                       UpdateAPGroup,
-		"delete_ap_group":                       DeleteAPGroup,
-		"list_account":                          ListAccount,
-		"get_account":                           GetAccount,
-		"create_account":                        CreateAccount,
-		"update_account":                        UpdateAccount,
-		"delete_account":                        DeleteAccount,
-		"list_broadcast_group":                  ListBroadcastGroup,
-		"get_broadcast_group":                   GetBroadcastGroup,
-		"create_broadcast_group":                CreateBroadcastGroup,
-		"update_broadcast_group":                UpdateBroadcastGroup,
-		"delete_broadcast_group":                DeleteBroadcastGroup,
-		"list_channel_plan":                     ListChannelPlan,
-		"get_channel_plan":                      GetChannelPlan,
-		"create_channel_plan":                   CreateChannelPlan,
-		"update_channel_plan":                   UpdateChannelPlan,
-		"delete_channel_plan":                   DeleteChannelPlan,
-		"list_dhcp_option":                      ListDHCPOption,
-		"get_dhcp_option":                       GetDHCPOption,
-		"create_dhcp_option":                    CreateDHCPOption,
-		"update_dhcp_option":                    UpdateDHCPOption,
-		"delete_dhcp_option":                    DeleteDHCPOption,
-		"list_dns_record":                       ListDNSRecord,
-		"get_dns_record":                        GetDNSRecord,
-		"create_dns_record":                     CreateDNSRecord,
-		"update_dns_record":                     UpdateDNSRecord,
-		"delete_dns_record":                     DeleteDNSRecord,
-		"list_dashboard":                        ListDashboard,
-		"get_dashboard":                         GetDashboard,
-		"create_dashboard":                      CreateDashboard,
-		"update_dashboard":                      UpdateDashboard,
-		"delete_dashboard":                      DeleteDashboard,
-		"list_device":                           ListDevice,
-		"get_device":                            GetDevice,
-		"list_dynamic_dns":                      ListDynamicDNS,
-		"get_dynamic_dns":                       GetDynamicDNS,
-		"create_dynamic_dns":                    CreateDynamicDNS,
-		"update_dynamic_dns":                    UpdateDynamicDNS,
-		"delete_dynamic_dns":                    DeleteDynamicDNS,
-		"list_firewall_group":                   ListFirewallGroup,
-		"get_firewall_group":                    GetFirewallGroup,
-		"create_firewall_group":                 CreateFirewallGroup,
-		"update_firewall_group":                 UpdateFirewallGroup,
-		"delete_firewall_group":                 DeleteFirewallGroup,
-		"list_firewall_rule":                    ListFirewallRule,
-		"get_firewall_rule":                     GetFirewallRule,
-		"create_firewall_rule":                  CreateFirewallRule,
-		"update_firewall_rule":                  UpdateFirewallRule,
-		"delete_firewall_rule":                  DeleteFirewallRule,
-		"list_firewall_zone":                    ListFirewallZone,
-		"get_firewall_zone":                     GetFirewallZone,
-		"create_firewall_zone":                  CreateFirewallZone,
-		"update_firewall_zone":                  UpdateFirewallZone,
-		"delete_firewall_zone":                  DeleteFirewallZone,
-		"list_firewall_zone_policy":             ListFirewallZonePolicy,
-		"get_firewall_zone_policy":              GetFirewallZonePolicy,
-		"create_firewall_zone_policy":           CreateFirewallZonePolicy,
-		"update_firewall_zone_policy":           UpdateFirewallZonePolicy,
-		"delete_firewall_zone_policy":           DeleteFirewallZonePolicy,
-		"list_heat_map":                         ListHeatMap,
-		"get_heat_map":                          GetHeatMap,
-		"create_heat_map":                       CreateHeatMap,
-		"update_heat_map":                       UpdateHeatMap,
-		"delete_heat_map":                       DeleteHeatMap,
-		"list_heat_map_point":                   ListHeatMapPoint,
-		"get_heat_map_point":                    GetHeatMapPoint,
-		"create_heat_map_point":                 CreateHeatMapPoint,
-		"update_heat_map_point":                 UpdateHeatMapPoint,
-		"delete_heat_map_point":                 DeleteHeatMapPoint,
-		"list_hotspot_2_conf":                   ListHotspot2Conf,
-		"get_hotspot_2_conf":                    GetHotspot2Conf,
-		"create_hotspot_2_conf":                 CreateHotspot2Conf,
-		"update_hotspot_2_conf":                 UpdateHotspot2Conf,
-		"delete_hotspot_2_conf":                 DeleteHotspot2Conf,
-		"list_hotspot_op":                       ListHotspotOp,
-		"get_hotspot_op":                        GetHotspotOp,
-		"create_hotspot_op":                     CreateHotspotOp,
-		"update_hotspot_op":                     UpdateHotspotOp,
-		"delete_hotspot_op":                     DeleteHotspotOp,
-		"list_hotspot_package":                  ListHotspotPackage,
-		"get_hotspot_package":                   GetHotspotPackage,
-		"create_hotspot_package":                CreateHotspotPackage,
-		"update_hotspot_package":                UpdateHotspotPackage,
-		"delete_hotspot_package":                DeleteHotspotPackage,
-		"list_map":                              ListMap,
-		"get_map":                               GetMap,
-		"create_map":                            CreateMap,
-		"update_map":                            UpdateMap,
-		"delete_map":                            DeleteMap,
-		"list_media_file":                       ListMediaFile,
-		"get_media_file":                        GetMediaFile,
-		"create_media_file":                     CreateMediaFile,
-		"update_media_file":                     UpdateMediaFile,
-		"delete_media_file":                     DeleteMediaFile,
-		"list_network":                          ListNetwork,
-		"get_network":                           GetNetwork,
-		"create_network":                        CreateNetwork,
-		"update_network":                        UpdateNetwork,
-		"delete_network":                        DeleteNetwork,
-		"list_port_forward":                     ListPortForward,
-		"get_port_forward":                      GetPortForward,
-		"create_port_forward":                   CreatePortForward,
-		"update_port_forward":                   UpdatePortForward,
-		"delete_port_forward":                   DeletePortForward,
-		"list_port_profile":                     ListPortProfile,
-		"get_port_profile":                      GetPortProfile,
-		"create_port_profile":                   CreatePortProfile,
-		"update_port_profile":                   UpdatePortProfile,
-		"delete_port_profile":                   DeletePortProfile,
-		"list_radius_profile":                   ListRADIUSProfile,
-		"get_radius_profile":                    GetRADIUSProfile,
-		"create_radius_profile":                 CreateRADIUSProfile,
-		"update_radius_profile":                 UpdateRADIUSProfile,
-		"delete_radius_profile":                 DeleteRADIUSProfile,
-		"list_routing":                          ListRouting,
-		"get_routing":                           GetRouting,
-		"create_routing":                        CreateRouting,
-		"update_routing":                        UpdateRouting,
-		"delete_routing":                        DeleteRouting,
-		"list_schedule_task":                    ListScheduleTask,
-		"get_schedule_task":                     GetScheduleTask,
-		"create_schedule_task":                  CreateScheduleTask,
-		"update_schedule_task":                  UpdateScheduleTask,
-		"delete_schedule_task":                  DeleteScheduleTask,
-		"get_setting_auto_speedtest":            GetSettingAutoSpeedtest,
-		"update_setting_auto_speedtest":         UpdateSettingAutoSpeedtest,
-		"get_setting_baresip":                   GetSettingBaresip,
-		"update_setting_baresip":                UpdateSettingBaresip,
-		"get_setting_broadcast":                 GetSettingBroadcast,
-		"update_setting_broadcast":              UpdateSettingBroadcast,
-		"get_setting_connectivity":              GetSettingConnectivity,
-		"update_setting_connectivity":           UpdateSettingConnectivity,
-		"get_setting_country":                   GetSettingCountry,
-		"update_setting_country":                UpdateSettingCountry,
-		"get_setting_dashboard":                 GetSettingDashboard,
-		"update_setting_dashboard":              UpdateSettingDashboard,
-		"get_setting_doh":                       GetSettingDoh,
-		"update_setting_doh":                    UpdateSettingDoh,
-		"get_setting_dpi":                       GetSettingDpi,
-		"update_setting_dpi":                    UpdateSettingDpi,
-		"get_setting_element_adopt":             GetSettingElementAdopt,
-		"update_setting_element_adopt":          UpdateSettingElementAdopt,
-		"get_setting_ether_lighting":            GetSettingEtherLighting,
-		"update_setting_ether_lighting":         UpdateSettingEtherLighting,
-		"get_setting_evaluation_score":          GetSettingEvaluationScore,
-		"update_setting_evaluation_score":       UpdateSettingEvaluationScore,
-		"get_setting_global_ap":                 GetSettingGlobalAp,
-		"update_setting_global_ap":              UpdateSettingGlobalAp,
-		"get_setting_global_nat":                GetSettingGlobalNat,
-		"update_setting_global_nat":             UpdateSettingGlobalNat,
-		"get_setting_global_switch":             GetSettingGlobalSwitch,
-		"update_setting_global_switch":          UpdateSettingGlobalSwitch,
-		"get_setting_guest_access":              GetSettingGuestAccess,
-		"update_setting_guest_access":           UpdateSettingGuestAccess,
-		"get_setting_ips":                       GetSettingIps,
-		"update_setting_ips":                    UpdateSettingIps,
-		"get_setting_lcm":                       GetSettingLcm,
-		"update_setting_lcm":                    UpdateSettingLcm,
-		"get_setting_locale":                    GetSettingLocale,
-		"update_setting_locale":                 UpdateSettingLocale,
-		"get_setting_magic_site_to_site_vpn":    GetSettingMagicSiteToSiteVpn,
-		"update_setting_magic_site_to_site_vpn": UpdateSettingMagicSiteToSiteVpn,
-		"get_setting_mgmt":                      GetSettingMgmt,
-		"update_setting_mgmt":                   UpdateSettingMgmt,
-		"get_setting_netflow":                   GetSettingNetflow,
-		"update_setting_netflow":                UpdateSettingNetflow,
-		"get_setting_network_optimization":      GetSettingNetworkOptimization,
-		"update_setting_network_optimization":   UpdateSettingNetworkOptimization,
-		"get_setting_ntp":                       GetSettingNtp,
-		"update_setting_ntp":                    UpdateSettingNtp,
-		"get_setting_porta":                     GetSettingPorta,
-		"update_setting_porta":                  UpdateSettingPorta,
-		"get_setting_radio_ai":                  GetSettingRadioAi,
-		"update_setting_radio_ai":               UpdateSettingRadioAi,
-		"get_setting_radius":                    GetSettingRadius,
-		"update_setting_radius":                 UpdateSettingRadius,
-		"get_setting_rsyslogd":                  GetSettingRsyslogd,
-		"update_setting_rsyslogd":               UpdateSettingRsyslogd,
-		"get_setting_snmp":                      GetSettingSnmp,
-		"update_setting_snmp":                   UpdateSettingSnmp,
-		"get_setting_ssl_inspection":            GetSettingSslInspection,
-		"update_setting_ssl_inspection":         UpdateSettingSslInspection,
-		"get_setting_super_cloudaccess":         GetSettingSuperCloudaccess,
-		"update_setting_super_cloudaccess":      UpdateSettingSuperCloudaccess,
-		"get_setting_super_events":              GetSettingSuperEvents,
-		"update_setting_super_events":           UpdateSettingSuperEvents,
-		"get_setting_super_fwupdate":            GetSettingSuperFwupdate,
-		"update_setting_super_fwupdate":         UpdateSettingSuperFwupdate,
-		"get_setting_super_identity":            GetSettingSuperIdentity,
-		"update_setting_super_identity":         UpdateSettingSuperIdentity,
-		"get_setting_super_mail":                GetSettingSuperMail,
-		"update_setting_super_mail":             UpdateSettingSuperMail,
-		"get_setting_super_mgmt":                GetSettingSuperMgmt,
-		"update_setting_super_mgmt":             UpdateSettingSuperMgmt,
-		"get_setting_super_sdn":                 GetSettingSuperSdn,
-		"update_setting_super_sdn":              UpdateSettingSuperSdn,
-		"get_setting_super_smtp":                GetSettingSuperSmtp,
-		"update_setting_super_smtp":             UpdateSettingSuperSmtp,
-		"get_setting_teleport":                  GetSettingTeleport,
-		"update_setting_teleport":               UpdateSettingTeleport,
-		"get_setting_usg":                       GetSettingUsg,
-		"update_setting_usg":                    UpdateSettingUsg,
-		"get_setting_usw":                       GetSettingUsw,
-		"update_setting_usw":                    UpdateSettingUsw,
-		"list_spatial_record":                   ListSpatialRecord,
-		"get_spatial_record":                    GetSpatialRecord,
-		"create_spatial_record":                 CreateSpatialRecord,
-		"update_spatial_record":                 UpdateSpatialRecord,
-		"delete_spatial_record":                 DeleteSpatialRecord,
-		"list_tag":                              ListTag,
-		"get_tag":                               GetTag,
-		"create_tag":                            CreateTag,
-		"update_tag":                            UpdateTag,
-		"delete_tag":                            DeleteTag,
-		"list_user":                             ListUser,
-		"get_user":                              GetUser,
-		"create_user":                           CreateUser,
-		"update_user":                           UpdateUser,
-		"delete_user":                           DeleteUser,
-		"list_user_group":                       ListUserGroup,
-		"get_user_group":                        GetUserGroup,
-		"create_user_group":                     CreateUserGroup,
-		"update_user_group":                     UpdateUserGroup,
-		"delete_user_group":                     DeleteUserGroup,
-		"list_virtual_device":                   ListVirtualDevice,
-		"get_virtual_device":                    GetVirtualDevice,
-		"create_virtual_device":                 CreateVirtualDevice,
-		"update_virtual_device":                 UpdateVirtualDevice,
-		"delete_virtual_device":                 DeleteVirtualDevice,
-		"list_wlan":                             ListWLAN,
-		"get_wlan":                              GetWLAN,
-		"create_wlan":                           CreateWLAN,
-		"update_wlan":                           UpdateWLAN,
-		"delete_wlan":                           DeleteWLAN,
-		"list_wlan_group":                       ListWLANGroup,
-		"get_wlan_group":                        GetWLANGroup,
-		"create_wlan_group":                     CreateWLANGroup,
-		"update_wlan_group":                     UpdateWLANGroup,
-		"delete_wlan_group":                     DeleteWLANGroup,
+		"list_ap_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "APGroup")
+		},
+		"get_ap_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "APGroup", false)
+		},
+		"create_ap_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "APGroup", TypeRegistry["APGroup"])
+		},
+		"update_ap_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "APGroup", TypeRegistry["APGroup"])
+		},
+		"delete_ap_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "APGroup")
+		},
+		"list_account": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "Account")
+		},
+		"get_account": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "Account", false)
+		},
+		"create_account": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "Account", TypeRegistry["Account"])
+		},
+		"update_account": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "Account", TypeRegistry["Account"])
+		},
+		"delete_account": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "Account")
+		},
+		"list_broadcast_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "BroadcastGroup")
+		},
+		"get_broadcast_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "BroadcastGroup", false)
+		},
+		"create_broadcast_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "BroadcastGroup", TypeRegistry["BroadcastGroup"])
+		},
+		"update_broadcast_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "BroadcastGroup", TypeRegistry["BroadcastGroup"])
+		},
+		"delete_broadcast_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "BroadcastGroup")
+		},
+		"list_channel_plan": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "ChannelPlan")
+		},
+		"get_channel_plan": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "ChannelPlan", false)
+		},
+		"create_channel_plan": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "ChannelPlan", TypeRegistry["ChannelPlan"])
+		},
+		"update_channel_plan": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "ChannelPlan", TypeRegistry["ChannelPlan"])
+		},
+		"delete_channel_plan": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "ChannelPlan")
+		},
+		"list_dhcp_option": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "DHCPOption")
+		},
+		"get_dhcp_option": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "DHCPOption", false)
+		},
+		"create_dhcp_option": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "DHCPOption", TypeRegistry["DHCPOption"])
+		},
+		"update_dhcp_option": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "DHCPOption", TypeRegistry["DHCPOption"])
+		},
+		"delete_dhcp_option": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "DHCPOption")
+		},
+		"list_dns_record": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "DNSRecord")
+		},
+		"get_dns_record": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "DNSRecord", false)
+		},
+		"create_dns_record": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "DNSRecord", TypeRegistry["DNSRecord"])
+		},
+		"update_dns_record": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "DNSRecord", TypeRegistry["DNSRecord"])
+		},
+		"delete_dns_record": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "DNSRecord")
+		},
+		"list_dashboard": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "Dashboard")
+		},
+		"get_dashboard": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "Dashboard", false)
+		},
+		"create_dashboard": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "Dashboard", TypeRegistry["Dashboard"])
+		},
+		"update_dashboard": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "Dashboard", TypeRegistry["Dashboard"])
+		},
+		"delete_dashboard": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "Dashboard")
+		},
+		"list_device": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "Device")
+		},
+		"get_device": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "Device", false)
+		},
+		"list_dynamic_dns": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "DynamicDNS")
+		},
+		"get_dynamic_dns": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "DynamicDNS", false)
+		},
+		"create_dynamic_dns": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "DynamicDNS", TypeRegistry["DynamicDNS"])
+		},
+		"update_dynamic_dns": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "DynamicDNS", TypeRegistry["DynamicDNS"])
+		},
+		"delete_dynamic_dns": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "DynamicDNS")
+		},
+		"list_firewall_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "FirewallGroup")
+		},
+		"get_firewall_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "FirewallGroup", false)
+		},
+		"create_firewall_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "FirewallGroup", TypeRegistry["FirewallGroup"])
+		},
+		"update_firewall_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "FirewallGroup", TypeRegistry["FirewallGroup"])
+		},
+		"delete_firewall_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "FirewallGroup")
+		},
+		"list_firewall_rule": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "FirewallRule")
+		},
+		"get_firewall_rule": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "FirewallRule", false)
+		},
+		"create_firewall_rule": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "FirewallRule", TypeRegistry["FirewallRule"])
+		},
+		"update_firewall_rule": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "FirewallRule", TypeRegistry["FirewallRule"])
+		},
+		"delete_firewall_rule": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "FirewallRule")
+		},
+		"list_firewall_zone": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "FirewallZone")
+		},
+		"get_firewall_zone": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "FirewallZone", false)
+		},
+		"create_firewall_zone": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "FirewallZone", TypeRegistry["FirewallZone"])
+		},
+		"update_firewall_zone": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "FirewallZone", TypeRegistry["FirewallZone"])
+		},
+		"delete_firewall_zone": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "FirewallZone")
+		},
+		"list_firewall_zone_policy": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "FirewallZonePolicy")
+		},
+		"get_firewall_zone_policy": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "FirewallZonePolicy", false)
+		},
+		"create_firewall_zone_policy": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "FirewallZonePolicy", TypeRegistry["FirewallZonePolicy"])
+		},
+		"update_firewall_zone_policy": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "FirewallZonePolicy", TypeRegistry["FirewallZonePolicy"])
+		},
+		"delete_firewall_zone_policy": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "FirewallZonePolicy")
+		},
+		"list_heat_map": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "HeatMap")
+		},
+		"get_heat_map": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "HeatMap", false)
+		},
+		"create_heat_map": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "HeatMap", TypeRegistry["HeatMap"])
+		},
+		"update_heat_map": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "HeatMap", TypeRegistry["HeatMap"])
+		},
+		"delete_heat_map": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "HeatMap")
+		},
+		"list_heat_map_point": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "HeatMapPoint")
+		},
+		"get_heat_map_point": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "HeatMapPoint", false)
+		},
+		"create_heat_map_point": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "HeatMapPoint", TypeRegistry["HeatMapPoint"])
+		},
+		"update_heat_map_point": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "HeatMapPoint", TypeRegistry["HeatMapPoint"])
+		},
+		"delete_heat_map_point": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "HeatMapPoint")
+		},
+		"list_hotspot_2_conf": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "Hotspot2Conf")
+		},
+		"get_hotspot_2_conf": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "Hotspot2Conf", false)
+		},
+		"create_hotspot_2_conf": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "Hotspot2Conf", TypeRegistry["Hotspot2Conf"])
+		},
+		"update_hotspot_2_conf": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "Hotspot2Conf", TypeRegistry["Hotspot2Conf"])
+		},
+		"delete_hotspot_2_conf": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "Hotspot2Conf")
+		},
+		"list_hotspot_op": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "HotspotOp")
+		},
+		"get_hotspot_op": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "HotspotOp", false)
+		},
+		"create_hotspot_op": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "HotspotOp", TypeRegistry["HotspotOp"])
+		},
+		"update_hotspot_op": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "HotspotOp", TypeRegistry["HotspotOp"])
+		},
+		"delete_hotspot_op": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "HotspotOp")
+		},
+		"list_hotspot_package": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "HotspotPackage")
+		},
+		"get_hotspot_package": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "HotspotPackage", false)
+		},
+		"create_hotspot_package": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "HotspotPackage", TypeRegistry["HotspotPackage"])
+		},
+		"update_hotspot_package": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "HotspotPackage", TypeRegistry["HotspotPackage"])
+		},
+		"delete_hotspot_package": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "HotspotPackage")
+		},
+		"list_map": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "Map")
+		},
+		"get_map": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "Map", false)
+		},
+		"create_map": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "Map", TypeRegistry["Map"])
+		},
+		"update_map": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "Map", TypeRegistry["Map"])
+		},
+		"delete_map": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "Map")
+		},
+		"list_media_file": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "MediaFile")
+		},
+		"get_media_file": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "MediaFile", false)
+		},
+		"create_media_file": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "MediaFile", TypeRegistry["MediaFile"])
+		},
+		"update_media_file": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "MediaFile", TypeRegistry["MediaFile"])
+		},
+		"delete_media_file": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "MediaFile")
+		},
+		"list_network": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "Network")
+		},
+		"get_network": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "Network", false)
+		},
+		"create_network": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "Network", TypeRegistry["Network"])
+		},
+		"update_network": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "Network", TypeRegistry["Network"])
+		},
+		"delete_network": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "Network")
+		},
+		"list_port_forward": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "PortForward")
+		},
+		"get_port_forward": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "PortForward", false)
+		},
+		"create_port_forward": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "PortForward", TypeRegistry["PortForward"])
+		},
+		"update_port_forward": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "PortForward", TypeRegistry["PortForward"])
+		},
+		"delete_port_forward": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "PortForward")
+		},
+		"list_port_profile": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "PortProfile")
+		},
+		"get_port_profile": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "PortProfile", false)
+		},
+		"create_port_profile": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "PortProfile", TypeRegistry["PortProfile"])
+		},
+		"update_port_profile": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "PortProfile", TypeRegistry["PortProfile"])
+		},
+		"delete_port_profile": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "PortProfile")
+		},
+		"list_radius_profile": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "RADIUSProfile")
+		},
+		"get_radius_profile": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "RADIUSProfile", false)
+		},
+		"create_radius_profile": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "RADIUSProfile", TypeRegistry["RADIUSProfile"])
+		},
+		"update_radius_profile": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "RADIUSProfile", TypeRegistry["RADIUSProfile"])
+		},
+		"delete_radius_profile": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "RADIUSProfile")
+		},
+		"list_routing": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "Routing")
+		},
+		"get_routing": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "Routing", false)
+		},
+		"create_routing": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "Routing", TypeRegistry["Routing"])
+		},
+		"update_routing": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "Routing", TypeRegistry["Routing"])
+		},
+		"delete_routing": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "Routing")
+		},
+		"list_schedule_task": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "ScheduleTask")
+		},
+		"get_schedule_task": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "ScheduleTask", false)
+		},
+		"create_schedule_task": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "ScheduleTask", TypeRegistry["ScheduleTask"])
+		},
+		"update_schedule_task": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "ScheduleTask", TypeRegistry["ScheduleTask"])
+		},
+		"delete_schedule_task": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "ScheduleTask")
+		},
+		"get_setting_auto_speedtest": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingAutoSpeedtest", true)
+		},
+		"update_setting_auto_speedtest": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingAutoSpeedtest", TypeRegistry["SettingAutoSpeedtest"])
+		},
+		"get_setting_baresip": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingBaresip", true)
+		},
+		"update_setting_baresip": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingBaresip", TypeRegistry["SettingBaresip"])
+		},
+		"get_setting_broadcast": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingBroadcast", true)
+		},
+		"update_setting_broadcast": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingBroadcast", TypeRegistry["SettingBroadcast"])
+		},
+		"get_setting_connectivity": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingConnectivity", true)
+		},
+		"update_setting_connectivity": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingConnectivity", TypeRegistry["SettingConnectivity"])
+		},
+		"get_setting_country": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingCountry", true)
+		},
+		"update_setting_country": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingCountry", TypeRegistry["SettingCountry"])
+		},
+		"get_setting_dashboard": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingDashboard", true)
+		},
+		"update_setting_dashboard": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingDashboard", TypeRegistry["SettingDashboard"])
+		},
+		"get_setting_doh": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingDoh", true)
+		},
+		"update_setting_doh": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingDoh", TypeRegistry["SettingDoh"])
+		},
+		"get_setting_dpi": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingDpi", true)
+		},
+		"update_setting_dpi": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingDpi", TypeRegistry["SettingDpi"])
+		},
+		"get_setting_element_adopt": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingElementAdopt", true)
+		},
+		"update_setting_element_adopt": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingElementAdopt", TypeRegistry["SettingElementAdopt"])
+		},
+		"get_setting_ether_lighting": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingEtherLighting", true)
+		},
+		"update_setting_ether_lighting": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingEtherLighting", TypeRegistry["SettingEtherLighting"])
+		},
+		"get_setting_evaluation_score": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingEvaluationScore", true)
+		},
+		"update_setting_evaluation_score": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingEvaluationScore", TypeRegistry["SettingEvaluationScore"])
+		},
+		"get_setting_global_ap": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingGlobalAp", true)
+		},
+		"update_setting_global_ap": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingGlobalAp", TypeRegistry["SettingGlobalAp"])
+		},
+		"get_setting_global_nat": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingGlobalNat", true)
+		},
+		"update_setting_global_nat": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingGlobalNat", TypeRegistry["SettingGlobalNat"])
+		},
+		"get_setting_global_switch": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingGlobalSwitch", true)
+		},
+		"update_setting_global_switch": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingGlobalSwitch", TypeRegistry["SettingGlobalSwitch"])
+		},
+		"get_setting_guest_access": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingGuestAccess", true)
+		},
+		"update_setting_guest_access": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingGuestAccess", TypeRegistry["SettingGuestAccess"])
+		},
+		"get_setting_ips": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingIps", true)
+		},
+		"update_setting_ips": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingIps", TypeRegistry["SettingIps"])
+		},
+		"get_setting_lcm": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingLcm", true)
+		},
+		"update_setting_lcm": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingLcm", TypeRegistry["SettingLcm"])
+		},
+		"get_setting_locale": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingLocale", true)
+		},
+		"update_setting_locale": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingLocale", TypeRegistry["SettingLocale"])
+		},
+		"get_setting_magic_site_to_site_vpn": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingMagicSiteToSiteVpn", true)
+		},
+		"update_setting_magic_site_to_site_vpn": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingMagicSiteToSiteVpn", TypeRegistry["SettingMagicSiteToSiteVpn"])
+		},
+		"get_setting_mgmt": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingMgmt", true)
+		},
+		"update_setting_mgmt": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingMgmt", TypeRegistry["SettingMgmt"])
+		},
+		"get_setting_netflow": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingNetflow", true)
+		},
+		"update_setting_netflow": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingNetflow", TypeRegistry["SettingNetflow"])
+		},
+		"get_setting_network_optimization": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingNetworkOptimization", true)
+		},
+		"update_setting_network_optimization": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingNetworkOptimization", TypeRegistry["SettingNetworkOptimization"])
+		},
+		"get_setting_ntp": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingNtp", true)
+		},
+		"update_setting_ntp": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingNtp", TypeRegistry["SettingNtp"])
+		},
+		"get_setting_porta": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingPorta", true)
+		},
+		"update_setting_porta": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingPorta", TypeRegistry["SettingPorta"])
+		},
+		"get_setting_radio_ai": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingRadioAi", true)
+		},
+		"update_setting_radio_ai": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingRadioAi", TypeRegistry["SettingRadioAi"])
+		},
+		"get_setting_radius": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingRadius", true)
+		},
+		"update_setting_radius": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingRadius", TypeRegistry["SettingRadius"])
+		},
+		"get_setting_rsyslogd": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingRsyslogd", true)
+		},
+		"update_setting_rsyslogd": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingRsyslogd", TypeRegistry["SettingRsyslogd"])
+		},
+		"get_setting_snmp": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingSnmp", true)
+		},
+		"update_setting_snmp": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingSnmp", TypeRegistry["SettingSnmp"])
+		},
+		"get_setting_ssl_inspection": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingSslInspection", true)
+		},
+		"update_setting_ssl_inspection": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingSslInspection", TypeRegistry["SettingSslInspection"])
+		},
+		"get_setting_super_cloudaccess": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingSuperCloudaccess", true)
+		},
+		"update_setting_super_cloudaccess": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingSuperCloudaccess", TypeRegistry["SettingSuperCloudaccess"])
+		},
+		"get_setting_super_events": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingSuperEvents", true)
+		},
+		"update_setting_super_events": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingSuperEvents", TypeRegistry["SettingSuperEvents"])
+		},
+		"get_setting_super_fwupdate": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingSuperFwupdate", true)
+		},
+		"update_setting_super_fwupdate": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingSuperFwupdate", TypeRegistry["SettingSuperFwupdate"])
+		},
+		"get_setting_super_identity": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingSuperIdentity", true)
+		},
+		"update_setting_super_identity": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingSuperIdentity", TypeRegistry["SettingSuperIdentity"])
+		},
+		"get_setting_super_mail": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingSuperMail", true)
+		},
+		"update_setting_super_mail": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingSuperMail", TypeRegistry["SettingSuperMail"])
+		},
+		"get_setting_super_mgmt": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingSuperMgmt", true)
+		},
+		"update_setting_super_mgmt": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingSuperMgmt", TypeRegistry["SettingSuperMgmt"])
+		},
+		"get_setting_super_sdn": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingSuperSdn", true)
+		},
+		"update_setting_super_sdn": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingSuperSdn", TypeRegistry["SettingSuperSdn"])
+		},
+		"get_setting_super_smtp": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingSuperSmtp", true)
+		},
+		"update_setting_super_smtp": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingSuperSmtp", TypeRegistry["SettingSuperSmtp"])
+		},
+		"get_setting_teleport": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingTeleport", true)
+		},
+		"update_setting_teleport": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingTeleport", TypeRegistry["SettingTeleport"])
+		},
+		"get_setting_usg": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingUsg", true)
+		},
+		"update_setting_usg": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingUsg", TypeRegistry["SettingUsg"])
+		},
+		"get_setting_usw": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingUsw", true)
+		},
+		"update_setting_usw": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingUsw", TypeRegistry["SettingUsw"])
+		},
+		"list_spatial_record": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "SpatialRecord")
+		},
+		"get_spatial_record": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SpatialRecord", false)
+		},
+		"create_spatial_record": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "SpatialRecord", TypeRegistry["SpatialRecord"])
+		},
+		"update_spatial_record": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SpatialRecord", TypeRegistry["SpatialRecord"])
+		},
+		"delete_spatial_record": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "SpatialRecord")
+		},
+		"list_tag": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "Tag")
+		},
+		"get_tag": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "Tag", false)
+		},
+		"create_tag": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "Tag", TypeRegistry["Tag"])
+		},
+		"update_tag": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "Tag", TypeRegistry["Tag"])
+		},
+		"delete_tag": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "Tag")
+		},
+		"list_user": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "User")
+		},
+		"get_user": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "User", false)
+		},
+		"create_user": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "User", TypeRegistry["User"])
+		},
+		"update_user": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "User", TypeRegistry["User"])
+		},
+		"delete_user": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "User")
+		},
+		"list_user_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "UserGroup")
+		},
+		"get_user_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "UserGroup", false)
+		},
+		"create_user_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "UserGroup", TypeRegistry["UserGroup"])
+		},
+		"update_user_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "UserGroup", TypeRegistry["UserGroup"])
+		},
+		"delete_user_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "UserGroup")
+		},
+		"list_virtual_device": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "VirtualDevice")
+		},
+		"get_virtual_device": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "VirtualDevice", false)
+		},
+		"create_virtual_device": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "VirtualDevice", TypeRegistry["VirtualDevice"])
+		},
+		"update_virtual_device": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "VirtualDevice", TypeRegistry["VirtualDevice"])
+		},
+		"delete_virtual_device": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "VirtualDevice")
+		},
+		"list_wlan": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "WLAN")
+		},
+		"get_wlan": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "WLAN", false)
+		},
+		"create_wlan": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "WLAN", TypeRegistry["WLAN"])
+		},
+		"update_wlan": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "WLAN", TypeRegistry["WLAN"])
+		},
+		"delete_wlan": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "WLAN")
+		},
+		"list_wlan_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "WLANGroup")
+		},
+		"get_wlan_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "WLANGroup", false)
+		},
+		"create_wlan_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "WLANGroup", TypeRegistry["WLANGroup"])
+		},
+		"update_wlan_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "WLANGroup", TypeRegistry["WLANGroup"])
+		},
+		"delete_wlan_group": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "WLANGroup")
+		},
 	}
 }

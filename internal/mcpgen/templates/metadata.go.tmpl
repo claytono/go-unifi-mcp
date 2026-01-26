@@ -2,16 +2,17 @@
 
 package generated
 
-// ToolMetadata contains serializable metadata for a tool.
+// ToolMetadata contains metadata for a tool.
 type ToolMetadata struct {
-	Name        string         `json:"name"`
-	Description string         `json:"description"`
-	Category    string         `json:"category"`    // list, get, create, update, delete
-	Resource    string         `json:"resource"`    // e.g., "Network"
-	InputSchema map[string]any `json:"inputSchema"` // JSON Schema
+	Name        string
+	Description string
+	Category    string         // list, get, create, update, delete
+	Resource    string         // e.g., "Network"
+	IsSetting   bool           // true for settings resources
+	InputSchema map[string]any // JSON Schema
 }
 
-// AllToolMetadata is the complete catalog of all generated tools.
+// AllToolMetadata contains metadata for all generated tools.
 var AllToolMetadata = []ToolMetadata{
 {{- range . }}
 {{- $name := .Name }}
@@ -24,6 +25,9 @@ var AllToolMetadata = []ToolMetadata{
 		Description: "List all {{ $name }} resources",
 		Category:    "list",
 		Resource:    "{{ $name }}",
+{{- if $isSetting }}
+		IsSetting:   true,
+{{- end }}
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -38,9 +42,12 @@ var AllToolMetadata = []ToolMetadata{
 {{- if has "Get" .Operations }}
 	{
 		Name:        "get_{{ $snake }}",
-		Description: "Get {{ $name }} by ID",
+		Description: "Get {{ $name }}{{ if not $isSetting }} by ID{{ end }}",
 		Category:    "get",
 		Resource:    "{{ $name }}",
+{{- if $isSetting }}
+		IsSetting:   true,
+{{- end }}
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -48,16 +55,16 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				{{- if not $isSetting }}
+{{- if not $isSetting }}
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				{{- end }}
+{{- end }}
 			},
-			{{- if not $isSetting }}
-			"required": []string{"id"},
-			{{- end }}
+{{- if not $isSetting }}
+			"required": []any{"id"},
+{{- end }}
 		},
 	},
 {{- end }}
@@ -67,6 +74,9 @@ var AllToolMetadata = []ToolMetadata{
 		Description: "Create new {{ $name }}",
 		Category:    "create",
 		Resource:    "{{ $name }}",
+{{- if $isSetting }}
+		IsSetting:   true,
+{{- end }}
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -74,10 +84,23 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to create",
+{{- range $fields }}
+				"{{ .Name }}": map[string]any{
+					"type": "{{ .Type }}",
+{{- if .Description }}
+					"description": {{ printf "%q" .Description }},
+{{- end }}
+{{- if .Pattern }}
+					"pattern": {{ printf "%q" .Pattern }},
+{{- end }}
+{{- if .Enum }}
+					"enum": []any{ {{- range $j, $e := .Enum }}{{ if $j }}, {{ end }}{{ printf "%q" $e }}{{ end -}} },
+{{- end }}
+{{- if eq .Type "array" }}{{ if .ItemType }}
+					"items": map[string]any{"type": "{{ .ItemType }}"},
+{{- end }}{{ end }}
 				},
+{{- end }}
 			},
 		},
 	},
@@ -85,9 +108,12 @@ var AllToolMetadata = []ToolMetadata{
 {{- if has "Update" .Operations }}
 	{
 		Name:        "update_{{ $snake }}",
-		Description: "Update {{ $name }} by ID",
+		Description: "Update {{ $name }}{{ if not $isSetting }} by ID{{ end }}",
 		Category:    "update",
 		Resource:    "{{ $name }}",
+{{- if $isSetting }}
+		IsSetting:   true,
+{{- end }}
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -95,16 +121,33 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
+{{- if not $isSetting }}
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"data": map[string]any{
-					"type":        "object",
-					"description": "Resource data to update",
+{{- end }}
+{{- range $fields }}
+				"{{ .Name }}": map[string]any{
+					"type": "{{ .Type }}",
+{{- if .Description }}
+					"description": {{ printf "%q" .Description }},
+{{- end }}
+{{- if .Pattern }}
+					"pattern": {{ printf "%q" .Pattern }},
+{{- end }}
+{{- if .Enum }}
+					"enum": []any{ {{- range $j, $e := .Enum }}{{ if $j }}, {{ end }}{{ printf "%q" $e }}{{ end -}} },
+{{- end }}
+{{- if eq .Type "array" }}{{ if .ItemType }}
+					"items": map[string]any{"type": "{{ .ItemType }}"},
+{{- end }}{{ end }}
 				},
+{{- end }}
 			},
-			"required": []string{"id"},
+{{- if not $isSetting }}
+			"required": []any{"id"},
+{{- end }}
 		},
 	},
 {{- end }}
@@ -114,6 +157,9 @@ var AllToolMetadata = []ToolMetadata{
 		Description: "Delete {{ $name }} by ID",
 		Category:    "delete",
 		Resource:    "{{ $name }}",
+{{- if $isSetting }}
+		IsSetting:   true,
+{{- end }}
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -126,7 +172,7 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID to delete",
 				},
 			},
-			"required": []string{"id"},
+			"required": []any{"id"},
 		},
 	},
 {{- end }}
