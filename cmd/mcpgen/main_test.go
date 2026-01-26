@@ -5,7 +5,6 @@ import (
 	"errors"
 	"log"
 	"os"
-	"strings"
 	"testing"
 
 	"github.com/claytono/go-unifi-mcp/internal/mcpgen"
@@ -105,5 +104,5 @@ func TestMainSuccess(t *testing.T) {
 
 	main()
 	require.False(t, called)
-	require.True(t, strings.Contains(buf.String(), "Generated MCP tools to out"))
+	require.Contains(t, buf.String(), "Generated MCP tools to out")
 }
