@@ -188,6 +188,13 @@ executes them via the dispatcher.
 **Eager mode** registers all 242 tools directly, which may be useful for non-LLM
 clients or debugging but consumes significant context.
 
+**Update semantics:** Updates use a read-modify-write flow against the
+controller API. We fetch the current resource, merge your fields, and submit the
+full object. This avoids clearing unspecified fields, but it is not atomic and
+concurrent updates can race (last write wins) because the UniFi API does not
+expose etags or revision IDs. In practice this is unlikely to be an issue, but
+it's something to be aware of.
+
 ## Development
 
 ### Prerequisites
