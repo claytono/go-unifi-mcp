@@ -31,6 +31,27 @@ archives:
 checksum:
   name_template: checksums.txt
 
+brews:
+  - name: go-unifi-mcp
+    description: MCP server for UniFi Network Controller
+    homepage: https://github.com/claytono/go-unifi-mcp
+    license: MPL-2.0
+    url_template:
+      https://github.com/claytono/go-unifi-mcp/releases/download/{{ .Tag }}/{{
+      .ArtifactName }}
+    directory: Formula
+    repository:
+      owner: claytono
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+    commit_author:
+      name: Clayton O'Neill
+      email: claytono@users.noreply.github.com
+    test: |
+      system "#{bin}/go-unifi-mcp", "--help"
+    install: |
+      bin.install "go-unifi-mcp"
+
 changelog:
   sort: asc
 

@@ -12,6 +12,33 @@
         pkgs = import nixpkgs { inherit system; };
       });
 
+      mkGoUnifiMcp = pkgs:
+        let
+          version = if self ? rev then self.rev else "dirty";
+        in
+        pkgs.buildGoModule {
+          pname = "go-unifi-mcp";
+          inherit version;
+
+          src = self;
+          subPackages = [ "cmd/go-unifi-mcp" ];
+
+          ldflags = [
+            "-s"
+            "-w"
+            "-X github.com/claytono/go-unifi-mcp/internal/server.Version=${version}"
+          ];
+
+          vendorHash = "sha256-jD+R9IGusJBLIWmfsPPHulQoED+cXEMlaixFAgQLIms=";
+
+          meta = with pkgs.lib; {
+            description = "MCP server for UniFi Network Controller";
+            homepage = "https://github.com/claytono/go-unifi-mcp";
+            license = licenses.mpl20;
+            mainProgram = "go-unifi-mcp";
+          };
+        };
+
       # go-test-coverage package (not in nixpkgs)
       mkGoTestCoverage = pkgs: pkgs.buildGoModule rec {
         pname = "go-test-coverage";
@@ -81,6 +108,17 @@
       };
     in
     {
+      packages = forEachSupportedSystem ({ pkgs }: {
+        default = mkGoUnifiMcp pkgs;
+      });
+
+      apps = forEachSupportedSystem ({ pkgs }: {
+        default = {
+          type = "app";
+          program = "${mkGoUnifiMcp pkgs}/bin/go-unifi-mcp";
+        };
+      });
+
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
           packages = with pkgs; [

@@ -50,6 +50,16 @@ curl -L https://github.com/claytono/go-unifi-mcp/releases/latest/download/go-uni
 sudo mv go-unifi-mcp /usr/local/bin/
 ```
 
+### Nix
+
+```bash
+# Run without installing
+nix run github:claytono/go-unifi-mcp
+
+# Install to your profile
+nix profile install github:claytono/go-unifi-mcp
+```
+
 ### Docker
 
 Multi-architecture images (amd64/arm64) are published to GitHub Container
