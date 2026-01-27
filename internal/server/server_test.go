@@ -6,7 +6,9 @@ import (
 
 	"github.com/claytono/go-unifi-mcp/internal/config"
 	servermocks "github.com/claytono/go-unifi-mcp/internal/server/mocks"
+	"github.com/filipowm/go-unifi/unifi"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestNew_RequiresClient(t *testing.T) {
@@ -33,10 +35,25 @@ func TestNewClient_APIKey(t *testing.T) {
 		VerifySSL: false,
 	}
 
-	// This will fail to connect but validates config mapping
-	_, err := NewClient(cfg)
-	// Error expected since no server is running
-	assert.Error(t, err)
+	var captured *unifi.ClientConfig
+	prevFactory := newUnifiClient
+	newUnifiClient = func(clientCfg *unifi.ClientConfig) (unifi.Client, error) {
+		captured = clientCfg
+		return nil, nil
+	}
+	t.Cleanup(func() {
+		newUnifiClient = prevFactory
+	})
+
+	client, err := NewClient(cfg)
+	assert.NoError(t, err)
+	assert.Nil(t, client)
+	require.NotNil(t, captured)
+	assert.Equal(t, cfg.Host, captured.URL)
+	assert.Equal(t, cfg.VerifySSL, captured.VerifySSL)
+	assert.Equal(t, cfg.APIKey, captured.APIKey)
+	assert.Empty(t, captured.User)
+	assert.Empty(t, captured.Password)
 }
 
 func TestNewClient_UserPass(t *testing.T) {
@@ -48,10 +65,25 @@ func TestNewClient_UserPass(t *testing.T) {
 		VerifySSL: false,
 	}
 
-	// This will fail to connect but validates config mapping
-	_, err := NewClient(cfg)
-	// Error expected since no server is running
-	assert.Error(t, err)
+	var captured *unifi.ClientConfig
+	prevFactory := newUnifiClient
+	newUnifiClient = func(clientCfg *unifi.ClientConfig) (unifi.Client, error) {
+		captured = clientCfg
+		return nil, nil
+	}
+	t.Cleanup(func() {
+		newUnifiClient = prevFactory
+	})
+
+	client, err := NewClient(cfg)
+	assert.NoError(t, err)
+	assert.Nil(t, client)
+	require.NotNil(t, captured)
+	assert.Equal(t, cfg.Host, captured.URL)
+	assert.Equal(t, cfg.VerifySSL, captured.VerifySSL)
+	assert.Empty(t, captured.APIKey)
+	assert.Equal(t, cfg.Username, captured.User)
+	assert.Equal(t, cfg.Password, captured.Password)
 }
 
 func TestMode_DefaultsToLazy(t *testing.T) {

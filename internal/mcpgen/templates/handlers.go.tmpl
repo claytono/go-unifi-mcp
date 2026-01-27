@@ -35,7 +35,7 @@ func GetHandlerRegistry() map[string]HandlerFunc {
 {{- end }}
 {{- if has "Update" .Operations }}
 		"update_{{ $snake }}": func(client unifi.Client) server.ToolHandlerFunc {
-			return GenericUpdate(client, "{{ $name }}", TypeRegistry["{{ $name }}"])
+			return GenericUpdate(client, "{{ $name }}", TypeRegistry["{{ $name }}"], {{ $isSetting }})
 		},
 {{- end }}
 {{- if has "Delete" .Operations }}

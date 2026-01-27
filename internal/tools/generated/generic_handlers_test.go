@@ -212,9 +212,13 @@ func TestGenericCreate_MethodNotFound(t *testing.T) {
 	type DummyClient struct{}
 	client := &DummyClient{}
 
-	handler := GenericCreate(client, "NonExistentResource", func() any { return &struct{}{} })
+	handler := GenericCreate(client, "NonExistentResource", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	})
 	req := mcp.CallToolRequest{}
-	req.Params.Arguments = map[string]any{"data": map[string]any{}}
+	req.Params.Arguments = map[string]any{"name": "value"}
 
 	result, err := handler(context.Background(), req)
 	require.NoError(t, err)
@@ -231,10 +235,14 @@ func TestGenericCreate_InvalidData(t *testing.T) {
 	client := &DummyClient{}
 
 	// Use a type factory that returns a struct we can't unmarshal "invalid" into
-	handler := GenericCreate(client, "NonExistentResource", func() any { return &struct{ Required int }{} })
+	handler := GenericCreate(client, "NonExistentResource", func() any {
+		return &struct {
+			Required int `json:"required"`
+		}{}
+	})
 	req := mcp.CallToolRequest{}
-	// Provide data that's not valid JSON for the struct
-	req.Params.Arguments = map[string]any{"data": "not a valid json object"}
+	// Provide value that's not valid for the struct field
+	req.Params.Arguments = map[string]any{"required": "not a valid json object"}
 
 	result, err := handler(context.Background(), req)
 	require.NoError(t, err)
@@ -249,9 +257,13 @@ func TestGenericUpdate_MethodNotFound(t *testing.T) {
 	type DummyClient struct{}
 	client := &DummyClient{}
 
-	handler := GenericUpdate(client, "NonExistentResource", func() any { return &struct{}{} })
+	handler := GenericUpdate(client, "NonExistentResource", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	}, false)
 	req := mcp.CallToolRequest{}
-	req.Params.Arguments = map[string]any{"id": "123", "data": map[string]any{}}
+	req.Params.Arguments = map[string]any{"id": "123", "name": "value"}
 
 	result, err := handler(context.Background(), req)
 	require.NoError(t, err)
@@ -267,9 +279,13 @@ func TestGenericUpdate_InvalidData(t *testing.T) {
 	type DummyClient struct{}
 	client := &DummyClient{}
 
-	handler := GenericUpdate(client, "NonExistentResource", func() any { return &struct{ Required int }{} })
+	handler := GenericUpdate(client, "NonExistentResource", func() any {
+		return &struct {
+			Required int `json:"required"`
+		}{}
+	}, false)
 	req := mcp.CallToolRequest{}
-	req.Params.Arguments = map[string]any{"id": "123", "data": "not valid"}
+	req.Params.Arguments = map[string]any{"id": "123", "required": "not valid"}
 
 	result, err := handler(context.Background(), req)
 	require.NoError(t, err)
@@ -350,10 +366,14 @@ func TestGenericDelete_MissingID(t *testing.T) {
 
 func TestGenericCreate_MissingData(t *testing.T) {
 	client := &FakeTestClient{}
-	handler := GenericCreate(client, "Test", func() any { return &struct{ Name string }{} })
+	handler := GenericCreate(client, "Test", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	})
 
 	req := mcp.CallToolRequest{}
-	req.Params.Arguments = map[string]any{"site": "default"} // Missing "data"
+	req.Params.Arguments = map[string]any{"site": "default"}
 
 	result, err := handler(context.Background(), req)
 	require.NoError(t, err)
@@ -361,16 +381,19 @@ func TestGenericCreate_MissingData(t *testing.T) {
 	assert.True(t, result.IsError)
 
 	content := result.Content[0].(mcp.TextContent)
-	assert.Contains(t, content.Text, "data")
-	assert.Contains(t, content.Text, "missing")
+	assert.Contains(t, content.Text, "no fields")
 }
 
 func TestGenericUpdate_MissingData(t *testing.T) {
 	client := &FakeTestClient{}
-	handler := GenericUpdate(client, "Test", func() any { return &struct{ Name string }{} })
+	handler := GenericUpdate(client, "Test", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	}, false)
 
 	req := mcp.CallToolRequest{}
-	req.Params.Arguments = map[string]any{"site": "default", "id": "123"} // Missing "data"
+	req.Params.Arguments = map[string]any{"site": "default", "id": "123"}
 
 	result, err := handler(context.Background(), req)
 	require.NoError(t, err)
@@ -378,8 +401,62 @@ func TestGenericUpdate_MissingData(t *testing.T) {
 	assert.True(t, result.IsError)
 
 	content := result.Content[0].(mcp.TextContent)
+	assert.Contains(t, content.Text, "no fields")
+}
+
+func TestGenericCreate_UnexpectedParameters(t *testing.T) {
+	client := &FakeTestClient{}
+	handler := GenericCreate(client, "Test", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	})
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"site":  "default",
+		"name":  "value",
+		"data":  map[string]any{"name": "ignored"},
+		"extra": true,
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.True(t, result.IsError)
+
+	content := result.Content[0].(mcp.TextContent)
+	assert.Contains(t, content.Text, "unexpected parameters")
 	assert.Contains(t, content.Text, "data")
-	assert.Contains(t, content.Text, "missing")
+	assert.Contains(t, content.Text, "extra")
+}
+
+func TestGenericUpdate_UnexpectedParameters(t *testing.T) {
+	client := &FakeTestClient{}
+	handler := GenericUpdate(client, "Test", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	}, false)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"site":  "default",
+		"id":    "123",
+		"name":  "value",
+		"data":  map[string]any{"name": "ignored"},
+		"extra": true,
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.True(t, result.IsError)
+
+	content := result.Content[0].(mcp.TextContent)
+	assert.Contains(t, content.Text, "unexpected parameters")
+	assert.Contains(t, content.Text, "data")
+	assert.Contains(t, content.Text, "extra")
 }
 
 // FakeTestClient provides methods we can use for reflection-based testing.
@@ -529,12 +606,16 @@ func TestGenericGet_WithFakeClient_Error(t *testing.T) {
 
 func TestGenericCreate_WithFakeClient(t *testing.T) {
 	client := &FakeTestClient{}
-	handler := GenericCreate(client, "Test", func() any { return &struct{ Name string }{} })
+	handler := GenericCreate(client, "Test", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	})
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
 		"site": "default",
-		"data": map[string]any{"name": "new item"},
+		"name": "new item",
 	}
 
 	result, err := handler(context.Background(), req)
@@ -548,12 +629,16 @@ func TestGenericCreate_WithFakeClient(t *testing.T) {
 
 func TestGenericCreate_WithFakeClient_Error(t *testing.T) {
 	client := &FakeTestClient{ShouldError: true}
-	handler := GenericCreate(client, "Test", func() any { return &struct{ Name string }{} })
+	handler := GenericCreate(client, "Test", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	})
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
 		"site": "default",
-		"data": map[string]any{"name": "new item"},
+		"name": "new item",
 	}
 
 	result, err := handler(context.Background(), req)
@@ -567,13 +652,17 @@ func TestGenericCreate_WithFakeClient_Error(t *testing.T) {
 
 func TestGenericUpdate_WithFakeClient(t *testing.T) {
 	client := &FakeTestClient{}
-	handler := GenericUpdate(client, "Test", func() any { return &struct{ Name string }{} })
+	handler := GenericUpdate(client, "Test", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	}, false)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
 		"site": "default",
 		"id":   "123",
-		"data": map[string]any{"name": "updated item"},
+		"name": "updated item",
 	}
 
 	result, err := handler(context.Background(), req)
@@ -587,13 +676,17 @@ func TestGenericUpdate_WithFakeClient(t *testing.T) {
 
 func TestGenericUpdate_WithFakeClient_Error(t *testing.T) {
 	client := &FakeTestClient{ShouldError: true}
-	handler := GenericUpdate(client, "Test", func() any { return &struct{ Name string }{} })
+	handler := GenericUpdate(client, "Test", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	}, false)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
 		"site": "default",
 		"id":   "123",
-		"data": map[string]any{"name": "updated item"},
+		"name": "updated item",
 	}
 
 	result, err := handler(context.Background(), req)
