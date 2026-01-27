@@ -164,7 +164,7 @@ established by
 | `lazy`  | 3     | ~200 tokens  | Meta-tools only (default, recommended for LLMs) |
 | `eager` | 242   | ~55K tokens  | All tools registered directly                   |
 
-**Lazy mode** (default) registers only 3 meta-tools that provide access to ~250
+**Lazy mode** (default) registers only 3 meta-tools that provide access to 242
 UniFi operations (generated from the controller API):
 
 - `tool_index` - Search/filter the tool catalog by category or resource
