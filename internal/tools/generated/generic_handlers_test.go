@@ -254,8 +254,7 @@ func TestGenericCreate_InvalidData(t *testing.T) {
 }
 
 func TestGenericUpdate_MethodNotFound(t *testing.T) {
-	type DummyClient struct{}
-	client := &DummyClient{}
+	client := &nonExistentResourceClient{}
 
 	handler := GenericUpdate(client, "NonExistentResource", func() any {
 		return &struct {
@@ -276,8 +275,7 @@ func TestGenericUpdate_MethodNotFound(t *testing.T) {
 }
 
 func TestGenericUpdate_InvalidData(t *testing.T) {
-	type DummyClient struct{}
-	client := &DummyClient{}
+	client := &nonExistentResourceClient{}
 
 	handler := GenericUpdate(client, "NonExistentResource", func() any {
 		return &struct {
@@ -506,6 +504,45 @@ func (c *FakeTestClient) DeleteTest(_ context.Context, _, _ string) error {
 	return nil
 }
 
+type mergeTestResource struct {
+	ID      string `json:"_id"`
+	Name    string `json:"name"`
+	Enabled bool   `json:"enabled"`
+}
+
+type mergeUpdateClient struct {
+	updated *mergeTestResource
+}
+
+func (c *mergeUpdateClient) GetTest(_ context.Context, _, id string) (any, error) {
+	return &mergeTestResource{ID: id, Name: "existing", Enabled: true}, nil
+}
+
+func (c *mergeUpdateClient) UpdateTest(_ context.Context, _ string, input any) (any, error) {
+	resource, ok := input.(*mergeTestResource)
+	if !ok {
+		return nil, errors.New("unexpected update payload")
+	}
+	c.updated = resource
+	return map[string]string{"id": resource.ID, "name": resource.Name}, nil
+}
+
+type updateErrorClient struct{}
+
+func (c *updateErrorClient) GetTest(_ context.Context, _, _ string) (any, error) {
+	return map[string]string{"id": "123", "name": "test"}, nil
+}
+
+func (c *updateErrorClient) UpdateTest(_ context.Context, _ string, _ any) (any, error) {
+	return nil, errors.New("update error")
+}
+
+type nonExistentResourceClient struct{}
+
+func (c *nonExistentResourceClient) GetNonExistentResource(_ context.Context, _, id string) (any, error) {
+	return map[string]string{"id": id}, nil
+}
+
 func TestGenericList_WithFakeClient(t *testing.T) {
 	client := &FakeTestClient{}
 	handler := GenericList(client, "Test")
@@ -674,8 +711,30 @@ func TestGenericUpdate_WithFakeClient(t *testing.T) {
 	assert.Contains(t, content.Text, "updated")
 }
 
+func TestGenericUpdate_MergesExistingFields(t *testing.T) {
+	client := &mergeUpdateClient{}
+	handler := GenericUpdate(client, "Test", func() any { return &mergeTestResource{} }, false)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"site": "default",
+		"id":   "123",
+		"name": "updated item",
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.False(t, result.IsError)
+
+	require.NotNil(t, client.updated)
+	assert.Equal(t, "123", client.updated.ID)
+	assert.Equal(t, "updated item", client.updated.Name)
+	assert.True(t, client.updated.Enabled)
+}
+
 func TestGenericUpdate_WithFakeClient_Error(t *testing.T) {
-	client := &FakeTestClient{ShouldError: true}
+	client := &updateErrorClient{}
 	handler := GenericUpdate(client, "Test", func() any {
 		return &struct {
 			Name string `json:"name"`

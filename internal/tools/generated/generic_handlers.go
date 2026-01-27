@@ -188,11 +188,46 @@ func GenericUpdate(client any, resourceName string, newTypeFunc func() any, isSe
 			return mcp.NewToolResultError("no fields provided"), nil
 		}
 
+		var id string
 		if !isSetting {
-			id, ok := args["id"].(string)
+			var ok bool
+			id, ok = args["id"].(string)
 			if !ok || id == "" {
 				return mcp.NewToolResultError("required parameter 'id' is missing or invalid"), nil
 			}
+		}
+
+		clientVal := reflect.ValueOf(client)
+		getMethod := clientVal.MethodByName("Get" + resourceName)
+		if !getMethod.IsValid() {
+			return mcp.NewToolResultError("missing client method: Get" + resourceName + " (required for updates)"), nil
+		}
+
+		getArgs := []reflect.Value{reflect.ValueOf(ctx), reflect.ValueOf(site)}
+		if !isSetting {
+			getArgs = append(getArgs, reflect.ValueOf(id))
+		}
+		getResults := getMethod.Call(getArgs)
+		if err := extractError(getResults[1]); err != nil {
+			return mcp.NewToolResultError(err.Error()), nil
+		}
+		if isNilValue(getResults[0]) {
+			return mcp.NewToolResultError("failed to fetch existing resource"), nil
+		}
+		existingRaw, err := json.Marshal(getResults[0].Interface())
+		if err != nil {
+			return mcp.NewToolResultError(fmt.Sprintf("failed to parse existing resource: %v", err)), nil
+		}
+		var existingMap map[string]any
+		if err := json.Unmarshal(existingRaw, &existingMap); err != nil {
+			return mcp.NewToolResultError(fmt.Sprintf("failed to parse existing resource: %v", err)), nil
+		}
+		for key, value := range dataMap {
+			existingMap[key] = value
+		}
+		dataMap = existingMap
+
+		if !isSetting {
 			if _, hasID := dataMap["_id"]; !hasID {
 				dataMap["_id"] = id
 			}
@@ -206,7 +241,6 @@ func GenericUpdate(client any, resourceName string, newTypeFunc func() any, isSe
 			return mcp.NewToolResultError("invalid data: " + err.Error()), nil
 		}
 
-		clientVal := reflect.ValueOf(client)
 		method := clientVal.MethodByName(methodName)
 		if !method.IsValid() {
 			return mcp.NewToolResultError(fmt.Sprintf("method %s not found", methodName)), nil
@@ -331,6 +365,15 @@ func unexpectedKeys(args map[string]any, allowed map[string]struct{}) []string {
 	}
 	sort.Strings(unexpected)
 	return unexpected
+}
+
+func isNilValue(val reflect.Value) bool {
+	switch val.Kind() {
+	case reflect.Pointer, reflect.Interface, reflect.Slice, reflect.Map, reflect.Func, reflect.Chan:
+		return val.IsNil()
+	default:
+		return false
+	}
 }
 
 // extractError converts a reflect.Value to an error if it's not nil.
