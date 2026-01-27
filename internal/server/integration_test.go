@@ -67,7 +67,9 @@ func TestLazyModeEndToEnd(t *testing.T) {
 	assert.False(t, indexResult.IsError)
 
 	var toolCatalog []generated.ToolMetadata
-	indexContent := indexResult.Content[0].(mcp.TextContent)
+	require.NotEmpty(t, indexResult.Content)
+	indexContent, ok := indexResult.Content[0].(mcp.TextContent)
+	require.True(t, ok)
 	err = json.Unmarshal([]byte(indexContent.Text), &toolCatalog)
 	require.NoError(t, err)
 	assert.Len(t, toolCatalog, len(generated.AllToolMetadata))
@@ -99,7 +101,9 @@ func TestLazyModeEndToEnd(t *testing.T) {
 	assert.False(t, batchResult.IsError)
 
 	var batchResults []map[string]any
-	batchContent := batchResult.Content[0].(mcp.TextContent)
+	require.NotEmpty(t, batchResult.Content)
+	batchContent, ok := batchResult.Content[0].(mcp.TextContent)
+	require.True(t, ok)
 	err = json.Unmarshal([]byte(batchContent.Text), &batchResults)
 	require.NoError(t, err)
 	require.Len(t, batchResults, 2)
