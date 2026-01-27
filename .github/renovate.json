@@ -19,8 +19,27 @@
       "depNameTemplate": "golang",
       "datasourceTemplate": "golang-version",
       "versioningTemplate": "loose"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^flake\\.nix$"],
+      "matchStrings": [
+        "pname\\s*=\\s*\"go-test-coverage\";[\\s\\S]*?version\\s*=\\s*\"(?<currentValue>[^\"]+)\";"
+      ],
+      "depNameTemplate": "vladopajic/go-test-coverage",
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^flake\\.nix$"],
+      "matchStrings": [
+        "mkMcpCli\\s*=\\s*pkgs:\\s*let\\s*version\\s*=\\s*\"(?<currentValue>[^\"]+)\";"
+      ],
+      "depNameTemplate": "philschmid/mcp-cli",
+      "datasourceTemplate": "github-releases"
     }
   ],
+  "gitIgnoredAuthors": ["github-actions[bot]@users.noreply.github.com"],
   "packageRules": [
     {
       "description": "Automerge pre-commit hook updates",

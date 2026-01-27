@@ -1,0 +1,270 @@
+#!/usr/bin/env python3
+"""
+Update flake.nix hashes for Renovate PRs.
+Handles vendorHash for Go modules and source hashes for other dependencies.
+"""
+
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+FLAKE_FILE = Path("flake.nix")
+
+
+def run_nix(args, check=True, capture_output=True):
+    """Run a nix command."""
+    cmd = ["nix"] + list(args)
+    try:
+        result = subprocess.run(
+            cmd, check=check, capture_output=capture_output, text=True
+        )
+        return result
+    except subprocess.CalledProcessError as e:
+        print(f"Error running nix command: {cmd}", file=sys.stderr)
+        print(f"Stdout: {e.stdout}", file=sys.stderr)
+        print(f"Stderr: {e.stderr}", file=sys.stderr)
+        raise
+
+
+def get_flake_content():
+    return FLAKE_FILE.read_text(encoding="utf-8")
+
+
+def write_flake_content(content):
+    FLAKE_FILE.write_text(content, encoding="utf-8")
+
+
+def extract_value(content, key, context_pattern=None):
+    """Extract a value from flake.nix, optionally within a context."""
+    if context_pattern:
+        pattern = re.compile(
+            rf'({context_pattern}[\s\S]*?{re.escape(key)}\s*=\s*")([^"]+)(";)'
+        )
+    else:
+        pattern = re.compile(rf'({re.escape(key)}\s*=\s*")([^"]+)(";)')
+
+    match = pattern.search(content)
+    if match:
+        return match.group(2)
+    return None
+
+
+def update_value(content, key, new_value, context_pattern=None):
+    """Update a value in flake.nix, optionally within a context."""
+    if context_pattern:
+        # Match context start ... key = "value";
+        # Group 1: Everything up to value
+        # Group 2: Old value
+        # Group 3: Closing quote and semi-colon
+        pattern = re.compile(
+            rf'({context_pattern}[\s\S]*?{re.escape(key)}\s*=\s*")([^"]+)(";)'
+        )
+    else:
+        pattern = re.compile(rf'({re.escape(key)}\s*=\s*")([^"]+)(";)')
+
+    updated, count = pattern.subn(rf"\1{new_value}\3", content, count=1)
+    if count == 0:
+        raise ValueError(f"Failed to find/update {key} (context: {context_pattern})")
+    return updated
+
+
+def extract_hash_for_derivation(stderr, drv_pattern):
+    """Extract the 'got:' hash from a nix build error for a specific derivation.
+
+    Parses nix stderr for hash mismatch errors, matching only the derivation
+    whose path contains drv_pattern. Returns the hash or None.
+    """
+    # Match blocks like:
+    #   error: hash mismatch in fixed-output derivation '/nix/store/...-NAME.drv':
+    #            specified: sha256-...
+    #               got:    sha256-...
+    pattern = re.compile(
+        r"hash mismatch in fixed-output derivation '[^']*"
+        + drv_pattern
+        + r"[^']*\.drv':\s+"
+        + r"specified:\s+\S+\s+"
+        + r"got:\s+(sha256-[A-Za-z0-9+/=]+)"
+    )
+    match = pattern.search(stderr)
+    return match.group(1) if match else None
+
+
+def update_main_vendor_hash():
+    """Update vendorHash for the main module."""
+    print("Checking buildGoModule vendorHash...")
+    # Run build to see if it fails due to hash mismatch
+    proc = run_nix(["build", "--no-link"], check=False)
+
+    # Extract hash from stderr if there's a mismatch error
+    new_hash = extract_hash_for_derivation(
+        proc.stderr, r"go-unifi-mcp-[^-]+-go-modules"
+    )
+    if new_hash:
+        content = get_flake_content()
+        current_hash = extract_value(
+            content, "vendorHash", context_pattern=r'pname\s*=\s*"go-unifi-mcp";'
+        )
+
+        if current_hash != new_hash:
+            print(f"Updating vendorHash: {current_hash} -> {new_hash}")
+            content = update_value(
+                content,
+                "vendorHash",
+                new_hash,
+                context_pattern=r'pname\s*=\s*"go-unifi-mcp";',
+            )
+            write_flake_content(content)
+            return
+
+    if proc.returncode != 0 and not new_hash:
+        # Build failed for some other reason
+        print("Build failed but no hash mismatch found:", file=sys.stderr)
+        print(proc.stderr, file=sys.stderr)
+        # Don't exit here, allows continuing to other updates if main build fails
+        # (though likely nothing else works if main build is broken)
+        # Actually, if main build fails, we probably should stop.
+        sys.exit(1)
+
+
+def update_go_test_coverage():
+    """Update hash and vendorHash for go-test-coverage."""
+    content = get_flake_content()
+
+    # 1. Get version
+    version_pattern = r'pname\s*=\s*"go-test-coverage";[\s\S]*?version\s*=\s*"([^"]+)";'
+    match = re.search(version_pattern, content)
+    if not match:
+        print("Could not find go-test-coverage version")
+        return
+    version = match.group(1)
+
+    # 2. Update source hash
+    print(f"Prefetching go-test-coverage v{version}...")
+    proc = run_nix(
+        [
+            "shell",
+            "nixpkgs#nix-prefetch-github",
+            "--command",
+            "nix-prefetch-github",
+            "vladopajic",
+            "go-test-coverage",
+            "--rev",
+            f"v{version}",
+        ]
+    )
+
+    meta = json.loads(proc.stdout)
+    new_hash = meta["hash"]
+
+    content = get_flake_content()
+    # Context: pname = "go-test-coverage"
+    content = update_value(
+        content, "hash", new_hash, context_pattern=r'pname\s*=\s*"go-test-coverage";'
+    )
+    write_flake_content(content)
+
+    # 3. Update vendorHash
+    print("Updating go-test-coverage vendorHash...")
+    # Set dummy hash to force mismatch
+    dummy_hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    content = update_value(
+        content,
+        "vendorHash",
+        dummy_hash,
+        context_pattern=r'pname\s*=\s*"go-test-coverage";',
+    )
+    write_flake_content(content)
+
+    # Build to get real hash
+    # Try building the devShell which contains the package
+    # Detect current system to avoid requiring remote builders
+    system_proc = run_nix(
+        ["eval", "--impure", "--raw", "--expr", "builtins.currentSystem"], check=False
+    )
+    system = (
+        system_proc.stdout.strip() if system_proc.returncode == 0 else "x86_64-linux"
+    )
+
+    print(f"Building devShell for {system}...")
+    proc = run_nix(["build", f".#devShells.{system}.default", "--no-link"], check=False)
+
+    real_vendor_hash = extract_hash_for_derivation(
+        proc.stderr, r"go-test-coverage-[^-]+-go-modules"
+    )
+    if real_vendor_hash:
+        print(f"Found new vendorHash: {real_vendor_hash}")
+        content = get_flake_content()
+        content = update_value(
+            content,
+            "vendorHash",
+            real_vendor_hash,
+            context_pattern=r'pname\s*=\s*"go-test-coverage";',
+        )
+        write_flake_content(content)
+    else:
+        print(
+            "Failed to extract new vendorHash for go-test-coverage. Build output:",
+            file=sys.stderr,
+        )
+        print(proc.stderr, file=sys.stderr)
+        sys.exit(1)
+
+
+def update_mcp_cli():
+    """Update hashes for mcp-cli."""
+    content = get_flake_content()
+
+    # 1. Get version
+    version_pattern = r'mkMcpCli\s*=\s*pkgs:\s*let\s*version\s*=\s*"([^"]+)";'
+    match = re.search(version_pattern, content)
+    if not match:
+        print("Could not find mcp-cli version")
+        return
+    version = match.group(1)
+
+    urls = {
+        "aarch64-darwin": f"https://github.com/philschmid/mcp-cli/releases/download/v{version}/mcp-cli-darwin-arm64",
+        "x86_64-darwin": f"https://github.com/philschmid/mcp-cli/releases/download/v{version}/mcp-cli-darwin-x64",
+        "x86_64-linux": f"https://github.com/philschmid/mcp-cli/releases/download/v{version}/mcp-cli-linux-x64",
+    }
+
+    for arch, url in urls.items():
+        print(f"Prefetching mcp-cli {arch}...")
+        proc = run_nix(
+            [
+                "shell",
+                "nixpkgs#nix",
+                "--command",
+                "nix-prefetch-url",
+                "--type",
+                "sha256",
+                url,
+            ]
+        )
+        new_hash = proc.stdout.strip()
+
+        # Ensure SRI format
+        proc_sri = run_nix(["hash", "to-sri", "--type", "sha256", new_hash])
+        sri_hash = proc_sri.stdout.strip()
+
+        content = get_flake_content()
+        # Context: "arch" = { ... hash = "..."
+        context = rf'"{re.escape(arch)}"\s*=\s*{{'
+        content = update_value(content, "hash", sri_hash, context_pattern=context)
+        write_flake_content(content)
+
+
+def main():
+    if not FLAKE_FILE.exists():
+        print(f"Error: {FLAKE_FILE} not found", file=sys.stderr)
+        sys.exit(1)
+
+    update_main_vendor_hash()
+    update_mcp_cli()
+    update_go_test_coverage()
+
+
+if __name__ == "__main__":
+    main()
