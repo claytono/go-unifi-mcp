@@ -18,6 +18,13 @@ repos:
 
   - repo: local
     hooks:
+      - id: nix-flake-build
+        name: nix-flake-build
+        entry: bash -c 'nix build --no-link'
+        language: system
+        pass_filenames: false
+        files: ^(flake\.nix|flake\.lock|go\.mod|go\.sum)$
+
       - id: golangci-lint
         name: golangci-lint
         entry:
