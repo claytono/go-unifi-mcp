@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"reflect"
+	"sort"
+	"strings"
 
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
@@ -97,12 +99,29 @@ func GenericCreate(client any, resourceName string, newTypeFunc func() any) serv
 		// Create new instance of the resource type
 		input := newTypeFunc()
 
-		// Unmarshal the data argument into the input struct
-		dataArg, ok := req.GetArguments()["data"]
-		if !ok {
-			return mcp.NewToolResultError("required parameter 'data' is missing"), nil
+		args := req.GetArguments()
+		allowedKeys := allowedFieldKeys(input)
+		allowedKeys["site"] = struct{}{}
+
+		if unexpected := unexpectedKeys(args, allowedKeys); len(unexpected) > 0 {
+			return mcp.NewToolResultError("unexpected parameters: " + strings.Join(unexpected, ", ")), nil
 		}
-		dataRaw, err := json.Marshal(dataArg)
+
+		dataMap := make(map[string]any)
+		for key, value := range args {
+			if key == "site" {
+				continue
+			}
+			if _, ok := allowedKeys[key]; ok {
+				dataMap[key] = value
+			}
+		}
+
+		if len(dataMap) == 0 {
+			return mcp.NewToolResultError("no fields provided"), nil
+		}
+
+		dataRaw, err := json.Marshal(dataMap)
 		if err != nil {
 			return mcp.NewToolResultError(fmt.Sprintf("failed to parse data: %v", err)), nil
 		}
@@ -135,7 +154,7 @@ func GenericCreate(client any, resourceName string, newTypeFunc func() any) serv
 }
 
 // GenericUpdate creates a handler that calls client.Update<Resource>(ctx, site, &input) via reflection.
-func GenericUpdate(client any, resourceName string, newTypeFunc func() any) server.ToolHandlerFunc {
+func GenericUpdate(client any, resourceName string, newTypeFunc func() any, isSetting bool) server.ToolHandlerFunc {
 	methodName := "Update" + resourceName
 
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
@@ -144,12 +163,42 @@ func GenericUpdate(client any, resourceName string, newTypeFunc func() any) serv
 		// Create new instance of the resource type
 		input := newTypeFunc()
 
-		// Unmarshal the data argument into the input struct
-		dataArg, ok := req.GetArguments()["data"]
-		if !ok {
-			return mcp.NewToolResultError("required parameter 'data' is missing"), nil
+		args := req.GetArguments()
+		allowedKeys := allowedFieldKeys(input)
+		allowedKeys["site"] = struct{}{}
+		if !isSetting {
+			allowedKeys["id"] = struct{}{}
 		}
-		dataRaw, err := json.Marshal(dataArg)
+
+		if unexpected := unexpectedKeys(args, allowedKeys); len(unexpected) > 0 {
+			return mcp.NewToolResultError("unexpected parameters: " + strings.Join(unexpected, ", ")), nil
+		}
+
+		dataMap := make(map[string]any)
+		for key, value := range args {
+			if key == "site" || key == "id" {
+				continue
+			}
+			if _, ok := allowedKeys[key]; ok {
+				dataMap[key] = value
+			}
+		}
+
+		if len(dataMap) == 0 {
+			return mcp.NewToolResultError("no fields provided"), nil
+		}
+
+		if !isSetting {
+			id, ok := args["id"].(string)
+			if !ok || id == "" {
+				return mcp.NewToolResultError("required parameter 'id' is missing or invalid"), nil
+			}
+			if _, hasID := dataMap["_id"]; !hasID {
+				dataMap["_id"] = id
+			}
+		}
+
+		dataRaw, err := json.Marshal(dataMap)
 		if err != nil {
 			return mcp.NewToolResultError(fmt.Sprintf("failed to parse data: %v", err)), nil
 		}
@@ -219,6 +268,69 @@ func extractSite(req mcp.CallToolRequest) string {
 		site = "default"
 	}
 	return site
+}
+
+func allowedFieldKeys(input any) map[string]struct{} {
+	keys := make(map[string]struct{})
+	inputType := reflect.TypeOf(input)
+	if inputType == nil {
+		return keys
+	}
+	if inputType.Kind() == reflect.Pointer {
+		inputType = inputType.Elem()
+	}
+	collectFieldKeys(inputType, keys)
+	return keys
+}
+
+func collectFieldKeys(inputType reflect.Type, keys map[string]struct{}) {
+	if inputType.Kind() == reflect.Pointer {
+		inputType = inputType.Elem()
+	}
+	if inputType.Kind() != reflect.Struct {
+		return
+	}
+	for i := 0; i < inputType.NumField(); i++ {
+		field := inputType.Field(i)
+		if field.PkgPath != "" {
+			continue
+		}
+		if field.Anonymous {
+			collectFieldKeys(field.Type, keys)
+			continue
+		}
+		name := jsonFieldName(field)
+		if name == "" {
+			continue
+		}
+		keys[name] = struct{}{}
+	}
+}
+
+func jsonFieldName(field reflect.StructField) string {
+	jsonTag := field.Tag.Get("json")
+	if jsonTag == "-" {
+		return ""
+	}
+	name := strings.Split(jsonTag, ",")[0]
+	if name != "" {
+		return name
+	}
+	return field.Name
+}
+
+func unexpectedKeys(args map[string]any, allowed map[string]struct{}) []string {
+	unexpected := make([]string, 0)
+	for key := range args {
+		if _, ok := allowed[key]; !ok {
+			unexpected = append(unexpected, key)
+		}
+	}
+	if len(unexpected) == 0 {
+		return nil
+	}
+	sort.Strings(unexpected)
+	return unexpected
 }
 
 // extractError converts a reflect.Value to an error if it's not nil.
