@@ -5,8 +5,9 @@ tasks:
     desc: Download UniFi API field definitions
     deps: [sync-go-unifi]
     vars:
-      # UniFi Controller version for field definitions (tested version from go-unifi)
-      UNIFI_VERSION: 9.0.114
+      # UniFi Controller version for field definitions (from go-unifi repo marker)
+      UNIFI_VERSION:
+        sh: cat .tmp/go-unifi/.unifi-version
     env:
       GOPATH: "{{.ROOT_DIR}}/.go"
       GOMODCACHE: "{{.ROOT_DIR}}/.go/pkg/mod"
@@ -15,7 +16,7 @@ tasks:
       - rm -rf .tmp/fields
       - mkdir -p .tmp/fields
       - cd .tmp/go-unifi && go run ./codegen -version-base-dir ../fields
-        -download-only {{.UNIFI_VERSION}}
+        {{.UNIFI_VERSION}} -download-only {{.UNIFI_VERSION}}
       - echo "Downloaded field definitions for UniFi {{.UNIFI_VERSION}} to
         .tmp/fields/"
 

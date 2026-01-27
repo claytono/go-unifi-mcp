@@ -2,6 +2,11 @@ version: 2
 
 project_name: go-unifi-mcp
 
+before:
+  hooks:
+    - go run ./scripts/unifi-controller-version.go -out
+      .tmp/unifi-controller-version
+
 builds:
   - id: go-unifi-mcp
     main: ./cmd/go-unifi-mcp
@@ -28,6 +33,10 @@ checksum:
 
 changelog:
   sort: asc
+
+release:
+  footer: |
+    Tool generation target: UniFi Controller {{ trim (mustReadFile ".tmp/unifi-controller-version") }} (from go-unifi {{ trim (mustReadFile ".go-unifi-version") }})
 
 dockers_v2:
   - ids:

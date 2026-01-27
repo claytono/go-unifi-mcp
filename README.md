@@ -5,12 +5,24 @@ Go.
 
 ## Overview
 
-go-unifi-mcp provides an MCP interface to UniFi Network Controller, enabling AI
-assistants and other MCP clients to interact with your UniFi infrastructure.
+`go-unifi-mcp` provides an MCP interface to UniFi Network Controller, enabling
+AI assistants and other MCP clients to interact with your UniFi infrastructure.
 
-## Status
+### Why this exists
 
-This project is under development. See the issue tracker for current progress.
+I couldn’t find an MCP server that supported both v1 and v2 firewall rules and
+IPv6, so I built one. This wraps the go-unifi library (which I trust from my
+Terraform provider experience) and leans on its generated API surface. The
+server is generated from the controller’s own API definitions, which makes it
+much easier to keep tool coverage up to date as UniFi evolves.
+
+### UniFi controller versioning
+
+This project generates tools against the same UniFi Controller version pinned by
+go-unifi. When go-unifi updates its supported controller version, we regenerate
+our field definitions and tool metadata to match. We support the same controller
+range; see their
+[controller support range](https://github.com/filipowm/go-unifi/tree/main?tab=readme-ov-file#supported-unifi-controller-versions).
 
 ## Installation
 
@@ -152,8 +164,8 @@ established by
 | `lazy`  | 3     | ~200 tokens  | Meta-tools only (default, recommended for LLMs) |
 | `eager` | 242   | ~55K tokens  | All tools registered directly                   |
 
-**Lazy mode** (default) registers only 3 meta-tools that provide access to all
-242 UniFi operations:
+**Lazy mode** (default) registers only 3 meta-tools that provide access to ~250
+UniFi operations (generated from the controller API):
 
 - `tool_index` - Search/filter the tool catalog by category or resource
 - `execute` - Execute any tool by name with arguments
@@ -278,4 +290,4 @@ This project builds upon:
 
 ## License
 
-MIT
+MPL-2.0
