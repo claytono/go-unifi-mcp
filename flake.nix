@@ -29,7 +29,7 @@
             "-X github.com/claytono/go-unifi-mcp/internal/server.Version=${version}"
           ];
 
-          vendorHash = "sha256-jD+R9IGusJBLIWmfsPPHulQoED+cXEMlaixFAgQLIms=";
+          vendorHash = "sha256-TauO+0Ny4xlVEwYh1GAezGF+PENOLwKD0BkPprIySfE=";
 
           meta = with pkgs.lib; {
             description = "MCP server for UniFi Network Controller";
