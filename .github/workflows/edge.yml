@@ -46,7 +46,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push edge images
+      - name: Build and push edge image
         run: |
           # Get the snapshot version from GoReleaser metadata
           VERSION=$(jq -r '.version' dist/metadata.json)
@@ -58,23 +58,15 @@ jobs:
             cp "$src" "linux/${arch}/go-unifi-mcp"
           done
 
-          # Build and push image for each architecture
-          for arch in amd64 arm64; do
-            docker buildx build \
-              --platform "linux/${arch}" \
-              --tag "ghcr.io/claytono/go-unifi-mcp:edge-${arch}" \
-              --label "org.opencontainers.image.title=go-unifi-mcp" \
-              --label "org.opencontainers.image.description=MCP server for UniFi Network Controller" \
-              --label "org.opencontainers.image.version=${VERSION}" \
-              --label "org.opencontainers.image.source=https://github.com/${{ github.repository }}" \
-              --label "org.opencontainers.image.revision=${GITHUB_SHA}" \
-              --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
-              --push \
-              .
-          done
-
-          # Create and push multi-arch manifest
-          docker manifest create ghcr.io/claytono/go-unifi-mcp:edge \
-            ghcr.io/claytono/go-unifi-mcp:edge-amd64 \
-            ghcr.io/claytono/go-unifi-mcp:edge-arm64
-          docker manifest push ghcr.io/claytono/go-unifi-mcp:edge
+          # Build and push a multi-arch image
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            --tag "ghcr.io/claytono/go-unifi-mcp:edge" \
+            --label "org.opencontainers.image.title=go-unifi-mcp" \
+            --label "org.opencontainers.image.description=MCP server for UniFi Network Controller" \
+            --label "org.opencontainers.image.version=${VERSION}" \
+            --label "org.opencontainers.image.source=https://github.com/${{ github.repository }}" \
+            --label "org.opencontainers.image.revision=${GITHUB_SHA}" \
+            --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+            --push \
+            .
