@@ -14,6 +14,8 @@ import (
 // Version is set at build time.
 var Version = "dev"
 
+var newUnifiClient = unifi.NewClient
+
 const ServerName = "go-unifi-mcp"
 
 // Mode determines how tools are registered with the MCP server.
@@ -82,7 +84,7 @@ func NewClient(cfg *config.Config) (unifi.Client, error) {
 		clientCfg.Password = cfg.Password
 	}
 
-	return unifi.NewClient(clientCfg)
+	return newUnifiClient(clientCfg)
 }
 
 // Serve starts the MCP server on stdio.
