@@ -269,29 +269,29 @@ MCP server.
 
    ```bash
    # List tools (shows all 242)
-   mcp-cli go-unifi-mcp --list-tools
+   mcp-cli info go-unifi-mcp
 
    # Call a tool directly
-   mcp-cli go-unifi-mcp/list_device '{}'
-   mcp-cli go-unifi-mcp/list_network '{"site": "default"}'
+   mcp-cli call go-unifi-mcp list_device '{}'
+   mcp-cli call go-unifi-mcp list_network '{"site": "default"}'
    ```
 
    **Lazy mode** (meta-tools):
 
    ```bash
    # List tools (shows only 3 meta-tools)
-   mcp-cli go-unifi-mcp-lazy --list-tools
+   mcp-cli info go-unifi-mcp-lazy
 
    # Query the tool index
-   mcp-cli go-unifi-mcp-lazy/tool_index '{}'
-   mcp-cli go-unifi-mcp-lazy/tool_index '{"category": "list"}'
-   mcp-cli go-unifi-mcp-lazy/tool_index '{"resource": "network"}'
+   mcp-cli call go-unifi-mcp-lazy tool_index '{}'
+   mcp-cli call go-unifi-mcp-lazy tool_index '{"category": "list"}'
+   mcp-cli call go-unifi-mcp-lazy tool_index '{"resource": "network"}'
 
    # Execute a tool via the dispatcher
-   mcp-cli go-unifi-mcp-lazy/execute '{"tool": "list_device", "arguments": {}}'
+   mcp-cli call go-unifi-mcp-lazy execute '{"tool": "list_device", "arguments": {}}'
 
    # Batch execute multiple tools
-   mcp-cli go-unifi-mcp-lazy/batch '{"calls": [{"tool": "list_network", "arguments": {}}, {"tool": "list_device", "arguments": {}}]}'
+   mcp-cli call go-unifi-mcp-lazy batch '{"calls": [{"tool": "list_network", "arguments": {}}, {"tool": "list_device", "arguments": {}}]}'
    ```
 
 ## Credits
