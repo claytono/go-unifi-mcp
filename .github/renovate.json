@@ -37,6 +37,16 @@
       ],
       "depNameTemplate": "philschmid/mcp-cli",
       "datasourceTemplate": "github-releases"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^flake\\.nix$"],
+      "matchStrings": [
+        "pname\\s*=\\s*\"python-kacl\";[\\s\\S]*?version\\s*=\\s*\"(?<currentValue>[^\"]+)\";"
+      ],
+      "depNameTemplate": "schmieder.matthias/python-kacl",
+      "datasourceTemplate": "gitlab-tags",
+      "registryUrlTemplate": "https://gitlab.com"
     }
   ],
   "gitIgnoredAuthors": ["github-actions[bot]@users.noreply.github.com"],

@@ -65,6 +65,38 @@
         };
       };
 
+      # python-kacl for changelog validation and extraction
+      mkPythonKacl = pkgs: pkgs.python3Packages.buildPythonApplication rec {
+        pname = "python-kacl";
+        version = "0.6.8";
+        pyproject = true;
+
+        src = pkgs.fetchFromGitLab {
+          owner = "schmieder.matthias";
+          repo = "python-kacl";
+          rev = "v${version}";
+          name = "python-kacl-source";
+          hash = "sha256-BJ4SlpiRL5InRJKc2gufCnYXjGlaQebXSHDeBegKY/I=";
+        };
+
+        build-system = with pkgs.python3Packages; [ setuptools ];
+
+        dependencies = with pkgs.python3Packages; [
+          click
+          semver
+          gitpython
+          pyyaml
+          jira
+        ];
+
+        doCheck = false;
+
+        meta = {
+          description = "CLI tool to manage changelogs in Keep a Changelog format";
+          homepage = "https://gitlab.com/schmieder.matthias/python-kacl";
+        };
+      };
+
       # mcp-cli for invoking MCP servers from CLI
       # Returns null on unsupported platforms (aarch64-linux has no binary)
       mkMcpCli = pkgs: let
@@ -129,6 +161,7 @@
             goreleaser
             go-mockery
             (mkGoTestCoverage pkgs)
+            (mkPythonKacl pkgs)
           ] ++ lib.optional (mkMcpCli pkgs != null) (mkMcpCli pkgs);
         };
       });

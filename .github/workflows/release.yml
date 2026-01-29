@@ -40,8 +40,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Extract release notes
+        run: |
+          mkdir -p .tmp
+          VERSION="${GITHUB_REF_NAME#v}"
+          nix develop --command kacl-cli get "$VERSION" > .tmp/release-notes.md
+
       - name: Run GoReleaser
-        run: nix develop --command goreleaser release --clean
+        run: |
+          nix develop --command goreleaser release --clean --release-notes .tmp/release-notes.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}

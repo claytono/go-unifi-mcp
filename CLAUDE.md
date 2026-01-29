@@ -85,6 +85,29 @@ edit generated type files. See Phase 2 documentation for sync process.
 - Mock definitions live in `internal/server/mocks`
 - Do not edit generated mocks manually
 
+### Releasing
+
+This project uses a `CHANGELOG.md` in
+[Keep a Changelog](https://keepachangelog.com/) format. The release workflow
+uses `kacl-cli` to extract the version's notes and passes them to goreleaser.
+
+Release process:
+
+1. Update `CHANGELOG.md` with a new version section
+2. Run quality gates: `task lint && task coverage && task build`
+3. Commit and push to main
+4. Tag: `git tag -a vX.Y.Z -m "vX.Y.Z: brief summary"`
+5. Push tag: `git push origin vX.Y.Z`
+6. Wait for release workflow: `gh run watch --exit-status`
+7. Verify: `gh release view vX.Y.Z`
+
+Changelog entries:
+
+- Use categories: Added, Changed, Deprecated, Removed, Fixed, Security
+- Write for humans — concise, one line per change
+- `kacl-cli verify` runs as a pre-commit hook to validate format
+- Goreleaser auto-appends the UniFi Controller version footer
+
 ## Issue Tracking
 
 This project uses **bd** (beads) for issue tracking. Run `bd onboard` to get

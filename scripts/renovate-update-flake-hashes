@@ -256,6 +256,56 @@ def update_mcp_cli():
         write_flake_content(content)
 
 
+def update_python_kacl():
+    """Update source hash for python-kacl."""
+    content = get_flake_content()
+
+    # 1. Get version
+    version_pattern = r'pname\s*=\s*"python-kacl";[\s\S]*?version\s*=\s*"([^"]+)";'
+    match = re.search(version_pattern, content)
+    if not match:
+        print("Could not find python-kacl version")
+        return
+    version = match.group(1)
+
+    # 2. Set dummy hash and build to get real hash
+    print(f"Updating python-kacl v{version} source hash...")
+    dummy_hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    content = update_value(
+        content, "hash", dummy_hash, context_pattern=r'pname\s*=\s*"python-kacl";'
+    )
+    write_flake_content(content)
+
+    system_proc = run_nix(
+        ["eval", "--impure", "--raw", "--expr", "builtins.currentSystem"], check=False
+    )
+    system = (
+        system_proc.stdout.strip() if system_proc.returncode == 0 else "x86_64-linux"
+    )
+
+    print(f"Building devShell for {system} to get hash...")
+    proc = run_nix(["build", f".#devShells.{system}.default", "--no-link"], check=False)
+
+    new_hash = extract_hash_for_derivation(proc.stderr, r"python-kacl-source")
+    if new_hash:
+        print(f"Found new hash: {new_hash}")
+        content = get_flake_content()
+        content = update_value(
+            content,
+            "hash",
+            new_hash,
+            context_pattern=r'pname\s*=\s*"python-kacl";',
+        )
+        write_flake_content(content)
+    else:
+        print(
+            "Failed to extract new hash for python-kacl. Build output:",
+            file=sys.stderr,
+        )
+        print(proc.stderr, file=sys.stderr)
+        sys.exit(1)
+
+
 def main():
     if not FLAKE_FILE.exists():
         print(f"Error: {FLAKE_FILE} not found", file=sys.stderr)
@@ -264,6 +314,7 @@ def main():
     update_main_vendor_hash()
     update_mcp_cli()
     update_go_test_coverage()
+    update_python_kacl()
 
 
 if __name__ == "__main__":

@@ -53,7 +53,7 @@ brews:
       bin.install "go-unifi-mcp"
 
 changelog:
-  sort: asc
+  disable: true
 
 release:
   footer: |
