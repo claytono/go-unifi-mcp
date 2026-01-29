@@ -104,15 +104,15 @@
         sources = {
           "aarch64-darwin" = {
             url = "https://github.com/philschmid/mcp-cli/releases/download/v${version}/mcp-cli-darwin-arm64";
-            hash = "sha256-WNKFzfHbCgA2TGqHJ3XOJKUKW+kE4kdexlTQ/BYH2PY=";
+            hash = "sha256-vpkd8KEl4c+aAi/m/84jZgVSL9E4JDXOWP/fmrpmQvI=";
           };
           "x86_64-darwin" = {
             url = "https://github.com/philschmid/mcp-cli/releases/download/v${version}/mcp-cli-darwin-x64";
-            hash = "sha256-KSC5atyBKVKGZZTYlxVrR9r4fHR3ynr35bN0Fouz1NI=";
+            hash = "sha256-8OiQpmYmgzUAW7uhmSU/+Pbmr6520K3zT72nCLJqzC4=";
           };
           "x86_64-linux" = {
             url = "https://github.com/philschmid/mcp-cli/releases/download/v${version}/mcp-cli-linux-x64";
-            hash = "sha256-nPfQOEyp1wR/KgHsUILIL3M/epkEpwePZ8TiHOTiHCQ=";
+            hash = "sha256-dncvKQ7aqFbL7JZ9EsM8ub9Jz/AU9Vow0EJFz4lwgXw=";
           };
         };
         src = sources.${pkgs.stdenv.hostPlatform.system} or null;
