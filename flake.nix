@@ -100,7 +100,7 @@
       # mcp-cli for invoking MCP servers from CLI
       # Returns null on unsupported platforms (aarch64-linux has no binary)
       mkMcpCli = pkgs: let
-        version = "0.1.4";
+        version = "0.3.0";
         sources = {
           "aarch64-darwin" = {
             url = "https://github.com/philschmid/mcp-cli/releases/download/v${version}/mcp-cli-darwin-arm64";
