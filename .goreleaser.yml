@@ -52,9 +52,6 @@ brews:
     install: |
       bin.install "go-unifi-mcp"
 
-changelog:
-  disable: true
-
 release:
   footer: |
     Tool generation target: UniFi Controller {{ trim (mustReadFile ".tmp/unifi-controller-version") }} (from go-unifi {{ trim (mustReadFile ".go-unifi-version") }})
