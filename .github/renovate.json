@@ -15,10 +15,12 @@
     {
       "customType": "regex",
       "fileMatch": ["^flake\\.nix$"],
-      "matchStrings": ["go_(?<currentValue>[0-9_]+)"],
+      "matchStrings": ["go_(?<major>\\d+)_(?<minor>\\d+)"],
+      "currentValueTemplate": "{{{major}}}.{{{minor}}}",
       "depNameTemplate": "golang",
       "datasourceTemplate": "golang-version",
-      "versioningTemplate": "loose"
+      "versioningTemplate": "go-mod-directive",
+      "autoReplaceStringTemplate": "go_{{{newMajor}}}_{{{newMinor}}}"
     },
     {
       "customType": "regex",
@@ -67,6 +69,12 @@
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["digest"],
       "automerge": true
+    },
+    {
+      "description": "Bump Go version in flake.nix on new minor releases",
+      "matchDatasources": ["golang-version"],
+      "matchDepNames": ["golang"],
+      "rangeStrategy": "bump"
     }
   ]
 }
