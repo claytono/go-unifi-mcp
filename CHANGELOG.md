@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-01-30
+
+### Added
+
+- `--help` and `--version` CLI flags
+- Automatic publishing to MCP Registry on release
+
 ## [0.1.0] - 2026-01-29
 
 ### Added
@@ -21,4 +28,5 @@ and this project adheres to
 - Pre-built binaries for linux and macOS (amd64 and arm64)
 - Configurable site selection and authentication via environment variables
 
+[0.1.1]: https://github.com/claytono/go-unifi-mcp/releases/tag/v0.1.1
 [0.1.0]: https://github.com/claytono/go-unifi-mcp/releases/tag/v0.1.0
