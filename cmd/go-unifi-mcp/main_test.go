@@ -10,6 +10,7 @@ import (
 	"github.com/claytono/go-unifi-mcp/internal/server"
 	"github.com/filipowm/go-unifi/unifi"
 	mcpserver "github.com/mark3labs/mcp-go/server"
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
@@ -85,10 +86,86 @@ func TestMainLogsAndExitsOnError(t *testing.T) {
 		exitCode = code
 	}
 
-	mainWith(r, exitFn, logger)
+	mainWith(r, exitFn, logger, []string{"go-unifi-mcp"}, buf)
 	require.True(t, exited)
 	require.Equal(t, 1, exitCode)
 	require.Contains(t, buf.String(), "Error: boom")
+}
+
+func TestMainPrintsUsageOnError(t *testing.T) {
+	r := baseRunner()
+	r.loadConfig = func() (*config.Config, error) {
+		return nil, errors.New("UNIFI_HOST environment variable is required")
+	}
+	buf := &bytes.Buffer{}
+	logger := log.New(buf, "", 0)
+	exitCode := -1
+	exitFn := func(code int) { exitCode = code }
+
+	mainWith(r, exitFn, logger, []string{"go-unifi-mcp"}, buf)
+	require.Equal(t, 1, exitCode)
+	output := buf.String()
+	assert.Contains(t, output, "UNIFI_HOST")
+	assert.Contains(t, output, "Usage:")
+	assert.Contains(t, output, "Error:")
+}
+
+func TestVersionFlag(t *testing.T) {
+	r := baseRunner()
+	buf := &bytes.Buffer{}
+	logger := log.New(buf, "", 0)
+	exitCode := -1
+	exitFn := func(code int) { exitCode = code }
+
+	mainWith(r, exitFn, logger, []string{"go-unifi-mcp", "--version"}, buf)
+	require.Equal(t, 0, exitCode)
+	assert.Contains(t, buf.String(), "go-unifi-mcp")
+	assert.Contains(t, buf.String(), server.Version)
+}
+
+func TestHelpFlag(t *testing.T) {
+	r := baseRunner()
+	buf := &bytes.Buffer{}
+	logger := log.New(buf, "", 0)
+	exitCode := -1
+	exitFn := func(code int) { exitCode = code }
+
+	mainWith(r, exitFn, logger, []string{"go-unifi-mcp", "--help"}, buf)
+	require.Equal(t, 0, exitCode)
+	output := buf.String()
+	assert.Contains(t, output, "MCP server for UniFi Network Controller")
+	assert.Contains(t, output, "Usage:")
+	assert.Contains(t, output, "UNIFI_HOST")
+	assert.Contains(t, output, "UNIFI_API_KEY")
+	assert.Contains(t, output, "UNIFI_TOOL_MODE")
+}
+
+func TestUnknownFlagExitsWithCode2(t *testing.T) {
+	r := baseRunner()
+	buf := &bytes.Buffer{}
+	logger := log.New(buf, "", 0)
+	exitCode := -1
+	exitFn := func(code int) { exitCode = code }
+
+	mainWith(r, exitFn, logger, []string{"go-unifi-mcp", "--bogus"}, buf)
+	require.Equal(t, 2, exitCode)
+}
+
+func TestMainNoUsageOnRuntimeError(t *testing.T) {
+	r := baseRunner()
+	r.serve = func(s *mcpserver.MCPServer) error {
+		return errors.New("connection lost")
+	}
+	buf := &bytes.Buffer{}
+	logger := log.New(buf, "", 0)
+	exitCode := -1
+	exitFn := func(code int) { exitCode = code }
+
+	mainWith(r, exitFn, logger, []string{"go-unifi-mcp"}, buf)
+	require.Equal(t, 1, exitCode)
+	output := buf.String()
+	assert.Contains(t, output, "Error: connection lost")
+	assert.NotContains(t, output, "Usage:")
 }
 
 func TestMainExitsOnError(t *testing.T) {
@@ -97,18 +174,17 @@ func TestMainExitsOnError(t *testing.T) {
 	t.Setenv("UNIFI_USERNAME", "")
 	t.Setenv("UNIFI_PASSWORD", "")
 
-	originalExit := exit
+	r := defaultRunner()
+	buf := &bytes.Buffer{}
+	logger := log.New(buf, "", 0)
 	exited := false
 	exitCode := 0
-	exit = func(code int) {
+	exitFn := func(code int) {
 		exited = true
 		exitCode = code
 	}
-	t.Cleanup(func() {
-		exit = originalExit
-	})
 
-	main()
+	mainWith(r, exitFn, logger, []string{"go-unifi-mcp"}, buf)
 	require.True(t, exited)
 	require.Equal(t, 1, exitCode)
 }
