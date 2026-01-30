@@ -1,5 +1,5 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.claytono/go-unifi-mcp",
   "description": "Manage UniFi sites, devices, clients, networks, port forwarding, DNS, and firewall",
   "version": "0.0.0-dev",
@@ -9,8 +9,8 @@
   },
   "packages": [
     {
-      "registry_type": "oci",
-      "registry_base_url": "https://ghcr.io",
+      "registryType": "oci",
+      "registryBaseUrl": "https://ghcr.io",
       "identifier": "claytono/go-unifi-mcp",
       "version": "0.0.0-dev",
       "transport": {
