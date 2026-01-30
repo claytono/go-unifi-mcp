@@ -30,6 +30,7 @@
           ];
 
           vendorHash = "sha256-TauO+0Ny4xlVEwYh1GAezGF+PENOLwKD0BkPprIySfE=";
+          goSum = ./go.sum;
 
           meta = with pkgs.lib; {
             description = "MCP server for UniFi Network Controller";

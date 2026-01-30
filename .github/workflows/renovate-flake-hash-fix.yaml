@@ -20,6 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'renovate[bot]'
 
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -30,9 +34,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Install Nix
-        uses: cachix/install-nix-action@v31
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+        uses: DeterminateSystems/determinate-nix-action@v3
 
       - name: Setup Cachix
         uses: cachix/cachix-action@v16
@@ -40,8 +42,16 @@ jobs:
           name: claytono
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - name: Update flake hashes
-        run: scripts/renovate-update-flake-hashes
+      - name: Build to detect hash mismatches
+        run: |
+          nix build --no-link 2>&1 || true
+          nix build .#devShells.x86_64-linux.default --no-link 2>&1 || true
+
+      - name: Fix detected hash mismatches
+        run: determinate-nixd fix hashes --auto-apply
+
+      - name: Fix cross-platform fetchurl hashes
+        run: scripts/fix-cross-platform-hashes
 
       - name: Check for changes
         id: check-changes

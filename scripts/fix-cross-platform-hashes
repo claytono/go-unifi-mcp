@@ -1,0 +1,151 @@
+#!/usr/bin/env python3
+"""
+Fix fetchurl hashes for platforms not built on this CI runner.
+
+Uses nix eval to introspect the flake's devShell inputs across all supported
+systems, identifies packages with platform-specific sources (different URLs per
+architecture), and prefetches correct hashes for non-current platforms.
+
+This complements determinate-nixd fix-hashes, which only fixes hashes for
+derivations that were actually built (i.e. the current platform).
+"""
+
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+FLAKE_FILE = Path("flake.nix")
+
+# Nix expression that extracts package source info across all platforms.
+# Returns a list of {pname, url, hash, system} for every devShell input.
+NIX_EVAL_EXPR = r"""
+let
+  flake = builtins.getFlake "git+file://${toString ./.}";
+  systems = builtins.attrNames flake.devShells;
+  getPkgInfo = system:
+    let
+      inputs = flake.devShells.${system}.default.nativeBuildInputs or [];
+    in
+      map (pkg:
+        let
+          hasSrc = pkg ? src;
+          url =
+            if hasSrc
+            then (pkg.src.url or (builtins.head (pkg.src.urls or [""])))
+            else "";
+          hash = if hasSrc then (pkg.src.outputHash or "") else "";
+        in
+          { pname = pkg.pname or "unknown"; inherit url hash system; }
+      ) inputs;
+in
+  builtins.concatMap getPkgInfo systems
+"""
+
+
+def run_nix(args, check=True):
+    """Run a nix command and return the result."""
+    cmd = ["nix"] + list(args)
+    try:
+        return subprocess.run(cmd, capture_output=True, text=True, check=check)
+    except subprocess.CalledProcessError as e:
+        print(f"Error running: {cmd}", file=sys.stderr)
+        print(f"Stderr: {e.stderr}", file=sys.stderr)
+        raise
+
+
+def get_current_system():
+    result = run_nix(["eval", "--impure", "--raw", "--expr", "builtins.currentSystem"])
+    return result.stdout.strip()
+
+
+def get_all_package_sources():
+    """Use nix eval to get source info for all packages across all platforms."""
+    result = run_nix(["eval", "--impure", "--json", "--expr", NIX_EVAL_EXPR])
+    return json.loads(result.stdout)
+
+
+def find_cross_platform_entries(sources, current_system):
+    """Find packages that have different URLs per platform.
+
+    Returns entries for non-current systems that need hash verification.
+    """
+    # Group by pname
+    by_pname = {}
+    for entry in sources:
+        if not entry["url"] or not entry["hash"]:
+            continue
+        by_pname.setdefault(entry["pname"], []).append(entry)
+
+    # Find packages with platform-specific sources (different URLs per system)
+    cross_platform = []
+    for pname, entries in by_pname.items():
+        urls = {e["url"] for e in entries}
+        if len(urls) <= 1:
+            continue  # Same URL on all platforms, no cross-platform concern
+        for entry in entries:
+            if entry["system"] != current_system:
+                cross_platform.append(entry)
+
+    return cross_platform
+
+
+def prefetch_url(url):
+    """Prefetch a URL and return its SRI hash."""
+    result = subprocess.run(
+        ["nix-prefetch-url", "--type", "sha256", url],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    base32_hash = result.stdout.strip()
+
+    sri_result = run_nix(["hash", "to-sri", "--type", "sha256", base32_hash])
+    return sri_result.stdout.strip()
+
+
+def main():
+    if not FLAKE_FILE.exists():
+        print(f"Error: {FLAKE_FILE} not found", file=sys.stderr)
+        sys.exit(1)
+
+    current_system = get_current_system()
+    print(f"Current system: {current_system}")
+
+    print("Evaluating flake to discover package sources...")
+    sources = get_all_package_sources()
+
+    entries = find_cross_platform_entries(sources, current_system)
+    if not entries:
+        print("No cross-platform packages found")
+        return
+
+    content = FLAKE_FILE.read_text(encoding="utf-8")
+    changed = False
+
+    for entry in entries:
+        print(f"Prefetching {entry['pname']} ({entry['system']}): {entry['url']}")
+        try:
+            new_hash = prefetch_url(entry["url"])
+            old_hash = entry["hash"]
+            if new_hash != old_hash:
+                print(f"  Updating hash: {old_hash} -> {new_hash}")
+                content = content.replace(old_hash, new_hash)
+                changed = True
+            else:
+                print("  Hash unchanged")
+        except subprocess.CalledProcessError as e:
+            print(
+                f"  WARNING: Failed to prefetch {entry['url']}: {e.stderr}",
+                file=sys.stderr,
+            )
+
+    if changed:
+        FLAKE_FILE.write_text(content, encoding="utf-8")
+        print("Updated flake.nix with cross-platform hashes")
+    else:
+        print("No cross-platform hash changes needed")
+
+
+if __name__ == "__main__":
+    main()
