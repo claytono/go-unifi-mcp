@@ -10,8 +10,7 @@
   "packages": [
     {
       "registryType": "oci",
-      "registryBaseUrl": "https://ghcr.io",
-      "identifier": "claytono/go-unifi-mcp",
+      "identifier": "ghcr.io/claytono/go-unifi-mcp",
       "version": "0.0.0-dev",
       "transport": {
         "type": "stdio"
