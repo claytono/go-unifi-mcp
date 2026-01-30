@@ -50,6 +50,15 @@ curl -L https://github.com/claytono/go-unifi-mcp/releases/latest/download/go-uni
 sudo mv go-unifi-mcp /usr/local/bin/
 ```
 
+### Homebrew
+
+Available from the
+[claytono/homebrew-tap](https://github.com/claytono/homebrew-tap) tap:
+
+```bash
+brew install claytono/tap/go-unifi-mcp
+```
+
 ### Nix
 
 ```bash
