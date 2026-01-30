@@ -76,3 +76,4 @@ dockers_v2:
       "org.opencontainers.image.source": "https://github.com/claytono/go-unifi-mcp"
       "org.opencontainers.image.revision": "{{ .FullCommit }}"
       "org.opencontainers.image.created": "{{ .Date }}"
+      "io.modelcontextprotocol.server.name": "io.github.claytono/go-unifi-mcp"

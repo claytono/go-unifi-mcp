@@ -98,6 +98,53 @@
         };
       };
 
+      # mcp-publisher for publishing to MCP Registry
+      mkMcpPublisher = pkgs: let
+        version = "1.4.0";
+        sources = {
+          "aarch64-darwin" = {
+            url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_darwin_arm64.tar.gz";
+            hash = "sha256-nt27uV79VLlQP2wGaPQ7qz8EyFaUbTxxZPba6tIyQC8=";
+          };
+          "x86_64-darwin" = {
+            url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_darwin_amd64.tar.gz";
+            hash = "sha256-61+Jt2/EWpcHD6SB6wOXdYSnjj3/J4FALUNILxFOTWo=";
+          };
+          "x86_64-linux" = {
+            url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_linux_amd64.tar.gz";
+            hash = "sha256-xLQCtDqFFmw/hAZByhyebeW/oc9TPCJXbWY8y9oHEbs=";
+          };
+          "aarch64-linux" = {
+            url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_linux_arm64.tar.gz";
+            hash = "sha256-ul1Ib4ayzvSOpQboMU2QGlFp3NVqXW6drxjUEkQxYjU=";
+          };
+        };
+        src = sources.${pkgs.stdenv.hostPlatform.system} or null;
+      in if src == null then null else pkgs.stdenv.mkDerivation {
+        pname = "mcp-publisher";
+        inherit version;
+
+        src = pkgs.fetchurl {
+          inherit (src) url hash;
+        };
+
+        sourceRoot = ".";
+        unpackPhase = ''
+          tar xzf $src
+        '';
+
+        installPhase = ''
+          mkdir -p $out/bin
+          cp mcp-publisher $out/bin/
+          chmod +x $out/bin/mcp-publisher
+        '';
+
+        meta = {
+          description = "CLI tool for publishing servers to the MCP Registry";
+          homepage = "https://github.com/modelcontextprotocol/registry";
+        };
+      };
+
       # mcp-cli for invoking MCP servers from CLI
       # Returns null on unsupported platforms (aarch64-linux has no binary)
       mkMcpCli = pkgs: let
@@ -163,7 +210,8 @@
             go-mockery
             (mkGoTestCoverage pkgs)
             (mkPythonKacl pkgs)
-          ] ++ lib.optional (mkMcpCli pkgs != null) (mkMcpCli pkgs);
+          ] ++ lib.optional (mkMcpCli pkgs != null) (mkMcpCli pkgs)
+            ++ lib.optional (mkMcpPublisher pkgs != null) (mkMcpPublisher pkgs);
         };
       });
     };
