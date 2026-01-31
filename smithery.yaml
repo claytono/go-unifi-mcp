@@ -1,0 +1,39 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - host
+    properties:
+      host:
+        type: string
+        description: "UniFi Controller URL (e.g., https://unifi.example.com)"
+      apiKey:
+        type: string
+        description: "API key (preferred auth method)"
+      username:
+        type: string
+        description: "Username for password auth"
+      password:
+        type: string
+        description: "Password for password auth"
+      site:
+        type: string
+        default: "default"
+        description: "UniFi site name"
+      verifySsl:
+        type: string
+        default: "true"
+        description: "Verify SSL certificates (true/false)"
+  commandFunction: |-
+    (config) => ({
+      command: 'go-unifi-mcp',
+      env: {
+        UNIFI_HOST: config.host,
+        ...(config.apiKey ? { UNIFI_API_KEY: config.apiKey } : {}),
+        ...(config.username ? { UNIFI_USERNAME: config.username } : {}),
+        ...(config.password ? { UNIFI_PASSWORD: config.password } : {}),
+        UNIFI_SITE: config.site || 'default',
+        UNIFI_VERIFY_SSL: config.verifySsl || 'true'
+      }
+    })
