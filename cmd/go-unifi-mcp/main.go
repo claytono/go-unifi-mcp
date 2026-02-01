@@ -52,6 +52,7 @@ Environment variables:
   UNIFI_PASSWORD    Password for password auth
   UNIFI_SITE        UniFi site name (default: "default")
   UNIFI_VERIFY_SSL  Verify SSL certificates (default: true)
+  UNIFI_LOG_LEVEL   go-unifi log level: disabled|trace|debug|info|warn|error (default: "error")
   UNIFI_TOOL_MODE   Tool registration mode: lazy|eager (default: "lazy")
 `)
 }

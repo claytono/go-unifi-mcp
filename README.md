@@ -167,10 +167,27 @@ Then set the required environment variables in your shell before running
 | `UNIFI_PASSWORD`   | \*       | —         | Password for password auth      |
 | `UNIFI_SITE`       | No       | `default` | UniFi site name                 |
 | `UNIFI_VERIFY_SSL` | No       | `true`    | Whether to verify SSL certs     |
+| `UNIFI_LOG_LEVEL`  | No       | `error`   | go-unifi client log level       |
 | `UNIFI_TOOL_MODE`  | No       | `lazy`    | Tool registration mode          |
 
 \* Either `UNIFI_API_KEY` or both `UNIFI_USERNAME` and `UNIFI_PASSWORD` must be
 set.
+
+### Log Levels
+
+The `UNIFI_LOG_LEVEL` variable controls logging from the underlying go-unifi
+client library. The default is `error` because the client otherwise emits INFO
+messages to stderr, which can interfere with tools like mcp-cli that parse JSON
+on stdout/stderr.
+
+| Level      | Description                          |
+| ---------- | ------------------------------------ |
+| `disabled` | No logging                           |
+| `trace`    | Most verbose, including wire details |
+| `debug`    | Debug messages                       |
+| `info`     | Informational messages               |
+| `warn`     | Warnings only                        |
+| `error`    | Errors only (default)                |
 
 ### Tool Modes
 

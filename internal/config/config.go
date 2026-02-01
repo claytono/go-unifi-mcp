@@ -2,14 +2,26 @@ package config
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 var (
 	ErrMissingHost        = errors.New("UNIFI_HOST environment variable is required")
 	ErrMissingCredentials = errors.New("either UNIFI_API_KEY or both UNIFI_USERNAME and UNIFI_PASSWORD must be set")
+	ErrInvalidLogLevel    = errors.New("UNIFI_LOG_LEVEL must be one of: disabled, trace, debug, info, warn, error")
 )
+
+var validLogLevels = map[string]bool{
+	"disabled": true,
+	"trace":    true,
+	"debug":    true,
+	"info":     true,
+	"warn":     true,
+	"error":    true,
+}
 
 // Config holds the MCP server configuration.
 type Config struct {
@@ -19,6 +31,7 @@ type Config struct {
 	Password  string // UNIFI_PASSWORD - username/password auth
 	Site      string // UNIFI_SITE - site name (default: "default")
 	VerifySSL bool   // UNIFI_VERIFY_SSL - verify SSL certs (default: true)
+	LogLevel  string // UNIFI_LOG_LEVEL - go-unifi log level (default: "error")
 }
 
 // Load loads configuration from environment variables.
@@ -39,6 +52,17 @@ func Load() (*Config, error) {
 			return nil, errors.New("UNIFI_VERIFY_SSL must be a boolean (true/false)")
 		}
 		cfg.VerifySSL = parsed
+	}
+
+	// Parse UNIFI_LOG_LEVEL
+	if v := os.Getenv("UNIFI_LOG_LEVEL"); v != "" {
+		v = strings.ToLower(v)
+		if !validLogLevels[v] {
+			return nil, fmt.Errorf("%w: got %q", ErrInvalidLogLevel, v)
+		}
+		cfg.LogLevel = v
+	} else {
+		cfg.LogLevel = "error"
 	}
 
 	// Set default site

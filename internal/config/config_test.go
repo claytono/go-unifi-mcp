@@ -1,6 +1,7 @@
 package config
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -12,6 +13,7 @@ func TestLoad_APIKey(t *testing.T) {
 	t.Setenv("UNIFI_API_KEY", "test-api-key")
 	t.Setenv("UNIFI_USERNAME", "")
 	t.Setenv("UNIFI_PASSWORD", "")
+	t.Setenv("UNIFI_LOG_LEVEL", "")
 
 	cfg, err := Load()
 	require.NoError(t, err)
@@ -20,6 +22,7 @@ func TestLoad_APIKey(t *testing.T) {
 	assert.Equal(t, "default", cfg.Site)
 	assert.True(t, cfg.VerifySSL)
 	assert.True(t, cfg.UseAPIKey())
+	assert.Equal(t, "error", cfg.LogLevel)
 }
 
 func TestLoad_UserPass(t *testing.T) {
@@ -91,4 +94,52 @@ func TestLoad_InvalidVerifySSL(t *testing.T) {
 	_, err := Load()
 	assert.Error(t, err)
 	assert.Contains(t, err.Error(), "UNIFI_VERIFY_SSL")
+}
+
+func TestLoad_LogLevelDefault(t *testing.T) {
+	t.Setenv("UNIFI_HOST", "https://192.168.1.1")
+	t.Setenv("UNIFI_API_KEY", "test-api-key")
+	t.Setenv("UNIFI_LOG_LEVEL", "")
+
+	cfg, err := Load()
+	require.NoError(t, err)
+	assert.Equal(t, "error", cfg.LogLevel)
+}
+
+func TestLoad_LogLevelValid(t *testing.T) {
+	for _, level := range []string{"disabled", "trace", "debug", "info", "warn", "error"} {
+		t.Run(level, func(t *testing.T) {
+			t.Setenv("UNIFI_HOST", "https://192.168.1.1")
+			t.Setenv("UNIFI_API_KEY", "test-api-key")
+			t.Setenv("UNIFI_LOG_LEVEL", level)
+
+			cfg, err := Load()
+			require.NoError(t, err)
+			assert.Equal(t, level, cfg.LogLevel)
+		})
+	}
+}
+
+func TestLoad_LogLevelCaseInsensitive(t *testing.T) {
+	for _, input := range []string{"INFO", "Info", "ERROR", "Debug"} {
+		t.Run(input, func(t *testing.T) {
+			t.Setenv("UNIFI_HOST", "https://192.168.1.1")
+			t.Setenv("UNIFI_API_KEY", "test-api-key")
+			t.Setenv("UNIFI_LOG_LEVEL", input)
+
+			cfg, err := Load()
+			require.NoError(t, err)
+			assert.Equal(t, strings.ToLower(input), cfg.LogLevel)
+		})
+	}
+}
+
+func TestLoad_LogLevelInvalid(t *testing.T) {
+	t.Setenv("UNIFI_HOST", "https://192.168.1.1")
+	t.Setenv("UNIFI_API_KEY", "test-api-key")
+	t.Setenv("UNIFI_LOG_LEVEL", "verbose")
+
+	_, err := Load()
+	assert.ErrorIs(t, err, ErrInvalidLogLevel)
+	assert.Contains(t, err.Error(), "verbose")
 }

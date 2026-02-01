@@ -137,6 +137,7 @@ func TestHelpFlag(t *testing.T) {
 	assert.Contains(t, output, "Usage:")
 	assert.Contains(t, output, "UNIFI_HOST")
 	assert.Contains(t, output, "UNIFI_API_KEY")
+	assert.Contains(t, output, "UNIFI_LOG_LEVEL")
 	assert.Contains(t, output, "UNIFI_TOOL_MODE")
 }
 

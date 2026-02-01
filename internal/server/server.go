@@ -70,11 +70,32 @@ func New(opts Options) (*server.MCPServer, error) {
 	return s, nil
 }
 
+// ParseLogLevel maps a config log level string to a unifi.LoggingLevel.
+func ParseLogLevel(level string) unifi.LoggingLevel {
+	switch level {
+	case "disabled":
+		return unifi.DisabledLevel
+	case "trace":
+		return unifi.TraceLevel
+	case "debug":
+		return unifi.DebugLevel
+	case "info":
+		return unifi.InfoLevel
+	case "warn":
+		return unifi.WarnLevel
+	case "error":
+		return unifi.ErrorLevel
+	default:
+		return unifi.ErrorLevel
+	}
+}
+
 // NewClient creates a UniFi client from configuration.
 func NewClient(cfg *config.Config) (unifi.Client, error) {
 	clientCfg := &unifi.ClientConfig{
 		URL:       cfg.Host,
 		VerifySSL: cfg.VerifySSL,
+		Logger:    unifi.NewDefaultLogger(ParseLogLevel(cfg.LogLevel)),
 	}
 
 	if cfg.UseAPIKey() {

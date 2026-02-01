@@ -119,3 +119,73 @@ func TestMode_OptionsOverridesEnv(t *testing.T) {
 	opts := Options{Mode: ModeLazy}
 	assert.Equal(t, ModeLazy, opts.Mode)
 }
+
+func TestParseLogLevel(t *testing.T) {
+	tests := []struct {
+		name     string
+		input    string
+		expected unifi.LoggingLevel
+	}{
+		{"disabled", "disabled", unifi.DisabledLevel},
+		{"trace", "trace", unifi.TraceLevel},
+		{"debug", "debug", unifi.DebugLevel},
+		{"info", "info", unifi.InfoLevel},
+		{"warn", "warn", unifi.WarnLevel},
+		{"error", "error", unifi.ErrorLevel},
+		{"unknown", "unknown", unifi.ErrorLevel},
+		{"empty", "", unifi.ErrorLevel},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.expected, ParseLogLevel(tt.input))
+		})
+	}
+}
+
+func TestNewClient_DefaultLogLevel(t *testing.T) {
+	cfg := &config.Config{
+		Host:      "https://192.168.1.1",
+		APIKey:    "test-key",
+		Site:      "default",
+		VerifySSL: false,
+		LogLevel:  "error",
+	}
+
+	var captured *unifi.ClientConfig
+	prevFactory := newUnifiClient
+	newUnifiClient = func(clientCfg *unifi.ClientConfig) (unifi.Client, error) {
+		captured = clientCfg
+		return nil, nil
+	}
+	t.Cleanup(func() {
+		newUnifiClient = prevFactory
+	})
+
+	_, _ = NewClient(cfg)
+	require.NotNil(t, captured)
+	assert.NotNil(t, captured.Logger)
+}
+
+func TestNewClient_CustomLogLevel(t *testing.T) {
+	cfg := &config.Config{
+		Host:      "https://192.168.1.1",
+		APIKey:    "test-key",
+		Site:      "default",
+		VerifySSL: false,
+		LogLevel:  "info",
+	}
+
+	var captured *unifi.ClientConfig
+	prevFactory := newUnifiClient
+	newUnifiClient = func(clientCfg *unifi.ClientConfig) (unifi.Client, error) {
+		captured = clientCfg
+		return nil, nil
+	}
+	t.Cleanup(func() {
+		newUnifiClient = prevFactory
+	})
+
+	_, _ = NewClient(cfg)
+	require.NotNil(t, captured)
+	assert.NotNil(t, captured.Logger)
+}
