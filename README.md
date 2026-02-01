@@ -221,6 +221,28 @@ concurrent updates can race (last write wins) because the UniFi API does not
 expose etags or revision IDs. In practice this is unlikely to be an issue, but
 it's something to be aware of.
 
+### ID Resolution
+
+Responses from the UniFi API contain opaque ID references (e.g. `network_id`,
+`usergroup_id`, `networkconf_id`). By default, the server resolves these to
+human-readable names by looking up the referenced resource and injecting a
+sibling `_name` field:
+
+```json
+{
+  "src_networkconf_id": "609fbf24e3ae433962e000de",
+  "src_networkconf_name": "IOT"
+}
+```
+
+Resolution uses a per-request cache, so listing 100 firewall rules that
+reference networks only makes one additional `ListNetwork` API call. Typical
+overhead is 10-40ms depending on how many distinct resource types are
+referenced.
+
+To disable resolution for a specific call, pass `"resolve": false` in the tool
+arguments.
+
 ## Development
 
 ### Prerequisites

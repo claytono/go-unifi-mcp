@@ -6,6 +6,8 @@ import (
 
 	"github.com/claytono/go-unifi-mcp/internal/config"
 	"github.com/claytono/go-unifi-mcp/internal/meta"
+	"github.com/claytono/go-unifi-mcp/internal/resolve"
+	"github.com/claytono/go-unifi-mcp/internal/tools/generated"
 	"github.com/claytono/go-unifi-mcp/internal/tools/registry"
 	"github.com/filipowm/go-unifi/unifi"
 	"github.com/mark3labs/mcp-go/server"
@@ -30,8 +32,9 @@ const (
 
 // Options configures server creation.
 type Options struct {
-	Client unifi.Client
-	Mode   Mode // defaults to ModeLazy if empty
+	Client   unifi.Client
+	Mode     Mode   // defaults to ModeLazy if empty
+	LogLevel string // log level string for resolve debug logging
 }
 
 // New creates a new MCP server with UniFi tools registered.
@@ -51,6 +54,11 @@ func New(opts Options) (*server.MCPServer, error) {
 		mode = ModeLazy
 	}
 
+	// Build resolver for ID reference resolution
+	resourceIndex := resolve.BuildResourceIndex(generated.AllToolMetadata)
+	logger := resolve.NewLogger(opts.LogLevel)
+	resolver := resolve.New(opts.Client, resourceIndex, logger)
+
 	s := server.NewMCPServer(
 		ServerName,
 		Version,
@@ -59,12 +67,12 @@ func New(opts Options) (*server.MCPServer, error) {
 
 	if mode == ModeEager {
 		// Register all direct tools from metadata
-		if err := registry.RegisterAllTools(s, opts.Client); err != nil {
+		if err := registry.RegisterAllTools(s, opts.Client, resolver); err != nil {
 			return nil, fmt.Errorf("failed to register tools: %w", err)
 		}
 	} else {
 		// Register 3 meta-tools for lazy mode
-		meta.RegisterMetaTools(s, opts.Client)
+		meta.RegisterMetaTools(s, opts.Client, resolver)
 	}
 
 	return s, nil

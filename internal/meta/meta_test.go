@@ -153,7 +153,7 @@ func TestToolIndex_CaseInsensitiveFilters(t *testing.T) {
 
 func TestExecute_UnknownToolReturnsError(t *testing.T) {
 	registry := make(map[string]generated.HandlerFunc)
-	handler := ExecuteHandler(nil, registry)
+	handler := ExecuteHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
@@ -172,7 +172,7 @@ func TestExecute_UnknownToolReturnsError(t *testing.T) {
 
 func TestExecute_MissingToolNameReturnsError(t *testing.T) {
 	registry := make(map[string]generated.HandlerFunc)
-	handler := ExecuteHandler(nil, registry)
+	handler := ExecuteHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{}
@@ -199,7 +199,7 @@ func TestExecute_CallsUnderlyingTool(t *testing.T) {
 		},
 	}
 
-	handler := ExecuteHandler(nil, registry)
+	handler := ExecuteHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
@@ -216,7 +216,7 @@ func TestExecute_CallsUnderlyingTool(t *testing.T) {
 
 func TestBatch_EmptyCallsReturnsError(t *testing.T) {
 	registry := make(map[string]generated.HandlerFunc)
-	handler := BatchHandler(nil, registry)
+	handler := BatchHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
@@ -234,7 +234,7 @@ func TestBatch_EmptyCallsReturnsError(t *testing.T) {
 
 func TestBatch_MissingCallsReturnsError(t *testing.T) {
 	registry := make(map[string]generated.HandlerFunc)
-	handler := BatchHandler(nil, registry)
+	handler := BatchHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{}
@@ -261,7 +261,7 @@ func TestBatch_ParallelExecution(t *testing.T) {
 		},
 	}
 
-	handler := BatchHandler(nil, registry)
+	handler := BatchHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
@@ -304,7 +304,7 @@ func TestBatch_PartialFailure(t *testing.T) {
 		},
 	}
 
-	handler := BatchHandler(nil, registry)
+	handler := BatchHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
@@ -342,7 +342,7 @@ func TestBatch_PartialFailure(t *testing.T) {
 
 func TestBatch_InvalidCallFormat(t *testing.T) {
 	registry := make(map[string]generated.HandlerFunc)
-	handler := BatchHandler(nil, registry)
+	handler := BatchHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
@@ -370,7 +370,7 @@ func TestBatch_InvalidCallFormat(t *testing.T) {
 
 func TestBatch_MissingToolName(t *testing.T) {
 	registry := make(map[string]generated.HandlerFunc)
-	handler := BatchHandler(nil, registry)
+	handler := BatchHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
@@ -448,7 +448,7 @@ func TestRegisterMetaTools(t *testing.T) {
 	s := server.NewMCPServer("test", "1.0", server.WithToolCapabilities(true))
 
 	// Register meta tools (client can be nil for this test)
-	RegisterMetaTools(s, nil)
+	RegisterMetaTools(s, nil, nil)
 
 	// We can't easily inspect registered tools without accessing internal state,
 	// but we can verify the function doesn't panic with nil client
@@ -466,7 +466,7 @@ func TestExecute_NilArguments(t *testing.T) {
 		},
 	}
 
-	handler := ExecuteHandler(nil, registry)
+	handler := ExecuteHandler(nil, registry, nil)
 
 	// Call without arguments field - should use empty map
 	req := mcp.CallToolRequest{}
@@ -492,7 +492,7 @@ func TestBatch_NilArguments(t *testing.T) {
 		},
 	}
 
-	handler := BatchHandler(nil, registry)
+	handler := BatchHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
@@ -525,7 +525,7 @@ func TestBatch_HandlerReturnsError(t *testing.T) {
 		},
 	}
 
-	handler := BatchHandler(nil, registry)
+	handler := BatchHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{
@@ -547,6 +547,68 @@ func TestBatch_HandlerReturnsError(t *testing.T) {
 	assert.Contains(t, results[0], "error")
 }
 
+func TestExecute_SkipsResolveForDeleteTools(t *testing.T) {
+	mockHandler := func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) { //nolint:unparam
+		return mcp.NewToolResultText(`{"success": true}`), nil
+	}
+
+	registry := map[string]generated.HandlerFunc{
+		"delete_network": func(_ unifi.Client) server.ToolHandlerFunc {
+			return mockHandler
+		},
+	}
+
+	handler := ExecuteHandler(nil, registry, nil)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"tool":      "delete_network",
+		"arguments": map[string]any{"site": "default"},
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.False(t, result.IsError)
+
+	// Verify the result is returned unchanged (no resolution attempted)
+	text := result.Content[0].(mcp.TextContent).Text
+	assert.Equal(t, `{"success": true}`, text)
+}
+
+func TestBatch_SkipsResolveForDeleteTools(t *testing.T) {
+	mockHandler := func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) { //nolint:unparam
+		return mcp.NewToolResultText(`{"success": true}`), nil
+	}
+
+	registry := map[string]generated.HandlerFunc{
+		"delete_network": func(_ unifi.Client) server.ToolHandlerFunc {
+			return mockHandler
+		},
+	}
+
+	handler := BatchHandler(nil, registry, nil)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"calls": []any{
+			map[string]any{"tool": "delete_network", "arguments": map[string]any{}},
+		},
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.False(t, result.IsError)
+
+	var results []map[string]any
+	content := result.Content[0].(mcp.TextContent)
+	err = json.Unmarshal([]byte(content.Text), &results)
+	require.NoError(t, err)
+	assert.Len(t, results, 1)
+	assert.Contains(t, results[0], "result")
+}
+
 func TestBatch_NonJSONResult(t *testing.T) {
 	mockHandler := func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) { //nolint:unparam
 		return mcp.NewToolResultText("plain text, not JSON"), nil
@@ -558,7 +620,7 @@ func TestBatch_NonJSONResult(t *testing.T) {
 		},
 	}
 
-	handler := BatchHandler(nil, registry)
+	handler := BatchHandler(nil, registry, nil)
 
 	req := mcp.CallToolRequest{}
 	req.Params.Arguments = map[string]any{

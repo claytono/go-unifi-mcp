@@ -4,6 +4,7 @@
 package meta
 
 import (
+	"github.com/claytono/go-unifi-mcp/internal/resolve"
 	"github.com/claytono/go-unifi-mcp/internal/tools/generated"
 	"github.com/filipowm/go-unifi/unifi"
 	"github.com/mark3labs/mcp-go/mcp"
@@ -11,7 +12,7 @@ import (
 )
 
 // RegisterMetaTools registers the 3 meta-tools for lazy mode operation.
-func RegisterMetaTools(s *server.MCPServer, client unifi.Client) {
+func RegisterMetaTools(s *server.MCPServer, client unifi.Client, resolver *resolve.Resolver) {
 	registry := generated.GetHandlerRegistry()
 
 	// tool_index - Returns filtered tool catalog
@@ -26,11 +27,11 @@ func RegisterMetaTools(s *server.MCPServer, client unifi.Client) {
 		mcp.WithDescription("Executes any UniFi tool by name. Use tool_index first to discover available tools."),
 		mcp.WithString("tool", mcp.Required(), mcp.Description("Name of the tool to execute (e.g., 'list_network')")),
 		mcp.WithObject("arguments", mcp.Description("Arguments to pass to the tool")),
-	), ExecuteHandler(client, registry))
+	), ExecuteHandler(client, registry, resolver))
 
 	// batch - Executes multiple tools in parallel
 	s.AddTool(mcp.NewTool("batch",
 		mcp.WithDescription("Executes multiple UniFi tools in parallel. Each call specifies a tool name and its arguments."),
 		mcp.WithArray("calls", mcp.Required(), mcp.Description("Array of tool calls, each with 'tool' (string) and 'arguments' (object)")),
-	), BatchHandler(client, registry))
+	), BatchHandler(client, registry, resolver))
 }

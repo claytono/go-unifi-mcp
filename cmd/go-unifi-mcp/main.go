@@ -113,7 +113,8 @@ func runWith(r runner) error {
 
 	// Create MCP server
 	s, err := r.newServer(server.Options{
-		Client: client,
+		Client:   client,
+		LogLevel: cfg.LogLevel,
 	})
 	if err != nil {
 		return err

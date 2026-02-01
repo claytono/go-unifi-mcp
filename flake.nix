@@ -29,7 +29,7 @@
             "-X github.com/claytono/go-unifi-mcp/internal/server.Version=${version}"
           ];
 
-          vendorHash = "sha256-TauO+0Ny4xlVEwYh1GAezGF+PENOLwKD0BkPprIySfE=";
+          vendorHash = "sha256-Ul4RGCtLplmRJap2nK+hitue2M/trXMYY094y43Utvw=";
           goSum = ./go.sum;
 
           meta = with pkgs.lib; {

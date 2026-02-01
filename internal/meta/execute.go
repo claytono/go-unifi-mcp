@@ -2,7 +2,9 @@ package meta
 
 import (
 	"context"
+	"strings"
 
+	"github.com/claytono/go-unifi-mcp/internal/resolve"
 	"github.com/claytono/go-unifi-mcp/internal/tools/generated"
 	"github.com/filipowm/go-unifi/unifi"
 	"github.com/mark3labs/mcp-go/mcp"
@@ -10,7 +12,7 @@ import (
 )
 
 // ExecuteHandler returns a handler that dispatches to any tool by name.
-func ExecuteHandler(client unifi.Client, registry map[string]generated.HandlerFunc) server.ToolHandlerFunc {
+func ExecuteHandler(client unifi.Client, registry map[string]generated.HandlerFunc, resolver *resolve.Resolver) server.ToolHandlerFunc {
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		args := req.GetArguments()
 		toolName, ok := args["tool"].(string)
@@ -34,6 +36,9 @@ func ExecuteHandler(client unifi.Client, registry map[string]generated.HandlerFu
 		innerReq.Params.Arguments = toolArgs
 
 		handler := handlerFactory(client)
+		if !strings.HasPrefix(toolName, "delete_") {
+			handler = resolve.WrapHandler(handler, resolver)
+		}
 		return handler(ctx, innerReq)
 	}
 }

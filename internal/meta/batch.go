@@ -3,8 +3,10 @@ package meta
 import (
 	"context"
 	"encoding/json"
+	"strings"
 	"sync"
 
+	"github.com/claytono/go-unifi-mcp/internal/resolve"
 	"github.com/claytono/go-unifi-mcp/internal/tools/generated"
 	"github.com/filipowm/go-unifi/unifi"
 	"github.com/mark3labs/mcp-go/mcp"
@@ -12,7 +14,7 @@ import (
 )
 
 // BatchHandler returns a handler that executes multiple tools in parallel.
-func BatchHandler(client unifi.Client, registry map[string]generated.HandlerFunc) server.ToolHandlerFunc {
+func BatchHandler(client unifi.Client, registry map[string]generated.HandlerFunc, resolver *resolve.Resolver) server.ToolHandlerFunc {
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 		args := req.GetArguments()
 		calls, ok := args["calls"].([]any)
@@ -72,6 +74,9 @@ func BatchHandler(client unifi.Client, registry map[string]generated.HandlerFunc
 				innerReq.Params.Arguments = toolArgs
 
 				handler := handlerFactory(client)
+				if !strings.HasPrefix(toolName, "delete_") {
+					handler = resolve.WrapHandler(handler, resolver)
+				}
 				toolResult, err := handler(ctx, innerReq)
 				if err != nil {
 					result["error"] = err.Error()

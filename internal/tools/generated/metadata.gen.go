@@ -40,6 +40,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -58,6 +62,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -96,6 +104,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -137,6 +149,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -188,6 +204,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -206,6 +226,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -275,6 +299,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"x_password": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -348,6 +376,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_password": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -398,6 +430,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -416,6 +452,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -454,6 +494,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -495,6 +539,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -546,6 +594,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -564,6 +616,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -638,6 +694,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -716,6 +776,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -766,6 +830,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -784,6 +852,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -834,6 +906,10 @@ var AllToolMetadata = []ToolMetadata{
 				"width": map[string]any{
 					"type":    "integer",
 					"pattern": "^(8|16|32)$",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -888,6 +964,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":    "integer",
 					"pattern": "^(8|16|32)$",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -938,6 +1018,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -956,6 +1040,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -1019,6 +1107,10 @@ var AllToolMetadata = []ToolMetadata{
 				"weight": map[string]any{
 					"type":    "integer",
 					"pattern": "^[0-9][0-9]?$|^",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -1086,6 +1178,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":    "integer",
 					"pattern": "^[0-9][0-9]?$|^",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -1136,6 +1232,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -1154,6 +1254,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -1201,6 +1305,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -1252,6 +1360,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -1302,6 +1414,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -1320,6 +1436,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -1351,6 +1471,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -1369,6 +1493,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -1435,6 +1563,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_password": map[string]any{
 					"type":    "string",
 					"pattern": "^[^\"' ]+$",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -1505,6 +1637,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":    "string",
 					"pattern": "^[^\"' ]+$",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -1555,6 +1691,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -1573,6 +1713,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -1617,6 +1761,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -1664,6 +1812,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -1715,6 +1867,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -1733,6 +1889,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -1878,6 +2038,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"state_related": map[string]any{
 					"type": "boolean",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -2027,6 +2191,10 @@ var AllToolMetadata = []ToolMetadata{
 				"state_related": map[string]any{
 					"type": "boolean",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -2077,6 +2245,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -2095,6 +2267,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -2133,6 +2309,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -2174,6 +2354,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -2225,6 +2409,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -2243,6 +2431,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -2342,6 +2534,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"source": map[string]any{
 					"type": "object",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -2445,6 +2641,10 @@ var AllToolMetadata = []ToolMetadata{
 				"source": map[string]any{
 					"type": "object",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -2495,6 +2695,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -2513,6 +2717,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -2559,6 +2767,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "One of: download|upload",
 					"enum":        []any{"download", "upload"},
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -2608,6 +2820,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "One of: download|upload",
 					"enum":        []any{"download", "upload"},
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -2659,6 +2875,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -2677,6 +2897,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -2723,6 +2947,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"y": map[string]any{
 					"type": "number",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -2772,6 +3000,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"y": map[string]any{
 					"type": "number",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -2823,6 +3055,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -2841,6 +3077,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -3053,6 +3293,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "integer",
 					"description": "One of: 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15",
 					"enum":        []any{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"},
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -3269,6 +3513,10 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "One of: 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15",
 					"enum":        []any{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"},
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -3319,6 +3567,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -3337,6 +3589,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -3379,6 +3635,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_password": map[string]any{
 					"type":    "string",
 					"pattern": ".{1,256}",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -3424,6 +3684,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_password": map[string]any{
 					"type":    "string",
 					"pattern": ".{1,256}",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -3475,6 +3739,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -3493,6 +3761,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -3612,6 +3884,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"trial_reset": map[string]any{
 					"type": "number",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -3735,6 +4011,10 @@ var AllToolMetadata = []ToolMetadata{
 				"trial_reset": map[string]any{
 					"type": "number",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -3785,6 +4065,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -3803,6 +4087,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -3882,6 +4170,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"zoom": map[string]any{
 					"type": "integer",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -3965,6 +4257,10 @@ var AllToolMetadata = []ToolMetadata{
 				"zoom": map[string]any{
 					"type": "integer",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -4015,6 +4311,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -4033,6 +4333,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -4067,6 +4371,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -4104,6 +4412,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -4155,6 +4467,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -4173,6 +4489,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -5076,6 +5396,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"x_wireguard_private_key": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -5983,6 +6307,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_wireguard_private_key": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -6033,6 +6361,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -6051,6 +6383,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -6137,6 +6473,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "One of: ip|firewall_group",
 					"enum":        []any{"ip", "firewall_group"},
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -6227,6 +6567,10 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "One of: ip|firewall_group",
 					"enum":        []any{"ip", "firewall_group"},
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -6277,6 +6621,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -6295,6 +6643,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -6479,6 +6831,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"voice_networkconf_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -6667,6 +7023,10 @@ var AllToolMetadata = []ToolMetadata{
 				"voice_networkconf_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -6717,6 +7077,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -6735,6 +7099,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -6824,6 +7192,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"x_client_private_key_password": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -6917,6 +7289,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_client_private_key_password": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -6967,6 +7343,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -6985,6 +7365,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -7057,6 +7441,10 @@ var AllToolMetadata = []ToolMetadata{
 				"type": map[string]any{
 					"type":    "string",
 					"pattern": "static-route",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7133,6 +7521,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":    "string",
 					"pattern": "static-route",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -7183,6 +7575,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7201,6 +7597,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -7249,6 +7649,10 @@ var AllToolMetadata = []ToolMetadata{
 				"upgrade_targets": map[string]any{
 					"type":  "array",
 					"items": map[string]any{"type": "object"},
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7301,6 +7705,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":  "array",
 					"items": map[string]any{"type": "object"},
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -7337,6 +7745,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7378,6 +7790,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7393,6 +7809,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7440,6 +7860,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7455,6 +7879,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7512,6 +7940,10 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "One of: sample|media",
 					"enum":        []any{"sample", "media"},
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7527,6 +7959,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7580,6 +8016,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_mesh_psk": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7595,6 +8035,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7633,6 +8077,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7648,6 +8096,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7692,6 +8144,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":  "array",
 					"items": map[string]any{"type": "object"},
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7707,6 +8163,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7755,6 +8215,10 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "One of: off|auto|manual|custom",
 					"enum":        []any{"off", "auto", "manual", "custom"},
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7770,6 +8234,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7811,6 +8279,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7826,6 +8298,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7870,6 +8346,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_element_psk": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7885,6 +8365,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7928,6 +8412,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":  "array",
 					"items": map[string]any{"type": "object"},
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7943,6 +8431,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -7983,6 +8475,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -7998,6 +8494,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -8080,6 +8580,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -8095,6 +8599,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -8139,6 +8647,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -8154,6 +8666,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -8226,6 +8742,10 @@ var AllToolMetadata = []ToolMetadata{
 					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
 					"items":   map[string]any{"type": "string"},
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -8241,6 +8761,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -8603,6 +9127,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_wechat_secret_key": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -8618,6 +9146,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -8703,6 +9235,10 @@ var AllToolMetadata = []ToolMetadata{
 				"suppression": map[string]any{
 					"type": "object",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -8718,6 +9254,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -8770,6 +9310,10 @@ var AllToolMetadata = []ToolMetadata{
 				"touch_event": map[string]any{
 					"type": "boolean",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -8785,6 +9329,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -8823,6 +9371,10 @@ var AllToolMetadata = []ToolMetadata{
 				"timezone": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -8838,6 +9390,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -8876,6 +9432,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -8891,6 +9451,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -8991,6 +9555,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":    "string",
 					"pattern": "^[_A-Za-z0-9][-_.A-Za-z0-9]{0,29}$",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9006,6 +9574,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9083,6 +9655,10 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "One of: 5|9|10",
 					"enum":        []any{"5", "9", "10"},
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9098,6 +9674,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9136,6 +9716,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9151,6 +9735,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9203,6 +9791,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9218,6 +9810,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9256,6 +9852,10 @@ var AllToolMetadata = []ToolMetadata{
 				"ugw3_wan2_enabled": map[string]any{
 					"type": "boolean",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9271,6 +9871,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9374,6 +9978,10 @@ var AllToolMetadata = []ToolMetadata{
 				"useXY": map[string]any{
 					"type": "boolean",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9389,6 +9997,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9452,6 +10064,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":    "string",
 					"pattern": "^[^\\\\\"' ]{1,48}$",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9467,6 +10083,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9540,6 +10160,10 @@ var AllToolMetadata = []ToolMetadata{
 				"this_controller_encrypted_only": map[string]any{
 					"type": "boolean",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9555,6 +10179,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9608,6 +10236,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":    "string",
 					"pattern": "[^'\"]{8,32}",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9623,6 +10255,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9663,6 +10299,10 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "One of: off|simple|advanced",
 					"enum":        []any{"off", "simple", "advanced"},
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9678,6 +10318,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9734,6 +10378,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_private_key": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9749,6 +10397,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9787,6 +10439,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9802,6 +10458,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9850,6 +10510,10 @@ var AllToolMetadata = []ToolMetadata{
 				"sso_enabled": map[string]any{
 					"type": "boolean",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9865,6 +10529,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9906,6 +10574,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9921,6 +10593,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -9961,6 +10637,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -9976,6 +10656,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -10164,6 +10848,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_ssh_username": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -10179,6 +10867,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -10232,6 +10924,10 @@ var AllToolMetadata = []ToolMetadata{
 				"ubic_uuid": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -10247,6 +10943,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -10310,6 +11010,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_password": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -10325,6 +11029,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -10367,6 +11075,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":    "string",
 					"pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\/([8-9]|[1-2][0-9]|3[0-2])$|^$",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -10382,6 +11094,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -10606,6 +11322,10 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "One of: WAN|WAN2",
 					"enum":        []any{"WAN", "WAN2"},
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -10621,6 +11341,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site": map[string]any{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -10659,6 +11383,10 @@ var AllToolMetadata = []ToolMetadata{
 				"site_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -10688,6 +11416,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -10706,6 +11438,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -10745,6 +11481,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -10787,6 +11527,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -10838,6 +11582,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -10856,6 +11604,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -10894,6 +11646,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -10935,6 +11691,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -10986,6 +11746,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -11004,6 +11768,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -11093,6 +11861,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"virtual_network_override_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -11186,6 +11958,10 @@ var AllToolMetadata = []ToolMetadata{
 				"virtual_network_override_id": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -11236,6 +12012,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -11254,6 +12034,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -11297,6 +12081,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -11343,6 +12131,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -11394,6 +12186,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -11412,6 +12208,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -11463,6 +12263,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"y": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -11518,6 +12322,10 @@ var AllToolMetadata = []ToolMetadata{
 				"y": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -11568,6 +12376,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -11586,6 +12398,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -11950,6 +12766,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"x_wep": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -12318,6 +13138,10 @@ var AllToolMetadata = []ToolMetadata{
 				"x_wep": map[string]any{
 					"type": "string",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -12368,6 +13192,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -12386,6 +13214,10 @@ var AllToolMetadata = []ToolMetadata{
 				"id": map[string]any{
 					"type":        "string",
 					"description": "Resource ID",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},
@@ -12421,6 +13253,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 		},
@@ -12459,6 +13295,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"site_id": map[string]any{
 					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
 				},
 			},
 			"required": []any{"id"},

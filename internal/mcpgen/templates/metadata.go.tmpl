@@ -49,6 +49,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Case-insensitive text search across top-level string field values",
 				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -75,6 +79,10 @@ var AllToolMetadata = []ToolMetadata{
 					"description": "Resource ID",
 				},
 {{- end }}
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 {{- if not $isSetting }}
 			"required": []any{"id"},
@@ -115,6 +123,10 @@ var AllToolMetadata = []ToolMetadata{
 {{- end }}{{ end }}
 				},
 {{- end }}
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 		},
 	},
@@ -158,6 +170,10 @@ var AllToolMetadata = []ToolMetadata{
 {{- end }}{{ end }}
 				},
 {{- end }}
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
 			},
 {{- if not $isSetting }}
 			"required": []any{"id"},

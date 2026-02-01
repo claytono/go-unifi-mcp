@@ -14,7 +14,7 @@ func TestRegisterAllTools(t *testing.T) {
 	s := server.NewMCPServer("test", "1.0", server.WithToolCapabilities(true))
 
 	// Use nil client - handlers won't be called in this test
-	err := RegisterAllTools(s, nil)
+	err := RegisterAllTools(s, nil, nil)
 	require.NoError(t, err)
 
 	// We can't easily inspect registered tools, but we can verify no error
@@ -104,7 +104,7 @@ func TestBuildToolFromMetadata_InvalidSchema(t *testing.T) {
 func TestRegisterAllTools_VerifyToolCount(t *testing.T) {
 	s := server.NewMCPServer("test", "1.0", server.WithToolCapabilities(true))
 
-	err := RegisterAllTools(s, nil)
+	err := RegisterAllTools(s, nil, nil)
 	require.NoError(t, err)
 
 	// Verify we registered the expected number of tools
@@ -131,7 +131,7 @@ func TestRegisterTools_BuildError(t *testing.T) {
 
 	handlers := map[string]generated.HandlerFunc{}
 
-	err := registerTools(s, nil, tools, handlers)
+	err := registerTools(s, nil, nil, tools, handlers)
 	require.Error(t, err)
 	assert.Contains(t, err.Error(), "failed to build tool")
 }
@@ -153,7 +153,7 @@ func TestRegisterTools_MissingHandler(t *testing.T) {
 	// Empty handler registry
 	handlers := map[string]generated.HandlerFunc{}
 
-	err := registerTools(s, nil, tools, handlers)
+	err := registerTools(s, nil, nil, tools, handlers)
 	require.Error(t, err)
 	assert.Contains(t, err.Error(), "no handler for tool")
 }
@@ -168,7 +168,7 @@ func TestRegisterAllToolsWithValidator_ValidationFailure(t *testing.T) {
 
 	// Use mockClient which embeds unifi.Client - methods would panic if called
 	// but our validator fails before any methods are invoked
-	err := registerAllToolsWithValidator(s, &mockClient{}, failingValidator)
+	err := registerAllToolsWithValidator(s, &mockClient{}, nil, failingValidator)
 	require.Error(t, err)
 	assert.Contains(t, err.Error(), "client validation failed")
 	assert.Contains(t, err.Error(), "missing method ListNetwork")
