@@ -243,6 +243,50 @@ referenced.
 To disable resolution for a specific call, pass `"resolve": false` in the tool
 arguments.
 
+### Query Parameters
+
+All list operations support optional post-processing parameters for filtering
+and projecting results.
+
+**filter** — Match items by field values. Supports three operators:
+
+```jsonc
+// Exact match
+{"filter": {"type": "usw"}}
+
+// Substring match (case-insensitive)
+{"filter": {"name": {"contains": "office"}}}
+
+// Regular expression (RE2 syntax: https://github.com/google/re2/wiki/Syntax)
+{"filter": {"name": {"regex": "^ap-.*"}}}
+
+// Multiple conditions (ANDed together)
+{"filter": {"type": "uap", "name": {"contains": "echo"}}}
+```
+
+**search** — Case-insensitive full-text search across all string field values:
+
+```json
+{ "search": "living room" }
+```
+
+**fields** — Project the response to include only specific keys:
+
+```json
+{ "fields": ["name", "ip", "mac"] }
+```
+
+Parameters can be combined. Execution order is filter → search → fields, so you
+can filter on fields that are excluded from the output:
+
+```json
+{
+  "filter": { "type": "uap" },
+  "search": "echo",
+  "fields": ["name", "ip"]
+}
+```
+
 ## Development
 
 ### Prerequisites
