@@ -928,3 +928,46 @@ func TestGenericList_WithCombinedQuery(t *testing.T) {
 	assert.NotContains(t, content.Text, "switch-1")
 	assert.NotContains(t, content.Text, "ap-living-room")
 }
+
+func TestGenericCreate_AcceptsIncludeExtraFields(t *testing.T) {
+	client := &FakeTestClient{}
+	handler := GenericCreate(client, "Test", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	})
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"site":                 "default",
+		"name":                 "new item",
+		"include_extra_fields": true,
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.False(t, result.IsError, "include_extra_fields should be accepted")
+}
+
+func TestGenericUpdate_AcceptsIncludeExtraFields(t *testing.T) {
+	client := &FakeTestClient{}
+	handler := GenericUpdate(client, "Test", func() any {
+		return &struct {
+			Name string `json:"name"`
+		}{}
+	}, false)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"site":                 "default",
+		"id":                   "123",
+		"name":                 "updated item",
+		"include_extra_fields": true,
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.False(t, result.IsError, "include_extra_fields should be accepted")
+}

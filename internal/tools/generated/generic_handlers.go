@@ -125,6 +125,7 @@ func GenericCreate(client any, resourceName string, newTypeFunc func() any) serv
 		allowedKeys := allowedFieldKeys(input)
 		allowedKeys["site"] = struct{}{}
 		allowedKeys["resolve"] = struct{}{}
+		allowedKeys["include_extra_fields"] = struct{}{}
 
 		if unexpected := unexpectedKeys(args, allowedKeys); len(unexpected) > 0 {
 			return mcp.NewToolResultError("unexpected parameters: " + strings.Join(unexpected, ", ")), nil
@@ -132,7 +133,7 @@ func GenericCreate(client any, resourceName string, newTypeFunc func() any) serv
 
 		dataMap := make(map[string]any)
 		for key, value := range args {
-			if key == "site" || key == "resolve" {
+			if key == "site" || key == "resolve" || key == "include_extra_fields" {
 				continue
 			}
 			if _, ok := allowedKeys[key]; ok {
@@ -190,6 +191,7 @@ func GenericUpdate(client any, resourceName string, newTypeFunc func() any, isSe
 		allowedKeys := allowedFieldKeys(input)
 		allowedKeys["site"] = struct{}{}
 		allowedKeys["resolve"] = struct{}{}
+		allowedKeys["include_extra_fields"] = struct{}{}
 		if !isSetting {
 			allowedKeys["id"] = struct{}{}
 		}
@@ -200,7 +202,7 @@ func GenericUpdate(client any, resourceName string, newTypeFunc func() any, isSe
 
 		dataMap := make(map[string]any)
 		for key, value := range args {
-			if key == "site" || key == "id" || key == "resolve" {
+			if key == "site" || key == "id" || key == "resolve" || key == "include_extra_fields" {
 				continue
 			}
 			if _, ok := allowedKeys[key]; ok {

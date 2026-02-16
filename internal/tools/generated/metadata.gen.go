@@ -44,6 +44,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -66,6 +70,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -108,6 +116,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -153,6 +165,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -208,6 +224,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -230,6 +250,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -303,6 +327,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -380,6 +408,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -434,6 +466,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -456,6 +492,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -498,6 +538,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -543,6 +587,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -598,6 +646,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -620,6 +672,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -698,6 +754,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -780,6 +840,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -834,6 +898,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -856,6 +924,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -910,6 +982,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -968,6 +1044,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -1022,6 +1102,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -1044,6 +1128,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -1111,6 +1199,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -1182,6 +1274,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -1236,6 +1332,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -1258,6 +1358,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -1309,6 +1413,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -1364,6 +1472,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -1418,6 +1530,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -1440,6 +1556,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -1475,6 +1595,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -1497,6 +1621,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -1567,6 +1695,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -1641,6 +1773,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -1695,6 +1831,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -1717,6 +1857,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -1765,6 +1909,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -1816,6 +1964,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -1871,6 +2023,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -1893,6 +2049,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -2042,6 +2202,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -2195,6 +2359,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -2249,6 +2417,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -2271,6 +2443,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -2313,6 +2489,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -2358,6 +2538,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -2413,6 +2597,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -2435,6 +2623,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -2538,6 +2730,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -2645,6 +2841,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -2699,6 +2899,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -2721,6 +2925,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -2771,6 +2979,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -2824,6 +3036,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -2879,6 +3095,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -2901,6 +3121,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -2951,6 +3175,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -3004,6 +3232,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -3059,6 +3291,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -3081,6 +3317,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -3297,6 +3537,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -3517,6 +3761,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -3571,6 +3819,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -3593,6 +3845,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -3639,6 +3895,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -3688,6 +3948,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -3743,6 +4007,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -3765,6 +4033,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -3888,6 +4160,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -4015,6 +4291,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -4069,6 +4349,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -4091,6 +4375,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -4174,6 +4462,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -4261,6 +4553,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -4315,6 +4611,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -4337,6 +4637,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -4375,6 +4679,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -4416,6 +4724,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -4471,6 +4783,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -4493,6 +4809,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -5400,6 +5720,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -6311,6 +6635,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -6365,6 +6693,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -6387,6 +6719,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -6477,6 +6813,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -6571,6 +6911,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -6625,6 +6969,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -6647,6 +6995,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -6835,6 +7187,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -7027,6 +7383,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -7081,6 +7441,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -7103,6 +7467,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -7196,6 +7564,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -7293,6 +7665,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -7347,6 +7723,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -7369,6 +7749,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -7445,6 +7829,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -7525,6 +7913,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -7579,6 +7971,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -7601,6 +7997,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -7653,6 +8053,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -7709,6 +8113,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -7749,6 +8157,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -7794,6 +8206,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -7813,6 +8229,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -7864,6 +8284,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -7883,6 +8307,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -7944,6 +8372,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -7963,6 +8395,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -8020,6 +8456,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -8039,6 +8479,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -8081,6 +8525,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -8100,6 +8548,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -8148,6 +8600,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -8167,6 +8623,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -8219,6 +8679,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -8238,6 +8702,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -8283,6 +8751,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -8302,6 +8774,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -8350,6 +8826,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -8369,6 +8849,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -8416,6 +8900,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -8435,6 +8923,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -8479,6 +8971,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -8498,6 +8994,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -8584,6 +9084,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -8603,6 +9107,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -8651,6 +9159,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -8670,6 +9182,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -8746,6 +9262,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -8765,6 +9285,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -9131,6 +9655,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -9150,6 +9678,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -9239,6 +9771,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -9258,6 +9794,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -9314,6 +9854,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -9333,6 +9877,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -9375,6 +9923,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -9394,6 +9946,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -9436,6 +9992,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -9455,6 +10015,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -9559,6 +10123,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -9578,6 +10146,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -9659,6 +10231,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -9678,6 +10254,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -9720,6 +10300,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -9739,6 +10323,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -9795,6 +10383,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -9814,6 +10406,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -9856,6 +10452,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -9875,6 +10475,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -9982,6 +10586,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10001,6 +10609,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -10068,6 +10680,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10087,6 +10703,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -10164,6 +10784,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10183,6 +10807,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -10240,6 +10868,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10259,6 +10891,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -10303,6 +10939,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10322,6 +10962,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -10382,6 +11026,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10401,6 +11049,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -10443,6 +11095,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10462,6 +11118,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -10514,6 +11174,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10533,6 +11197,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -10578,6 +11246,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10597,6 +11269,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -10641,6 +11317,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10660,6 +11340,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -10852,6 +11536,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10871,6 +11559,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -10928,6 +11620,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -10947,6 +11643,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -11014,6 +11714,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -11033,6 +11737,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -11079,6 +11787,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -11098,6 +11810,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -11326,6 +12042,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -11345,6 +12065,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -11387,6 +12111,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -11420,6 +12148,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -11442,6 +12174,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -11485,6 +12221,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -11531,6 +12271,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -11586,6 +12330,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -11608,6 +12356,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -11650,6 +12402,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -11695,6 +12451,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -11750,6 +12510,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -11772,6 +12536,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -11865,6 +12633,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -11962,6 +12734,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -12016,6 +12792,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -12038,6 +12818,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -12085,6 +12869,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -12135,6 +12923,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -12190,6 +12982,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -12212,6 +13008,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -12267,6 +13067,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -12326,6 +13130,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -12380,6 +13188,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -12402,6 +13214,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -12770,6 +13586,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -13142,6 +13962,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 			"required": []any{"id"},
 		},
@@ -13196,6 +14020,10 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
 				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
+				},
 			},
 		},
 	},
@@ -13218,6 +14046,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},
@@ -13257,6 +14089,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 		},
@@ -13299,6 +14135,10 @@ var AllToolMetadata = []ToolMetadata{
 				"resolve": map[string]any{
 					"type":        "boolean",
 					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+				"include_extra_fields": map[string]any{
+					"type":        "boolean",
+					"description": "Include _additional_properties in response (default: false). When false, only _additional_properties_count is shown.",
 				},
 			},
 			"required": []any{"id"},

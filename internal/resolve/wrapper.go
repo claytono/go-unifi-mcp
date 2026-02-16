@@ -7,27 +7,17 @@ import (
 	"github.com/mark3labs/mcp-go/server"
 )
 
-// WrapHandler decorates a tool handler to add ID resolution support.
+// WrapHandler decorates a tool handler to add ID resolution and extra fields processing.
 // Resolution is enabled by default. Set "resolve": false to disable it.
+// Extra fields are stripped by default. Set "include_extra_fields": true to include them.
 func WrapHandler(handler server.ToolHandlerFunc, resolver *Resolver) server.ToolHandlerFunc {
-	if resolver == nil {
-		return handler
-	}
-
 	return func(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-		// Call the inner handler first
 		result, err := handler(ctx, req)
 		if err != nil {
 			return result, err
 		}
 
-		// Resolution is on by default; only skip if explicitly set to false
-		args := req.GetArguments()
-		if resolveArg, ok := args["resolve"].(bool); ok && !resolveArg {
-			return result, nil
-		}
-
-		// Don't resolve error results
+		// Don't post-process error results
 		if result == nil || result.IsError || len(result.Content) == 0 {
 			return result, nil
 		}
@@ -38,20 +28,33 @@ func WrapHandler(handler server.ToolHandlerFunc, resolver *Resolver) server.Tool
 			return result, nil
 		}
 
-		// Extract site from args
-		site, _ := args["site"].(string)
-		if site == "" {
-			site = "default"
+		args := req.GetArguments()
+		text := textContent.Text
+
+		// ID resolution (on by default, skip if explicitly false)
+		if resolver != nil {
+			if resolveArg, ok := args["resolve"].(bool); !ok || resolveArg {
+				site, _ := args["site"].(string)
+				if site == "" {
+					site = "default"
+				}
+				resolved, resolveErr := resolver.ResolveJSON(ctx, site, text)
+				if resolveErr != nil {
+					resolver.logger.Debug("resolve: error resolving JSON, returning original",
+						"error", resolveErr)
+				} else {
+					text = resolved
+				}
+			}
 		}
 
-		// Resolve ID references
-		resolved, resolveErr := resolver.ResolveJSON(ctx, site, textContent.Text)
-		if resolveErr != nil {
-			resolver.logger.Debug("resolve: error resolving JSON, returning original",
-				"error", resolveErr)
-			return result, nil
+		// Extra fields processing (strip by default, include if explicitly true)
+		includeExtra, _ := args["include_extra_fields"].(bool)
+		processed, processErr := ProcessExtraFields(text, includeExtra)
+		if processErr == nil {
+			text = processed
 		}
 
-		return mcp.NewToolResultText(resolved), nil
+		return mcp.NewToolResultText(text), nil
 	}
 }

@@ -549,9 +549,13 @@ func TestWrapHandler_NilResolver(t *testing.T) {
 	result, err := handler(context.Background(), req)
 	require.NoError(t, err)
 	require.NotNil(t, result)
-	// Should return original result unchanged
+	// Should return result without resolution (but extra fields processing still runs)
 	text := result.Content[0].(mcp.TextContent).Text
-	assert.Equal(t, `{"network_id": "net1"}`, text)
+	var m map[string]any
+	require.NoError(t, json.Unmarshal([]byte(text), &m))
+	assert.Equal(t, "net1", m["network_id"])
+	_, hasName := m["network_name"]
+	assert.False(t, hasName, "should not resolve without resolver")
 }
 
 func TestWrapHandler_InnerHandlerError(t *testing.T) {
@@ -814,7 +818,11 @@ func TestWrapHandler_ResolveExplicitFalse(t *testing.T) {
 	assert.Equal(t, 0, client.listCalls, "should not resolve when resolve=false")
 
 	text := result.Content[0].(mcp.TextContent).Text
-	assert.Equal(t, `{"network_id": "net1"}`, text)
+	var m map[string]any
+	require.NoError(t, json.Unmarshal([]byte(text), &m))
+	assert.Equal(t, "net1", m["network_id"])
+	_, hasName := m["network_name"]
+	assert.False(t, hasName, "should not resolve when resolve=false")
 }
 
 func TestWrapHandler_NilResult(t *testing.T) {
@@ -1100,6 +1108,78 @@ func TestWrapHandler_ResolveError(t *testing.T) {
 	// Should return original content on resolve error
 	text := result.Content[0].(mcp.TextContent).Text
 	assert.Equal(t, `[invalid json`, text)
+}
+
+func TestWrapHandler_ExtraFieldsDefault(t *testing.T) {
+	resolver := newTestResolver(&mockClient{})
+
+	innerHandler := func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+		return mcp.NewToolResultText(`{"name":"test","_additional_properties":{"a":1,"b":2,"c":3}}`), nil
+	}
+
+	handler := WrapHandler(innerHandler, resolver)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+
+	text := result.Content[0].(mcp.TextContent).Text
+	var m map[string]any
+	require.NoError(t, json.Unmarshal([]byte(text), &m))
+	assert.Equal(t, float64(3), m["_additional_properties_count"])
+	_, hasProps := m["_additional_properties"]
+	assert.False(t, hasProps, "should strip _additional_properties by default")
+}
+
+func TestWrapHandler_ExtraFieldsInclude(t *testing.T) {
+	resolver := newTestResolver(&mockClient{})
+
+	innerHandler := func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+		return mcp.NewToolResultText(`{"name":"test","_additional_properties":{"a":1,"b":2}}`), nil
+	}
+
+	handler := WrapHandler(innerHandler, resolver)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"include_extra_fields": true,
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+
+	text := result.Content[0].(mcp.TextContent).Text
+	var m map[string]any
+	require.NoError(t, json.Unmarshal([]byte(text), &m))
+	assert.Equal(t, float64(2), m["_additional_properties_count"])
+	_, hasProps := m["_additional_properties"]
+	assert.True(t, hasProps, "should include _additional_properties when requested")
+}
+
+func TestWrapHandler_ExtraFieldsNilResolver(t *testing.T) {
+	innerHandler := func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+		return mcp.NewToolResultText(`{"name":"test","_additional_properties":{"a":1}}`), nil
+	}
+
+	handler := WrapHandler(innerHandler, nil)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+
+	text := result.Content[0].(mcp.TextContent).Text
+	var m map[string]any
+	require.NoError(t, json.Unmarshal([]byte(text), &m))
+	assert.Equal(t, float64(1), m["_additional_properties_count"])
+	_, hasProps := m["_additional_properties"]
+	assert.False(t, hasProps, "should strip extra fields even without resolver")
 }
 
 // Verify the handler type matches what the server expects.
