@@ -34,7 +34,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Install Nix
-        uses: DeterminateSystems/determinate-nix-action@131015bad844610e5e6300f8a143bf625d3e74f4 # v3.17.0
+        uses: DeterminateSystems/determinate-nix-action@a18f73c54ca8525de051e73c31512a67f44df919 # v3.17.1
 
       - name: Setup Cachix
         uses: cachix/cachix-action@v16
