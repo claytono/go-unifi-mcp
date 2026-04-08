@@ -331,22 +331,22 @@ func fieldPropertyFunc(f FieldSchema) string {
 	// Determine the With* function based on type
 	switch f.Type {
 	case "boolean":
-		b.WriteString(fmt.Sprintf("mcp.WithBoolean(%q", f.Name))
+		fmt.Fprintf(&b, "mcp.WithBoolean(%q", f.Name)
 	case "integer":
-		b.WriteString(fmt.Sprintf("mcp.WithNumber(%q", f.Name))
+		fmt.Fprintf(&b, "mcp.WithNumber(%q", f.Name)
 	case "number":
-		b.WriteString(fmt.Sprintf("mcp.WithNumber(%q", f.Name))
+		fmt.Fprintf(&b, "mcp.WithNumber(%q", f.Name)
 	case "array":
-		b.WriteString(fmt.Sprintf("mcp.WithArray(%q", f.Name))
+		fmt.Fprintf(&b, "mcp.WithArray(%q", f.Name)
 	case "object":
-		b.WriteString(fmt.Sprintf("mcp.WithObject(%q", f.Name))
+		fmt.Fprintf(&b, "mcp.WithObject(%q", f.Name)
 	default: // string
-		b.WriteString(fmt.Sprintf("mcp.WithString(%q", f.Name))
+		fmt.Fprintf(&b, "mcp.WithString(%q", f.Name)
 	}
 
 	// Add options
 	if f.Description != "" {
-		b.WriteString(fmt.Sprintf(", mcp.Description(%q)", f.Description))
+		fmt.Fprintf(&b, ", mcp.Description(%q)", f.Description)
 	}
 
 	if len(f.Enum) > 0 {
@@ -355,13 +355,13 @@ func fieldPropertyFunc(f FieldSchema) string {
 			if i > 0 {
 				b.WriteString(", ")
 			}
-			b.WriteString(fmt.Sprintf("%q", v))
+			fmt.Fprintf(&b, "%q", v)
 		}
 		b.WriteString(")")
 	}
 
 	if f.Pattern != "" {
-		b.WriteString(fmt.Sprintf(", mcp.Pattern(%q)", f.Pattern))
+		fmt.Fprintf(&b, ", mcp.Pattern(%q)", f.Pattern)
 	}
 
 	// Add array item type if applicable
