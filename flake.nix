@@ -29,7 +29,7 @@
             "-X github.com/claytono/go-unifi-mcp/internal/server.Version=${version}"
           ];
 
-          vendorHash = "sha256-rbI2CJ0/qA+tD7cP0WeqCu0UcXoLMbVq4i09TBWx44M=";
+          vendorHash = "sha256-Mlif8gRvgmfFGg1AzBVY//UWu+W3APn707XrmJ/zRq0=";
           goSum = ./go.sum;
 
           meta = with pkgs.lib; {
@@ -54,9 +54,7 @@
 
         vendorHash = "sha256-iJ3VFnzPYd0ovyK/QdCDolh5p8fe/aXulnHxAia5UuE=";
 
-        # Skip tests entirely - upstream has two issues:
-        # 1. Integration tests that require GitHub credentials (#243)
-        # 2. Nil pointer bug in Test_Github_Error with Go 1.25 (#266)
+        # Skip tests - upstream integration tests require GitHub credentials (#243)
         doCheck = false;
         checkPhase = "";
 
@@ -202,7 +200,7 @@
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
           packages = with pkgs; [
-            go_1_25
+            go_1_26
             golangci-lint
             go-task
             pre-commit
