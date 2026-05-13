@@ -43,7 +43,7 @@
       # go-test-coverage package (not in nixpkgs)
       mkGoTestCoverage = pkgs: pkgs.buildGoModule rec {
         pname = "go-test-coverage";
-        version = "2.18.7";
+        version = "2.18.8";
 
         src = pkgs.fetchFromGitHub {
           owner = "vladopajic";
