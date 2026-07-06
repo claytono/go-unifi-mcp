@@ -54,6 +54,13 @@
   "gitIgnoredAuthors": ["github-actions[bot]@users.noreply.github.com"],
   "packageRules": [
     {
+      "description": "Do not pin the reusable Renovate evaluation workflow; it intentionally tracks main",
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["claytono/github-actions"],
+      "matchUpdateTypes": ["pinDigest"],
+      "enabled": false
+    },
+    {
       "description": "Automerge pre-commit hook updates",
       "matchManagers": ["pre-commit"],
       "automerge": true
