@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh fixed-output source hashes for every flake devShell tool.
+"""Refresh fixed-output source hashes for opted-in flake devShell tools.
 
 The sources are prefetched directly instead of relying on a failed build to
 report hash mismatches. This prevents a binary cache from masking a version

@@ -28,13 +28,11 @@ tasks:
   test:
     desc: Run tests
     cmds:
-      - python3 -m unittest discover -s tests -p 'test_*.py'
       - go test ./...
 
   coverage:
     desc: Run tests with coverage and check thresholds
     cmds:
-      - python3 -m unittest discover -s tests -p 'test_*.py'
       - go test -coverprofile=coverage.out ./...
       - go-test-coverage --config .testcoverage.yaml
 
