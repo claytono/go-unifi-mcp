@@ -49,10 +49,13 @@
           owner = "vladopajic";
           repo = "go-test-coverage";
           rev = "v${version}";
-          hash = "sha256-8KPnufCLGR3beBjTJSGSkxZd+m3r1pYDtTBLhG/eSEg=";
+          name = "go-test-coverage-${version}-source";
+          hash = "sha256-s4OkgyKaZkP2rqFuuyZXqg7hjOncTbMjzoIoJXa4ioo=";
         };
 
-        vendorHash = "sha256-iJ3VFnzPYd0ovyK/QdCDolh5p8fe/aXulnHxAia5UuE=";
+        vendorHash = "sha256-CVXhMRpN6bjdhOP0Ue1Q0KkaIovFMVnVp9B936MIlzI=";
+
+        passthru.refreshSourceHash = true;
 
         # Skip tests - upstream integration tests require GitHub credentials (#243)
         doCheck = false;
@@ -74,8 +77,8 @@
           owner = "schmieder.matthias";
           repo = "python-kacl";
           rev = "v${version}";
-          name = "python-kacl-source";
-          hash = "sha256-WulMdI2FET3T5M+ski8+C40G7L+2OG+i3s6fu6i+C2U=";
+          name = "python-kacl-${version}-source";
+          hash = "sha256-zwE7qG/A++QWP2EGHOhTfUMRjyN1cjhy47N2ABjQT/k=";
         };
 
         build-system = with pkgs.python3Packages; [ setuptools ];
@@ -89,6 +92,8 @@
         ];
 
         doCheck = false;
+
+        passthru.refreshSourceHash = true;
 
         meta = {
           description = "CLI tool to manage changelogs in Keep a Changelog format";
@@ -124,6 +129,7 @@
 
         src = pkgs.fetchurl {
           inherit (src) url hash;
+          name = "mcp-publisher-${version}-${pkgs.stdenv.hostPlatform.system}.tar.gz";
         };
 
         sourceRoot = ".";
@@ -136,6 +142,8 @@
           cp mcp-publisher $out/bin/
           chmod +x $out/bin/mcp-publisher
         '';
+
+        passthru.refreshSourceHash = true;
 
         meta = {
           description = "CLI tool for publishing servers to the MCP Registry";
@@ -168,6 +176,7 @@
 
         src = pkgs.fetchurl {
           inherit (src) url hash;
+          name = "mcp-cli-${version}-${pkgs.stdenv.hostPlatform.system}";
         };
 
         dontUnpack = true;
@@ -177,6 +186,8 @@
           cp $src $out/bin/mcp-cli
           chmod +x $out/bin/mcp-cli
         '';
+
+        passthru.refreshSourceHash = true;
 
         meta = {
           description = "Lightweight CLI for interacting with MCP servers";

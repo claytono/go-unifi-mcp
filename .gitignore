@@ -1,6 +1,7 @@
 # Temporary files
 .tmp/
 .task/
+__pycache__/
 
 # Direnv
 .direnv/

@@ -42,6 +42,9 @@ jobs:
           name: claytono
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
+      - name: Refresh fixed-output source hashes
+        run: scripts/fix-cross-platform-hashes
+
       - name: Build to detect hash mismatches
         run: |
           nix build --no-link 2>&1 || true
@@ -50,8 +53,10 @@ jobs:
       - name: Fix detected hash mismatches
         run: determinate-nixd fix hashes --auto-apply
 
-      - name: Fix cross-platform fetchurl hashes
-        run: scripts/fix-cross-platform-hashes
+      - name: Verify corrected hashes
+        run: |
+          nix build --no-link
+          nix build .#devShells.x86_64-linux.default --no-link
 
       - name: Check for changes
         id: check-changes
