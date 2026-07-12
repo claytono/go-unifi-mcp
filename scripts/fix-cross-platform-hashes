@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-"""
-Fix fetchurl hashes for platforms not built on this CI runner.
+"""Refresh fixed-output source hashes for opted-in flake devShell tools.
 
-Uses nix eval to introspect the flake's devShell inputs across all supported
-systems, identifies packages with platform-specific sources (different URLs per
-architecture), and prefetches correct hashes for non-current platforms.
+The sources are prefetched directly instead of relying on a failed build to
+report hash mismatches. This prevents a binary cache from masking a version
+bump that retained the previous version's hash.
 
-This complements determinate-nixd fix-hashes, which only fixes hashes for
-derivations that were actually built (i.e. the current platform).
+This complements determinate-nixd fix-hashes, which handles build-derived
+hashes such as buildGoModule vendorHash values.
 """
 
 import json
@@ -18,7 +17,7 @@ from pathlib import Path
 FLAKE_FILE = Path("flake.nix")
 
 # Nix expression that extracts package source info across all platforms.
-# Returns a list of {pname, url, hash, system} for every devShell input.
+# Returns source details for every devShell input on every supported system.
 NIX_EVAL_EXPR = r"""
 let
   flake = builtins.getFlake "git+file://${toString ./.}";
@@ -26,6 +25,7 @@ let
   getPkgInfo = system:
     let
       inputs = flake.devShells.${system}.default.nativeBuildInputs or [];
+      refreshable = builtins.filter (pkg: pkg.refreshSourceHash or false) inputs;
     in
       map (pkg:
         let
@@ -35,9 +35,10 @@ let
             then (pkg.src.url or (builtins.head (pkg.src.urls or [""])))
             else "";
           hash = if hasSrc then (pkg.src.outputHash or "") else "";
+          mode = if hasSrc then (pkg.src.outputHashMode or "") else "";
         in
-          { pname = pkg.pname or "unknown"; inherit url hash system; }
-      ) inputs;
+          { pname = pkg.pname or "unknown"; inherit url hash mode system; }
+      ) refreshable;
 in
   builtins.concatMap getPkgInfo systems
 """
@@ -54,54 +55,61 @@ def run_nix(args, check=True):
         raise
 
 
-def get_current_system():
-    result = run_nix(["eval", "--impure", "--raw", "--expr", "builtins.currentSystem"])
-    return result.stdout.strip()
-
-
 def get_all_package_sources():
     """Use nix eval to get source info for all packages across all platforms."""
     result = run_nix(["eval", "--impure", "--json", "--expr", NIX_EVAL_EXPR])
     return json.loads(result.stdout)
 
 
-def find_cross_platform_entries(sources, current_system):
-    """Find packages that have different URLs per platform.
-
-    Returns entries for non-current systems that need hash verification.
-    """
-    # Group by pname
-    by_pname = {}
+def unique_source_entries(sources):
+    """Return one entry for each distinct source derivation."""
+    entries = {}
     for entry in sources:
         if not entry["url"] or not entry["hash"]:
             continue
-        by_pname.setdefault(entry["pname"], []).append(entry)
-
-    # Find packages with platform-specific sources (different URLs per system)
-    cross_platform = []
-    for pname, entries in by_pname.items():
-        urls = {e["url"] for e in entries}
-        if len(urls) <= 1:
-            continue  # Same URL on all platforms, no cross-platform concern
-        for entry in entries:
-            if entry["system"] != current_system:
-                cross_platform.append(entry)
-
-    return cross_platform
+        key = (entry["url"], entry["hash"], entry["mode"])
+        entries.setdefault(key, entry)
+    return list(entries.values())
 
 
-def prefetch_url(url):
-    """Prefetch a URL and return its SRI hash."""
-    result = subprocess.run(
-        ["nix-prefetch-url", "--type", "sha256", url],
-        capture_output=True,
-        text=True,
-        check=True,
-    )
-    base32_hash = result.stdout.strip()
+def prefetch_url(url, mode):
+    """Prefetch a flat or recursive source and return its SRI hash."""
+    args = ["store", "prefetch-file", "--json", "--hash-type", "sha256"]
+    if mode == "recursive":
+        args.append("--unpack")
+    elif mode != "flat":
+        raise ValueError(f"Unsupported fixed-output hash mode: {mode!r}")
+    args.append(url)
+    result = run_nix(args)
+    return json.loads(result.stdout)["hash"]
 
-    sri_result = run_nix(["hash", "to-sri", "--type", "sha256", base32_hash])
-    return sri_result.stdout.strip()
+
+def find_hash_updates(entries):
+    """Prefetch entries and return an unambiguous old-to-new hash mapping."""
+    actual_hashes = {}
+    for entry in entries:
+        print(f"Prefetching {entry['pname']} ({entry['system']}): {entry['url']}")
+        new_hash = prefetch_url(entry["url"], entry["mode"])
+        old_hash = entry["hash"]
+        actual_hashes.setdefault(old_hash, set()).add(new_hash)
+
+    ambiguous = {
+        old_hash: new_hashes
+        for old_hash, new_hashes in actual_hashes.items()
+        if len(new_hashes) > 1
+    }
+    if ambiguous:
+        details = ", ".join(
+            f"{old_hash} -> {sorted(new_hashes)}"
+            for old_hash, new_hashes in sorted(ambiguous.items())
+        )
+        raise ValueError(f"One configured hash maps to multiple sources: {details}")
+
+    return {
+        old_hash: next(iter(new_hashes))
+        for old_hash, new_hashes in actual_hashes.items()
+        if next(iter(new_hashes)) != old_hash
+    }
 
 
 def main():
@@ -109,42 +117,26 @@ def main():
         print(f"Error: {FLAKE_FILE} not found", file=sys.stderr)
         sys.exit(1)
 
-    current_system = get_current_system()
-    print(f"Current system: {current_system}")
-
     print("Evaluating flake to discover package sources...")
     sources = get_all_package_sources()
-
-    entries = find_cross_platform_entries(sources, current_system)
+    entries = unique_source_entries(sources)
     if not entries:
-        print("No cross-platform packages found")
+        print("No fixed-output package sources found")
         return
 
     content = FLAKE_FILE.read_text(encoding="utf-8")
-    changed = False
+    updates = find_hash_updates(entries)
+    for old_hash, new_hash in updates.items():
+        if old_hash not in content:
+            raise ValueError(f"Configured hash not found in {FLAKE_FILE}: {old_hash}")
+        print(f"Updating hash: {old_hash} -> {new_hash}")
+        content = content.replace(old_hash, new_hash)
 
-    for entry in entries:
-        print(f"Prefetching {entry['pname']} ({entry['system']}): {entry['url']}")
-        try:
-            new_hash = prefetch_url(entry["url"])
-            old_hash = entry["hash"]
-            if new_hash != old_hash:
-                print(f"  Updating hash: {old_hash} -> {new_hash}")
-                content = content.replace(old_hash, new_hash)
-                changed = True
-            else:
-                print("  Hash unchanged")
-        except subprocess.CalledProcessError as e:
-            print(
-                f"  WARNING: Failed to prefetch {entry['url']}: {e.stderr}",
-                file=sys.stderr,
-            )
-
-    if changed:
+    if updates:
         FLAKE_FILE.write_text(content, encoding="utf-8")
-        print("Updated flake.nix with cross-platform hashes")
+        print("Updated flake.nix source hashes")
     else:
-        print("No cross-platform hash changes needed")
+        print("No source hash changes needed")
 
 
 if __name__ == "__main__":
