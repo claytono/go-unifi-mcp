@@ -10,7 +10,7 @@ are NO exceptions. Do not rationalize, justify, or work around these rules.**
 ### 1. DO NOT CREATE OR MERGE PULL REQUESTS WITHOUT PERMISSION
 
 - Always ASK before creating a PR - never create one autonomously
-- NEVER merge PRs - merging is the user's responsibility
+- Only merge a PR when the user explicitly requests or approves it
 - Even if tests pass, even if it looks ready, even if the user seems busy - ASK
   FIRST
 
