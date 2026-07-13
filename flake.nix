@@ -78,7 +78,7 @@
           repo = "python-kacl";
           rev = "v${version}";
           name = "python-kacl-${version}-source";
-          hash = "sha256-zwE7qG/A++QWP2EGHOhTfUMRjyN1cjhy47N2ABjQT/k=";
+          hash = "sha256-xie0cYp8b63N5BR4l99Tsct+Yrisw+kYeowpCeFxP7Y=";
         };
 
         build-system = with pkgs.python3Packages; [ setuptools ];
