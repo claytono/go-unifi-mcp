@@ -22,7 +22,7 @@ func TestServerToolCount(t *testing.T) {
 	s, err := New(Options{Client: client, Mode: ModeEager})
 	assert.NoError(t, err)
 	assert.NotNil(t, s)
-	assert.Len(t, s.ListTools(), 242)
+	assert.Len(t, s.ListTools(), 252)
 }
 
 func TestLazyModeEndToEnd(t *testing.T) {

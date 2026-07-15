@@ -46,6 +46,8 @@ var SkipFields = map[string]bool{
 	"filter_ids":                  true,
 	"dismissed_ids":               true,
 	"dpigroup_id":                 true,
+	// NetworkMembersGroup is a separate v2 API resource that go-unifi v1 does not expose.
+	"network_members_group_ids": true,
 }
 
 // knownPrefixes are prefixes stripped from field names before resource lookup.
