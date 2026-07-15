@@ -107,19 +107,19 @@
         sources = {
           "aarch64-darwin" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_darwin_arm64.tar.gz";
-            hash = "sha256-nt27uV79VLlQP2wGaPQ7qz8EyFaUbTxxZPba6tIyQC8=";
+            hash = "sha256-50+IRsO10EKM/q4/n1ILv5Ax0Y5oIkEIw3YNYLaq8uA=";
           };
           "x86_64-darwin" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_darwin_amd64.tar.gz";
-            hash = "sha256-61+Jt2/EWpcHD6SB6wOXdYSnjj3/J4FALUNILxFOTWo=";
+            hash = "sha256-U1D3VuhAjQ4igCt/OEr5QUSDWLUD6x4XcpeaYbm5n94=";
           };
           "x86_64-linux" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_linux_amd64.tar.gz";
-            hash = "sha256-xLQCtDqFFmw/hAZByhyebeW/oc9TPCJXbWY8y9oHEbs=";
+            hash = "sha256-E3BEa7501WJgjoAFpszOAtFGpmH714Z04RzHC5YY1s8=";
           };
           "aarch64-linux" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_linux_arm64.tar.gz";
-            hash = "sha256-ul1Ib4ayzvSOpQboMU2QGlFp3NVqXW6drxjUEkQxYjU=";
+            hash = "sha256-yXiYLGDhtJA6l23gkPBNxPrEoyDapQcE/K0tvJNDPWI=";
           };
         };
         src = sources.${pkgs.stdenv.hostPlatform.system} or null;
