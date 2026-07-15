@@ -198,9 +198,9 @@ established by
 | Mode    | Tools | Context Size | Description                                     |
 | ------- | ----- | ------------ | ----------------------------------------------- |
 | `lazy`  | 3     | ~200 tokens  | Meta-tools only (default, recommended for LLMs) |
-| `eager` | 242   | ~55K tokens  | All tools registered directly                   |
+| `eager` | 252   | ~55K tokens  | All tools registered directly                   |
 
-**Lazy mode** (default) registers only 3 meta-tools that provide access to 242
+**Lazy mode** (default) registers only 3 meta-tools that provide access to 252
 UniFi operations (generated from the controller API):
 
 - `tool_index` - Search/filter the tool catalog by category or resource
@@ -211,7 +211,7 @@ This dramatically reduces context window usage while preserving full
 functionality. The LLM first queries the index to find relevant tools, then
 executes them via the dispatcher.
 
-**Eager mode** registers all 242 tools directly, which may be useful for non-LLM
+**Eager mode** registers all 252 tools directly, which may be useful for non-LLM
 clients or debugging but consumes significant context.
 
 **Update semantics:** Updates use a read-modify-write flow against the
@@ -354,13 +354,13 @@ MCP server.
 3. Test with mcp-cli:
 
    The `.mcp_servers.json` config provides two server entries:
-   - `go-unifi-mcp` - eager mode (242 tools)
+   - `go-unifi-mcp` - eager mode (252 tools)
    - `go-unifi-mcp-lazy` - lazy mode (3 meta-tools)
 
    **Eager mode** (direct tool access):
 
    ```bash
-   # List tools (shows all 242)
+   # List tools (shows all 252)
    mcp-cli info go-unifi-mcp
 
    # Call a tool directly
