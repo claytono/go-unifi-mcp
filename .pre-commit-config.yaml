@@ -43,7 +43,7 @@ repos:
       - id: ruff-format
 
   - repo: https://gitlab.com/schmieder.matthias/python-kacl
-    rev: v0.7.2
+    rev: v0.7.3
     hooks:
       - id: kacl-verify
 
