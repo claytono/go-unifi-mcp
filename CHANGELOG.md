@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-07-15
+
+### Added
+
+- Add 10 tools from go-unifi v1.11.2, expanding eager mode from 242 to 252
+  tools. Content filtering can now be listed, created, updated, and deleted with
+  `list_content_filtering`, `create_content_filtering`,
+  `update_content_filtering`, and `delete_content_filtering`, including
+  allow/block lists, category selection, safe-search providers, client and
+  network targeting, and schedules. New get/update tool pairs also expose mDNS,
+  roaming assistant, and traffic-flow settings (#126)
+
+### Changed
+
+- Update generated UniFi schemas to go-unifi v1.11.2, adding current controller
+  fields such as network member groups, mDNS proxy configuration, radio presets,
+  high-priority devices, and expanded WAN interface support (#126)
+- Update the MCP runtime, Go and Nix toolchains, container base image,
+  development dependencies, and GitHub Actions used for building and publishing
+  releases (#67–#123)
+- Improve Renovate evaluation and fixed-output Nix hash repair so dependency
+  updates can be reviewed and regenerated more reliably (#122, #124)
+
 ## [0.2.0] - 2026-02-03
 
 ### Added
@@ -52,6 +75,7 @@ and this project adheres to
 - Pre-built binaries for linux and macOS (amd64 and arm64)
 - Configurable site selection and authentication via environment variables
 
+[0.3.0]: https://github.com/claytono/go-unifi-mcp/releases/tag/v0.3.0
 [0.2.0]: https://github.com/claytono/go-unifi-mcp/releases/tag/v0.2.0
 [0.1.1]: https://github.com/claytono/go-unifi-mcp/releases/tag/v0.1.1
 [0.1.0]: https://github.com/claytono/go-unifi-mcp/releases/tag/v0.1.0
