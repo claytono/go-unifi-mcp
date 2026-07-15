@@ -1,7 +1,7 @@
 // Code vendored from github.com/filipowm/go-unifi/codegen
 // Licensed under MPL-2.0 - https://github.com/filipowm/go-unifi/blob/main/LICENSE
 // DO NOT EDIT - synced via: task sync-go-unifi
-// Source version: v1.8.1
+// Source version: v1.11.2
 //nolint:all
 
 package gounifi
@@ -34,6 +34,7 @@ const (
 	oneOf           validator = "oneof"
 	cidr            validator = "cidr"
 	omitempty       validator = "omitempty"
+	dive            validator = "dive"
 	length          validator = "len"
 	gte             validator = "gte"
 	lte             validator = "lte"
@@ -43,14 +44,21 @@ const (
 	regexChars regexSpecialChars = "^$*+?()[]{}\\|."
 )
 
-func createValidations(validations ...validation) string {
+func createValidations(isArray bool, validations ...validation) string {
 	if len(validations) == 0 {
 		return ""
 	}
-	validators := make([]string, len(validations)+1)
+	validatorOffset := 1 // always add one for omitempty
+	if isArray {
+		validatorOffset++ // add one for dive if it's an array
+	}
+	validators := make([]string, len(validations)+validatorOffset)
 	validators[0] = createValidator(omitempty)
+	if isArray {
+		validators[1] = createValidator(dive)
+	}
 	for i, v := range validations {
-		validators[i+1] = createValidator(v.v, v.params...)
+		validators[i+validatorOffset] = createValidator(v.v, v.params...)
 	}
 	joinedValidators := strings.Join(validators, ",")
 	return fmt.Sprintf("%s:\"%s\"", validateTag, joinedValidators)
@@ -155,34 +163,45 @@ var (
 	ipv6RegexGroupsCount = strings.Count(ipv6Regex, "|")
 )
 
-func defineFieldValidation(rawValidation string) string {
+func buildOneOfValidation(rawValidation string, isArray bool) string {
+	trimmed := strings.TrimPrefix(strings.TrimSuffix(rawValidation, ")$"), "^(")
+	return createValidations(isArray, validation{v: oneOf, params: strings.Split(trimmed, "|")})
+}
+
+func buildLengthValidation(rawValidation string, isArray bool) string {
+	sub := rawValidation[2 : len(rawValidation)-1]
+	bounds := strings.Split(sub, ",")
+	if len(bounds) == 1 {
+		return createValidations(isArray, validation{v: length, params: []string{bounds[0]}})
+	}
+	return createValidations(isArray,
+		validation{v: gte, params: []string{bounds[0]}},
+		validation{v: lte, params: []string{bounds[1]}})
+}
+
+func defineFieldValidation(rawValidation string, isArray bool) string {
 	if rawValidation == "" {
 		return ""
 	}
 	rawValidation = trimWrappers(rawValidation)
 	vc := validationComment(rawValidation)
-	if vc.IsOneOf() {
-		trimmed := strings.TrimPrefix(strings.TrimSuffix(rawValidation, ")$"), "^(")
-		return createValidations(validation{v: oneOf, params: strings.Split(trimmed, "|")})
-	} else if vc.HasDefinedLength() {
-		sub := rawValidation[2 : len(rawValidation)-1]
-		bounds := strings.Split(sub, ",")
-		if len(bounds) == 1 {
-			return createValidations(validation{v: length, params: []string{bounds[0]}})
-		}
-		return createValidations(validation{v: gte, params: []string{bounds[0]}}, validation{v: lte, params: []string{bounds[1]}})
-	} else if vc.IsWRegex() {
-		return createValidations(validation{v: w_regex})
-	} else if vc.IsMAC() {
-		return createValidations(validation{v: mac})
-	} else if vc.IsIPv4() {
-		return createValidations(validation{v: ipv4})
-	} else if vc.IsIPv6() {
-		return createValidations(validation{v: ipv6})
-	} else if vc.IsIP() {
-		return createValidations(validation{v: ip})
-	} else if vc.IsNumericNonZeroBased() {
-		return createValidations(validation{v: numeric_nonzero})
+	switch {
+	case vc.IsOneOf():
+		return buildOneOfValidation(rawValidation, isArray)
+	case vc.HasDefinedLength():
+		return buildLengthValidation(rawValidation, isArray)
+	case vc.IsWRegex():
+		return createValidations(isArray, validation{v: w_regex})
+	case vc.IsMAC():
+		return createValidations(isArray, validation{v: mac})
+	case vc.IsIPv4():
+		return createValidations(isArray, validation{v: ipv4})
+	case vc.IsIPv6():
+		return createValidations(isArray, validation{v: ipv6})
+	case vc.IsIP():
+		return createValidations(isArray, validation{v: ip})
+	case vc.IsNumericNonZeroBased():
+		return createValidations(isArray, validation{v: numeric_nonzero})
 	}
 	return ""
 }

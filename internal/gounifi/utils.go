@@ -1,7 +1,7 @@
 // Code vendored from github.com/filipowm/go-unifi/codegen
 // Licensed under MPL-2.0 - https://github.com/filipowm/go-unifi/blob/main/LICENSE
 // DO NOT EDIT - synced via: task sync-go-unifi
-// Source version: v1.8.1
+// Source version: v1.11.2
 //nolint:all
 
 package gounifi
@@ -9,6 +9,7 @@ package gounifi
 import (
 	"errors"
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 )
@@ -56,4 +57,22 @@ func findCodegenDir() (string, error) {
 		return "", err
 	}
 	return filepath.Join(root, "codegen"), nil
+}
+
+// copyWithLimit copies src to dst, capping total bytes to guard against
+// decompression bombs (gosec G110). Returns an error if the cap is exceeded.
+//
+//nolint:unparam
+func copyWithLimit(dst io.Writer, src io.Reader, maxSize int64) (int64, error) {
+	n, err := io.CopyN(dst, src, maxSize+1) // read one past the cap to detect overflow
+	if errors.Is(err, io.EOF) {
+		err = nil // source smaller than the cap — fine
+	}
+	if err != nil {
+		return n, err
+	}
+	if n > maxSize {
+		return n, fmt.Errorf("decompressed size exceeds %d bytes (possible decompression bomb)", maxSize)
+	}
+	return n, nil
 }

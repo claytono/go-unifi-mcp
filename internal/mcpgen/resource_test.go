@@ -1,6 +1,7 @@
 package mcpgen
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/claytono/go-unifi-mcp/internal/gounifi"
@@ -55,6 +56,17 @@ func TestInferOperations(t *testing.T) {
 				}
 			}
 		})
+	}
+}
+
+func TestInferOperations_ExcludedFunctions(t *testing.T) {
+	r := gounifi.NewResource("ContentFiltering", "test")
+
+	got := InferOperations(r, "Get")
+
+	want := []string{"List", "Create", "Update", "Delete"}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("InferOperations() = %v, want %v", got, want)
 	}
 }
 

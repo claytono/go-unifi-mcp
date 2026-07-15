@@ -4,10 +4,6 @@ tasks:
   download-fields:
     desc: Download UniFi API field definitions
     deps: [sync-go-unifi]
-    vars:
-      # UniFi Controller version for field definitions (from go-unifi repo marker)
-      UNIFI_VERSION:
-        sh: cat .tmp/go-unifi/.unifi-version
     env:
       GOPATH: "{{.ROOT_DIR}}/.go"
       GOMODCACHE: "{{.ROOT_DIR}}/.go/pkg/mod"
@@ -15,10 +11,12 @@ tasks:
     cmds:
       - rm -rf .tmp/fields
       - mkdir -p .tmp/fields
-      - cd .tmp/go-unifi && go run ./codegen -version-base-dir ../fields
-        {{.UNIFI_VERSION}} -download-only {{.UNIFI_VERSION}}
-      - echo "Downloaded field definitions for UniFi {{.UNIFI_VERSION}} to
-        .tmp/fields/"
+      - |
+        # Read after sync-go-unifi runs so a clean generation uses the new marker.
+        UNIFI_VERSION=$(cat .tmp/go-unifi/.unifi-version)
+        cd .tmp/go-unifi
+        go run ./codegen -version-base-dir ../fields "$UNIFI_VERSION" -download-only "$UNIFI_VERSION"
+      - echo "Downloaded field definitions to .tmp/fields/"
 
   lint:
     desc: Run linters via pre-commit

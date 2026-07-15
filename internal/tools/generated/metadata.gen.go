@@ -637,10 +637,6 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"ap_blacklisted_channels": map[string]any{
-					"type":  "array",
-					"items": map[string]any{"type": "object"},
-				},
 				"attr_hidden": map[string]any{
 					"type": "boolean",
 				},
@@ -653,42 +649,11 @@ var AllToolMetadata = []ToolMetadata{
 				"attr_no_edit": map[string]any{
 					"type": "boolean",
 				},
-				"conf_source": map[string]any{
-					"type":        "string",
-					"description": "One of: manual|radio-ai",
-					"enum":        []any{"manual", "radio-ai"},
-				},
-				"coupling": map[string]any{
-					"type":  "array",
-					"items": map[string]any{"type": "object"},
-				},
 				"date": map[string]any{
 					"type":    "string",
 					"pattern": "^$|^(20[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z?$",
 				},
-				"fitness": map[string]any{
-					"type": "number",
-				},
-				"note": map[string]any{
-					"type":    "string",
-					"pattern": ".{0,1024}",
-				},
-				"radio": map[string]any{
-					"type":    "string",
-					"pattern": "na|ng|ng\\+na",
-				},
 				"radio_table": map[string]any{
-					"type":  "array",
-					"items": map[string]any{"type": "object"},
-				},
-				"satisfaction": map[string]any{
-					"type": "number",
-				},
-				"satisfaction_table": map[string]any{
-					"type":  "array",
-					"items": map[string]any{"type": "object"},
-				},
-				"site_blacklisted_channels": map[string]any{
 					"type":  "array",
 					"items": map[string]any{"type": "object"},
 				},
@@ -718,10 +683,6 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "Resource ID",
 				},
-				"ap_blacklisted_channels": map[string]any{
-					"type":  "array",
-					"items": map[string]any{"type": "object"},
-				},
 				"attr_hidden": map[string]any{
 					"type": "boolean",
 				},
@@ -734,42 +695,11 @@ var AllToolMetadata = []ToolMetadata{
 				"attr_no_edit": map[string]any{
 					"type": "boolean",
 				},
-				"conf_source": map[string]any{
-					"type":        "string",
-					"description": "One of: manual|radio-ai",
-					"enum":        []any{"manual", "radio-ai"},
-				},
-				"coupling": map[string]any{
-					"type":  "array",
-					"items": map[string]any{"type": "object"},
-				},
 				"date": map[string]any{
 					"type":    "string",
 					"pattern": "^$|^(20[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z?$",
 				},
-				"fitness": map[string]any{
-					"type": "number",
-				},
-				"note": map[string]any{
-					"type":    "string",
-					"pattern": ".{0,1024}",
-				},
-				"radio": map[string]any{
-					"type":    "string",
-					"pattern": "na|ng|ng\\+na",
-				},
 				"radio_table": map[string]any{
-					"type":  "array",
-					"items": map[string]any{"type": "object"},
-				},
-				"satisfaction": map[string]any{
-					"type": "number",
-				},
-				"satisfaction_table": map[string]any{
-					"type":  "array",
-					"items": map[string]any{"type": "object"},
-				},
-				"site_blacklisted_channels": map[string]any{
 					"type":  "array",
 					"items": map[string]any{"type": "object"},
 				},
@@ -789,6 +719,208 @@ var AllToolMetadata = []ToolMetadata{
 		Description: "Delete ChannelPlan by ID",
 		Category:    "delete",
 		Resource:    "ChannelPlan",
+		InputSchema: map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"site": map[string]any{
+					"type":        "string",
+					"description": "UniFi site name (default: 'default')",
+				},
+				"id": map[string]any{
+					"type":        "string",
+					"description": "Resource ID to delete",
+				},
+			},
+			"required": []any{"id"},
+		},
+	},
+	{
+		Name:        "list_content_filtering",
+		Description: "List all ContentFiltering resources",
+		Category:    "list",
+		Resource:    "ContentFiltering",
+		InputSchema: map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"site": map[string]any{
+					"type":        "string",
+					"description": "UniFi site name (default: 'default')",
+				},
+				"filter": map[string]any{
+					"type":                 "object",
+					"description":          "Filter by field values. Exact match: {\"field\": \"value\"}, substring: {\"field\": {\"contains\": \"substr\"}}, regex: {\"field\": {\"regex\": \"pattern\"}}",
+					"additionalProperties": true,
+				},
+				"fields": map[string]any{
+					"type":        "array",
+					"description": "Field names to include in results. Omit for all fields.",
+					"items":       map[string]any{"type": "string"},
+				},
+				"search": map[string]any{
+					"type":        "string",
+					"description": "Case-insensitive text search across top-level string field values",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+			},
+		},
+	},
+	{
+		Name:        "create_content_filtering",
+		Description: "Create new ContentFiltering",
+		Category:    "create",
+		Resource:    "ContentFiltering",
+		InputSchema: map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"site": map[string]any{
+					"type":        "string",
+					"description": "UniFi site name (default: 'default')",
+				},
+				"allow_list": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"block_list": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"categories": map[string]any{
+					"type":        "array",
+					"description": "One of: FAMILY|ADVERTISEMENT",
+					"enum":        []any{"FAMILY", "ADVERTISEMENT"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"client_macs": map[string]any{
+					"type":    "array",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"network_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"safe_search": map[string]any{
+					"type":        "array",
+					"description": "One of: GOOGLE|YOUTUBE|BING",
+					"enum":        []any{"GOOGLE", "YOUTUBE", "BING"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"schedule": map[string]any{
+					"type": "object",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+			},
+		},
+	},
+	{
+		Name:        "update_content_filtering",
+		Description: "Update ContentFiltering by ID",
+		Category:    "update",
+		Resource:    "ContentFiltering",
+		InputSchema: map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"site": map[string]any{
+					"type":        "string",
+					"description": "UniFi site name (default: 'default')",
+				},
+				"id": map[string]any{
+					"type":        "string",
+					"description": "Resource ID",
+				},
+				"allow_list": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"block_list": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"categories": map[string]any{
+					"type":        "array",
+					"description": "One of: FAMILY|ADVERTISEMENT",
+					"enum":        []any{"FAMILY", "ADVERTISEMENT"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"client_macs": map[string]any{
+					"type":    "array",
+					"pattern": "^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$",
+					"items":   map[string]any{"type": "string"},
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"name": map[string]any{
+					"type": "string",
+				},
+				"network_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
+				"safe_search": map[string]any{
+					"type":        "array",
+					"description": "One of: GOOGLE|YOUTUBE|BING",
+					"enum":        []any{"GOOGLE", "YOUTUBE", "BING"},
+					"items":       map[string]any{"type": "string"},
+				},
+				"schedule": map[string]any{
+					"type": "object",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+			},
+			"required": []any{"id"},
+		},
+	},
+	{
+		Name:        "delete_content_filtering",
+		Description: "Delete ContentFiltering by ID",
+		Category:    "delete",
+		Resource:    "ContentFiltering",
 		InputSchema: map[string]any{
 			"type": "object",
 			"properties": map[string]any{
@@ -1535,9 +1667,8 @@ var AllToolMetadata = []ToolMetadata{
 					"pattern": "^[^\"' ]+$",
 				},
 				"interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"login": map[string]any{
 					"type":    "string",
@@ -1554,8 +1685,8 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"service": map[string]any{
 					"type":        "string",
-					"description": "One of: afraid|changeip|cloudflare|cloudxns|ddnss|dhis|dnsexit|dnsomatic|dnspark|dnspod|dslreports|dtdns|duckdns|duiadns|dyn|dyndns|dynv6|easydns|freemyip|googledomains|loopia|namecheap|noip|nsupdate|ovh|sitelutions|spdyn|strato|tunnelbroker|zoneedit|custom",
-					"enum":        []any{"afraid", "changeip", "cloudflare", "cloudxns", "ddnss", "dhis", "dnsexit", "dnsomatic", "dnspark", "dnspod", "dslreports", "dtdns", "duckdns", "duiadns", "dyn", "dyndns", "dynv6", "easydns", "freemyip", "googledomains", "loopia", "namecheap", "noip", "nsupdate", "ovh", "sitelutions", "spdyn", "strato", "tunnelbroker", "zoneedit", "custom"},
+					"description": "One of: afraid|changeip|cloudflare|cloudxns|ddnss|dhis|dnsexit|dnsomatic|dnspark|dnspod|dslreports|dtdns|duckdns|duiadns|dyn|dyndns|dynv6|easydns|freemyip|googledomains|loopia|namecheap|noip|nsupdate|ovh|sitelutions|spdyn|strato|tunnelbroker|zoneedit|cloudflare|custom",
+					"enum":        []any{"afraid", "changeip", "cloudflare", "cloudxns", "ddnss", "dhis", "dnsexit", "dnsomatic", "dnspark", "dnspod", "dslreports", "dtdns", "duckdns", "duiadns", "dyn", "dyndns", "dynv6", "easydns", "freemyip", "googledomains", "loopia", "namecheap", "noip", "nsupdate", "ovh", "sitelutions", "spdyn", "strato", "tunnelbroker", "zoneedit", "cloudflare", "custom"},
 				},
 				"site_id": map[string]any{
 					"type": "string",
@@ -1608,9 +1739,8 @@ var AllToolMetadata = []ToolMetadata{
 					"pattern": "^[^\"' ]+$",
 				},
 				"interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"login": map[string]any{
 					"type":    "string",
@@ -1627,8 +1757,8 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"service": map[string]any{
 					"type":        "string",
-					"description": "One of: afraid|changeip|cloudflare|cloudxns|ddnss|dhis|dnsexit|dnsomatic|dnspark|dnspod|dslreports|dtdns|duckdns|duiadns|dyn|dyndns|dynv6|easydns|freemyip|googledomains|loopia|namecheap|noip|nsupdate|ovh|sitelutions|spdyn|strato|tunnelbroker|zoneedit|custom",
-					"enum":        []any{"afraid", "changeip", "cloudflare", "cloudxns", "ddnss", "dhis", "dnsexit", "dnsomatic", "dnspark", "dnspod", "dslreports", "dtdns", "duckdns", "duiadns", "dyn", "dyndns", "dynv6", "easydns", "freemyip", "googledomains", "loopia", "namecheap", "noip", "nsupdate", "ovh", "sitelutions", "spdyn", "strato", "tunnelbroker", "zoneedit", "custom"},
+					"description": "One of: afraid|changeip|cloudflare|cloudxns|ddnss|dhis|dnsexit|dnsomatic|dnspark|dnspod|dslreports|dtdns|duckdns|duiadns|dyn|dyndns|dynv6|easydns|freemyip|googledomains|loopia|namecheap|noip|nsupdate|ovh|sitelutions|spdyn|strato|tunnelbroker|zoneedit|cloudflare|custom",
+					"enum":        []any{"afraid", "changeip", "cloudflare", "cloudxns", "ddnss", "dhis", "dnsexit", "dnsomatic", "dnspark", "dnspod", "dslreports", "dtdns", "duckdns", "duiadns", "dyn", "dyndns", "dynv6", "easydns", "freemyip", "googledomains", "loopia", "namecheap", "noip", "nsupdate", "ovh", "sitelutions", "spdyn", "strato", "tunnelbroker", "zoneedit", "cloudflare", "custom"},
 				},
 				"site_id": map[string]any{
 					"type": "string",
@@ -4710,7 +4840,7 @@ var AllToolMetadata = []ToolMetadata{
 				"igmp_fastleave": map[string]any{
 					"type": "boolean",
 				},
-				"igmp_forward_unknown_multicast": map[string]any{
+				"igmp_flood_unknown_multicast": map[string]any{
 					"type": "boolean",
 				},
 				"igmp_groupmembership": map[string]any{
@@ -4790,7 +4920,7 @@ var AllToolMetadata = []ToolMetadata{
 					"enum":        []any{"sha1", "md5", "sha256", "sha384", "sha512"},
 				},
 				"ipsec_esp_lifetime": map[string]any{
-					"type":    "string",
+					"type":    "integer",
 					"pattern": "^(?:3[0-9]|[4-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9]{2}|86400)$",
 				},
 				"ipsec_hash": map[string]any{
@@ -4814,13 +4944,12 @@ var AllToolMetadata = []ToolMetadata{
 					"enum":        []any{"sha1", "md5", "sha256", "sha384", "sha512"},
 				},
 				"ipsec_ike_lifetime": map[string]any{
-					"type":    "string",
+					"type":    "integer",
 					"pattern": "^(?:3[0-9]|[4-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9]{2}|86400)$",
 				},
 				"ipsec_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"ipsec_key_exchange": map[string]any{
 					"type":        "string",
@@ -4878,9 +5007,8 @@ var AllToolMetadata = []ToolMetadata{
 					"type": "boolean",
 				},
 				"ipv6_pd_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"ipv6_pd_prefixid": map[string]any{
 					"type":    "string",
@@ -4931,9 +5059,8 @@ var AllToolMetadata = []ToolMetadata{
 					"type": "boolean",
 				},
 				"l2tp_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"l2tp_local_wan_ip": map[string]any{
 					"type":    "string",
@@ -4983,9 +5110,8 @@ var AllToolMetadata = []ToolMetadata{
 					"enum":        []any{"AES_256_GCM", "AES_256_CBC", "BF_CBC"},
 				},
 				"openvpn_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"openvpn_local_address": map[string]any{
 					"type":    "string",
@@ -5184,9 +5310,20 @@ var AllToolMetadata = []ToolMetadata{
 					"type":  "array",
 					"items": map[string]any{"type": "object"},
 				},
+				"wan_dhcpv6_cos": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-7]|^$",
+				},
+				"wan_dhcpv6_options": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
 				"wan_dhcpv6_pd_size": map[string]any{
 					"type":    "integer",
 					"pattern": "^(4[89]|5[0-9]|6[0-4])$|^$",
+				},
+				"wan_dhcpv6_pd_size_auto": map[string]any{
+					"type": "boolean",
 				},
 				"wan_dns1": map[string]any{
 					"type":    "string",
@@ -5212,9 +5349,16 @@ var AllToolMetadata = []ToolMetadata{
 				"wan_dslite_remote_host": map[string]any{
 					"type": "string",
 				},
+				"wan_dslite_remote_host_auto": map[string]any{
+					"type": "boolean",
+				},
 				"wan_egress_qos": map[string]any{
 					"type":    "integer",
 					"pattern": "[1-7]|^$",
+				},
+				"wan_failover_priority": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9]",
 				},
 				"wan_gateway": map[string]any{
 					"type":    "string",
@@ -5265,7 +5409,7 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"wan_networkgroup": map[string]any{
 					"type":    "string",
-					"pattern": "WAN[2]?|WAN_LTE_FAILOVER",
+					"pattern": "WAN[2-9]?|WAN_LTE_FAILOVER",
 				},
 				"wan_pppoe_password_enabled": map[string]any{
 					"type": "boolean",
@@ -5280,6 +5424,9 @@ var AllToolMetadata = []ToolMetadata{
 				"wan_provider_capabilities": map[string]any{
 					"type": "object",
 				},
+				"wan_sla": map[string]any{
+					"type": "string",
+				},
 				"wan_smartq_down_rate": map[string]any{
 					"type":    "integer",
 					"pattern": "[0-9]{1,6}|1000000",
@@ -5293,8 +5440,8 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"wan_type": map[string]any{
 					"type":        "string",
-					"description": "One of: disabled|dhcp|static|pppoe|dslite",
-					"enum":        []any{"disabled", "dhcp", "static", "pppoe", "dslite"},
+					"description": "One of: disabled|dhcp|static|pppoe|dslite|map-e,hubspoke|map-e,jpix|map-e,ntt|dslite-over-pppoe",
+					"enum":        []any{"disabled", "dhcp", "static", "pppoe", "dslite", "map-e,hubspoke", "map-e,jpix", "map-e,ntt", "dslite-over-pppoe"},
 				},
 				"wan_type_v6": map[string]any{
 					"type":        "string",
@@ -5340,9 +5487,8 @@ var AllToolMetadata = []ToolMetadata{
 					"type": "boolean",
 				},
 				"wireguard_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"wireguard_local_wan_ip": map[string]any{
 					"type":    "string",
@@ -5620,7 +5766,7 @@ var AllToolMetadata = []ToolMetadata{
 				"igmp_fastleave": map[string]any{
 					"type": "boolean",
 				},
-				"igmp_forward_unknown_multicast": map[string]any{
+				"igmp_flood_unknown_multicast": map[string]any{
 					"type": "boolean",
 				},
 				"igmp_groupmembership": map[string]any{
@@ -5700,7 +5846,7 @@ var AllToolMetadata = []ToolMetadata{
 					"enum":        []any{"sha1", "md5", "sha256", "sha384", "sha512"},
 				},
 				"ipsec_esp_lifetime": map[string]any{
-					"type":    "string",
+					"type":    "integer",
 					"pattern": "^(?:3[0-9]|[4-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9]{2}|86400)$",
 				},
 				"ipsec_hash": map[string]any{
@@ -5724,13 +5870,12 @@ var AllToolMetadata = []ToolMetadata{
 					"enum":        []any{"sha1", "md5", "sha256", "sha384", "sha512"},
 				},
 				"ipsec_ike_lifetime": map[string]any{
-					"type":    "string",
+					"type":    "integer",
 					"pattern": "^(?:3[0-9]|[4-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9]{2}|86400)$",
 				},
 				"ipsec_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"ipsec_key_exchange": map[string]any{
 					"type":        "string",
@@ -5788,9 +5933,8 @@ var AllToolMetadata = []ToolMetadata{
 					"type": "boolean",
 				},
 				"ipv6_pd_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"ipv6_pd_prefixid": map[string]any{
 					"type":    "string",
@@ -5841,9 +5985,8 @@ var AllToolMetadata = []ToolMetadata{
 					"type": "boolean",
 				},
 				"l2tp_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"l2tp_local_wan_ip": map[string]any{
 					"type":    "string",
@@ -5893,9 +6036,8 @@ var AllToolMetadata = []ToolMetadata{
 					"enum":        []any{"AES_256_GCM", "AES_256_CBC", "BF_CBC"},
 				},
 				"openvpn_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"openvpn_local_address": map[string]any{
 					"type":    "string",
@@ -6094,9 +6236,20 @@ var AllToolMetadata = []ToolMetadata{
 					"type":  "array",
 					"items": map[string]any{"type": "object"},
 				},
+				"wan_dhcpv6_cos": map[string]any{
+					"type":    "integer",
+					"pattern": "[0-7]|^$",
+				},
+				"wan_dhcpv6_options": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
 				"wan_dhcpv6_pd_size": map[string]any{
 					"type":    "integer",
 					"pattern": "^(4[89]|5[0-9]|6[0-4])$|^$",
+				},
+				"wan_dhcpv6_pd_size_auto": map[string]any{
+					"type": "boolean",
 				},
 				"wan_dns1": map[string]any{
 					"type":    "string",
@@ -6122,9 +6275,16 @@ var AllToolMetadata = []ToolMetadata{
 				"wan_dslite_remote_host": map[string]any{
 					"type": "string",
 				},
+				"wan_dslite_remote_host_auto": map[string]any{
+					"type": "boolean",
+				},
 				"wan_egress_qos": map[string]any{
 					"type":    "integer",
 					"pattern": "[1-7]|^$",
+				},
+				"wan_failover_priority": map[string]any{
+					"type":    "integer",
+					"pattern": "[1-9]",
 				},
 				"wan_gateway": map[string]any{
 					"type":    "string",
@@ -6175,7 +6335,7 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"wan_networkgroup": map[string]any{
 					"type":    "string",
-					"pattern": "WAN[2]?|WAN_LTE_FAILOVER",
+					"pattern": "WAN[2-9]?|WAN_LTE_FAILOVER",
 				},
 				"wan_pppoe_password_enabled": map[string]any{
 					"type": "boolean",
@@ -6190,6 +6350,9 @@ var AllToolMetadata = []ToolMetadata{
 				"wan_provider_capabilities": map[string]any{
 					"type": "object",
 				},
+				"wan_sla": map[string]any{
+					"type": "string",
+				},
 				"wan_smartq_down_rate": map[string]any{
 					"type":    "integer",
 					"pattern": "[0-9]{1,6}|1000000",
@@ -6203,8 +6366,8 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"wan_type": map[string]any{
 					"type":        "string",
-					"description": "One of: disabled|dhcp|static|pppoe|dslite",
-					"enum":        []any{"disabled", "dhcp", "static", "pppoe", "dslite"},
+					"description": "One of: disabled|dhcp|static|pppoe|dslite|map-e,hubspoke|map-e,jpix|map-e,ntt|dslite-over-pppoe",
+					"enum":        []any{"disabled", "dhcp", "static", "pppoe", "dslite", "map-e,hubspoke", "map-e,jpix", "map-e,ntt", "dslite-over-pppoe"},
 				},
 				"wan_type_v6": map[string]any{
 					"type":        "string",
@@ -6250,9 +6413,8 @@ var AllToolMetadata = []ToolMetadata{
 					"type": "boolean",
 				},
 				"wireguard_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2",
-					"enum":        []any{"wan", "wan2"},
+					"type":    "string",
+					"pattern": "wan[2-9]?",
 				},
 				"wireguard_local_wan_ip": map[string]any{
 					"type":    "string",
@@ -6447,9 +6609,8 @@ var AllToolMetadata = []ToolMetadata{
 					"pattern": ".{1,128}",
 				},
 				"pfwd_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2|both|all",
-					"enum":        []any{"wan", "wan2", "both", "all"},
+					"type":    "string",
+					"pattern": "wan[2-9]?|both|all",
 				},
 				"proto": map[string]any{
 					"type":        "string",
@@ -6540,9 +6701,8 @@ var AllToolMetadata = []ToolMetadata{
 					"pattern": ".{1,128}",
 				},
 				"pfwd_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: wan|wan2|both|all",
-					"enum":        []any{"wan", "wan2", "both", "all"},
+					"type":    "string",
+					"pattern": "wan[2-9]?|both|all",
 				},
 				"proto": map[string]any{
 					"type":        "string",
@@ -7423,7 +7583,7 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"static-route_interface": map[string]any{
 					"type":    "string",
-					"pattern": "WAN1|WAN2|[\\d\\w]+|^$",
+					"pattern": "WAN[1-9]?|[\\d\\w]+|^$",
 				},
 				"static-route_network": map[string]any{
 					"type":    "string",
@@ -7502,7 +7662,7 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"static-route_interface": map[string]any{
 					"type":    "string",
-					"pattern": "WAN1|WAN2|[\\d\\w]+|^$",
+					"pattern": "WAN[1-9]?|[\\d\\w]+|^$",
 				},
 				"static-route_network": map[string]any{
 					"type":    "string",
@@ -8717,7 +8877,13 @@ var AllToolMetadata = []ToolMetadata{
 				"dot1x_portctrl_enabled": map[string]any{
 					"type": "boolean",
 				},
+				"flood_known_protocols": map[string]any{
+					"type": "boolean",
+				},
 				"flowctrl_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"forward_unknown_mcast_router_ports": map[string]any{
 					"type": "boolean",
 				},
 				"jumboframe_enabled": map[string]any{
@@ -9167,13 +9333,6 @@ var AllToolMetadata = []ToolMetadata{
 					"type":        "string",
 					"description": "UniFi site name (default: 'default')",
 				},
-				"ad_blocking_configurations": map[string]any{
-					"type":  "array",
-					"items": map[string]any{"type": "object"},
-				},
-				"ad_blocking_enabled": map[string]any{
-					"type": "boolean",
-				},
 				"advanced_filtering_preference": map[string]any{
 					"type":        "string",
 					"description": "One of: |manual|disabled",
@@ -9191,12 +9350,8 @@ var AllToolMetadata = []ToolMetadata{
 				"attr_no_edit": map[string]any{
 					"type": "boolean",
 				},
-				"dns_filtering": map[string]any{
+				"content_filtering_blocking_page_enabled": map[string]any{
 					"type": "boolean",
-				},
-				"dns_filters": map[string]any{
-					"type":  "array",
-					"items": map[string]any{"type": "object"},
 				},
 				"enabled_categories": map[string]any{
 					"type":        "array",
@@ -9428,6 +9583,77 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"key": map[string]any{
 					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+			},
+		},
+	},
+	{
+		Name:        "get_setting_mdns",
+		Description: "Get SettingMdns",
+		Category:    "get",
+		Resource:    "SettingMdns",
+		IsSetting:   true,
+		InputSchema: map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"site": map[string]any{
+					"type":        "string",
+					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+			},
+		},
+	},
+	{
+		Name:        "update_setting_mdns",
+		Description: "Update SettingMdns",
+		Category:    "update",
+		Resource:    "SettingMdns",
+		IsSetting:   true,
+		InputSchema: map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"site": map[string]any{
+					"type":        "string",
+					"description": "UniFi site name (default: 'default')",
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"custom_services": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"mode": map[string]any{
+					"type":        "string",
+					"description": "One of: all|auto|custom",
+					"enum":        []any{"all", "auto", "custom"},
+				},
+				"predefined_services": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
 				},
 				"site_id": map[string]any{
 					"type": "string",
@@ -9907,6 +10133,11 @@ var AllToolMetadata = []ToolMetadata{
 				"auto_adjust_channels_to_country": map[string]any{
 					"type": "boolean",
 				},
+				"auto_channel_presets_type": map[string]any{
+					"type":        "string",
+					"description": "One of: maximum_speed|conservative|custom",
+					"enum":        []any{"maximum_speed", "conservative", "custom"},
+				},
 				"channels_6e": map[string]any{
 					"type":    "array",
 					"pattern": "[1-9]|[1-2][0-9]|3[3-9]|[4-5][0-9]|6[0-1]|6[5-9]|[7-8][0-9]|9[0-3]|9[7-9]|1[0-1][0-9]|12[0-5]|129|1[3-4][0-9]|15[0-7]|16[1-9]|1[7-8][0-9]|19[3-9]|2[0-1][0-9]|22[0-1]|22[5-9]|233",
@@ -9942,6 +10173,11 @@ var AllToolMetadata = []ToolMetadata{
 					"pattern": "([0-9a-z]{2}:){5}[0-9a-z]{2}",
 					"items":   map[string]any{"type": "string"},
 				},
+				"high_priority_devices": map[string]any{
+					"type":    "array",
+					"pattern": "([0-9a-z]{2}:){5}[0-9a-z]{2}",
+					"items":   map[string]any{"type": "string"},
+				},
 				"ht_modes_na": map[string]any{
 					"type":    "array",
 					"pattern": "^(20|40|80|160)$",
@@ -9963,9 +10199,13 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"radios": map[string]any{
 					"type":        "array",
-					"description": "One of: na|ng",
-					"enum":        []any{"na", "ng"},
+					"description": "One of: na|ng|6e",
+					"enum":        []any{"na", "ng", "6e"},
 					"items":       map[string]any{"type": "string"},
+				},
+				"radios_configuration": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
 				},
 				"setting_preference": map[string]any{
 					"type":        "string",
@@ -10063,6 +10303,71 @@ var AllToolMetadata = []ToolMetadata{
 				"x_secret": map[string]any{
 					"type":    "string",
 					"pattern": "^[^\\\\\"' ]{1,48}$",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+			},
+		},
+	},
+	{
+		Name:        "get_setting_roaming_assistant",
+		Description: "Get SettingRoamingAssistant",
+		Category:    "get",
+		Resource:    "SettingRoamingAssistant",
+		IsSetting:   true,
+		InputSchema: map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"site": map[string]any{
+					"type":        "string",
+					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+			},
+		},
+	},
+	{
+		Name:        "update_setting_roaming_assistant",
+		Description: "Update SettingRoamingAssistant",
+		Category:    "update",
+		Resource:    "SettingRoamingAssistant",
+		IsSetting:   true,
+		InputSchema: map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"site": map[string]any{
+					"type":        "string",
+					"description": "UniFi site name (default: 'default')",
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"rssi": map[string]any{
+					"type":    "integer",
+					"pattern": "^-([6-7][0-9]|80)$",
+				},
+				"site_id": map[string]any{
+					"type": "string",
 				},
 				"resolve": map[string]any{
 					"type":        "boolean",
@@ -10718,18 +11023,9 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"autobackup_post_actions": map[string]any{
 					"type":        "array",
-					"description": "One of: copy_local|copy_s3|copy_gcs|copy_cloud",
-					"enum":        []any{"copy_local", "copy_s3", "copy_gcs", "copy_cloud"},
+					"description": "One of: copy_local|copy_gcs|copy_cloud",
+					"enum":        []any{"copy_local", "copy_gcs", "copy_cloud"},
 					"items":       map[string]any{"type": "string"},
-				},
-				"autobackup_s3_access_key": map[string]any{
-					"type": "string",
-				},
-				"autobackup_s3_access_secret": map[string]any{
-					"type": "string",
-				},
-				"autobackup_s3_bucket": map[string]any{
-					"type": "string",
 				},
 				"autobackup_timezone": map[string]any{
 					"type": "string",
@@ -11083,6 +11379,76 @@ var AllToolMetadata = []ToolMetadata{
 		},
 	},
 	{
+		Name:        "get_setting_traffic_flow",
+		Description: "Get SettingTrafficFlow",
+		Category:    "get",
+		Resource:    "SettingTrafficFlow",
+		IsSetting:   true,
+		InputSchema: map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"site": map[string]any{
+					"type":        "string",
+					"description": "UniFi site name (default: 'default')",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+			},
+		},
+	},
+	{
+		Name:        "update_setting_traffic_flow",
+		Description: "Update SettingTrafficFlow",
+		Category:    "update",
+		Resource:    "SettingTrafficFlow",
+		IsSetting:   true,
+		InputSchema: map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"site": map[string]any{
+					"type":        "string",
+					"description": "UniFi site name (default: 'default')",
+				},
+				"attr_hidden": map[string]any{
+					"type": "boolean",
+				},
+				"attr_hidden_id": map[string]any{
+					"type": "string",
+				},
+				"attr_no_delete": map[string]any{
+					"type": "boolean",
+				},
+				"attr_no_edit": map[string]any{
+					"type": "boolean",
+				},
+				"enabled_allowed_traffic": map[string]any{
+					"type": "boolean",
+				},
+				"gateway_dns_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"key": map[string]any{
+					"type": "string",
+				},
+				"site_id": map[string]any{
+					"type": "string",
+				},
+				"unifi_device_management_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"unifi_services_enabled": map[string]any{
+					"type": "boolean",
+				},
+				"resolve": map[string]any{
+					"type":        "boolean",
+					"description": "Resolve ID references to human-readable names (default: true)",
+				},
+			},
+		},
+	},
+	{
 		Name:        "get_setting_usg",
 		Description: "Get SettingUsg",
 		Category:    "get",
@@ -11318,9 +11684,8 @@ var AllToolMetadata = []ToolMetadata{
 					"type": "boolean",
 				},
 				"upnp_wan_interface": map[string]any{
-					"type":        "string",
-					"description": "One of: WAN|WAN2",
-					"enum":        []any{"WAN", "WAN2"},
+					"type":    "string",
+					"pattern": "WAN[2-9]?",
 				},
 				"resolve": map[string]any{
 					"type":        "boolean",
@@ -11844,6 +12209,10 @@ var AllToolMetadata = []ToolMetadata{
 				"network_id": map[string]any{
 					"type": "string",
 				},
+				"network_members_group_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
+				},
 				"note": map[string]any{
 					"type": "string",
 				},
@@ -11939,6 +12308,10 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"network_id": map[string]any{
 					"type": "string",
+				},
+				"network_members_group_ids": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "string"},
 				},
 				"note": map[string]any{
 					"type": "string",
@@ -12537,6 +12910,15 @@ var AllToolMetadata = []ToolMetadata{
 				"mcastenhance_enabled": map[string]any{
 					"type": "boolean",
 				},
+				"mdns_proxy_custom": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"mdns_proxy_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: off|auto|custom",
+					"enum":        []any{"off", "auto", "custom"},
+				},
 				"minrate_na_advertising_rates": map[string]any{
 					"type": "boolean",
 				},
@@ -12907,6 +13289,15 @@ var AllToolMetadata = []ToolMetadata{
 				},
 				"mcastenhance_enabled": map[string]any{
 					"type": "boolean",
+				},
+				"mdns_proxy_custom": map[string]any{
+					"type":  "array",
+					"items": map[string]any{"type": "object"},
+				},
+				"mdns_proxy_mode": map[string]any{
+					"type":        "string",
+					"description": "One of: off|auto|custom",
+					"enum":        []any{"off", "auto", "custom"},
 				},
 				"minrate_na_advertising_rates": map[string]any{
 					"type": "boolean",

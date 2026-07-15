@@ -74,6 +74,18 @@ func GetHandlerRegistry() map[string]HandlerFunc {
 		"delete_channel_plan": func(client unifi.Client) server.ToolHandlerFunc {
 			return GenericDelete(client, "ChannelPlan")
 		},
+		"list_content_filtering": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericList(client, "ContentFiltering")
+		},
+		"create_content_filtering": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericCreate(client, "ContentFiltering", TypeRegistry["ContentFiltering"])
+		},
+		"update_content_filtering": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "ContentFiltering", TypeRegistry["ContentFiltering"], false)
+		},
+		"delete_content_filtering": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericDelete(client, "ContentFiltering")
+		},
 		"list_dhcp_option": func(client unifi.Client) server.ToolHandlerFunc {
 			return GenericList(client, "DHCPOption")
 		},
@@ -509,6 +521,12 @@ func GetHandlerRegistry() map[string]HandlerFunc {
 		"update_setting_magic_site_to_site_vpn": func(client unifi.Client) server.ToolHandlerFunc {
 			return GenericUpdate(client, "SettingMagicSiteToSiteVpn", TypeRegistry["SettingMagicSiteToSiteVpn"], true)
 		},
+		"get_setting_mdns": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingMdns", true)
+		},
+		"update_setting_mdns": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingMdns", TypeRegistry["SettingMdns"], true)
+		},
 		"get_setting_mgmt": func(client unifi.Client) server.ToolHandlerFunc {
 			return GenericGet(client, "SettingMgmt", true)
 		},
@@ -550,6 +568,12 @@ func GetHandlerRegistry() map[string]HandlerFunc {
 		},
 		"update_setting_radius": func(client unifi.Client) server.ToolHandlerFunc {
 			return GenericUpdate(client, "SettingRadius", TypeRegistry["SettingRadius"], true)
+		},
+		"get_setting_roaming_assistant": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingRoamingAssistant", true)
+		},
+		"update_setting_roaming_assistant": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingRoamingAssistant", TypeRegistry["SettingRoamingAssistant"], true)
 		},
 		"get_setting_rsyslogd": func(client unifi.Client) server.ToolHandlerFunc {
 			return GenericGet(client, "SettingRsyslogd", true)
@@ -622,6 +646,12 @@ func GetHandlerRegistry() map[string]HandlerFunc {
 		},
 		"update_setting_teleport": func(client unifi.Client) server.ToolHandlerFunc {
 			return GenericUpdate(client, "SettingTeleport", TypeRegistry["SettingTeleport"], true)
+		},
+		"get_setting_traffic_flow": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericGet(client, "SettingTrafficFlow", true)
+		},
+		"update_setting_traffic_flow": func(client unifi.Client) server.ToolHandlerFunc {
+			return GenericUpdate(client, "SettingTrafficFlow", TypeRegistry["SettingTrafficFlow"], true)
 		},
 		"get_setting_usg": func(client unifi.Client) server.ToolHandlerFunc {
 			return GenericGet(client, "SettingUsg", true)

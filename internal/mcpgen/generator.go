@@ -90,7 +90,7 @@ func Generate(cfg GeneratorConfig) error {
 			SnakeName:  strcase.ToSnake(r.StructName),
 			IsSetting:  r.IsSetting(),
 			IsV2:       r.IsV2(),
-			Operations: InferOperations(r),
+			Operations: InferOperations(r, customizer.ExcludedClientFunctions(r)...),
 			Fields:     extractFieldSchemas(r),
 		}
 		tools = append(tools, tool)
