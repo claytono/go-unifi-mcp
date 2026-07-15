@@ -75,7 +75,8 @@
     {
       "description": "Automerge pre-commit hook updates",
       "matchManagers": ["pre-commit"],
-      "automerge": true
+      "automerge": true,
+      "addLabels": ["automerge"]
     },
     {
       "description": "Automerge Go patch and digest updates",
