@@ -63,6 +63,12 @@ func New(opts Options) (*server.MCPServer, error) {
 		ServerName,
 		Version,
 		server.WithToolCapabilities(true),
+		// Convert any panic inside a tool handler (e.g. a go-unifi client
+		// method panicking on a malformed request) into a clean tool-call
+		// error instead of taking down the whole stdio connection. Applies
+		// to every registered tool in both lazy and eager mode, since all
+		// tool calls route through the same MCPServer.handleToolCall.
+		server.WithRecovery(),
 	)
 
 	if mode == ModeEager {
