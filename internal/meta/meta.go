@@ -1,6 +1,6 @@
 // Package meta provides meta-tools for lazy mode operation.
-// In lazy mode, only 3 meta-tools are registered instead of 242 direct tools,
-// reducing context size from ~5000 tokens to ~200 tokens.
+// In lazy mode, only 3 meta-tools are registered instead of 252 direct tools,
+// reducing context size from ~55K tokens to ~200 tokens.
 package meta
 
 import (
