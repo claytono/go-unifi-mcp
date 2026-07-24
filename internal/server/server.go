@@ -26,7 +26,7 @@ type Mode string
 const (
 	// ModeLazy registers only 3 meta-tools (~200 tokens context).
 	ModeLazy Mode = "lazy"
-	// ModeEager registers all 242 direct tools (~55K tokens context).
+	// ModeEager registers all 252 direct tools (~55K tokens context).
 	ModeEager Mode = "eager"
 )
 
@@ -39,7 +39,7 @@ type Options struct {
 
 // New creates a new MCP server with UniFi tools registered.
 // In lazy mode (default), only 3 meta-tools are registered for reduced context.
-// In eager mode, all 242 direct tools are registered.
+// In eager mode, all 252 direct tools are registered.
 func New(opts Options) (*server.MCPServer, error) {
 	if opts.Client == nil {
 		return nil, fmt.Errorf("client is required")
