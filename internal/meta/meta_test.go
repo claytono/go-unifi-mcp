@@ -340,6 +340,48 @@ func TestBatch_PartialFailure(t *testing.T) {
 	assert.NotContains(t, results[2], "error")
 }
 
+func TestBatch_PanicReturnsItemError(t *testing.T) {
+	registry := map[string]generated.HandlerFunc{
+		"panic_tool": func(_ unifi.Client) server.ToolHandlerFunc {
+			return func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+				panic("test panic")
+			}
+		},
+		"safe_tool": func(_ unifi.Client) server.ToolHandlerFunc {
+			return func(_ context.Context, _ mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+				return mcp.NewToolResultText(`{"result": "ok"}`), nil
+			}
+		},
+	}
+
+	handler := BatchHandler(nil, registry, nil)
+
+	req := mcp.CallToolRequest{}
+	req.Params.Arguments = map[string]any{
+		"calls": []any{
+			map[string]any{"tool": "panic_tool", "arguments": map[string]any{}},
+			map[string]any{"tool": "safe_tool", "arguments": map[string]any{}},
+		},
+	}
+
+	result, err := handler(context.Background(), req)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.False(t, result.IsError)
+
+	var results []map[string]any
+	content := result.Content[0].(mcp.TextContent)
+	err = json.Unmarshal([]byte(content.Text), &results)
+	require.NoError(t, err)
+	require.Len(t, results, 2)
+	assert.Equal(t, "panic_tool", results[0]["tool"])
+	assert.Contains(t, results[0]["error"], "panic recovered")
+	assert.Contains(t, results[0]["error"], "test panic")
+	assert.Equal(t, "safe_tool", results[1]["tool"])
+	assert.NotContains(t, results[1], "error")
+	assert.Equal(t, map[string]any{"result": "ok"}, results[1]["result"])
+}
+
 func TestBatch_InvalidCallFormat(t *testing.T) {
 	registry := make(map[string]generated.HandlerFunc)
 	handler := BatchHandler(nil, registry, nil)

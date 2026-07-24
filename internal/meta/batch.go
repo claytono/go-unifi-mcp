@@ -3,6 +3,7 @@ package meta
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"strings"
 	"sync"
 
@@ -12,6 +13,16 @@ import (
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 )
+
+func callHandlerWithRecovery(ctx context.Context, req mcp.CallToolRequest, handler server.ToolHandlerFunc) (result *mcp.CallToolResult, err error) {
+	defer func() {
+		if recovered := recover(); recovered != nil {
+			err = fmt.Errorf("panic recovered in %s tool handler: %v", req.Params.Name, recovered)
+		}
+	}()
+
+	return handler(ctx, req)
+}
 
 // BatchHandler returns a handler that executes multiple tools in parallel.
 func BatchHandler(client unifi.Client, registry map[string]generated.HandlerFunc, resolver *resolve.Resolver) server.ToolHandlerFunc {
@@ -77,7 +88,7 @@ func BatchHandler(client unifi.Client, registry map[string]generated.HandlerFunc
 				if !strings.HasPrefix(toolName, "delete_") {
 					handler = resolve.WrapHandler(handler, resolver)
 				}
-				toolResult, err := handler(ctx, innerReq)
+				toolResult, err := callHandlerWithRecovery(ctx, innerReq, handler)
 				if err != nil {
 					result["error"] = err.Error()
 					mu.Lock()

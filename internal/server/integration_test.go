@@ -176,6 +176,74 @@ func TestToolHandlerPanicIsRecovered(t *testing.T) {
 	client.AssertExpectations(t)
 }
 
+func TestLazyBatchPanicIsRecovered(t *testing.T) {
+	ctx := context.Background()
+	client := servermocks.NewClient(t)
+	client.On("ListNetwork", mock.Anything, "default").Panic("test panic").Once()
+	client.On("ListDevice", mock.Anything, "default").Return([]unifi.Device{}, nil).Twice()
+
+	s, err := New(Options{Client: client, Mode: ModeLazy})
+	require.NoError(t, err)
+	require.NotNil(t, s)
+
+	mcpClient, err := clientpkg.NewInProcessClient(s)
+	require.NoError(t, err)
+	defer func() {
+		err = mcpClient.Close()
+		require.NoError(t, err)
+	}()
+
+	require.NoError(t, mcpClient.Start(ctx))
+	initRequest := mcp.InitializeRequest{}
+	initRequest.Params.ProtocolVersion = mcp.LATEST_PROTOCOL_VERSION
+	initRequest.Params.ClientInfo = mcp.Implementation{Name: "integration-test", Version: "1.0.0"}
+	_, err = mcpClient.Initialize(ctx, initRequest)
+	require.NoError(t, err)
+
+	batchRequest := mcp.CallToolRequest{}
+	batchRequest.Params.Name = "batch"
+	batchRequest.Params.Arguments = map[string]any{
+		"calls": []any{
+			map[string]any{"tool": "list_network", "arguments": map[string]any{}},
+			map[string]any{"tool": "list_device", "arguments": map[string]any{}},
+		},
+	}
+
+	batchResult, err := mcpClient.CallTool(ctx, batchRequest)
+	require.NoError(t, err)
+	require.NotNil(t, batchResult)
+	assert.False(t, batchResult.IsError)
+
+	var batchResults []map[string]any
+	require.NotEmpty(t, batchResult.Content)
+	batchContent, ok := batchResult.Content[0].(mcp.TextContent)
+	require.True(t, ok)
+	err = json.Unmarshal([]byte(batchContent.Text), &batchResults)
+	require.NoError(t, err)
+	require.Len(t, batchResults, 2)
+	assert.Equal(t, "list_network", batchResults[0]["tool"])
+	panicError, ok := batchResults[0]["error"].(string)
+	require.True(t, ok)
+	assert.Contains(t, panicError, "panic recovered")
+	assert.Contains(t, panicError, "test panic")
+	assert.Equal(t, "list_device", batchResults[1]["tool"])
+	assert.NotContains(t, batchResults[1], "error")
+
+	// The lazy-mode session must remain usable after the recovered batch panic.
+	executeRequest := mcp.CallToolRequest{}
+	executeRequest.Params.Name = "execute"
+	executeRequest.Params.Arguments = map[string]any{
+		"tool":      "list_device",
+		"arguments": map[string]any{},
+	}
+	executeResult, err := mcpClient.CallTool(ctx, executeRequest)
+	require.NoError(t, err)
+	require.NotNil(t, executeResult)
+	assert.False(t, executeResult.IsError)
+
+	client.AssertExpectations(t)
+}
+
 func TestEagerModeEndToEnd(t *testing.T) {
 	ctx := context.Background()
 	client := servermocks.NewClient(t)
