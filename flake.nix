@@ -50,10 +50,10 @@
           repo = "go-test-coverage";
           rev = "v${version}";
           name = "go-test-coverage-${version}-source";
-          hash = "sha256-QP+Mye47GIXpbVcNxgXF6Mx+9ce10oLw1tJHHDa9waw=";
+          hash = "sha256-3tQnOND1ChzZFgh6UX9ahlvh4CNLvytzLAMh9eIgDQc=";
         };
 
-        vendorHash = "sha256-wjp25kW65RIdgAqdsPVPA6H9xKMp85s5oB/+ZrOsqFk=";
+        vendorHash = "sha256-yqYRnfGjd6iDsQTec1MQPYY58IM8FekxDzSNl3UaP28=";
 
         passthru.refreshSourceHash = true;
 
