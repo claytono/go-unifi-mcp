@@ -70,7 +70,7 @@
       # python-kacl for changelog validation and extraction
       mkPythonKacl = pkgs: pkgs.python3Packages.buildPythonApplication rec {
         pname = "python-kacl";
-        version = "0.7.4";
+        version = "0.7.7";
         pyproject = true;
 
         src = pkgs.fetchFromGitLab {
@@ -78,7 +78,7 @@
           repo = "python-kacl";
           rev = "v${version}";
           name = "python-kacl-${version}-source";
-          hash = "sha256-qe43peZhYctNDaXtdwCSjK10KP5/6qdFSTIyV3KMtNI=";
+          hash = "sha256-KwsjknnwyJHA0pQZI4R30YgyesCGIrZqe5cbM/4dnV8=";
         };
 
         build-system = with pkgs.python3Packages; [ setuptools ];
