@@ -103,23 +103,23 @@
 
       # mcp-publisher for publishing to MCP Registry
       mkMcpPublisher = pkgs: let
-        version = "1.8.1";
+        version = "1.8.4";
         sources = {
           "aarch64-darwin" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_darwin_arm64.tar.gz";
-            hash = "sha256-5F5SCJJGBzKkvfNyVVdkFdSlPsFx+LkT+vFbsa73y3c=";
+            hash = "sha256-lsKIb5GdrlrE5hhAcCVu9DLkhfEnST89wFKvELOcIbA=";
           };
           "x86_64-darwin" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_darwin_amd64.tar.gz";
-            hash = "sha256-iBJpgSJedxT8xrehDNukqArlkB6XQKjAbQ1Rlci8KUw=";
+            hash = "sha256-0ibL7Pd3GpuomWgoEQUujtybj2yCo3U+etXXFzrEDdM=";
           };
           "x86_64-linux" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_linux_amd64.tar.gz";
-            hash = "sha256-oGyQlty5cnwTVVtr4mx+/6cHsB8GpMVhuno2NUQ88sw=";
+            hash = "sha256-XcL9QVNpxzVRJZ8xzTPiqsyeDRAh5/CP7xSS2Tt4Fig=";
           };
           "aarch64-linux" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_linux_arm64.tar.gz";
-            hash = "sha256-jddabPaEVoi11ORt9Y08om1cjSM7sGJmBuHbgsXog+Q=";
+            hash = "sha256-46lD0OfS8K5RR5Bdp1EpixHSE1kwuemBpJeyQRL+DhI=";
           };
         };
         src = sources.${pkgs.stdenv.hostPlatform.system} or null;
