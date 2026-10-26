@@ -6,6 +6,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- Build with Go 1.27. macOS binaries now officially require macOS 13 Ventura or
+  later. On macOS, setting `SSL_CERT_FILE` or `SSL_CERT_DIR` now makes Go trust
+  only those certificates instead of also consulting the system Keychain. If you
+  trust your controller's certificate through the Keychain and also have either
+  variable set, unset it or run with `GODEBUG=x509sslcertoverrideplatform=0` to
+  restore the previous behavior (#440)
+- Update the MCP SDK from mcp-go v0.57.0 to v1.0.0, adding support for the
+  2026-07-28 MCP protocol revision, including `server/discover` and the new
+  response metadata. Clients on older protocol revisions continue to connect
+  through the legacy initialize handshake (#231, #265)
+- Update the container base image, GitHub Actions, and development tooling, keep
+  Go and nixpkgs current through Renovate and scheduled `flake.lock` updates,
+  and evaluate Renovate PRs with Claude in batched passes (#345, #365, #435,
+  #439)
+
+### Removed
+
+- Remove Intel Mac (`x86_64-darwin`) support from the Nix flake, because nixpkgs
+  26.11 no longer supports it. `nix run github:claytono/go-unifi-mcp` and
+  `nix profile install github:claytono/go-unifi-mcp` no longer work on Intel
+  Macs; use the `go-unifi-mcp_darwin_amd64.tar.gz` release archive instead
+  (#437)
+
 ## [0.3.1] - 2026-07-24
 
 ### Fixed
@@ -94,6 +121,7 @@ and this project adheres to
 - Pre-built binaries for linux and macOS (amd64 and arm64)
 - Configurable site selection and authentication via environment variables
 
+[Unreleased]: https://github.com/claytono/go-unifi-mcp/compare/v0.3.1...HEAD
 [0.3.1]: https://github.com/claytono/go-unifi-mcp/releases/tag/v0.3.1
 [0.3.0]: https://github.com/claytono/go-unifi-mcp/releases/tag/v0.3.0
 [0.2.0]: https://github.com/claytono/go-unifi-mcp/releases/tag/v0.2.0
