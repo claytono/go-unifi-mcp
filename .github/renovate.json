@@ -23,6 +23,7 @@
       "depNameTemplate": "golang",
       "datasourceTemplate": "golang-version",
       "versioningTemplate": "semver-coerced",
+      "extractVersionTemplate": "^(?<version>\\d+\\.\\d+)",
       "autoReplaceStringTemplate": "go_{{{newMajor}}}_{{{newMinor}}}"
     },
     {
@@ -33,6 +34,7 @@
       "depNameTemplate": "golang",
       "datasourceTemplate": "golang-version",
       "versioningTemplate": "semver-coerced",
+      "extractVersionTemplate": "^(?<version>\\d+\\.\\d+)",
       "autoReplaceStringTemplate": "\ngo {{{newMajor}}}.{{{newMinor}}}.0\n"
     },
     {
@@ -104,13 +106,6 @@
       "description": "The go.mod go directive is bumped by the golang regex manager alongside flake.nix",
       "matchManagers": ["gomod"],
       "matchDepTypes": ["golang"],
-      "enabled": false
-    },
-    {
-      "description": "flake.nix and go.mod track only Go major.minor, so patch releases would produce empty updates",
-      "matchManagers": ["custom.regex"],
-      "matchDepNames": ["golang"],
-      "matchUpdateTypes": ["patch"],
       "enabled": false
     }
   ]
