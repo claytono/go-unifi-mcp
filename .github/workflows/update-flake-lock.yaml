@@ -1,0 +1,82 @@
+---
+name: Update Nix Flake Lock
+
+# Renovate bumps versions embedded in flake.nix but does not refresh
+# flake.lock, so nixpkgs (and the Go toolchains it provides) would otherwise
+# only move when updated by hand.
+on:
+  workflow_dispatch:
+  schedule:
+    # 5am UTC daily = midnight EST / 1am EDT
+    - cron: 0 5 * * *
+
+permissions:
+  contents: read
+
+concurrency:
+  group: update-flake-lock
+  cancel-in-progress: false
+
+jobs:
+  update-flake-lock:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          token: ${{ secrets.PAT }}
+
+      - name: Install Nix
+        uses: DeterminateSystems/determinate-nix-action@f296148a827001a9a82d3685b53210c06e5d3b67 # v3.24.0
+
+      - name: Check day of week
+        id: check-day
+        run: |
+          day=$(date +%u)
+          if [ "$day" = "1" ]; then
+            echo "is_monday=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_monday=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Open a new PR weekly, but keep an existing one current daily.
+      - name: Check for existing PR
+        id: check-pr
+        run: |
+          pr_number=$(gh pr list --state open --head update_flake_lock_action --json number --jq '.[0].number // empty')
+          if [ -n "$pr_number" ]; then
+            echo "existing_pr=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "existing_pr=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+
+      - name: Update flake.lock
+        if: >-
+          github.event_name == 'workflow_dispatch' ||
+          steps.check-day.outputs.is_monday == 'true' ||
+          steps.check-pr.outputs.existing_pr == 'true'
+        uses: DeterminateSystems/update-flake-lock@da03c0f078bc4b2c37ee4f7e072d34bf8f188bb3 # v29
+        id: update-flake-lock
+        with:
+          token: ${{ secrets.PAT }}
+          pr-title: Update Nix flake inputs
+          pr-body: |
+            Automated changes by the [update-flake-lock](https://github.com/DeterminateSystems/update-flake-lock) GitHub Action.
+
+            ```
+            {{ env.GIT_COMMIT_MESSAGE }}
+            ```
+
+      - name: Enable automerge
+        if: steps.update-flake-lock.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+          FLAKE_PR_NUMBER:
+            ${{ steps.update-flake-lock.outputs.pull-request-number }}
+        run: |-
+          gh pr edit "$FLAKE_PR_NUMBER" --add-label automerge
+          gh pr merge --auto --rebase "$FLAKE_PR_NUMBER"
