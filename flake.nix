@@ -12,11 +12,16 @@
         pkgs = import nixpkgs { inherit system; };
       });
 
+      # One Go toolchain for the dev shell and every Go build. Renovate bumps
+      # the attribute below; nixpkgs' default go lags new Go releases.
+      goFor = pkgs: pkgs.go_1_26;
+      buildGoModuleFor = pkgs: pkgs.buildGoModule.override { go = goFor pkgs; };
+
       mkGoUnifiMcp = pkgs:
         let
           version = if self ? rev then self.rev else "dirty";
         in
-        pkgs.buildGoModule {
+        (buildGoModuleFor pkgs) {
           pname = "go-unifi-mcp";
           inherit version;
 
@@ -41,7 +46,7 @@
         };
 
       # go-test-coverage package (not in nixpkgs)
-      mkGoTestCoverage = pkgs: pkgs.buildGoModule rec {
+      mkGoTestCoverage = pkgs: (buildGoModuleFor pkgs) rec {
         pname = "go-test-coverage";
         version = "2.19.0";
 
@@ -211,7 +216,7 @@
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
           packages = with pkgs; [
-            go_1_26
+            (goFor pkgs)
             golangci-lint
             go-task
             pre-commit
