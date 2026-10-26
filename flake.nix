@@ -7,7 +7,7 @@
 
   outputs = { self, nixpkgs }:
     let
-      supportedSystems = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" "aarch64-linux" ];
+      supportedSystems = [ "x86_64-linux" "aarch64-darwin" "aarch64-linux" ];
       forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
         pkgs = import nixpkgs { inherit system; };
       });
@@ -114,10 +114,6 @@
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_darwin_arm64.tar.gz";
             hash = "sha256-5F5SCJJGBzKkvfNyVVdkFdSlPsFx+LkT+vFbsa73y3c=";
           };
-          "x86_64-darwin" = {
-            url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_darwin_amd64.tar.gz";
-            hash = "sha256-iBJpgSJedxT8xrehDNukqArlkB6XQKjAbQ1Rlci8KUw=";
-          };
           "x86_64-linux" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_linux_amd64.tar.gz";
             hash = "sha256-oGyQlty5cnwTVVtr4mx+/6cHsB8GpMVhuno2NUQ88sw=";
@@ -165,10 +161,6 @@
             url = "https://github.com/philschmid/mcp-cli/releases/download/v${version}/mcp-cli-darwin-arm64";
             hash = "sha256-vpkd8KEl4c+aAi/m/84jZgVSL9E4JDXOWP/fmrpmQvI=";
           };
-          "x86_64-darwin" = {
-            url = "https://github.com/philschmid/mcp-cli/releases/download/v${version}/mcp-cli-darwin-x64";
-            hash = "sha256-8OiQpmYmgzUAW7uhmSU/+Pbmr6520K3zT72nCLJqzC4=";
-          };
           "x86_64-linux" = {
             url = "https://github.com/philschmid/mcp-cli/releases/download/v${version}/mcp-cli-linux-x64";
             hash = "sha256-dncvKQ7aqFbL7JZ9EsM8ub9Jz/AU9Vow0EJFz4lwgXw=";
@@ -197,7 +189,7 @@
         meta = {
           description = "Lightweight CLI for interacting with MCP servers";
           homepage = "https://github.com/philschmid/mcp-cli";
-          platforms = [ "aarch64-darwin" "x86_64-darwin" "x86_64-linux" ];
+          platforms = [ "aarch64-darwin" "x86_64-linux" ];
         };
       };
     in
