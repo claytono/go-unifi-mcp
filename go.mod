@@ -1,6 +1,6 @@
 module github.com/claytono/go-unifi-mcp
 
-go 1.26.0
+go 1.27.0
 
 require (
 	github.com/filipowm/go-unifi v1.11.2
