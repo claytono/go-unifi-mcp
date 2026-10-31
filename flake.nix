@@ -108,7 +108,7 @@
 
       # mcp-publisher for publishing to MCP Registry
       mkMcpPublisher = pkgs: let
-        version = "1.8.4";
+        version = "1.8.6";
         sources = {
           "aarch64-darwin" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_darwin_arm64.tar.gz";
