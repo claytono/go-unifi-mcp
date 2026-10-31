@@ -48,17 +48,17 @@
       # go-test-coverage package (not in nixpkgs)
       mkGoTestCoverage = pkgs: (buildGoModuleFor pkgs) rec {
         pname = "go-test-coverage";
-        version = "2.20.1";
+        version = "2.21.0";
 
         src = pkgs.fetchFromGitHub {
           owner = "vladopajic";
           repo = "go-test-coverage";
           rev = "v${version}";
           name = "go-test-coverage-${version}-source";
-          hash = "sha256-lSQc8cRL4ZkFaZAcqzwlrNO5Gq+4uQzb9Gkw9tgumm0=";
+          hash = "sha256-Z/9BGs2Y8SNJPfiQ/eUAjgmz7UCAaX8DEKgLVqkzExw=";
         };
 
-        vendorHash = "sha256-UO7gVUIcQectjZWCiN3AfF2ELgjHn7UCZTnNtG37Gxg=";
+        vendorHash = "sha256-bhRprQCWk69p+PknwsKRHTAKnKoLO7nnaWLfmFu/0ZA=";
 
         passthru.refreshSourceHash = true;
 
