@@ -3,7 +3,7 @@
 package generated
 
 import (
-	"github.com/filipowm/go-unifi/unifi"
+	"github.com/filipowm/go-unifi/v2/unifi"
 	"github.com/mark3labs/mcp-go/server"
 )
 

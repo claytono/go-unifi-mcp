@@ -1,6 +1,6 @@
 package registry
 
-import "github.com/filipowm/go-unifi/unifi"
+import "github.com/filipowm/go-unifi/v2/unifi"
 
 // mockClient embeds a nil pointer to satisfy the unifi.Client interface.
 // All methods will panic if called, which is fine because our test uses

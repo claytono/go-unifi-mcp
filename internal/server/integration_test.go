@@ -7,7 +7,7 @@ import (
 
 	servermocks "github.com/claytono/go-unifi-mcp/internal/server/mocks"
 	"github.com/claytono/go-unifi-mcp/internal/tools/generated"
-	"github.com/filipowm/go-unifi/unifi"
+	"github.com/filipowm/go-unifi/v2/unifi"
 	clientpkg "github.com/mark3labs/mcp-go/client"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/stretchr/testify/assert"

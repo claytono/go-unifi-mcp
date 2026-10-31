@@ -9,7 +9,7 @@ import (
 
 	"github.com/claytono/go-unifi-mcp/internal/resolve"
 	"github.com/claytono/go-unifi-mcp/internal/tools/generated"
-	"github.com/filipowm/go-unifi/unifi"
+	"github.com/filipowm/go-unifi/v2/unifi"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 )
