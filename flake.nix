@@ -108,19 +108,19 @@
 
       # mcp-publisher for publishing to MCP Registry
       mkMcpPublisher = pkgs: let
-        version = "1.8.4";
+        version = "1.8.6";
         sources = {
           "aarch64-darwin" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_darwin_arm64.tar.gz";
-            hash = "sha256-lsKIb5GdrlrE5hhAcCVu9DLkhfEnST89wFKvELOcIbA=";
+            hash = "sha256-SVEUYdmQat6WPHf2qPFH/CJdC8rSoNJXH3XO9dtBYao=";
           };
           "x86_64-linux" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_linux_amd64.tar.gz";
-            hash = "sha256-XcL9QVNpxzVRJZ8xzTPiqsyeDRAh5/CP7xSS2Tt4Fig=";
+            hash = "sha256-H76T/AeDwjlNgBLI1uUKWemMsswtIWJkzGn0BdDiE0A=";
           };
           "aarch64-linux" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_linux_arm64.tar.gz";
-            hash = "sha256-46lD0OfS8K5RR5Bdp1EpixHSE1kwuemBpJeyQRL+DhI=";
+            hash = "sha256-At4oVvR/sGiFno6BP+fuE1gwaepDDkF0ToLThkgaCCg=";
           };
         };
         src = sources.${pkgs.stdenv.hostPlatform.system} or null;
