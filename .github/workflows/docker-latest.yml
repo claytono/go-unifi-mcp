@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
@@ -46,7 +48,6 @@ jobs:
       - name: Download release binaries
         if: steps.release.outputs.skip == 'false'
         run: |
-          TAG="${{ steps.release.outputs.tag }}"
           for arch in amd64 arm64; do
             gh release download "$TAG" \
               --pattern "go-unifi-mcp_linux_${arch}.tar.gz" \
@@ -56,11 +57,11 @@ jobs:
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.release.outputs.tag }}
 
       - name: Build and push image
         if: steps.release.outputs.skip == 'false'
         run: |
-          TAG="${{ steps.release.outputs.tag }}"
           VERSION="${TAG#v}"
 
           # Stage binaries in the layout expected by the Dockerfile
@@ -80,3 +81,5 @@ jobs:
             --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
             --push \
             .
+        env:
+          TAG: ${{ steps.release.outputs.tag }}
