@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "helpers:pinGitHubActionDigestsToSemver"],
+  "extends": ["config:best-practices"],
   "rebaseWhen": "behind-base-branch",
   "minimumReleaseAge": "3 days",
   "minimumReleaseAgeBehaviour": "timestamp-optional",
@@ -13,14 +13,14 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^\\.go-unifi-version$"],
+      "managerFilePatterns": ["/^\\.go-unifi-version$/"],
       "matchStrings": ["(?<currentValue>v[0-9.]+)"],
       "depNameTemplate": "filipowm/go-unifi",
       "datasourceTemplate": "github-releases"
     },
     {
       "customType": "regex",
-      "fileMatch": ["^flake\\.nix$"],
+      "managerFilePatterns": ["/^flake\\.nix$/"],
       "matchStrings": ["go_(?<major>\\d+)_(?<minor>\\d+)"],
       "currentValueTemplate": "{{{major}}}.{{{minor}}}",
       "depNameTemplate": "golang",
@@ -31,7 +31,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^go\\.mod$"],
+      "managerFilePatterns": ["/^go\\.mod$/"],
       "matchStrings": ["\\ngo (?<major>\\d+)\\.(?<minor>\\d+)\\.\\d+\\n"],
       "currentValueTemplate": "{{{major}}}.{{{minor}}}",
       "depNameTemplate": "golang",
@@ -42,7 +42,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^flake\\.nix$"],
+      "managerFilePatterns": ["/^flake\\.nix$/"],
       "matchStrings": [
         "pname\\s*=\\s*\"go-test-coverage\";[\\s\\S]*?version\\s*=\\s*\"(?<currentValue>[^\"]+)\";"
       ],
@@ -51,7 +51,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^flake\\.nix$"],
+      "managerFilePatterns": ["/^flake\\.nix$/"],
       "matchStrings": [
         "mkMcpCli\\s*=\\s*pkgs:\\s*let\\s*version\\s*=\\s*\"(?<currentValue>[^\"]+)\";"
       ],
@@ -60,7 +60,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^flake\\.nix$"],
+      "managerFilePatterns": ["/^flake\\.nix$/"],
       "matchStrings": [
         "mkMcpPublisher\\s*=\\s*pkgs:\\s*let\\s*version\\s*=\\s*\"(?<currentValue>[^\"]+)\";"
       ],
@@ -69,7 +69,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^flake\\.nix$"],
+      "managerFilePatterns": ["/^flake\\.nix$/"],
       "matchStrings": [
         "pname\\s*=\\s*\"python-kacl\";[\\s\\S]*?version\\s*=\\s*\"(?<currentValue>[^\"]+)\";"
       ],
