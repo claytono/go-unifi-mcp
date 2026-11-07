@@ -6,7 +6,7 @@ import (
 	context "context"
 	io "io"
 
-	unifi "github.com/filipowm/go-unifi/unifi"
+	unifi "github.com/filipowm/go-unifi/v2/unifi"
 	mock "github.com/stretchr/testify/mock"
 )
 
