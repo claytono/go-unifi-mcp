@@ -19,9 +19,9 @@ repos:
     hooks:
       - id: prettier
         name: prettier
-        entry: prettier --write --ignore-unknown
+        entry: prettier --write --list-different --ignore-unknown
         language: node
-        additional_dependencies: [prettier@4.0.0-alpha.13]
+        additional_dependencies: [prettier@3.9.10]
         types: [text]
         types_or: [json, markdown, yaml]
 
