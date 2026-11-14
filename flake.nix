@@ -112,15 +112,15 @@
         sources = {
           "aarch64-darwin" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_darwin_arm64.tar.gz";
-            hash = "sha256-lsKIb5GdrlrE5hhAcCVu9DLkhfEnST89wFKvELOcIbA=";
+            hash = "sha256-QXX3KBxC7y9mZtCGl0qgHz7s1ooGfPuDKfCn5iDbbjo=";
           };
           "x86_64-linux" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_linux_amd64.tar.gz";
-            hash = "sha256-XcL9QVNpxzVRJZ8xzTPiqsyeDRAh5/CP7xSS2Tt4Fig=";
+            hash = "sha256-TVJ8qPHO0DlMli3JJcKkpK3e9EHL79YlAch16UgYI6g=";
           };
           "aarch64-linux" = {
             url = "https://github.com/modelcontextprotocol/registry/releases/download/v${version}/mcp-publisher_linux_arm64.tar.gz";
-            hash = "sha256-46lD0OfS8K5RR5Bdp1EpixHSE1kwuemBpJeyQRL+DhI=";
+            hash = "sha256-9OsuLwo9BpMkfvwReQLrzGUeHR2pc8he0WXbgKk+T7s=";
           };
         };
         src = sources.${pkgs.stdenv.hostPlatform.system} or null;
