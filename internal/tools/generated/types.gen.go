@@ -3,7 +3,7 @@
 package generated
 
 import (
-	"github.com/filipowm/go-unifi/unifi"
+	"github.com/filipowm/go-unifi/v2/unifi"
 )
 
 // TypeRegistry maps resource names to factory functions that create new instances.
