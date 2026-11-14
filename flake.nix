@@ -55,7 +55,7 @@
           repo = "go-test-coverage";
           rev = "v${version}";
           name = "go-test-coverage-${version}-source";
-          hash = "sha256-Z/9BGs2Y8SNJPfiQ/eUAjgmz7UCAaX8DEKgLVqkzExw=";
+          hash = "sha256-UCsgO041+1kFq2dkplYtzd2ml9BuAZR44UAbEIaBSQQ=";
         };
 
         vendorHash = "sha256-bhRprQCWk69p+PknwsKRHTAKnKoLO7nnaWLfmFu/0ZA=";
