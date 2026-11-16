@@ -10,7 +10,7 @@ import (
 
 	"github.com/claytono/go-unifi-mcp/internal/config"
 	"github.com/claytono/go-unifi-mcp/internal/server"
-	"github.com/filipowm/go-unifi/unifi"
+	"github.com/filipowm/go-unifi/v2/unifi"
 	mcpserver "github.com/mark3labs/mcp-go/server"
 )
 
