@@ -1,15 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:best-practices"],
-  "rebaseWhen": "behind-base-branch",
-  "minimumReleaseAge": "3 days",
-  "minimumReleaseAgeBehaviour": "timestamp-optional",
+  "extends": ["github>claytono/renovate-config"],
   "postUpdateOptions": ["gomodUpdateImportPaths"],
-  "prHourlyLimit": 0,
-  "prConcurrentLimit": 0,
-  "pre-commit": {
-    "enabled": true
-  },
   "customManagers": [
     {
       "customType": "regex",
@@ -78,21 +70,7 @@
       "registryUrlTemplate": "https://gitlab.com"
     }
   ],
-  "gitIgnoredAuthors": ["github-actions[bot]@users.noreply.github.com"],
   "packageRules": [
-    {
-      "description": "Do not pin the reusable Renovate evaluation workflow; it intentionally tracks main",
-      "matchManagers": ["github-actions"],
-      "matchPackageNames": ["claytono/github-actions"],
-      "matchUpdateTypes": ["pinDigest"],
-      "enabled": false
-    },
-    {
-      "description": "Automerge pre-commit hook updates",
-      "matchManagers": ["pre-commit"],
-      "automerge": true,
-      "addLabels": ["automerge"]
-    },
     {
       "description": "Automerge Go patch and digest updates",
       "matchDatasources": ["go"],
@@ -101,7 +79,7 @@
     },
     {
       "description": "Automerge Docker digest updates",
-      "matchDatasources": ["docker"],
+      "matchDatasources": ["docker", "custom.docker-first-seen"],
       "matchUpdateTypes": ["digest"],
       "automerge": true
     },
