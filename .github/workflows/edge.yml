@@ -8,6 +8,13 @@ on:
 permissions:
   packages: write
 
+# Every run pushes the same edge tag, so the last one to finish wins. Runs go
+# one at a time, with only the newest waiting, and each builds main as it is
+# when it starts, so the last run always builds the newest commit.
+concurrency:
+  group: edge
+  cancel-in-progress: false
+
 jobs:
   edge:
     runs-on: ubuntu-latest
@@ -15,6 +22,8 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          # Build the newest main, not the commit that queued this run.
+          ref: main
           fetch-depth: 0
 
       - uses: cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b # 31.11.3
@@ -67,7 +76,7 @@ jobs:
             --label "org.opencontainers.image.description=MCP server for UniFi Network Controller" \
             --label "org.opencontainers.image.version=${VERSION}" \
             --label "org.opencontainers.image.source=https://github.com/${{ github.repository }}" \
-            --label "org.opencontainers.image.revision=${GITHUB_SHA}" \
+            --label "org.opencontainers.image.revision=$(git rev-parse HEAD)" \
             --label "org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
             --push \
             .
