@@ -6,7 +6,7 @@ import (
 
 	"github.com/claytono/go-unifi-mcp/internal/config"
 	servermocks "github.com/claytono/go-unifi-mcp/internal/server/mocks"
-	"github.com/filipowm/go-unifi/unifi"
+	"github.com/filipowm/go-unifi/v2/unifi"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
