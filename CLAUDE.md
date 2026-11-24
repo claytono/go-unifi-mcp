@@ -7,35 +7,28 @@ MCP server for UniFi Network Controller written in Go.
 **The following actions are FORBIDDEN without explicit user permission. There
 are NO exceptions. Do not rationalize, justify, or work around these rules.**
 
-### 1. DO NOT CREATE OR MERGE PULL REQUESTS WITHOUT PERMISSION
-
-- Always ASK before creating a PR - never create one autonomously
-- Only merge a PR when the user explicitly requests or approves it
-- Even if tests pass, even if it looks ready, even if the user seems busy - ASK
-  FIRST
-
-### 2. DO NOT BYPASS PRE-COMMIT HOOKS
+### 1. DO NOT BYPASS PRE-COMMIT HOOKS
 
 - Never use `--no-verify` on any git command
 - Never disable or skip hooks "temporarily"
 - If hooks fail, FIX THE ISSUE - do not bypass
 - Hook failures exist to catch problems - respect them
 
-### 3. DO NOT CHANGE CODE COVERAGE THRESHOLDS
+### 2. DO NOT CHANGE CODE COVERAGE THRESHOLDS
 
 - The coverage thresholds in `.testcoverage.yaml` are SACRED
 - Never lower `total` or `file` thresholds for any reason
 - If coverage is failing, write more tests - do not lower the bar
 - This includes "temporary" changes - there is no such thing
 
-### 4. DO NOT RUSH
+### 3. DO NOT RUSH
 
 - Rushing leads to sloppy work that wastes MORE time later
 - Take the time to do things correctly the first time
 - If something seems hard, that's a sign to slow down, not speed up
 - Quality gates exist for a reason - do not circumvent them to "save time"
 
-### 5. DO NOT COMMIT DIRECTLY TO MAIN
+### 4. DO NOT COMMIT DIRECTLY TO MAIN
 
 - All changes to main require a pull request
 - No direct commits, no matter how small the change
